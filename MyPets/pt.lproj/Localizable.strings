@@ -1,0 +1,137 @@
+/*
+ Localizable.strings
+ MyPets
+ 
+ Created by Datum Informatica on 11/09/12.
+ Copyright (c) 2012 Siemens. All rights reserved.
+ */
+
+////////////////////////////////////
+//////////////////PORTUGUES
+////////////////////////////////////
+
+"Meus Pets"        = "Meus Pets";
+
+/*
+"Meus Pets"        = "Meus Pets";
+"Eventos"          = "Eventos";
+"Instagram"        = "Instagram®";
+"Twitter"          = "Twitter®";
+"Sobre a AllTouch" = "Sobre a AllTouch";
+"Lista de Pets"    = "Lista de Pets";
+"Menu"             = "Menu";
+"Pets"             = "Pets";
+"Pet"              = "Pet";
+
+"Sem Registros"   = "Sem Registros";
+"Trocando a foto" = "Trocando a foto";
+"Trocando o selo" = "Trocando o selo";
+"Cancelar"        = "Cancelar";
+"Tirar um foto"   = "Tirar uma foto";
+"Pegar do álbum"  = "Pegar do álbum";
+"Adicionar o selo do fabricante" = "Adicionar o selo do fabricante";
+
+"Próximos Eventos" = "Próximos Eventos";
+"Eventos Passados" = "Eventos Passados";
+
+"Banho"       = "Banho";
+"Medicamento" = "Medicamento";
+"Consulta"    = "Consulta";
+"Veterinário" = "Veterinário";
+"Data"        = "Data";
+"Revacina"    = "Revacina";
+"Próxima"     = "Próxima";
+"Vacinas"     = "Vacinas";
+"Vacina"     = "Vacina";
+
+"dd/MM/yyyy"           = "dd/MM/yyyy";
+"dd.MM.yyyy - hh:mm a" = "dd.MM.yyyy - hh:mm a";
+"dd.MM.yyyy"           = "dd.MM.yyyy";
+"dd.MM.yyyy hh:mm"     = "dd.MM.yyyy hh:mm";
+
+"Adicionar"  = "Adicionar";
+"Alerta"     = "Alerta";
+"Apagar"     = "Apagar";
+"Deseja apagar" = "Deseja apagar";
+
+"Busca"         = "Busca";
+"Chat"          = "Chat";
+"Configurações" = "Configurações";
+
+"Error1" = "MyPets não consegue acessar a sua localização atual. \n\nPara visualizar outros pets próximos a você, vá nas configurações de localização do seu aparelho e ative o acesso para o MyPets.";
+"Error2" = "Não foi possível exibir o Twitter.";
+"Error3" = "Não foi possível exibir o Instagram.";
+
+"MENSAGEM_Instagram" = "Carregando informações do\nInstagram®";
+"MENSAGEM_Twitter"   = "Carregando informações do\nTwitter®";
+
+"ano"   = "ano";
+"anos"  = "anos";
+"mês"   = "mês";
+"meses" = "meses";
+"dia"   = "dia";
+"dias"  = "dias";
+
+"Macho" = "Macho";
+"Fêmea" = "Fêmea";
+
+"Nunca"             = "Nunca";
+"Lembrete"          = "Lembrete";
+"Lembretes"          = "Lembretes";
+"Abrir"             = "Abrir";
+"Na hora do evento" = "Na hora do evento";
+"5 minutos antes"   = "5 minutos antes";
+"15 minutos antes"  = "15 minutos antes";
+"30 minutos antes"  = "30 minutos antes";
+"1 hora antes"      = "1 hora antes";
+"2 horas antes"     = "2 horas antes";
+"1 dia antes"       = "1 dia antes";
+"2 dias antes"      = "2 dias antes";
+"3 dias antes"      = "3 dias antes";
+"1 semana antes"    = "1 semana antes";
+"1 mês antes"       = "1 mês antes";
+
+"Nome"              = "Nome";
+"exemploNome"       = "Rex";
+"Nascimento"        = "Nascimento";
+"exemploNascimento" = "dd/mm/yyyy";
+"Espécie"           = "Espécie";
+"exemploEspécie"    = "Canino, Felino";
+"Raça"              = "Raça";
+"exemploRaça"       = "Labrador, Persa";
+"Sexo"              = "Sexo";
+"exemploSexo"       = "Macho";
+"Notas"             = "Notas";
+"exemploNotas"      = "Notas";
+"exemploData"       = "dd/mm/yyyy";
+"Hora"              = "Hora";
+"exemploHora"       = "hh:mm";
+"hh:mm a"           = "hh:mm a";
+"exemploMedicamento" = "Medicamento";
+"Tipo"               = "Tipo";
+"exemploTipo"        = "Vermífugo";
+"Dose"               = "Dose";
+"exemploDose"        = "40ml";
+
+"anos humanos"       = "anos humano";
+"Carteira Vacinação" = "Carteira Vacinação";
+"Carteira Vermífugo" = "Carteira Vermífugo";
+"Agenda Consultas"          = "Agenda Consultas";
+"Agenda Banhos"             = "Agenda Banhos";
+"Agenda Medicamentos" = "Agenda Medicamentos";
+"Peso" = "Peso";
+"Reforço" = "Reforço";
+
+"iPad_btnRate.png" = "iPad_btnRate_PT.png";
+"iPad_btnMoreApps.png" = "iPad_btnMoreApps_PT.png";
+
+"Canino" = "Canino";
+"Felino" = "Felino";
+"Outro"  = "Outro";
+
+"inserir a espécie" = "inserir a espécie";
+"Avaliar o MyPets" = "Avaliar o MyPets";
+"Mais apps da Alltouch" = "Mais apps da Alltouch";
+"Versão" = "Versão";
+
+*/
