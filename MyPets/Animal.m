@@ -49,4 +49,22 @@
 {
     return self.cNome;
 }
+
+- (NSString *)getDescricao
+{
+    NSString * raca = self.cRaca;
+    NSString * sexo = NSLocalizedString(@"Macho", nil);
+    
+    if (![self.cSexo isEqualToString:NSLocalizedString(@"Macho",nil)]) {
+        sexo = NSLocalizedString(@"Fêmea", nil);
+    }
+    
+    if ([raca isEqualToString:@""]) {
+        raca = @"n/a";
+    }else {
+        raca = self.cRaca;
+    }
+    
+    return [NSString stringWithFormat:@"%@ - %@",raca,sexo];
+}
 @end

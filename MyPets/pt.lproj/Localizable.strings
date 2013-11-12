@@ -11,6 +11,8 @@
 ////////////////////////////////////
 
 "Meus Pets"        = "Meus Pets";
+"Macho" = "Macho";
+"Fêmea" = "Fêmea";
 
 /*
 "Meus Pets"        = "Meus Pets";
@@ -72,8 +74,7 @@
 "dia"   = "dia";
 "dias"  = "dias";
 
-"Macho" = "Macho";
-"Fêmea" = "Fêmea";
+
 
 "Nunca"             = "Nunca";
 "Lembrete"          = "Lembrete";

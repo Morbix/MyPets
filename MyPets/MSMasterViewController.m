@@ -27,6 +27,10 @@
 //
 
 #import "MSMasterViewController.h"
+#import "MPCoreDataService.h"
+#import "Animal.h"
+#import <QuartzCore/QuartzCore.h>
+#import "UIFlatColor.h"
 
 NSString * const MSMasterViewControllerCellReuseIdentifier = @"MSMasterViewControllerCellReuseIdentifier";
 
@@ -81,6 +85,8 @@ typedef NS_ENUM(NSUInteger, MSMasterViewControllerTableViewSectionType) {
     
     // Default to the "None" appearance type
     [self transitionToViewController:MSPaneViewControllerTypeAppearanceNone];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callbackPetsCompleted:) name:MTPSNotificationPets object:nil];
 }
 
 #pragma mark - MSMasterViewController
@@ -178,5 +184,72 @@ typedef NS_ENUM(NSUInteger, MSMasterViewControllerTableViewSectionType) {
 {
     
 }
+
+#pragma mark - UITableViewDelegate and UITableViewDataSource
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [[[MPCoreDataService shared] arrayPets] count];
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"pet"];
+    
+    UILabel *labelNome      = (UILabel *)[cell viewWithTag:10];
+    UILabel *labelDescricao = (UILabel *)[cell viewWithTag:20];
+    UILabel *labelIdade     = (UILabel *)[cell viewWithTag:30];
+    UIImageView *imagemFoto = (UIImageView *)[cell viewWithTag:40];
+    
+    Animal *animal = [[[MPCoreDataService shared] arrayPets] objectAtIndex:indexPath.row];
+    
+    [labelNome setText:[animal getNome]];
+    [labelNome setTextColor:[UIFlatColor alizarinColor]];
+    
+    [labelDescricao setText:[animal getDescricao]];
+    [labelDescricao setTextColor:[UIFlatColor orangeColor]];
+    
+    [labelIdade setTextColor:[UIFlatColor orangeColor]];
+    
+    [imagemFoto setImage:[animal getFoto]];
+    [imagemFoto.layer setBorderColor:[UIColor colorWithWhite:0.98f alpha:1.0f].CGColor];
+    [imagemFoto.layer setBorderWidth:2.0f];
+    [imagemFoto.layer setShadowColor:[UIColor blackColor].CGColor];
+    [imagemFoto.layer setShadowOffset:CGSizeMake(2, 2)];
+    [imagemFoto.layer setShadowOpacity:0.0];
+    [imagemFoto.layer setShadowRadius:1.0];
+    
+    
+    //[self addShaddow:&labelNome];
+    //[self addShaddow:&labelDescricao];
+    //[self addShaddow:&labelIdade];
+    
+    return cell;
+}
+
+- (void)addShaddow:(UIView *__autoreleasing*)object
+{
+    [[*object layer] setShadowColor:[UIColor whiteColor].CGColor];
+    [[*object layer] setShadowOffset:CGSizeMake(1, 1)];
+    [[*object layer] setShadowOpacity:0.5];
+    [[*object layer] setShadowRadius:1.0];
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 70.0f;
+}
+
+#pragma mark - MTNotifications
+- (void)callbackPetsCompleted:(NSNotification *)notification
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:MTPSNotificationPets object:nil];
+    
+    if (notification.userInfo) {
+        NSLog(@"error: %s", __PRETTY_FUNCTION__);
+    }else{
+        [self.tabela reloadData];
+    }
+}
+
 
 @end

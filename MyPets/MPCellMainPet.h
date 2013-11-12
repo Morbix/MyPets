@@ -14,6 +14,6 @@
 @property (nonatomic, strong) UIImageView *imagemSombra;
 @property (nonatomic, strong) UILabel *labelNome;
 
-- (id)initWithDiv:(int)div;
+- (id)initWithDiv:(int)div andWidth:(int)width;
 
 @end

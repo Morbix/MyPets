@@ -39,11 +39,12 @@ typedef NS_ENUM(NSUInteger, MSPaneViewControllerType) {
     MSPaneViewControllerTypeCount
 };
 
-@interface MSMasterViewController : UIViewController
+@interface MSMasterViewController : UIViewController <UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, assign) MSPaneViewControllerType paneViewControllerType;
 @property (nonatomic, weak) MSNavigationPaneViewController *navigationPaneViewController;
 @property (strong, nonatomic) IBOutlet UINavigationBar *navigationBar;
+@property (strong, nonatomic) IBOutlet UITableView *tabela;
 
 - (void)transitionToViewController:(MSPaneViewControllerType)paneViewControllerType;
 

@@ -37,7 +37,7 @@
     NSArray *arrayResult = [self.context executeFetchRequest:request error:&error];
     if (arrayResult) {
         [self.arrayPets removeAllObjects];
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
             for (Animal *animal in arrayResult) {
                 [self.arrayPets addObject:animal];
             }

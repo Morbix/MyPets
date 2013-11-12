@@ -11,6 +11,8 @@
 ////////////////////////////////////
 
 "Meus Pets"        = "My Pets";
+"Macho" = "Male";
+"Fêmea" = "Female";
 
 /*
  "Meus Pets"        = "My Pets";
@@ -71,9 +73,6 @@
 "meses" = "months";
 "dia"   = "day";
 "dias"  = "days";
-
-"Macho" = "Male";
-"Fêmea" = "Female";
 
 "Nunca"             = "Never";
 "Lembrete"          = "Reminder";

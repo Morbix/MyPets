@@ -35,7 +35,7 @@
 
 - (UIImage *)getFoto;
 - (NSString *)getNome;
-
+- (NSString *)getDescricao;
 @end
 
 @interface Animal (CoreDataGeneratedAccessors)

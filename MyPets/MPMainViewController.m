@@ -86,7 +86,7 @@
     
     MPCellMainPet *cellView = (MPCellMainPet *)[cell viewWithTag:10];
     if (!cellView) {
-        cellView = [[MPCellMainPet alloc] initWithDiv:DIV];
+        cellView = [[MPCellMainPet alloc] initWithDiv:DIV andWidth:self.collection.frame.size.width];
         [cellView setTag:10];
         [cell addSubview:cellView];
     }
@@ -108,7 +108,7 @@
 #pragma mark – UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    float w = [UIScreen mainScreen].bounds.size.width;
+    float w = self.collection.frame.size.width;
     
     return CGSizeMake((w/DIV), (w/DIV));
     

@@ -11,9 +11,9 @@
 
 @implementation MPCellMainPet
 
-- (id)initWithDiv:(int)div
+- (id)initWithDiv:(int)div andWidth:(int)width
 {
-    float w = [UIScreen mainScreen].bounds.size.width;
+    float w = width;
     self = [super initWithFrame:CGRectMake(0, 0, w/div, w/div)];
     if (self) {
         float borda = 6;
@@ -23,12 +23,11 @@
         self.imagemPet = [[UIImageView alloc] init];
         [self.imagemPet setFrame:CGRectMake(borda, borda, self.frame.size.width-(2*borda), self.frame.size.height-(2*borda))];
         [self.imagemPet setContentMode:UIViewContentModeScaleToFill];
-        [self.imagemPet.layer setBorderColor:[UIColor colorWithWhite:0.98f alpha:1.0f].CGColor];
+        [self.imagemPet.layer setBorderColor:[UIColor colorWithWhite:1.0f alpha:1.0f].CGColor];
         [self.imagemPet.layer setBorderWidth:4.0f];
-        [self.imagemPet.layer setMasksToBounds:NO];
         [self.imagemPet.layer setShadowColor:[UIColor blackColor].CGColor];
         [self.imagemPet.layer setShadowOffset:CGSizeMake(2, 2)];
-        [self.imagemPet.layer setShadowOpacity:0.5];
+        [self.imagemPet.layer setShadowOpacity:0.0];
         [self.imagemPet.layer setShadowRadius:2.0];
         [self.imagemPet setImage:[UIImage imageNamed:@"dog.jpg"]];
         
@@ -50,9 +49,8 @@
         [self.labelNome setMinimumScaleFactor:0.8];
         [self.labelNome setAdjustsFontSizeToFitWidth:YES];
         [self.labelNome setFont:[UIFont boldSystemFontOfSize:fontSize]];
-        [self.labelNome setText:@"Oscar"];
         [self.labelNome setShadowColor:[UIColor blackColor]];
-        [self.labelNome setShadowOffset:CGSizeMake(0.0f, -0.8f)];
+        [self.labelNome setShadowOffset:CGSizeMake(0.0f, -0.0f)];
         [self.imagemSombra addSubview:self.labelNome];
         
         [self addSubview:self.imagemPet];
