@@ -22,14 +22,14 @@
     [MPLibrary appearanceCustom];
     
     
-    self.navigationPaneViewController = (MSNavigationPaneViewController *)self.window.rootViewController;
+    /*self.navigationPaneViewController = (MSNavigationPaneViewController *)self.window.rootViewController;
     MSMasterViewController *masterViewController = (MSMasterViewController *)[self.navigationPaneViewController.storyboard instantiateViewControllerWithIdentifier:@"masterViewController"];
 
     masterViewController.navigationPaneViewController = self.navigationPaneViewController;
     
     [self.navigationPaneViewController setAppearanceType:MSNavigationPaneAppearanceTypeParallax];
     [self.navigationPaneViewController setMasterViewController:masterViewController];
-    [self.navigationPaneViewController setOpenDirection:MSNavigationPaneOpenDirectionLeft];
+    [self.navigationPaneViewController setOpenDirection:MSNavigationPaneOpenDirectionLeft];*/
     
     
     return YES;
