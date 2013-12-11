@@ -17,6 +17,9 @@
     BOOL CALLBACK_LOCAL;
     int DIV;
 }
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *barButtonRight;
+
+- (IBAction)barButtonRightTouched:(id)sender;
 @end
 
 @implementation MPMainViewController
@@ -58,7 +61,14 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - UICollectionViewDatasource
+#pragma mark - IBAction
+- (IBAction)barButtonRightTouched:(id)sender
+{
+    [self performSegueWithIdentifier:@"petViewController" sender:nil];
+}
+
+#pragma mark - UICollectionView
+#pragma mark  UICollectionViewDatasource
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section
 {
     int count = [[[MPCoreDataService shared] arrayPets] count];
@@ -149,5 +159,6 @@
         [self.collection reloadData];
     }
 }
+
 
 @end

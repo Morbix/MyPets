@@ -8,8 +8,6 @@
 
 #import "MPAppDelegate.h"
 #import "MPLibrary.h"
-#import "MSNavigationPaneViewController.h"
-#import "MSMasterViewController.h"
 
 @implementation MPAppDelegate
 

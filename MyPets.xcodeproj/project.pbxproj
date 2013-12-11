@@ -40,13 +40,7 @@
 		A78D073E181899F600DC64CD /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A78D073D181899F600DC64CD /* Default-568h@2x.png */; };
 		A78D075818189ACC00DC64CD /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A78D075318189ACC00DC64CD /* Model.xcdatamodeld */; };
 		A78D075A18189B4D00DC64CD /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A78D075918189B4D00DC64CD /* Storyboard.storyboard */; };
-		A7A13300181B21E500D7D016 /* MSNavigationPaneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7A132FF181B21E500D7D016 /* MSNavigationPaneViewController.m */; };
-		A7A13305181B21EE00D7D016 /* PRTween.m in Sources */ = {isa = PBXBuildFile; fileRef = A7A13302181B21EE00D7D016 /* PRTween.m */; };
-		A7A13306181B21EE00D7D016 /* PRTweenTimingFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = A7A13304181B21EE00D7D016 /* PRTweenTimingFunctions.m */; };
 		A7A13308181B21FC00D7D016 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7A13307181B21FC00D7D016 /* QuartzCore.framework */; };
-		A7A1330B181B239800D7D016 /* MSMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7A1330A181B239800D7D016 /* MSMasterViewController.m */; };
-		A7A1330E181B286900D7D016 /* MSBarButtonIconNavigationPane.png in Resources */ = {isa = PBXBuildFile; fileRef = A7A1330C181B286900D7D016 /* MSBarButtonIconNavigationPane.png */; };
-		A7A1330F181B286900D7D016 /* MSBarButtonIconNavigationPane@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A7A1330D181B286900D7D016 /* MSBarButtonIconNavigationPane@2x.png */; };
 		A7A13315181B296000D7D016 /* UIFlatColor.m in Sources */ = {isa = PBXBuildFile; fileRef = A7A13312181B296000D7D016 /* UIFlatColor.m */; };
 		A7A13316181B296000D7D016 /* colorClouds.png in Resources */ = {isa = PBXBuildFile; fileRef = A7A13313181B296000D7D016 /* colorClouds.png */; };
 		A7A13317181B296000D7D016 /* colorClouds@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A7A13314181B296000D7D016 /* colorClouds@2x.png */; };
@@ -58,6 +52,7 @@
 		A7A1332E181B2B2E00D7D016 /* MPMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7A1332D181B2B2E00D7D016 /* MPMainViewController.m */; };
 		A7A13332181B2C6900D7D016 /* iPhone_Navigation.png in Resources */ = {isa = PBXBuildFile; fileRef = A7A13330181B2C6900D7D016 /* iPhone_Navigation.png */; };
 		A7A13333181B2C6900D7D016 /* iPhone_Navigation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A7A13331181B2C6900D7D016 /* iPhone_Navigation@2x.png */; };
+		E60554631857E71C00D11CE9 /* MPPetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E60554621857E71C00D11CE9 /* MPPetViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -114,17 +109,7 @@
 		A78D075618189ACC00DC64CD /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		A78D075718189ACC00DC64CD /* Model2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model2.xcdatamodel; sourceTree = "<group>"; };
 		A78D075918189B4D00DC64CD /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
-		A7A132FE181B21E500D7D016 /* MSNavigationPaneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSNavigationPaneViewController.h; sourceTree = "<group>"; };
-		A7A132FF181B21E500D7D016 /* MSNavigationPaneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSNavigationPaneViewController.m; sourceTree = "<group>"; };
-		A7A13301181B21EE00D7D016 /* PRTween.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRTween.h; sourceTree = "<group>"; };
-		A7A13302181B21EE00D7D016 /* PRTween.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRTween.m; sourceTree = "<group>"; };
-		A7A13303181B21EE00D7D016 /* PRTweenTimingFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRTweenTimingFunctions.h; sourceTree = "<group>"; };
-		A7A13304181B21EE00D7D016 /* PRTweenTimingFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRTweenTimingFunctions.m; sourceTree = "<group>"; };
 		A7A13307181B21FC00D7D016 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		A7A13309181B239700D7D016 /* MSMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSMasterViewController.h; sourceTree = "<group>"; };
-		A7A1330A181B239800D7D016 /* MSMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSMasterViewController.m; sourceTree = "<group>"; };
-		A7A1330C181B286900D7D016 /* MSBarButtonIconNavigationPane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MSBarButtonIconNavigationPane.png; sourceTree = "<group>"; };
-		A7A1330D181B286900D7D016 /* MSBarButtonIconNavigationPane@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MSBarButtonIconNavigationPane@2x.png"; sourceTree = "<group>"; };
 		A7A13311181B296000D7D016 /* UIFlatColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIFlatColor.h; sourceTree = "<group>"; };
 		A7A13312181B296000D7D016 /* UIFlatColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIFlatColor.m; sourceTree = "<group>"; };
 		A7A13313181B296000D7D016 /* colorClouds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = colorClouds.png; sourceTree = "<group>"; };
@@ -147,6 +132,8 @@
 		A7A1332D181B2B2E00D7D016 /* MPMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMainViewController.m; sourceTree = "<group>"; };
 		A7A13330181B2C6900D7D016 /* iPhone_Navigation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPhone_Navigation.png; sourceTree = "<group>"; };
 		A7A13331181B2C6900D7D016 /* iPhone_Navigation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone_Navigation@2x.png"; sourceTree = "<group>"; };
+		E60554611857E71C00D11CE9 /* MPPetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPetViewController.h; sourceTree = "<group>"; };
+		E60554621857E71C00D11CE9 /* MPPetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPetViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,10 +216,10 @@
 				A78D075918189B4D00DC64CD /* Storyboard.storyboard */,
 				A78D0736181899F600DC64CD /* MPAppDelegate.h */,
 				A78D0737181899F600DC64CD /* MPAppDelegate.m */,
-				A7A13309181B239700D7D016 /* MSMasterViewController.h */,
-				A7A1330A181B239800D7D016 /* MSMasterViewController.m */,
 				A7A1332C181B2B2E00D7D016 /* MPMainViewController.h */,
 				A7A1332D181B2B2E00D7D016 /* MPMainViewController.m */,
+				E60554611857E71C00D11CE9 /* MPPetViewController.h */,
+				E60554621857E71C00D11CE9 /* MPPetViewController.m */,
 				A71ABC5318316F150039DF25 /* CoreData Classes */,
 				A7A1332F181B2C5F00D7D016 /* Imagens */,
 				A7A132FB181B21C500D7D016 /* Classes */,
@@ -275,24 +262,8 @@
 			children = (
 				A7A13328181B297A00D7D016 /* LoadImageWebCache */,
 				A7A13310181B295500D7D016 /* UIFlatColor */,
-				A7A132FD181B21DC00D7D016 /* MSNavigationPaneViewController */,
 			);
 			name = External;
-			sourceTree = "<group>";
-		};
-		A7A132FD181B21DC00D7D016 /* MSNavigationPaneViewController */ = {
-			isa = PBXGroup;
-			children = (
-				A7A132FE181B21E500D7D016 /* MSNavigationPaneViewController.h */,
-				A7A132FF181B21E500D7D016 /* MSNavigationPaneViewController.m */,
-				A7A13301181B21EE00D7D016 /* PRTween.h */,
-				A7A13302181B21EE00D7D016 /* PRTween.m */,
-				A7A13303181B21EE00D7D016 /* PRTweenTimingFunctions.h */,
-				A7A13304181B21EE00D7D016 /* PRTweenTimingFunctions.m */,
-				A7A1330C181B286900D7D016 /* MSBarButtonIconNavigationPane.png */,
-				A7A1330D181B286900D7D016 /* MSBarButtonIconNavigationPane@2x.png */,
-			);
-			name = MSNavigationPaneViewController;
 			sourceTree = "<group>";
 		};
 		A7A13310181B295500D7D016 /* UIFlatColor */ = {
@@ -400,8 +371,6 @@
 				A78D073C181899F600DC64CD /* Default@2x.png in Resources */,
 				A78D073E181899F600DC64CD /* Default-568h@2x.png in Resources */,
 				A78D075A18189B4D00DC64CD /* Storyboard.storyboard in Resources */,
-				A7A1330E181B286900D7D016 /* MSBarButtonIconNavigationPane.png in Resources */,
-				A7A1330F181B286900D7D016 /* MSBarButtonIconNavigationPane@2x.png in Resources */,
 				A7A13316181B296000D7D016 /* colorClouds.png in Resources */,
 				A7A13317181B296000D7D016 /* colorClouds@2x.png in Resources */,
 				A7A13332181B2C6900D7D016 /* iPhone_Navigation.png in Resources */,
@@ -428,10 +397,6 @@
 				A78D0734181899F600DC64CD /* main.m in Sources */,
 				A78D0738181899F600DC64CD /* MPAppDelegate.m in Sources */,
 				A78D075818189ACC00DC64CD /* Model.xcdatamodeld in Sources */,
-				A7A13300181B21E500D7D016 /* MSNavigationPaneViewController.m in Sources */,
-				A7A13305181B21EE00D7D016 /* PRTween.m in Sources */,
-				A7A13306181B21EE00D7D016 /* PRTweenTimingFunctions.m in Sources */,
-				A7A1330B181B239800D7D016 /* MSMasterViewController.m in Sources */,
 				A7A13315181B296000D7D016 /* UIFlatColor.m in Sources */,
 				A7A13324181B297200D7D016 /* UIImageView+WebCache.m in Sources */,
 				A7A13325181B297200D7D016 /* SDImageCache.m in Sources */,
@@ -446,6 +411,7 @@
 				A71ABC3D18316F080039DF25 /* Vermifugo.m in Sources */,
 				A71ABC4018316F080039DF25 /* Veterinario.m in Sources */,
 				A71ABC4318316F080039DF25 /* PetShop.m in Sources */,
+				E60554631857E71C00D11CE9 /* MPPetViewController.m in Sources */,
 				A71ABC4618316F090039DF25 /* Fotos.m in Sources */,
 				A71ABC4918316F0A0039DF25 /* Consulta.m in Sources */,
 				A71ABC4C18316F0A0039DF25 /* Banho.m in Sources */,
