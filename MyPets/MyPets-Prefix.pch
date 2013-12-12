@@ -13,3 +13,13 @@
     #import <Foundation/Foundation.h>
     #import <CoreData/CoreData.h>
 #endif
+
+
+#define NSLS(key) \
+[[NSBundle mainBundle] localizedStringForKey:(key) value:@"" table:nil]
+
+#define PRETTY_FUNCTION \
+NSLog(@"[%s]",__PRETTY_FUNCTION__)
+
+#define SHOW_ERROR(key) \
+NSLog(@"[%s] error: %@",__PRETTY_FUNCTION__, (key))

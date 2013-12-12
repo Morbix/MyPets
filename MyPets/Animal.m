@@ -42,7 +42,7 @@
     if (self.cFoto) {
         return [UIImage imageWithData:self.cFoto];
     }
-    return [UIImage imageNamed:@"fotoDefault"];
+    return [UIImage imageNamed:@"fotoDefault.png"];
 }
 
 - (NSString *)getNome

@@ -24,6 +24,8 @@
         [self.imagemPet setFrame:CGRectMake(borda, borda, self.frame.size.width-(2*borda), self.frame.size.height-(2*borda))];
         [self.imagemPet setContentMode:UIViewContentModeScaleToFill];
         [self.imagemPet.layer setBorderColor:[UIColor colorWithWhite:1.0f alpha:1.0f].CGColor];
+        [self.imagemPet.layer setBorderColor:[UIColor colorWithRed:255.0f/255.0f green:202.0f/255.0f blue:80.0f/255.0f alpha:1.0f].CGColor];
+        //[self.imagemPet.layer setBorderColor:[UIColor colorWithRed:219.0f/255.0f green:217.0f/255.0f blue:211.0f/255.0f alpha:1.0f].CGColor];
         [self.imagemPet.layer setBorderWidth:4.0f];
         [self.imagemPet.layer setShadowColor:[UIColor blackColor].CGColor];
         [self.imagemPet.layer setShadowOffset:CGSizeMake(2, 2)];

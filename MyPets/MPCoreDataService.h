@@ -8,16 +8,18 @@
 
 #define MTPSNotificationPets @"br.com.alltouch.mypets.notification.pets"
 
-
-
 #import <Foundation/Foundation.h>
+
+@class Animal;
 
 @interface MPCoreDataService : NSObject
 
 @property (nonatomic, strong) NSMutableArray *arrayPets;
 @property (nonatomic, strong) NSManagedObjectContext * context;
+@property (nonatomic, strong) Animal *animalSelected;
 
 + (id)shared;
 - (void)loadAllPets;
+- (Animal *)newAnimal;
 
 @end

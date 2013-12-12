@@ -37,7 +37,7 @@
     NSArray *arrayResult = [self.context executeFetchRequest:request error:&error];
     if (arrayResult) {
         [self.arrayPets removeAllObjects];
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 7; i++) {
             for (Animal *animal in arrayResult) {
                 [self.arrayPets addObject:animal];
             }
@@ -46,5 +46,33 @@
     
     NSLog(@"MPCoreDataService:buscarPets:%d - Completed", self.arrayPets.count);
     [[NSNotificationCenter defaultCenter] postNotificationName:MTPSNotificationPets object:nil userInfo:error ? [NSDictionary dictionaryWithObjectsAndKeys:error,@"error", nil] : nil];
+}
+
+- (Animal *)newAnimal
+{
+    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Animal" inManagedObjectContext:self.context];
+    
+    Animal *newAnimal = [[Animal alloc] initWithEntity:entityDesc insertIntoManagedObjectContext:self.context];
+    
+    newAnimal.cNome    = NSLS(@"Pet");
+    newAnimal.cEspecie = @"";
+    newAnimal.cRaca    = @"";
+    newAnimal.cSexo    = NSLS(@"Macho");
+    newAnimal.cDataNascimento = [NSDate date];
+    newAnimal.cObs            = @"";
+    newAnimal.cFoto           = UIImageJPEGRepresentation([UIImage imageNamed:@"fotoDefault.png"], 1.0);
+    newAnimal.cNeedUpdate     = [NSNumber numberWithBool:NO];
+    
+    NSError *error = nil;
+    [self.context save:&error];
+    
+    [self loadAllPets];
+    
+    if (!error) {
+        return newAnimal;
+    }else{
+        SHOW_ERROR(error.description);
+        return nil;
+    }
 }
 @end

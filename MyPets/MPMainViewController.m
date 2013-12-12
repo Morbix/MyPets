@@ -11,6 +11,7 @@
 #import "MPCellMainPet.h"
 #import "MPCoreDataService.h"
 #import "Animal.h"
+#import "MPAnimations.h"
 
 @interface MPMainViewController ()
 {
@@ -47,6 +48,7 @@
     [self.collection registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell1"];
     [self.collection registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell2"];
     [self.collection registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell3"];
+    [self.collection setAllowsSelection:YES];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callbackPetsCompleted:) name:MTPSNotificationPets object:nil];
     
@@ -64,6 +66,8 @@
 #pragma mark - IBAction
 - (IBAction)barButtonRightTouched:(id)sender
 {
+    [[MPCoreDataService shared] setAnimalSelected:[[MPCoreDataService shared] newAnimal]];
+    
     [self performSegueWithIdentifier:@"petViewController" sender:nil];
 }
 
@@ -102,7 +106,7 @@
     }
     
     Animal *animal = [[[MPCoreDataService shared] arrayPets] objectAtIndex:indexPath.row];
-    //[cellView.imagemPet setImage:[animal getFoto]];
+    [cellView.imagemPet setImage:[animal getFoto]];
     [cellView.labelNome setText:[animal getNome]];
     
     return cell;
@@ -111,7 +115,12 @@
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    PRETTY_FUNCTION;
+    MPCellMainPet *cellView = (MPCellMainPet *)[[self.collection cellForItemAtIndexPath:indexPath] viewWithTag:10];
     
+    [MPAnimations animationPressDown:cellView];
+    
+    [self performSegueWithIdentifier:@"petViewController" sender:nil];
 }
 
 
@@ -146,10 +155,20 @@
     return CGSizeZero;
 }
 
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
 #pragma mark - MTNotifications
 - (void)callbackPetsCompleted:(NSNotification *)notification
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:MTPSNotificationPets object:nil];
+    //[[NSNotificationCenter defaultCenter] removeObserver:self name:MTPSNotificationPets object:nil];
     
     CALLBACK_LOCAL = TRUE;
     

@@ -53,6 +53,7 @@
 		A7A13332181B2C6900D7D016 /* iPhone_Navigation.png in Resources */ = {isa = PBXBuildFile; fileRef = A7A13330181B2C6900D7D016 /* iPhone_Navigation.png */; };
 		A7A13333181B2C6900D7D016 /* iPhone_Navigation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A7A13331181B2C6900D7D016 /* iPhone_Navigation@2x.png */; };
 		E60554631857E71C00D11CE9 /* MPPetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E60554621857E71C00D11CE9 /* MPPetViewController.m */; };
+		E605548318594C0000D11CE9 /* MPAnimations.m in Sources */ = {isa = PBXBuildFile; fileRef = E605548218594C0000D11CE9 /* MPAnimations.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -134,6 +135,8 @@
 		A7A13331181B2C6900D7D016 /* iPhone_Navigation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone_Navigation@2x.png"; sourceTree = "<group>"; };
 		E60554611857E71C00D11CE9 /* MPPetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPetViewController.h; sourceTree = "<group>"; };
 		E60554621857E71C00D11CE9 /* MPPetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPetViewController.m; sourceTree = "<group>"; };
+		E605548118594C0000D11CE9 /* MPAnimations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAnimations.h; sourceTree = "<group>"; };
+		E605548218594C0000D11CE9 /* MPAnimations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAnimations.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,6 +251,8 @@
 			children = (
 				A7A13329181B2A3000D7D016 /* MPLibrary.h */,
 				A7A1332A181B2A3000D7D016 /* MPLibrary.m */,
+				E605548118594C0000D11CE9 /* MPAnimations.h */,
+				E605548218594C0000D11CE9 /* MPAnimations.m */,
 				A71ABC3218316D150039DF25 /* MPCoreDataService.h */,
 				A71ABC3318316D150039DF25 /* MPCoreDataService.m */,
 				A71ABC25183154E10039DF25 /* MPCellMainPet.h */,
@@ -403,6 +408,7 @@
 				A7A13326181B297200D7D016 /* SDWebImageDownloader.m in Sources */,
 				A7A13327181B297200D7D016 /* SDWebImageManager.m in Sources */,
 				A7A1332B181B2A3100D7D016 /* MPLibrary.m in Sources */,
+				E605548318594C0000D11CE9 /* MPAnimations.m in Sources */,
 				A7A1332E181B2B2E00D7D016 /* MPMainViewController.m in Sources */,
 				A71ABC27183154E10039DF25 /* MPCellMainPet.m in Sources */,
 				A71ABC3418316D150039DF25 /* MPCoreDataService.m in Sources */,

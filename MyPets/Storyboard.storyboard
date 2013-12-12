@@ -38,9 +38,13 @@
                                         </view>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="liv-io-tMB" id="xlq-ak-5LG"/>
+                                    <outlet property="delegate" destination="liv-io-tMB" id="MwQ-7m-O0F"/>
+                                </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" red="0.90980398650000005" green="0.89411771299999998" blue="0.83529418710000003" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="backgroundColor" red="0.95756271260000003" green="0.95756271260000003" blue="0.95756271260000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="yy3-6n-13k" secondAttribute="bottom" id="BfO-ya-Dfe"/>
                             <constraint firstAttribute="trailing" secondItem="yy3-6n-13k" secondAttribute="trailing" id="S3x-l4-ceG"/>
@@ -72,7 +76,7 @@
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Yjd-D4-AUF">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.90980398654937744" green="0.89411771297454834" blue="0.83529418706893921" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="backgroundColor" red="0.95756271260000003" green="0.95756271260000003" blue="0.95756271260000003" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection id="Bvx-9Q-Uvs">
                                 <cells>
