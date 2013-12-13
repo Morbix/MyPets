@@ -54,6 +54,7 @@
 		A7A13333181B2C6900D7D016 /* iPhone_Navigation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A7A13331181B2C6900D7D016 /* iPhone_Navigation@2x.png */; };
 		E60554631857E71C00D11CE9 /* MPPetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E60554621857E71C00D11CE9 /* MPPetViewController.m */; };
 		E605548318594C0000D11CE9 /* MPAnimations.m in Sources */ = {isa = PBXBuildFile; fileRef = E605548218594C0000D11CE9 /* MPAnimations.m */; };
+		E6D47AD0185AA226009C2905 /* MPHumanAge.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D47ACF185AA226009C2905 /* MPHumanAge.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -137,6 +138,8 @@
 		E60554621857E71C00D11CE9 /* MPPetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPetViewController.m; sourceTree = "<group>"; };
 		E605548118594C0000D11CE9 /* MPAnimations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAnimations.h; sourceTree = "<group>"; };
 		E605548218594C0000D11CE9 /* MPAnimations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAnimations.m; sourceTree = "<group>"; };
+		E6D47ACE185AA226009C2905 /* MPHumanAge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPHumanAge.h; sourceTree = "<group>"; };
+		E6D47ACF185AA226009C2905 /* MPHumanAge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPHumanAge.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,6 +256,8 @@
 				A7A1332A181B2A3000D7D016 /* MPLibrary.m */,
 				E605548118594C0000D11CE9 /* MPAnimations.h */,
 				E605548218594C0000D11CE9 /* MPAnimations.m */,
+				E6D47ACE185AA226009C2905 /* MPHumanAge.h */,
+				E6D47ACF185AA226009C2905 /* MPHumanAge.m */,
 				A71ABC3218316D150039DF25 /* MPCoreDataService.h */,
 				A71ABC3318316D150039DF25 /* MPCoreDataService.m */,
 				A71ABC25183154E10039DF25 /* MPCellMainPet.h */,
@@ -416,6 +421,7 @@
 				A71ABC3A18316F060039DF25 /* Vacina.m in Sources */,
 				A71ABC3D18316F080039DF25 /* Vermifugo.m in Sources */,
 				A71ABC4018316F080039DF25 /* Veterinario.m in Sources */,
+				E6D47AD0185AA226009C2905 /* MPHumanAge.m in Sources */,
 				A71ABC4318316F080039DF25 /* PetShop.m in Sources */,
 				E60554631857E71C00D11CE9 /* MPPetViewController.m in Sources */,
 				A71ABC4618316F090039DF25 /* Fotos.m in Sources */,

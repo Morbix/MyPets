@@ -18,9 +18,9 @@
     BOOL CALLBACK_LOCAL;
     int DIV;
 }
+
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *barButtonRight;
 
-- (IBAction)barButtonRightTouched:(id)sender;
 @end
 
 @implementation MPMainViewController
@@ -37,11 +37,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
     
-    self.title                      = NSLocalizedString(@"Meus Pets", @"Meus Pets");
-    self.navigationItem.title       = NSLocalizedString(@"Meus Pets", @"Meus Pets");
-    //self.navigationItem.titleView = [MPLibrary getLogoViewForNavigation];
+    self.title                 = NSLS(@"Meus Pets");
+    self.navigationItem.title  = self.title;
+    
     
     
     [self.collection setBackgroundColor:[UIColor clearColor]];
@@ -115,10 +114,12 @@
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    PRETTY_FUNCTION;
     MPCellMainPet *cellView = (MPCellMainPet *)[[self.collection cellForItemAtIndexPath:indexPath] viewWithTag:10];
     
     [MPAnimations animationPressDown:cellView];
+    
+    Animal *animal = [[[MPCoreDataService shared] arrayPets] objectAtIndex:indexPath.row];
+    [[MPCoreDataService shared] setAnimalSelected:animal];
     
     [self performSegueWithIdentifier:@"petViewController" sender:nil];
 }

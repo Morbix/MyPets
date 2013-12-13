@@ -37,7 +37,7 @@
     NSArray *arrayResult = [self.context executeFetchRequest:request error:&error];
     if (arrayResult) {
         [self.arrayPets removeAllObjects];
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 1; i++) {
             for (Animal *animal in arrayResult) {
                 [self.arrayPets addObject:animal];
             }
@@ -55,7 +55,7 @@
     Animal *newAnimal = [[Animal alloc] initWithEntity:entityDesc insertIntoManagedObjectContext:self.context];
     
     newAnimal.cNome    = NSLS(@"Pet");
-    newAnimal.cEspecie = @"";
+    newAnimal.cEspecie = NSLS(@"Canino");
     newAnimal.cRaca    = @"";
     newAnimal.cSexo    = NSLS(@"Macho");
     newAnimal.cDataNascimento = [NSDate date];

@@ -243,9 +243,20 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="uIq-ug-IB9">
-                        <barButtonItem key="rightBarButtonItem" title="Editar" id="tFa-8A-ZWo"/>
+                        <barButtonItem key="rightBarButtonItem" title="Editar" id="tFa-8A-ZWo">
+                            <connections>
+                                <action selector="barButtonRightTouched:" destination="nFB-w5-pFL" id="89m-tp-NGK"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <connections>
+                        <outlet property="barButtonRight" destination="tFa-8A-ZWo" id="bYp-9t-Tx1"/>
+                        <outlet property="imageFoto" destination="ib9-H9-p2E" id="rbe-t6-5rZ"/>
+                        <outlet property="labelDescricao" destination="wzu-Sm-Kdm" id="JPA-NN-rXk"/>
+                        <outlet property="labelIdade" destination="C8l-NJ-ofd" id="v6S-Ff-GsA"/>
+                        <outlet property="labelNome" destination="TAN-yY-2RX" id="xNa-hz-Zu6"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M7W-ru-9t0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

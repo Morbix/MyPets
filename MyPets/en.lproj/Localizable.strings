@@ -11,8 +11,21 @@
 ////////////////////////////////////
 
 "Meus Pets"        = "My Pets";
-"Macho" = "Male";
-"Fêmea" = "Female";
+"Macho"            = "Male";
+"Fêmea"            = "Female";
+"Editar"           = "Edit";
+
+"ano"   = "year";
+"anos"  = "years";
+"mês"   = "month";
+"meses" = "months";
+"dia"   = "day";
+"dias"  = "days";
+"anos humanos" = "human's age";
+
+"Canino" = "Canine";
+"Felino" = "Feline";
+"Outro"  = "Other";
 
 /*
  "Meus Pets"        = "My Pets";
@@ -67,12 +80,6 @@
 "MENSAGEM_Instagram" = "Downloading data from\nInstagram®";
 "MENSAGEM_Twitter"   = "Downloading data from\nTwitter®";
 
-"ano"   = "year";
-"anos"  = "years";
-"mês"   = "month";
-"meses" = "months";
-"dia"   = "day";
-"dias"  = "days";
 
 "Nunca"             = "Never";
 "Lembrete"          = "Reminder";
@@ -112,7 +119,6 @@
 "Dose"               = "Dose";
 "exemploDose"        = "40ml";
 
-"anos humanos"       = "human's age";
 "Carteira Vacinação" = "Vaccination Card";
 "Carteira Vermífugo" = "Vermifuge Card";
 "Agenda Consultas"   = "Appointment Schedule";
@@ -123,10 +129,6 @@
 
 "iPad_btnRate.png" = "iPad_btnRate.png";
 "iPad_btnMoreApps.png" = "iPad_btnMoreApps.png";
-
-"Canino" = "Canine";
-"Felino" = "Feline";
-"Outro"  = "Other";
 
 "inserir a espécie" = "insert the specie";
 "Avaliar o MyPets" = "Rate MyPets";

@@ -11,8 +11,21 @@
 ////////////////////////////////////
 
 "Meus Pets"        = "Meus Pets";
-"Macho" = "Macho";
-"Fêmea" = "Fêmea";
+"Macho"            = "Macho";
+"Fêmea"            = "Fêmea";
+"Editar"           = "Editar";
+
+"ano"   = "ano";
+"anos"  = "anos";
+"mês"   = "mês";
+"meses" = "meses";
+"dia"   = "dia";
+"dias"  = "dias";
+"anos humanos" = "anos humano";
+
+"Canino" = "Canino";
+"Felino" = "Felino";
+"Outro"  = "Outro";
 
 /*
 "Meus Pets"        = "Meus Pets";
@@ -67,13 +80,6 @@
 "MENSAGEM_Instagram" = "Carregando informações do\nInstagram®";
 "MENSAGEM_Twitter"   = "Carregando informações do\nTwitter®";
 
-"ano"   = "ano";
-"anos"  = "anos";
-"mês"   = "mês";
-"meses" = "meses";
-"dia"   = "dia";
-"dias"  = "dias";
-
 
 
 "Nunca"             = "Nunca";
@@ -113,8 +119,8 @@
 "exemploTipo"        = "Vermífugo";
 "Dose"               = "Dose";
 "exemploDose"        = "40ml";
-
-"anos humanos"       = "anos humano";
+ 
+ 
 "Carteira Vacinação" = "Carteira Vacinação";
 "Carteira Vermífugo" = "Carteira Vermífugo";
 "Agenda Consultas"          = "Agenda Consultas";
@@ -126,9 +132,6 @@
 "iPad_btnRate.png" = "iPad_btnRate_PT.png";
 "iPad_btnMoreApps.png" = "iPad_btnMoreApps_PT.png";
 
-"Canino" = "Canino";
-"Felino" = "Felino";
-"Outro"  = "Outro";
 
 "inserir a espécie" = "inserir a espécie";
 "Avaliar o MyPets" = "Avaliar o MyPets";
