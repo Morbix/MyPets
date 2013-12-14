@@ -62,10 +62,18 @@
 #pragma mark - IBAction
 - (IBAction)barButtonRightTouched:(id)sender
 {
-    
+    [self performSegueWithIdentifier:@"petEditViewController" sender:nil];
 }
 
 #pragma mark - Table view data source
 
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section == 0) {
+        return 0;
+    }else{
+        return 34.0f;
+    }
+}
 
 @end
