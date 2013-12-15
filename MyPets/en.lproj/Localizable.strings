@@ -14,6 +14,9 @@
 "Macho"            = "Male";
 "Fêmea"            = "Female";
 "Editar"           = "Edit";
+"Canino"           = "Canine";
+"Felino"           = "Feline";
+"Outro"            = "Other";
 
 "ano"   = "year";
 "anos"  = "years";
@@ -23,9 +26,38 @@
 "dias"  = "days";
 "anos humanos" = "human's age";
 
-"Canino" = "Canine";
-"Felino" = "Feline";
-"Outro"  = "Other";
+
+"dd.MM.yyyy - hh:mm a" = "MM.dd.yyyy - hh:mm a";
+"dd.MM.yyyy"           = "MM.dd.yyyy";
+"dd.MM.yyyy hh:mm"     = "MM.dd.yyyy hh:mm";
+"hh:mm a"           = "hh:mm a";
+
+"placeholderPetNome"       = "Example: Rex, Mike";
+"placeholderPetNascimento" = "Example: mm.dd.yyyy";
+"placeholderPetEspécie"    = "Example: Canine, Feline";
+"placeholderPetRaça"       = "Example: Labrador, Persian";
+"placeholderPetSexo"       = "Example: Male or Female";
+"placeholderPetNotas"      = "Example: Notes";
+"placeholderPetData"       = "Example: mm.dd.yyyy";
+"placeholderPetHora"       = "Example: hh:mm";
+"placeholderPetMedicamento" = "Example: Medicine";
+"placeholderPetTipo"        = "Example: Vermifuge";
+"placeholderPetDose"        = "Example: 40ml or 20g";
+"Nome"                      = "Name";
+"Nascimento"                = "Born";
+"Espécie"                   = "Specie";
+"Raça"                      = "Breed";
+"Sexo"                      = "Sex";
+"Notas"                     = "Notes";
+"Hora"                      = "Hour";
+"Tipo"                      = "Type";
+"Dose"                      = "Dose";
+"Nascimento e Sexo"         = "Born and Sex";
+"Espécie e Raça"            = "Specie and Breed";
+"Toque na foto para editar" = "Touch in the photo to edit";
+"Carteiras e Calendários"   = "Cards and Schedules";
+"Próximos Eventos"          = "Next Tasks";
+"Eventos Passados"          = "Past Tasks";
 
 /*
  "Meus Pets"        = "My Pets";
@@ -59,10 +91,7 @@
 "Vacinas"     = "Vaccines";
 "Vacina"     = "Vaccine";
 
-"dd/MM/yyyy"           = "MM/dd/yyyy";
-"dd.MM.yyyy - hh:mm a" = "MM.dd.yyyy - hh:mm a";
-"dd.MM.yyyy"           = "MM.dd.yyyy";
-"dd.MM.yyyy hh:mm"     = "MM.dd.yyyy hh:mm";
+
 
 "Adicionar"  = "Add";
 "Alerta"     = "Alert";
@@ -96,28 +125,7 @@
 "3 dias antes"      = "3 days before";
 "1 semana antes"    = "1 week before";
 "1 mês antes"       = "1 month before";
-
-"Nome"              = "Name";
-"exemploNome"       = "Rex";
-"Nascimento"        = "Born";
-"exemploNascimento" = "mm/dd/yyyy";
-"Espécie"           = "Species";
-"exemploEspécie"    = "Canine, Feline";
-"Raça"              = "Breed";
-"exemploRaça"       = "Labrador, Persian";
-"Sexo"              = "Sex";
-"exemploSexo"       = "Male";
-"Notas"             = "Notes";
-"exemploNotas"      = "Notes";
-"exemploData"       = "mm/dd/yyyy";
-"Hora"              = "Hour";
-"exemploHora"       = "hh:mm";
-"hh:mm a"           = "hh:mm a";
-"exemploMedicamento" = "Medicine";
-"Tipo"               = "Type";
-"exemploTipo"        = "Vermifuge";
-"Dose"               = "Dose";
-"exemploDose"        = "40ml";
+ 
 
 "Carteira Vacinação" = "Vaccination Card";
 "Carteira Vermífugo" = "Vermifuge Card";

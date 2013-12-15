@@ -14,6 +14,9 @@
 "Macho"            = "Macho";
 "Fêmea"            = "Fêmea";
 "Editar"           = "Editar";
+"Canino"           = "Canino";
+"Felino"           = "Felino";
+"Outro"            = "Outro";
 
 "ano"   = "ano";
 "anos"  = "anos";
@@ -23,9 +26,40 @@
 "dias"  = "dias";
 "anos humanos" = "anos humano";
 
-"Canino" = "Canino";
-"Felino" = "Felino";
-"Outro"  = "Outro";
+"dd.MM.yyyy - hh:mm a" = "MM.dd.yyyy - hh:mm a";
+"dd.MM.yyyy"           = "MM.dd.yyyy";
+"dd.MM.yyyy hh:mm"     = "MM.dd.yyyy hh:mm";
+"hh:mm a"           = "hh:mm a";
+
+"placeholderPetNome"       = "Exemplo: Rex, Mike";
+"placeholderPetNascimento" = "Exemplo: dd.mm.yyyy";
+"placeholderPetEspécie"    = "Exemplo: Canino, Felino";
+"placeholderPetRaça"       = "Exemplo: Labrador, Pérsa";
+"placeholderPetSexo"       = "Exemplo: Macho ou Fêmea";
+"placeholderPetNotas"      = "Exemplo: Notas";
+"placeholderPetData"       = "Exemplo: dd.mm.yyyy";
+"placeholderPetHora"       = "Exemplo: hh:mm";
+"placeholderPetMedicamento" = "Exemplo: Medicamento";
+"placeholderPetTipo"        = "Exemplo: Vermífugo";
+"placeholderPetDose"        = "Exemplo: 40ml ou 20g";
+"Nome"                      = "Nome";
+"Nascimento"                = "Nascimento";
+"Espécie"                   = "Espécie";
+"Raça"                      = "Raça";
+"Sexo"                      = "Sexo";
+"Notas"                     = "Notas";
+"Hora"                      = "Hora";
+"Tipo"                      = "Tipo";
+"Dose"                      = "Dose";
+"Foto"                      = "Foto";
+"Nascimento e Sexo"         = "Nascimento e Sexo";
+"Espécie e Raça"            = "Espécie e Raça";
+"Toque na foto para editar" = "Toque na foto para editar";
+"Carteiras e Calendários"   = "Carteiras e Calendários";
+"Próximos Eventos"          = "Próximos Eventos";
+"Eventos Passados"          = "Eventos Passados";
+
+
 
 /*
 "Meus Pets"        = "Meus Pets";
@@ -46,8 +80,7 @@
 "Pegar do álbum"  = "Pegar do álbum";
 "Adicionar o selo do fabricante" = "Adicionar o selo do fabricante";
 
-"Próximos Eventos" = "Próximos Eventos";
-"Eventos Passados" = "Eventos Passados";
+
 
 "Banho"       = "Banho";
 "Medicamento" = "Medicamento";
@@ -59,10 +92,6 @@
 "Vacinas"     = "Vacinas";
 "Vacina"     = "Vacina";
 
-"dd/MM/yyyy"           = "dd/MM/yyyy";
-"dd.MM.yyyy - hh:mm a" = "dd.MM.yyyy - hh:mm a";
-"dd.MM.yyyy"           = "dd.MM.yyyy";
-"dd.MM.yyyy hh:mm"     = "dd.MM.yyyy hh:mm";
 
 "Adicionar"  = "Adicionar";
 "Alerta"     = "Alerta";
@@ -97,28 +126,6 @@
 "3 dias antes"      = "3 dias antes";
 "1 semana antes"    = "1 semana antes";
 "1 mês antes"       = "1 mês antes";
-
-"Nome"              = "Nome";
-"exemploNome"       = "Rex";
-"Nascimento"        = "Nascimento";
-"exemploNascimento" = "dd/mm/yyyy";
-"Espécie"           = "Espécie";
-"exemploEspécie"    = "Canino, Felino";
-"Raça"              = "Raça";
-"exemploRaça"       = "Labrador, Persa";
-"Sexo"              = "Sexo";
-"exemploSexo"       = "Macho";
-"Notas"             = "Notas";
-"exemploNotas"      = "Notas";
-"exemploData"       = "dd/mm/yyyy";
-"Hora"              = "Hora";
-"exemploHora"       = "hh:mm";
-"hh:mm a"           = "hh:mm a";
-"exemploMedicamento" = "Medicamento";
-"Tipo"               = "Tipo";
-"exemploTipo"        = "Vermífugo";
-"Dose"               = "Dose";
-"exemploDose"        = "40ml";
  
  
 "Carteira Vacinação" = "Carteira Vacinação";

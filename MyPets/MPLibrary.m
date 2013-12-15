@@ -68,7 +68,7 @@
 {
     NSDateFormatter * format = [[NSDateFormatter alloc] init];
     [format setDateFormat:_format];
-    NSString * result = [format stringFromDate:date];
+    NSString * result = [format stringFromDate:date ? date : [NSDate date]];
     return result;
 }
 
