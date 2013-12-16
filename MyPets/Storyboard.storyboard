@@ -287,6 +287,9 @@
                                                     <state key="normal" image="fotoDefault.png">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="btnFotoTouched:" destination="22V-se-k2z" eventType="touchUpInside" id="4s7-Xk-iJn"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>

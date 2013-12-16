@@ -18,7 +18,7 @@
     if (self) {
         float borda = 6;
         float borda2 = 6;
-        float fontSize = (div==1)?32.0f:((div==2)?18.0f:14.0f);
+        float fontSize = (div==1)?28.0f:((div==2)?16.0f:12.0f);
         
         self.imagemPet = [[UIImageView alloc] init];
         [self.imagemPet setFrame:CGRectMake(borda, borda, self.frame.size.width-(2*borda), self.frame.size.height-(2*borda))];
@@ -31,7 +31,7 @@
         [self.imagemPet.layer setShadowOffset:CGSizeMake(2, 2)];
         [self.imagemPet.layer setShadowOpacity:0.0];
         [self.imagemPet.layer setShadowRadius:2.0];
-        [self.imagemPet setImage:[UIImage imageNamed:@"dog.jpg"]];
+        //[self.imagemPet setImage:[UIImage imageNamed:@"dog.jpg"]];
         
         
         self.imagemSombra = [[UIImageView alloc] init];

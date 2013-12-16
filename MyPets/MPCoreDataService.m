@@ -25,6 +25,21 @@
     return manager;
 }
 
++ (void)saveContext
+{
+    [[MPCoreDataService shared] save];
+}
+
+- (void)save
+{
+    NSError *error = nil;
+    [self.context save:&error];
+    
+    if (error) {
+        SHOW_ERROR(error.description);
+    }
+}
+
 - (void)loadAllPets
 {
     NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Animal" inManagedObjectContext:self.context];
@@ -48,6 +63,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:MTPSNotificationPets object:nil userInfo:error ? [NSDictionary dictionaryWithObjectsAndKeys:error,@"error", nil] : nil];
 }
 
+#pragma mark - Animal
 - (Animal *)newAnimal
 {
     NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Animal" inManagedObjectContext:self.context];
@@ -74,5 +90,18 @@
         SHOW_ERROR(error.description);
         return nil;
     }
+}
+
+- (void)deleteAnimalSelected
+{
+    [self.context deleteObject:self.animalSelected];
+    [self.arrayPets removeObject:self.animalSelected];
+    
+    [self save];
+    
+    self.animalSelected = nil;
+    
+    NSLog(@"MPCoreDataService:buscarPets:%d - Completed", self.arrayPets.count);
+    [[NSNotificationCenter defaultCenter] postNotificationName:MTPSNotificationPets object:nil userInfo:nil];
 }
 @end

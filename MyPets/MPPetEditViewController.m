@@ -11,7 +11,7 @@
 #import "Animal.h"
 #import "MPLibrary.h"
 
-@interface MPPetEditViewController ()  <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate>
+@interface MPPetEditViewController ()  <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *barButtonRight;
@@ -39,8 +39,6 @@
 {
     [super viewDidLoad];
 #warning O que falta?
-    //Alterar Valor quando edita os textfields customizados
-    //Salvar o pet
     //A edicao da foto
 
     self.title = NSLS(@"Editar");
@@ -88,6 +86,7 @@
         self.editSexo.text    = animal.cSexo;
         self.editEspecie.text = animal.cEspecie;
         self.editRaca.text    = animal.cRaca;
+        [self.btnFoto setImage:[animal getFoto] forState:UIControlStateNormal];
     }
 }
 
@@ -107,7 +106,7 @@
          forControlEvents:UIControlEventValueChanged];
     if ([[MPCoreDataService shared] animalSelected]) {
         Animal *animal = [[MPCoreDataService shared] animalSelected];
-        [datePicker setDate:animal.cDataNascimento];
+        [datePicker setDate:animal.cDataNascimento ? animal.cDataNascimento : [NSDate date]];
     }else{
         [datePicker setDate:[NSDate date]];
     }
@@ -166,13 +165,39 @@
 #pragma mark - IBActions
 - (IBAction)btnButtonRightTouched:(id)sender
 {
-
+    Animal *animal = [[MPCoreDataService shared] animalSelected];
+    NSString *title = [NSString stringWithFormat:@"%@ %@?",NSLS(@"Deseja apagar"),[animal cNome]];
+    
+    UIActionSheet * sheet = [[UIActionSheet alloc] initWithTitle:title
+                                                        delegate:self
+                                               cancelButtonTitle:NSLS(@"Cancelar")
+                                          destructiveButtonTitle:NSLS(@"Apagar")
+                                               otherButtonTitles:nil];
+    
+    [sheet setTag:1];
+    [sheet showFromBarButtonItem:self.barButtonRight animated:YES];
 }
 
 - (IBAction)datePickerValueChanged:(id)sender
 {
-    
+    UIDatePicker *datePicker = (UIDatePicker *)sender;
+    self.editNascimento.text = [MPLibrary date:datePicker.date
+                                      toFormat:NSLS(@"dd.MM.yyyy")];
 }
+
+- (IBAction)btnFotoTouched:(id)sender
+{
+    NSString *title = NSLS(@"Trocando a foto");
+    UIActionSheet * sheet = [[UIActionSheet alloc] initWithTitle:title
+                                                        delegate:self
+                                               cancelButtonTitle:NSLS(@"Cancelar")
+                                          destructiveButtonTitle:NSLS(@"Tirar uma foto")
+                                               otherButtonTitles:NSLS(@"Pegar do álbum"), nil];
+    
+    [sheet setTag:2];
+    [sheet showFromBarButtonItem:self.barButtonRight animated:YES];
+}
+
 
 #pragma mark - UITextFieldDelegate
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
@@ -190,6 +215,31 @@
 {
     [textField resignFirstResponder];
     return YES;
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    Animal *animal = [[MPCoreDataService shared] animalSelected];
+    BOOL loadAll = FALSE;
+    
+    if (textField == self.editNome) {
+        loadAll = TRUE;
+        [animal setCNome:self.editNome.text];
+    }else if (textField == self.editNascimento){
+        [animal setCDataNascimento:[(UIDatePicker *)self.editNascimento.inputView date]];
+    }else if (textField == self.editSexo){
+        [animal setCSexo:self.editSexo.text];
+    }else if (textField == self.editEspecie){
+        [animal setCEspecie:self.editEspecie.text];
+    }else if (textField == self.editRaca){
+        [animal setCRaca:self.editRaca.text];
+    }
+    
+    [MPCoreDataService saveContext];
+    if (loadAll) {
+        [[MPCoreDataService shared] loadAllPets];
+    }
+    
 }
 
 
@@ -248,6 +298,59 @@
     return @"";
 }
 
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    if (pickerView.tag == 1) {
+        self.editSexo.text = [@[NSLS(@"Macho"), NSLS(@"Fêmea")] objectAtIndex:row];
+    }else if (pickerView.tag == 2){
+        self.editEspecie.text = [@[NSLS(@"Canino"), NSLS(@"Felino"), NSLS(@"Outro")] objectAtIndex:row];;
+    }
+}
 
+#pragma mark - UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (actionSheet.tag == 1) {
+        if (buttonIndex == 0) {
+            [[MPCoreDataService shared] deleteAnimalSelected];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
+    }else if (actionSheet.tag == 2){
+        if (buttonIndex == 0) {
+            UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+            [picker setDelegate:self];
+            [picker setAllowsEditing:YES];
+            [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
+            [picker setCameraDevice:UIImagePickerControllerCameraDeviceRear];
+            [picker setMediaTypes:[UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera]];
+            
+            [self presentViewController:picker animated:YES completion:^{}];
+        
+        }else if(buttonIndex == 1){
+            UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+            [picker setDelegate:self];
+            [picker setAllowsEditing:YES];
+            
+            [self presentViewController:picker animated:YES completion:^{}];
+        }
+    }
+}
+
+#pragma mark UIImagePickerControllerDelegate
+
+-(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+	UIImage *selectedPhoto = [info objectForKey:UIImagePickerControllerEditedImage];
+	
+    Animal *animal = [[MPCoreDataService shared] animalSelected];
+    [animal setCFoto:UIImageJPEGRepresentation(selectedPhoto, 1.0)];
+    
+    [self.btnFoto setImage:[animal getFoto] forState:UIControlStateNormal];
+    
+    [MPCoreDataService saveContext];
+    [[MPCoreDataService shared] loadAllPets];
+
+    [self dismissViewControllerAnimated:YES completion:^{}];
+}
 
 @end

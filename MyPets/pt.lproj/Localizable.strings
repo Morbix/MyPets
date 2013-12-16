@@ -59,6 +59,17 @@
 "Próximos Eventos"          = "Próximos Eventos";
 "Eventos Passados"          = "Eventos Passados";
 
+"Adicionar"       = "Adicionar";
+"Alerta"          = "Alerta";
+"Apagar"          = "Apagar";
+"Deseja apagar"   = "Excluir";
+"Sem Registros"   = "Sem Registros";
+"Trocando a foto" = "Trocando a foto";
+"Trocando o selo" = "Trocando o selo";
+"Cancelar"        = "Cancelar";
+"Tirar um foto"   = "Tirar uma foto";
+"Pegar do álbum"  = "Pegar do álbum";
+"Adicionar o selo do fabricante" = "Adicionar o selo do fabricante";
 
 
 /*
@@ -72,15 +83,6 @@
 "Pets"             = "Pets";
 "Pet"              = "Pet";
 
-"Sem Registros"   = "Sem Registros";
-"Trocando a foto" = "Trocando a foto";
-"Trocando o selo" = "Trocando o selo";
-"Cancelar"        = "Cancelar";
-"Tirar um foto"   = "Tirar uma foto";
-"Pegar do álbum"  = "Pegar do álbum";
-"Adicionar o selo do fabricante" = "Adicionar o selo do fabricante";
-
-
 
 "Banho"       = "Banho";
 "Medicamento" = "Medicamento";
@@ -92,11 +94,6 @@
 "Vacinas"     = "Vacinas";
 "Vacina"     = "Vacina";
 
-
-"Adicionar"  = "Adicionar";
-"Alerta"     = "Alerta";
-"Apagar"     = "Apagar";
-"Deseja apagar" = "Deseja apagar";
 
 "Busca"         = "Busca";
 "Chat"          = "Chat";

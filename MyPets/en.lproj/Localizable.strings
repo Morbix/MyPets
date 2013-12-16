@@ -59,6 +59,18 @@
 "Próximos Eventos"          = "Next Tasks";
 "Eventos Passados"          = "Past Tasks";
 
+"Adicionar"                 = "Add";
+"Alerta"                    = "Alert";
+"Apagar"                    = "Delete";
+"Deseja apagar"             = "Delete";
+"Sem Registros"             = "No Records";
+"Trocando a foto"           = "Changing the picture";
+"Trocando o selo"           = "Changing the label";
+"Cancelar"                  = "Cancel";
+"Tirar uma foto"            = "Take a picture";
+"Pegar do álbum"            = "Get from the album";
+"Adicionar o selo do fabricante" = "Add the manufacturer's label";
+
 /*
  "Meus Pets"        = "My Pets";
 "Eventos"          = "Tasks";
@@ -70,16 +82,6 @@
 "Pets"             = "Pets";
 "Pet"              = "Pet";
 
-"Sem Registros"   = "No Records";
-"Trocando a foto" = "Changing the picture";
-"Trocando o selo" = "Changing the label";
-"Cancelar"        = "Cancel";
-"Tirar uma foto"   = "Take a picture";
-"Pegar do álbum"  = "Get from the album";
-"Adicionar o selo do fabricante" = "Add the manufacturer's label";
-
-"Próximos Eventos" = "Next Tasks";
-"Eventos Passados" = "Past Tasks";
 
 "Banho"       = "Bath";
 "Medicamento" = "Medicine";
@@ -92,11 +94,6 @@
 "Vacina"     = "Vaccine";
 
 
-
-"Adicionar"  = "Add";
-"Alerta"     = "Alert";
-"Apagar"     = "Delete";
-"Deseja apagar" = "Do you want delete";
 
 "Busca"         = "Search";
 "Chat"          = "Chat";

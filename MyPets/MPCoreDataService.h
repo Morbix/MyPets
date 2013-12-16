@@ -19,7 +19,9 @@
 @property (nonatomic, strong) Animal *animalSelected;
 
 + (id)shared;
++ (void)saveContext;
 - (void)loadAllPets;
 - (Animal *)newAnimal;
+- (void)deleteAnimalSelected;
 
 @end
