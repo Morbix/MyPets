@@ -70,6 +70,11 @@
 "Tirar um foto"   = "Tirar uma foto";
 "Pegar do álbum"  = "Pegar do álbum";
 "Adicionar o selo do fabricante" = "Adicionar o selo do fabricante";
+"Carteira Vacinação" = "Carteira de Vacinação";
+"Carteira Vermífugo" = "Carteira de Vermífugo";
+"Agenda Consultas"   = "Agenda de Consultas";
+"Agenda Banhos"      = "Agenda de Banhos";
+"Agenda Medicamentos" = "Agenda Medicamentos";
 
 
 /*
@@ -125,11 +130,7 @@
 "1 mês antes"       = "1 mês antes";
  
  
-"Carteira Vacinação" = "Carteira Vacinação";
-"Carteira Vermífugo" = "Carteira Vermífugo";
-"Agenda Consultas"          = "Agenda Consultas";
-"Agenda Banhos"             = "Agenda Banhos";
-"Agenda Medicamentos" = "Agenda Medicamentos";
+
 "Peso" = "Peso";
 "Reforço" = "Reforço";
 

@@ -38,8 +38,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-#warning O que falta?
-    //A edicao da foto
 
     self.title = NSLS(@"Editar");
     self.navigationItem.title = self.title;

@@ -56,6 +56,15 @@
 		E605548318594C0000D11CE9 /* MPAnimations.m in Sources */ = {isa = PBXBuildFile; fileRef = E605548218594C0000D11CE9 /* MPAnimations.m */; };
 		E6D47AD0185AA226009C2905 /* MPHumanAge.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D47ACF185AA226009C2905 /* MPHumanAge.m */; };
 		E6D47AD3185BF028009C2905 /* MPPetEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D47AD2185BF028009C2905 /* MPPetEditViewController.m */; };
+		E6D47AE1185FD696009C2905 /* menuBanho.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D47AD9185FD696009C2905 /* menuBanho.png */; };
+		E6D47AE2185FD696009C2905 /* menuBanho@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D47ADA185FD696009C2905 /* menuBanho@2x.png */; };
+		E6D47AE3185FD696009C2905 /* menuConsulta.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D47ADB185FD696009C2905 /* menuConsulta.png */; };
+		E6D47AE4185FD696009C2905 /* menuConsulta@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D47ADC185FD696009C2905 /* menuConsulta@2x.png */; };
+		E6D47AE5185FD696009C2905 /* menuVacina.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D47ADD185FD696009C2905 /* menuVacina.png */; };
+		E6D47AE6185FD696009C2905 /* menuVacina@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D47ADE185FD696009C2905 /* menuVacina@2x.png */; };
+		E6D47AE7185FD696009C2905 /* menuVermifugo.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D47ADF185FD696009C2905 /* menuVermifugo.png */; };
+		E6D47AE8185FD696009C2905 /* menuVermifugo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D47AE0185FD696009C2905 /* menuVermifugo@2x.png */; };
+		E6D47AEC185FDAB1009C2905 /* LKBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D47AEB185FDAB1009C2905 /* LKBadgeView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -143,6 +152,16 @@
 		E6D47ACF185AA226009C2905 /* MPHumanAge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPHumanAge.m; sourceTree = "<group>"; };
 		E6D47AD1185BF028009C2905 /* MPPetEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPetEditViewController.h; sourceTree = "<group>"; };
 		E6D47AD2185BF028009C2905 /* MPPetEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPetEditViewController.m; sourceTree = "<group>"; };
+		E6D47AD9185FD696009C2905 /* menuBanho.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuBanho.png; sourceTree = "<group>"; };
+		E6D47ADA185FD696009C2905 /* menuBanho@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuBanho@2x.png"; sourceTree = "<group>"; };
+		E6D47ADB185FD696009C2905 /* menuConsulta.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuConsulta.png; sourceTree = "<group>"; };
+		E6D47ADC185FD696009C2905 /* menuConsulta@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuConsulta@2x.png"; sourceTree = "<group>"; };
+		E6D47ADD185FD696009C2905 /* menuVacina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuVacina.png; sourceTree = "<group>"; };
+		E6D47ADE185FD696009C2905 /* menuVacina@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuVacina@2x.png"; sourceTree = "<group>"; };
+		E6D47ADF185FD696009C2905 /* menuVermifugo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuVermifugo.png; sourceTree = "<group>"; };
+		E6D47AE0185FD696009C2905 /* menuVermifugo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuVermifugo@2x.png"; sourceTree = "<group>"; };
+		E6D47AEA185FDAB1009C2905 /* LKBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKBadgeView.h; sourceTree = "<group>"; };
+		E6D47AEB185FDAB1009C2905 /* LKBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKBadgeView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -275,6 +294,7 @@
 		A7A132FC181B21CA00D7D016 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				E6D47AE9185FDAA3009C2905 /* LKBadgeView */,
 				A7A13328181B297A00D7D016 /* LoadImageWebCache */,
 				A7A13310181B295500D7D016 /* UIFlatColor */,
 			);
@@ -314,6 +334,14 @@
 		A7A1332F181B2C5F00D7D016 /* Imagens */ = {
 			isa = PBXGroup;
 			children = (
+				E6D47AD9185FD696009C2905 /* menuBanho.png */,
+				E6D47ADA185FD696009C2905 /* menuBanho@2x.png */,
+				E6D47ADB185FD696009C2905 /* menuConsulta.png */,
+				E6D47ADC185FD696009C2905 /* menuConsulta@2x.png */,
+				E6D47ADD185FD696009C2905 /* menuVacina.png */,
+				E6D47ADE185FD696009C2905 /* menuVacina@2x.png */,
+				E6D47ADF185FD696009C2905 /* menuVermifugo.png */,
+				E6D47AE0185FD696009C2905 /* menuVermifugo@2x.png */,
 				A7A13330181B2C6900D7D016 /* iPhone_Navigation.png */,
 				A7A13331181B2C6900D7D016 /* iPhone_Navigation@2x.png */,
 				A71ABC21183152A10039DF25 /* background.png */,
@@ -326,6 +354,15 @@
 				A71ABC551831719A0039DF25 /* fotoDefault@2x.png */,
 			);
 			name = Imagens;
+			sourceTree = "<group>";
+		};
+		E6D47AE9185FDAA3009C2905 /* LKBadgeView */ = {
+			isa = PBXGroup;
+			children = (
+				E6D47AEA185FDAB1009C2905 /* LKBadgeView.h */,
+				E6D47AEB185FDAB1009C2905 /* LKBadgeView.m */,
+			);
+			name = LKBadgeView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -384,21 +421,29 @@
 				A78D0732181899F600DC64CD /* InfoPlist.strings in Resources */,
 				A78D073A181899F600DC64CD /* Default.png in Resources */,
 				A78D073C181899F600DC64CD /* Default@2x.png in Resources */,
+				E6D47AE8185FD696009C2905 /* menuVermifugo@2x.png in Resources */,
 				A78D073E181899F600DC64CD /* Default-568h@2x.png in Resources */,
 				A78D075A18189B4D00DC64CD /* Storyboard.storyboard in Resources */,
+				E6D47AE4185FD696009C2905 /* menuConsulta@2x.png in Resources */,
 				A7A13316181B296000D7D016 /* colorClouds.png in Resources */,
+				E6D47AE1185FD696009C2905 /* menuBanho.png in Resources */,
 				A7A13317181B296000D7D016 /* colorClouds@2x.png in Resources */,
 				A7A13332181B2C6900D7D016 /* iPhone_Navigation.png in Resources */,
+				E6D47AE7185FD696009C2905 /* menuVermifugo.png in Resources */,
 				A7A13333181B2C6900D7D016 /* iPhone_Navigation@2x.png in Resources */,
 				A71ABC23183152A10039DF25 /* background.png in Resources */,
+				E6D47AE5185FD696009C2905 /* menuVacina.png in Resources */,
 				A71ABC24183152A10039DF25 /* background@2x.png in Resources */,
 				A71ABC2C183158B70039DF25 /* fotoSombra.png in Resources */,
 				A71ABC2D183158B70039DF25 /* fotoSombra@2x.png in Resources */,
 				A71ABC30183158CC0039DF25 /* dog.jpg in Resources */,
 				A71ABC31183158CC0039DF25 /* dog@2x.jpg in Resources */,
 				A71ABC561831719A0039DF25 /* fotoDefault.png in Resources */,
+				E6D47AE3185FD696009C2905 /* menuConsulta.png in Resources */,
 				A71ABC571831719A0039DF25 /* fotoDefault@2x.png in Resources */,
 				A71ABC5B18317DDC0039DF25 /* Localizable.strings in Resources */,
+				E6D47AE6185FD696009C2905 /* menuVacina@2x.png in Resources */,
+				E6D47AE2185FD696009C2905 /* menuBanho@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,6 +462,7 @@
 				A7A13325181B297200D7D016 /* SDImageCache.m in Sources */,
 				A7A13326181B297200D7D016 /* SDWebImageDownloader.m in Sources */,
 				A7A13327181B297200D7D016 /* SDWebImageManager.m in Sources */,
+				E6D47AEC185FDAB1009C2905 /* LKBadgeView.m in Sources */,
 				A7A1332B181B2A3100D7D016 /* MPLibrary.m in Sources */,
 				E605548318594C0000D11CE9 /* MPAnimations.m in Sources */,
 				A7A1332E181B2B2E00D7D016 /* MPMainViewController.m in Sources */,
