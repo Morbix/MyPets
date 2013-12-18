@@ -7,21 +7,28 @@
 //
 
 #define MTPSNotificationPets @"br.com.alltouch.mypets.notification.pets"
+#define MTPSNotificationPetsVacinas @"br.com.alltouch.mypets.notification.vacinas"
 
 #import <Foundation/Foundation.h>
-
-@class Animal;
+#import "Animal.h"
+#import "Vacina.h"
 
 @interface MPCoreDataService : NSObject
 
 @property (nonatomic, strong) NSMutableArray *arrayPets;
 @property (nonatomic, strong) NSManagedObjectContext * context;
 @property (nonatomic, strong) Animal *animalSelected;
+@property (nonatomic, strong) Vacina *vacinaSelected;
 
 + (id)shared;
 + (void)saveContext;
 - (void)loadAllPets;
+
+#pragma mark - Animal
 - (Animal *)newAnimal;
 - (void)deleteAnimalSelected;
+
+#pragma mark - Vacinas
+- (Vacina *)newVacinaToAnimal:(Animal *)animal;
 
 @end

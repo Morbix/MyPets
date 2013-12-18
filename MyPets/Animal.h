@@ -37,6 +37,16 @@
 - (NSString *)getNome;
 - (NSString *)getDescricao;
 - (NSString *)getIdade;
+
+#pragma mark - Arrays
+- (NSArray *)getNextVacinas;
+- (NSArray *)getNextVermifugos;
+- (NSArray *)getNextConsultas;
+- (NSArray *)getNextBanhos;
+- (NSArray *)getPreviousVacinas;
+- (NSArray *)getPreviousVermifugos;
+- (NSArray *)getPreviousConsultas;
+- (NSArray *)getPreviousBanhos;
 @end
 
 @interface Animal (CoreDataGeneratedAccessors)

@@ -8,7 +8,7 @@
 
 #import "MPCoreDataService.h"
 #import "MPAppDelegate.h"
-#import "Animal.h"
+
 
 @implementation MPCoreDataService
 
@@ -103,5 +103,32 @@
     
     NSLog(@"MPCoreDataService:buscarPets:%d - Completed", self.arrayPets.count);
     [[NSNotificationCenter defaultCenter] postNotificationName:MTPSNotificationPets object:nil userInfo:nil];
+}
+
+#pragma mark - Vacinas
+- (Vacina *)newVacinaToAnimal:(Animal *)animal
+{
+    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Vacina" inManagedObjectContext:self.context];
+    
+    Vacina * vac = [[Vacina alloc] initWithEntity:entityDesc insertIntoManagedObjectContext:self.context];
+    vac.cData       = nil;
+    vac.cDataVacina = [NSDate date];
+    vac.cAnimal     = animal;
+    vac.cLembrete   = NSLS(@"Nunca");
+    vac.cID         = [vac.objectID description];
+    
+    
+    NSError *error = nil;
+    [self.context save:&error];
+    
+    if (!error) {
+        NSLog(@"MPCoreDataService:buscarVacinas:%d - Completed", animal.cArrayVacinas.count);
+        [[NSNotificationCenter defaultCenter] postNotificationName:MTPSNotificationPetsVacinas object:nil userInfo:nil];
+        
+        return vac;
+    }else{
+        SHOW_ERROR(error.description);
+        return nil;
+    }
 }
 @end

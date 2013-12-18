@@ -56,6 +56,11 @@
     [[MPCoreDataService shared] loadAllPets];
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    ((MPCoreDataService *)[MPCoreDataService shared]).animalSelected = nil;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

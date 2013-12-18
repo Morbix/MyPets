@@ -72,20 +72,21 @@
 #pragma mark - Métodos
 - (void)atualizarPagina
 {
-    if ([[MPCoreDataService shared] animalSelected]) {
-        self.title                 = [[[MPCoreDataService shared] animalSelected] getNome];
+    Animal *animal = [[MPCoreDataService shared] animalSelected];
+    if (animal) {
+        self.title                 = [animal getNome];
         self.navigationItem.title  = self.title;
         
         self.labelNome.text      = self.title;
-        self.labelDescricao.text = [[[MPCoreDataService shared] animalSelected] getDescricao];
-        self.labelIdade.text     = [[[MPCoreDataService shared] animalSelected] getIdade];
+        self.labelDescricao.text = [animal getDescricao];
+        self.labelIdade.text     = [animal getIdade];
         
-        self.imageFoto.image = [[[MPCoreDataService shared] animalSelected] getFoto];
+        self.imageFoto.image = [animal getFoto];
         
-        self.badgeVacina.text = @"100";
-        self.badgeVermifugo.text = @"90";
-        self.badgeConsultas.text = @"0";
-        self.badgeBanhos.text = @"16";
+        self.badgeVacina.text    = [NSString stringWithFormat:@"%d", [animal getNextVacinas].count];
+        self.badgeVermifugo.text = [NSString stringWithFormat:@"%d", [animal getNextVermifugos].count];
+        self.badgeConsultas.text = [NSString stringWithFormat:@"%d", [animal getNextConsultas].count];
+        self.badgeBanhos.text    = [NSString stringWithFormat:@"%d", [animal getNextBanhos].count];
     }
 }
 
@@ -125,6 +126,22 @@
 -(NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
     return @"";
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 1) {
+        switch (indexPath.row) {
+            case 0: { [self performSegueWithIdentifier:@"vacinasViewController" sender:Nil]; }
+                break;
+            case 1: { [self performSegueWithIdentifier:@"vermifugosViewController" sender:Nil]; }
+                break;
+            case 2: { [self performSegueWithIdentifier:@"consultasViewController" sender:Nil]; }
+                break;
+            case 3: { [self performSegueWithIdentifier:@"banhosViewController" sender:Nil]; }
+                break;
+        }
+    }
 }
 
 @end

@@ -75,44 +75,6 @@
 "Agenda Consultas"   = "Agenda de Consultas";
 "Agenda Banhos"      = "Agenda de Banhos";
 "Agenda Medicamentos" = "Agenda Medicamentos";
-
-
-/*
-"Meus Pets"        = "Meus Pets";
-"Eventos"          = "Eventos";
-"Instagram"        = "Instagram®";
-"Twitter"          = "Twitter®";
-"Sobre a AllTouch" = "Sobre a AllTouch";
-"Lista de Pets"    = "Lista de Pets";
-"Menu"             = "Menu";
-"Pets"             = "Pets";
-"Pet"              = "Pet";
-
-
-"Banho"       = "Banho";
-"Medicamento" = "Medicamento";
-"Consulta"    = "Consulta";
-"Veterinário" = "Veterinário";
-"Data"        = "Data";
-"Revacina"    = "Revacina";
-"Próxima"     = "Próxima";
-"Vacinas"     = "Vacinas";
-"Vacina"     = "Vacina";
-
-
-"Busca"         = "Busca";
-"Chat"          = "Chat";
-"Configurações" = "Configurações";
-
-"Error1" = "MyPets não consegue acessar a sua localização atual. \n\nPara visualizar outros pets próximos a você, vá nas configurações de localização do seu aparelho e ative o acesso para o MyPets.";
-"Error2" = "Não foi possível exibir o Twitter.";
-"Error3" = "Não foi possível exibir o Instagram.";
-
-"MENSAGEM_Instagram" = "Carregando informações do\nInstagram®";
-"MENSAGEM_Twitter"   = "Carregando informações do\nTwitter®";
-
-
-
 "Nunca"             = "Nunca";
 "Lembrete"          = "Lembrete";
 "Lembretes"          = "Lembretes";
@@ -128,11 +90,45 @@
 "3 dias antes"      = "3 dias antes";
 "1 semana antes"    = "1 semana antes";
 "1 mês antes"       = "1 mês antes";
- 
- 
-
+"Banho"       = "Banho";
+"Medicamento" = "Medicamento";
+"Consulta"    = "Consulta";
+"Veterinário" = "Veterinário";
+"Data"        = "Data";
+"Revacina"    = "Revacina";
+"Próximas Revacinas" = "Próximas Revacinas";
+"Próxima"     = "Próxima";
+"Vacinas"     = "Vacinas";
+"Vacina"     = "Vacina";
 "Peso" = "Peso";
 "Reforço" = "Reforço";
+
+
+/*
+"Meus Pets"        = "Meus Pets";
+"Eventos"          = "Eventos";
+"Instagram"        = "Instagram®";
+"Twitter"          = "Twitter®";
+"Sobre a AllTouch" = "Sobre a AllTouch";
+"Lista de Pets"    = "Lista de Pets";
+"Menu"             = "Menu";
+"Pets"             = "Pets";
+"Pet"              = "Pet";
+
+
+
+
+"Busca"         = "Busca";
+"Chat"          = "Chat";
+"Configurações" = "Configurações";
+
+"Error1" = "MyPets não consegue acessar a sua localização atual. \n\nPara visualizar outros pets próximos a você, vá nas configurações de localização do seu aparelho e ative o acesso para o MyPets.";
+"Error2" = "Não foi possível exibir o Twitter.";
+"Error3" = "Não foi possível exibir o Instagram.";
+
+"MENSAGEM_Instagram" = "Carregando informações do\nInstagram®";
+"MENSAGEM_Twitter"   = "Carregando informações do\nTwitter®";
+
 
 "iPad_btnRate.png" = "iPad_btnRate_PT.png";
 "iPad_btnMoreApps.png" = "iPad_btnMoreApps_PT.png";

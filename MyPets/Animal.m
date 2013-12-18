@@ -14,6 +14,7 @@
 #import "Vacina.h"
 #import "Vermifugo.h"
 #import "MPHumanAge.h"
+#import "MPLibrary.h"
 
 
 @implementation Animal
@@ -221,5 +222,62 @@
     }
     
     return @"";
+}
+
+#pragma mark - Arrays
+- (NSArray *)getNextVacinas
+{
+    return [self getJustNextsFrom:[self.cArrayVacinas allObjects] andInverse:NO];
+}
+
+- (NSArray *)getNextVermifugos
+{
+    return [self getJustNextsFrom:[self.cArrayVermifugos allObjects] andInverse:NO];
+}
+
+- (NSArray *)getNextConsultas
+{
+    return [self getJustNextsFrom:[self.cArrayConsultas allObjects] andInverse:NO];
+}
+
+- (NSArray *)getNextBanhos
+{
+    return [self getJustNextsFrom:[self.cArrayBanhos allObjects] andInverse:NO];
+}
+
+- (NSArray *)getPreviousVacinas
+{
+    return [self getJustNextsFrom:[self.cArrayVacinas allObjects] andInverse:YES];
+}
+
+- (NSArray *)getPreviousVermifugos
+{
+    return [self getJustNextsFrom:[self.cArrayVermifugos allObjects] andInverse:YES];
+}
+
+- (NSArray *)getPreviousConsultas
+{
+    return [self getJustNextsFrom:[self.cArrayConsultas allObjects] andInverse:YES];
+}
+
+- (NSArray *)getPreviousBanhos
+{
+    return [self getJustNextsFrom:[self.cArrayBanhos allObjects] andInverse:YES];
+}
+
+- (NSArray *)getJustNextsFrom:(NSArray *)array andInverse:(BOOL)inverse
+{
+    NSMutableArray *sortArray = [NSMutableArray arrayWithArray:array];
+    [MPLibrary sortMutableArray:&sortArray withAttribute:@"cData" andAscending:NO];
+    
+    NSMutableArray *filteredArray = [NSMutableArray new];
+    for (id object in sortArray) {
+        NSDate * date = [object valueForKey:@"cData"];
+        if (([date compare:[NSDate date]] == (!inverse ? NSOrderedDescending : NSOrderedAscending))|| ((date == nil) && inverse)) {
+            [filteredArray addObject:object];
+        }
+    }
+    
+    return filteredArray;
 }
 @end

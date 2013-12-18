@@ -56,14 +56,14 @@
 "Espécie e Raça"            = "Specie and Breed";
 "Toque na foto para editar" = "Touch in the photo to edit";
 "Carteiras e Calendários"   = "Cards and Schedules";
-"Próximos Eventos"          = "Next Tasks";
+"Próximos Eventos"          = "Upcoming Tasks";
 "Eventos Passados"          = "Past Tasks";
 
 "Adicionar"                 = "Add";
 "Alerta"                    = "Alert";
 "Apagar"                    = "Delete";
 "Deseja apagar"             = "Delete";
-"Sem Registros"             = "No Records";
+"Sem Registros"             = "No Data";
 "Trocando a foto"           = "Changing the picture";
 "Trocando o selo"           = "Changing the label";
 "Cancelar"                  = "Cancel";
@@ -75,43 +75,6 @@
 "Agenda Consultas"   = "Appointment Schedule";
 "Agenda Banhos"      = "Bath Schedule";
 "Agenda Medicamentos" = "Medicine Schedule";
-
-/*
- "Meus Pets"        = "My Pets";
-"Eventos"          = "Tasks";
-"Instagram"        = "Instagram®";
-"Twitter"          = "Twitter®";
-"Sobre a AllTouch" = "About AllTouch";
-"Lista de Pets"    = "Pet List";
-"Menu"             = "Menu";
-"Pets"             = "Pets";
-"Pet"              = "Pet";
-
-
-"Banho"       = "Bath";
-"Medicamento" = "Medicine";
-"Consulta"    = "Appointment";
-"Veterinário" = "Vet's Name";
-"Data"        = "Date";
-"Revacina"    = "Re-Vaccine";
-"Próxima"     = "Next";
-"Vacinas"     = "Vaccines";
-"Vacina"     = "Vaccine";
-
-
-
-"Busca"         = "Search";
-"Chat"          = "Chat";
-"Configurações" = "Settings";
-
-"Error1" = "MyPets is not able to access your current location \n\nTo find other pets near you, go to location settings in your gadget and activate the access to MyPets.";
-"Error2" = "It was not possible to show the Twitter®.";
-"Error3" = "It was not possible to show the Instagram®.";
-
-"MENSAGEM_Instagram" = "Downloading data from\nInstagram®";
-"MENSAGEM_Twitter"   = "Downloading data from\nTwitter®";
-
-
 "Nunca"             = "Never";
 "Lembrete"          = "Reminder";
 "Lembretes"          = "Reminders";
@@ -127,10 +90,44 @@
 "3 dias antes"      = "3 days before";
 "1 semana antes"    = "1 week before";
 "1 mês antes"       = "1 month before";
- 
-
+"Banho"       = "Bath";
+"Medicamento" = "Medicine";
+"Consulta"    = "Appointment";
+"Veterinário" = "Vet's Name";
+"Data"        = "Date";
+"Revacina"    = "Re-Vaccine";
+"Próximas Revacinas" = "Upcoming Re-Vaccines";
+"Próxima"     = "Next";
+"Vacinas"     = "Vaccines";
+"Vacina"     = "Vaccine";
 "Peso" = "Weight";
 "Reforço" = "Fortification";
+
+/*
+ "Meus Pets"        = "My Pets";
+"Eventos"          = "Tasks";
+"Instagram"        = "Instagram®";
+"Twitter"          = "Twitter®";
+"Sobre a AllTouch" = "About AllTouch";
+"Lista de Pets"    = "Pet List";
+"Menu"             = "Menu";
+"Pets"             = "Pets";
+"Pet"              = "Pet";
+
+
+
+
+"Busca"         = "Search";
+"Chat"          = "Chat";
+"Configurações" = "Settings";
+
+"Error1" = "MyPets is not able to access your current location \n\nTo find other pets near you, go to location settings in your gadget and activate the access to MyPets.";
+"Error2" = "It was not possible to show the Twitter®.";
+"Error3" = "It was not possible to show the Instagram®.";
+
+"MENSAGEM_Instagram" = "Downloading data from\nInstagram®";
+"MENSAGEM_Twitter"   = "Downloading data from\nTwitter®";
+
 
 "iPad_btnRate.png" = "iPad_btnRate.png";
 "iPad_btnMoreApps.png" = "iPad_btnMoreApps.png";

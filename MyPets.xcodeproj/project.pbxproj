@@ -65,6 +65,11 @@
 		E6D47AE7185FD696009C2905 /* menuVermifugo.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D47ADF185FD696009C2905 /* menuVermifugo.png */; };
 		E6D47AE8185FD696009C2905 /* menuVermifugo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D47AE0185FD696009C2905 /* menuVermifugo@2x.png */; };
 		E6D47AEC185FDAB1009C2905 /* LKBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D47AEB185FDAB1009C2905 /* LKBadgeView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E6D47AEF1861143E009C2905 /* MPVacinasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D47AEE1861143E009C2905 /* MPVacinasViewController.m */; };
+		E6D47AF21861144B009C2905 /* MPVermifugosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D47AF11861144B009C2905 /* MPVermifugosViewController.m */; };
+		E6D47AF518611456009C2905 /* MPConsultasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D47AF418611456009C2905 /* MPConsultasViewController.m */; };
+		E6D47AF818611461009C2905 /* MPBanhosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D47AF718611461009C2905 /* MPBanhosViewController.m */; };
+		E6D47AFB186120D6009C2905 /* MPVacinaEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D47AFA186120D6009C2905 /* MPVacinaEditViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -162,6 +167,16 @@
 		E6D47AE0185FD696009C2905 /* menuVermifugo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuVermifugo@2x.png"; sourceTree = "<group>"; };
 		E6D47AEA185FDAB1009C2905 /* LKBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKBadgeView.h; sourceTree = "<group>"; };
 		E6D47AEB185FDAB1009C2905 /* LKBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKBadgeView.m; sourceTree = "<group>"; };
+		E6D47AED1861143E009C2905 /* MPVacinasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPVacinasViewController.h; sourceTree = "<group>"; };
+		E6D47AEE1861143E009C2905 /* MPVacinasViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPVacinasViewController.m; sourceTree = "<group>"; };
+		E6D47AF01861144B009C2905 /* MPVermifugosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPVermifugosViewController.h; sourceTree = "<group>"; };
+		E6D47AF11861144B009C2905 /* MPVermifugosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPVermifugosViewController.m; sourceTree = "<group>"; };
+		E6D47AF318611456009C2905 /* MPConsultasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPConsultasViewController.h; sourceTree = "<group>"; };
+		E6D47AF418611456009C2905 /* MPConsultasViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPConsultasViewController.m; sourceTree = "<group>"; };
+		E6D47AF618611461009C2905 /* MPBanhosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPBanhosViewController.h; sourceTree = "<group>"; };
+		E6D47AF718611461009C2905 /* MPBanhosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPBanhosViewController.m; sourceTree = "<group>"; };
+		E6D47AF9186120D6009C2905 /* MPVacinaEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPVacinaEditViewController.h; sourceTree = "<group>"; };
+		E6D47AFA186120D6009C2905 /* MPVacinaEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPVacinaEditViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,6 +265,16 @@
 				E60554621857E71C00D11CE9 /* MPPetViewController.m */,
 				E6D47AD1185BF028009C2905 /* MPPetEditViewController.h */,
 				E6D47AD2185BF028009C2905 /* MPPetEditViewController.m */,
+				E6D47AED1861143E009C2905 /* MPVacinasViewController.h */,
+				E6D47AEE1861143E009C2905 /* MPVacinasViewController.m */,
+				E6D47AF9186120D6009C2905 /* MPVacinaEditViewController.h */,
+				E6D47AFA186120D6009C2905 /* MPVacinaEditViewController.m */,
+				E6D47AF01861144B009C2905 /* MPVermifugosViewController.h */,
+				E6D47AF11861144B009C2905 /* MPVermifugosViewController.m */,
+				E6D47AF318611456009C2905 /* MPConsultasViewController.h */,
+				E6D47AF418611456009C2905 /* MPConsultasViewController.m */,
+				E6D47AF618611461009C2905 /* MPBanhosViewController.h */,
+				E6D47AF718611461009C2905 /* MPBanhosViewController.m */,
 				A71ABC5318316F150039DF25 /* CoreData Classes */,
 				A7A1332F181B2C5F00D7D016 /* Imagens */,
 				A7A132FB181B21C500D7D016 /* Classes */,
@@ -455,6 +480,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A78D0734181899F600DC64CD /* main.m in Sources */,
+				E6D47AF818611461009C2905 /* MPBanhosViewController.m in Sources */,
 				A78D0738181899F600DC64CD /* MPAppDelegate.m in Sources */,
 				A78D075818189ACC00DC64CD /* Model.xcdatamodeld in Sources */,
 				A7A13315181B296000D7D016 /* UIFlatColor.m in Sources */,
@@ -464,6 +490,7 @@
 				A7A13327181B297200D7D016 /* SDWebImageManager.m in Sources */,
 				E6D47AEC185FDAB1009C2905 /* LKBadgeView.m in Sources */,
 				A7A1332B181B2A3100D7D016 /* MPLibrary.m in Sources */,
+				E6D47AFB186120D6009C2905 /* MPVacinaEditViewController.m in Sources */,
 				E605548318594C0000D11CE9 /* MPAnimations.m in Sources */,
 				A7A1332E181B2B2E00D7D016 /* MPMainViewController.m in Sources */,
 				A71ABC27183154E10039DF25 /* MPCellMainPet.m in Sources */,
@@ -472,6 +499,7 @@
 				A71ABC3718316ED70039DF25 /* Animal.m in Sources */,
 				A71ABC3A18316F060039DF25 /* Vacina.m in Sources */,
 				A71ABC3D18316F080039DF25 /* Vermifugo.m in Sources */,
+				E6D47AF518611456009C2905 /* MPConsultasViewController.m in Sources */,
 				A71ABC4018316F080039DF25 /* Veterinario.m in Sources */,
 				E6D47AD0185AA226009C2905 /* MPHumanAge.m in Sources */,
 				A71ABC4318316F080039DF25 /* PetShop.m in Sources */,
@@ -479,8 +507,10 @@
 				A71ABC4618316F090039DF25 /* Fotos.m in Sources */,
 				A71ABC4918316F0A0039DF25 /* Consulta.m in Sources */,
 				A71ABC4C18316F0A0039DF25 /* Banho.m in Sources */,
+				E6D47AEF1861143E009C2905 /* MPVacinasViewController.m in Sources */,
 				A71ABC4F18316F0B0039DF25 /* MyPets.m in Sources */,
 				A71ABC5218316F0B0039DF25 /* Medicamento.m in Sources */,
+				E6D47AF21861144B009C2905 /* MPVermifugosViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
