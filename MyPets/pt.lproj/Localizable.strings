@@ -41,7 +41,10 @@
 "placeholderPetHora"       = "Exemplo: hh:mm";
 "placeholderPetMedicamento" = "Exemplo: Medicamento";
 "placeholderPetTipo"        = "Exemplo: Vermífugo";
-"placeholderPetDose"        = "Exemplo: 40ml ou 20g";
+"placeholderDose"        = "Exemplo: 40ml ou 20g";
+"placeholderVeterinario"    = "Exemplo: Dra. Ana";
+"placeholderNotas"          = "Notas";
+"placeholderLembrete"       = "Exemplo: Nunca";
 "Nome"                      = "Nome";
 "Nascimento"                = "Nascimento";
 "Espécie"                   = "Espécie";
@@ -70,6 +73,7 @@
 "Tirar um foto"   = "Tirar uma foto";
 "Pegar do álbum"  = "Pegar do álbum";
 "Adicionar o selo do fabricante" = "Adicionar o selo do fabricante";
+"Selo do Fabricante" = "Selo do Fabricante";
 "Carteira Vacinação" = "Carteira de Vacinação";
 "Carteira Vermífugo" = "Carteira de Vermífugo";
 "Agenda Consultas"   = "Agenda de Consultas";
@@ -94,14 +98,23 @@
 "Medicamento" = "Medicamento";
 "Consulta"    = "Consulta";
 "Veterinário" = "Veterinário";
+"Veterinário e Notas" = "Veterinário e Notas";
+"Dose e Notas" = "Dose e Notas";
 "Data"        = "Data";
+"Data e Hora" = "Data e Hora";
 "Revacina"    = "Revacina";
+"Lembrete Revacina"    = "Lembrete Revacina";
+"Lembrete Reforço"    = "Lembrete Reforço";
 "Próximas Revacinas" = "Próximas Revacinas";
+"Próximos Reforços" = "Próximos Reforços";
 "Próxima"     = "Próxima";
 "Vacinas"     = "Vacinas";
 "Vacina"     = "Vacina";
+"Vermífugo" = "Vermífugo";
+"Vermífugos" = "Vermífugos";
 "Peso" = "Peso";
 "Reforço" = "Reforço";
+"Reforços" = "Reforços";
 
 
 /*

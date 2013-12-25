@@ -23,4 +23,6 @@
 @property (nonatomic, retain) NSData * cSelo;
 @property (nonatomic, retain) Animal *cAnimal;
 
+- (UIImage *)getFoto;
+
 @end

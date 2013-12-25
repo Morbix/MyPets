@@ -42,7 +42,10 @@
 "placeholderPetHora"       = "Example: hh:mm";
 "placeholderPetMedicamento" = "Example: Medicine";
 "placeholderPetTipo"        = "Example: Vermifuge";
-"placeholderPetDose"        = "Example: 40ml or 20g";
+"placeholderDose"        = "Example: 40ml or 20g";
+"placeholderVeterinario"    = "Example: Dra. Ana";
+"placeholderNotas"          = "Notes";
+"placeholderLembrete"       = "Example: Never";
 "Nome"                      = "Name";
 "Nascimento"                = "Born";
 "Espécie"                   = "Specie";
@@ -70,6 +73,7 @@
 "Tirar uma foto"            = "Take a picture";
 "Pegar do álbum"            = "Get from the album";
 "Adicionar o selo do fabricante" = "Add the manufacturer's label";
+"Selo do Fabricante" = "Manufacturer's label";
 "Carteira Vacinação" = "Vaccination Card";
 "Carteira Vermífugo" = "Vermifuge Card";
 "Agenda Consultas"   = "Appointment Schedule";
@@ -94,14 +98,23 @@
 "Medicamento" = "Medicine";
 "Consulta"    = "Appointment";
 "Veterinário" = "Vet's Name";
+"Veterinário e Notas" = "Vet's Name and Notes";
+"Dose e Notas" = "Dose and Notes";
 "Data"        = "Date";
+"Data e Hora" = "Date and Hour";
 "Revacina"    = "Re-Vaccine";
+"Lembrete Revacina"    = "Re-Vaccine Reminder";
+"Lembrete Reforço"    = "Fortification Reminder";
 "Próximas Revacinas" = "Upcoming Re-Vaccines";
+"Próximos Reforços" = "Upcoming Fortifications";
 "Próxima"     = "Next";
 "Vacinas"     = "Vaccines";
 "Vacina"     = "Vaccine";
+"Vermífugo" = "Vermifuge";
+"Vermífugos" = "Vermifuges";
 "Peso" = "Weight";
 "Reforço" = "Fortification";
+"Reforços" = "Fortifications";
 
 /*
  "Meus Pets"        = "My Pets";

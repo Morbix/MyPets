@@ -24,4 +24,6 @@
 @property (nonatomic, retain) NSString * cVeterinario;
 @property (nonatomic, retain) Animal *cAnimal;
 
+- (UIImage *)getFoto;
+
 @end

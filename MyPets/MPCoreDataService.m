@@ -131,4 +131,52 @@
         return nil;
     }
 }
+
+- (void)deleteVacinaSelected
+{
+    [self.animalSelected removeCArrayVacinasObject:self.vacinaSelected];
+    [self.context deleteObject:self.vacinaSelected];
+    
+    [self save];
+    
+    self.vacinaSelected = nil;
+}
+
+#pragma mark - Vermifugo
+- (Vermifugo *)newVermifugoToAnimal:(Animal *)animal
+{
+    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Vermifugo" inManagedObjectContext:self.context];
+    
+    
+    Vermifugo * vermi = [[Vermifugo alloc] initWithEntity:entityDesc insertIntoManagedObjectContext:self.context];
+    vermi.cData       = nil;
+    vermi.cDataVacina = [NSDate date];
+    vermi.cAnimal     = animal;
+    vermi.cLembrete   = NSLS(@"Nunca");
+    vermi.cID         = [vermi.objectID description];
+    
+    
+    NSError *error = nil;
+    [self.context save:&error];
+    
+    if (!error) {
+        NSLog(@"MPCoreDataService:buscarVermifugos:%d - Completed", animal.cArrayVermifugos.count);
+        [[NSNotificationCenter defaultCenter] postNotificationName:MTPSNotificationPetsVermifugos object:nil userInfo:nil];
+        
+        return vermi;
+    }else{
+        SHOW_ERROR(error.description);
+        return nil;
+    }
+}
+
+- (void)deleteVermifugoSelected
+{
+    [self.animalSelected removeCArrayVermifugosObject:self.vermifugoSelected];
+    [self.context deleteObject:self.vermifugoSelected];
+    
+    [self save];
+    
+    self.vermifugoSelected = nil;
+}
 @end

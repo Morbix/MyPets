@@ -17,5 +17,7 @@
 + (NSString*)date:(NSDate*)date toFormat:(NSString*)_format;
 + (NSDate *)dateFromRssStringDate:(NSString *)stringDate;
 + (void)sortMutableArray:(NSMutableArray * __strong *)array withAttribute:(NSString*)attr andAscending:(BOOL)ascending;
-
++ (UIImage*)imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize;
++ (UIImage*)imageWithImage:(UIImage*)image widthBased:(float)width;
++ (UIImage*)imageWithImage:(UIImage*)image heightBased:(float)height;
 @end

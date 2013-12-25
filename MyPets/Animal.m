@@ -272,9 +272,21 @@
     
     NSMutableArray *filteredArray = [NSMutableArray new];
     for (id object in sortArray) {
-        NSDate * date = [object valueForKey:@"cData"];
-        if (([date compare:[NSDate date]] == (!inverse ? NSOrderedDescending : NSOrderedAscending))|| ((date == nil) && inverse)) {
+        NSDate * date1 = [object valueForKey:@"cData"];
+        NSDate * date2 = [object valueForKey:@"cDataVacina"];
+        NSComparisonResult order = NSOrderedDescending;
+        //NSLog(@"\n\ninverse: %d \ndate1 %@ \ndate2 %@\ndate1==order: %d\ndate2==order:%d", inverse, date1.description, date2.description, ([date1 compare:[NSDate date]] == order),([date2 compare:[NSDate date]] == order));
+        if (
+            
+            ((([date1 compare:[NSDate date]] == order) && (date1 != NULL))
+            || (([date2 compare:[NSDate date]] == order) && (date2 != NULL)))
+            ^ inverse
+            
+            ) {
             [filteredArray addObject:object];
+            //NSLog(@"\nTRUE - date1==order: %d\ndate1!=null:%d OU\ndate2==order: %d\ndate2!=null:%d\n\nXOR inverse:%d",([date1 compare:[NSDate date]] == order), (date1 != NULL), ([date2 compare:[NSDate date]] == order), (date2 != NULL), inverse);
+        }else{
+            //NSLog(@"\nFALSE - date1==order: %d\ndate1!=null:%d OU\ndate2==order: %d\ndate2!=null:%d\n\nXOR inverse:%d",([date1 compare:[NSDate date]] == order), (date1 != NULL), ([date2 compare:[NSDate date]] == order), (date2 != NULL), inverse);
         }
     }
     

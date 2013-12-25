@@ -23,3 +23,16 @@ NSLog(@"[%s]",__PRETTY_FUNCTION__)
 
 #define SHOW_ERROR(key) \
 NSLog(@"[%s] error: %@",__PRETTY_FUNCTION__, (key))
+
+#define kLembreteNunca      NSLocalizedString(@"Nunca", nil)
+#define kLembreteNaHora     NSLocalizedString(@"Na hora do evento", nil)
+#define kLembrete5Minutos   NSLocalizedString(@"5 minutos antes", nil)
+#define kLembrete15Minutos  NSLocalizedString(@"15 minutos antes", nil)
+#define kLembrete30Minutos  NSLocalizedString(@"30 minutos antes", nil)
+#define kLembrete1Hora      NSLocalizedString(@"1 hora antes", nil)
+#define kLembrete2Horas     NSLocalizedString(@"2 horas antes", nil)
+#define kLembrete1Dia       NSLocalizedString(@"1 dia antes", nil)
+#define kLembrete2Dias      NSLocalizedString(@"2 dias antes", nil)
+#define kLembrete3Dias      NSLocalizedString(@"3 dias antes", nil)
+#define kLembrete1Semana    NSLocalizedString(@"1 semana antes", nil)
+#define kLembrete1Mes       NSLocalizedString(@"1 mês antes", nil)

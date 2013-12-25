@@ -1,17 +1,17 @@
 //
-//  MPVacinaEditViewController.m
+//  MPVermifugoEditViewController.m
 //  MyPets
 //
-//  Created by HP Developer on 17/12/13.
+//  Created by HP Developer on 25/12/13.
 //  Copyright (c) 2013 Henrique Morbin. All rights reserved.
 //
 
-#import "MPVacinaEditViewController.h"
+#import "MPVermifugoEditViewController.h"
 #import "MPCoreDataService.h"
 #import "MPLibrary.h"
 #import "MPLembretes.h"
 
-@interface MPVacinaEditViewController () <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface MPVermifugoEditViewController () <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *barButtonRight;
 @property (weak, nonatomic) IBOutlet UIButton *btnFoto;
@@ -21,11 +21,12 @@
 @property (weak, nonatomic) IBOutlet UITextField *editLembreteTipo;
 @property (weak, nonatomic) IBOutlet UITextField *editLembreteData;
 @property (weak, nonatomic) IBOutlet UITextField *editLembreteHora;
-@property (weak, nonatomic) IBOutlet UITextField *editVeterinario;
+@property (weak, nonatomic) IBOutlet UITextField *editDose;
 @property (weak, nonatomic) IBOutlet UITextField *editNotas;
+
 @end
 
-@implementation MPVacinaEditViewController
+@implementation MPVermifugoEditViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -48,7 +49,7 @@
     self.editLembreteTipo.placeholder = NSLS(@"placeholderLembrete");
     self.editLembreteData.placeholder = NSLS(@"placeholderPetData");
     self.editLembreteHora.placeholder = NSLS(@"placeholderPetHora");
-    self.editVeterinario.placeholder  = NSLS(@"placeholderVeterinario");
+    self.editDose.placeholder         = NSLS(@"placeholderDose");
     self.editNotas.placeholder        = NSLS(@"placeholderNotas");
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -60,7 +61,7 @@
                                              selector:@selector(keyboardWillHide:)
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
-
+    
     [self carregarTeclados];
 }
 
@@ -78,33 +79,33 @@
 #pragma mark - Métodos
 - (void)atualizarPagina
 {
-    if ([[MPCoreDataService shared] vacinaSelected]) {
-        Vacina *vacina = [[MPCoreDataService shared] vacinaSelected];
+    if ([[MPCoreDataService shared] vermifugoSelected]) {
+        Vermifugo *vermifugo = [[MPCoreDataService shared] vermifugoSelected];
         
-        [self.imageFoto setImage:[vacina getFoto]];
-        self.editData.text = [MPLibrary date:vacina.cDataVacina
-                                          toFormat:NSLS(@"dd.MM.yyyy")];
-        self.editHora.text = [MPLibrary date:vacina.cDataVacina
+        [self.imageFoto setImage:[vermifugo getFoto]];
+        self.editData.text = [MPLibrary date:vermifugo.cDataVacina
+                                    toFormat:NSLS(@"dd.MM.yyyy")];
+        self.editHora.text = [MPLibrary date:vermifugo.cDataVacina
                                     toFormat:NSLS(@"hh:mm a")];
         
-        if (vacina.cData) {
-            self.editLembreteData.text = [MPLibrary date:vacina.cData
-                                        toFormat:NSLS(@"dd.MM.yyyy")];
-            self.editLembreteHora.text = [MPLibrary date:vacina.cData
-                                        toFormat:NSLS(@"hh:mm a")];
+        if (vermifugo.cData) {
+            self.editLembreteData.text = [MPLibrary date:vermifugo.cData
+                                                toFormat:NSLS(@"dd.MM.yyyy")];
+            self.editLembreteHora.text = [MPLibrary date:vermifugo.cData
+                                                toFormat:NSLS(@"hh:mm a")];
         }
         
-        self.editLembreteTipo.text = vacina.cLembrete;
-        self.editVeterinario.text  = vacina.cVeterinario;
-        self.editNotas.text        = vacina.cObs;
+        self.editLembreteTipo.text = vermifugo.cLembrete;
+        self.editDose.text         = vermifugo.cDose;
+        self.editNotas.text        = vermifugo.cObs;
     }
 }
 
 - (void)carregarTeclados
 {
-    Vacina *vacina = nil;
-    if ([[MPCoreDataService shared] vacinaSelected]) {
-         vacina = [[MPCoreDataService shared] vacinaSelected];
+    Vermifugo *vermifugo = nil;
+    if ([[MPCoreDataService shared] vermifugoSelected]) {
+        vermifugo = [[MPCoreDataService shared] vermifugoSelected];
     }
     
     UITextField *__editData = self.editData;
@@ -117,8 +118,8 @@
     [self.editLembreteData setInputAccessoryView:[self returnToolBarToDismiss:&__editLembreteData]];
     UITextField *__editLembreteHora = self.editLembreteHora;
     [self.editLembreteHora setInputAccessoryView:[self returnToolBarToDismiss:&__editLembreteHora]];
-    UITextField *__editVeterinario = self.editVeterinario;
-    [self.editVeterinario setInputAccessoryView:[self returnToolBarToDismiss:&__editVeterinario]];
+    UITextField *__editDose = self.editDose;
+    [self.editDose setInputAccessoryView:[self returnToolBarToDismiss:&__editDose]];
     UITextField *__editNotas = self.editNotas;
     [self.editNotas setInputAccessoryView:[self returnToolBarToDismiss:&__editNotas]];
     
@@ -129,11 +130,11 @@
     [datePicker1 setTimeZone:[NSTimeZone defaultTimeZone]];
     [datePicker1 setDatePickerMode:UIDatePickerModeDate];
     [datePicker1 addTarget:self
-                   action:@selector(datePickerValueChanged:)
-         forControlEvents:UIControlEventValueChanged];
+                    action:@selector(datePickerValueChanged:)
+          forControlEvents:UIControlEventValueChanged];
     [datePicker1 setTag:1];
-    if (vacina) {
-        [datePicker1 setDate:vacina.cDataVacina ? vacina.cDataVacina : [NSDate date]];
+    if (vermifugo) {
+        [datePicker1 setDate:vermifugo.cDataVacina ? vermifugo.cDataVacina : [NSDate date]];
     }else{
         [datePicker1 setDate:[NSDate date]];
     }
@@ -145,11 +146,11 @@
     [datePicker2 setTimeZone:[NSTimeZone defaultTimeZone]];
     [datePicker2 setDatePickerMode:UIDatePickerModeTime];
     [datePicker2 addTarget:self
-                   action:@selector(datePickerValueChanged:)
-         forControlEvents:UIControlEventValueChanged];
+                    action:@selector(datePickerValueChanged:)
+          forControlEvents:UIControlEventValueChanged];
     [datePicker2 setTag:1];
-    if (vacina) {
-        [datePicker2 setDate:vacina.cDataVacina ? vacina.cDataVacina : [NSDate date]];
+    if (vermifugo) {
+        [datePicker2 setDate:vermifugo.cDataVacina ? vermifugo.cDataVacina : [NSDate date]];
     }else{
         [datePicker2 setDate:[NSDate date]];
     }
@@ -164,8 +165,8 @@
                     action:@selector(datePickerValueChanged:)
           forControlEvents:UIControlEventValueChanged];
     [datePicker3 setTag:2];
-    if (vacina) {
-        [datePicker3 setDate:vacina.cData ? vacina.cData : [NSDate date]];
+    if (vermifugo) {
+        [datePicker3 setDate:vermifugo.cData ? vermifugo.cData : [NSDate date]];
     }else{
         [datePicker3 setDate:[NSDate date]];
     }
@@ -180,8 +181,8 @@
                     action:@selector(datePickerValueChanged:)
           forControlEvents:UIControlEventValueChanged];
     [datePicker4 setTag:2];
-    if (vacina) {
-        [datePicker4 setDate:vacina.cData ? vacina.cData : [NSDate date]];
+    if (vermifugo) {
+        [datePicker4 setDate:vermifugo.cData ? vermifugo.cData : [NSDate date]];
     }else{
         [datePicker4 setDate:[NSDate date]];
     }
@@ -230,7 +231,7 @@
 #pragma mark - IBActions
 - (IBAction)barButtonRightTouched:(id)sender
 {
-    NSString *title = [NSString stringWithFormat:@"%@ %@?",NSLS(@"Deseja apagar"),NSLS(@"Vacina")];
+    NSString *title = [NSString stringWithFormat:@"%@ %@?",NSLS(@"Deseja apagar"),NSLS(@"Vermífugo")];
     
     UIActionSheet * sheet = [[UIActionSheet alloc] initWithTitle:title
                                                         delegate:self
@@ -292,27 +293,27 @@
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    Vacina *vacina = [[MPCoreDataService shared] vacinaSelected];
+    Vermifugo *vermifugo = [[MPCoreDataService shared] vermifugoSelected];
     BOOL loadAll = FALSE;
     
     if (textField == self.editData) {
-        [vacina setCDataVacina:[(UIDatePicker *)self.editData.inputView date]];
-        [(UIDatePicker *)self.editHora.inputView setDate:vacina.cDataVacina];
+        [vermifugo setCDataVacina:[(UIDatePicker *)self.editData.inputView date]];
+        [(UIDatePicker *)self.editHora.inputView setDate:vermifugo.cDataVacina];
     }else if (textField == self.editHora){
-        [vacina setCDataVacina:[(UIDatePicker *)self.editHora.inputView date]];
-        [(UIDatePicker *)self.editData.inputView setDate:vacina.cDataVacina];
+        [vermifugo setCDataVacina:[(UIDatePicker *)self.editHora.inputView date]];
+        [(UIDatePicker *)self.editData.inputView setDate:vermifugo.cDataVacina];
     }else if (textField == self.editLembreteData) {
-        [vacina setCData:[(UIDatePicker *)self.editLembreteData.inputView date]];
-        [(UIDatePicker *)self.editLembreteHora.inputView setDate:vacina.cData];
+        [vermifugo setCData:[(UIDatePicker *)self.editLembreteData.inputView date]];
+        [(UIDatePicker *)self.editLembreteHora.inputView setDate:vermifugo.cData];
     }else if (textField == self.editLembreteHora){
-        [vacina setCData:[(UIDatePicker *)self.editLembreteHora.inputView date]];
-        [(UIDatePicker *)self.editLembreteData.inputView setDate:vacina.cData];
+        [vermifugo setCData:[(UIDatePicker *)self.editLembreteHora.inputView date]];
+        [(UIDatePicker *)self.editLembreteData.inputView setDate:vermifugo.cData];
     }else if (textField == self.editLembreteTipo){
-        [vacina setCLembrete:self.editLembreteTipo.text];
-    }else if (textField == self.editVeterinario){
-        [vacina setCVeterinario:self.editVeterinario.text];
+        [vermifugo setCLembrete:self.editLembreteTipo.text];
+    }else if (textField == self.editDose){
+        [vermifugo setCDose:self.editDose.text];
     }else if (textField == self.editNotas){
-        [vacina setCObs:self.editNotas.text];
+        [vermifugo setCObs:self.editNotas.text];
     }
     
     [MPCoreDataService saveContext];
@@ -330,9 +331,9 @@
             break;
         case 1: { return NSLS(@"Data e Hora"); }
             break;
-        case 2: { return NSLS(@"Lembrete Revacina"); }
+        case 2: { return NSLS(@"Lembrete Reforço"); }
             break;
-        case 3: { return NSLS(@"Veterinário e Notas"); }
+        case 3: { return NSLS(@"Dose e Notas"); }
             break;
     }
     
@@ -375,7 +376,7 @@
 {
     if (actionSheet.tag == 1) {
         if (buttonIndex == 0) {
-            [[MPCoreDataService shared] deleteVacinaSelected];
+            [[MPCoreDataService shared] deleteVermifugoSelected];
             [self.navigationController popViewControllerAnimated:YES];
             
         }
@@ -406,10 +407,10 @@
 {
 	UIImage *selectedPhoto = [info objectForKey:UIImagePickerControllerEditedImage];
 	
-    Vacina *vacina = [[MPCoreDataService shared] vacinaSelected];
-    [vacina setCSelo:UIImageJPEGRepresentation(selectedPhoto, 1.0)];
+    Vermifugo *vermifugo = [[MPCoreDataService shared] vermifugoSelected];
+    [vermifugo setCSelo:UIImageJPEGRepresentation(selectedPhoto, 1.0)];
     
-    [self.imageFoto setImage:[vacina getFoto]];
+    [self.imageFoto setImage:[vermifugo getFoto]];
     
     [MPCoreDataService saveContext];
     

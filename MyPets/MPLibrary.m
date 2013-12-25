@@ -92,4 +92,42 @@
     [*array sortUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
 }
 
++ (UIImage*)imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize
+{
+    UIGraphicsBeginImageContext(newSize);
+    [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
+
++ (UIImage*)imageWithImage:(UIImage*)image widthBased:(float)width
+{
+    float aux = image.size.width / width;
+    
+    CGSize newSize = CGSizeMake(width, image.size.height / aux);
+    
+    UIGraphicsBeginImageContext(newSize);
+    [image drawInRect:CGRectMake(0,(image.size.height/2)-(newSize.height/2),newSize.width,newSize.height)];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
+
++ (UIImage*)imageWithImage:(UIImage*)image heightBased:(float)height
+{
+    float aux = image.size.height / height;
+    
+    CGSize newSize = CGSizeMake(image.size.width / aux, height);
+    
+    UIGraphicsBeginImageContext(newSize);
+    [image drawInRect:CGRectMake((image.size.width/2)-(newSize.width/2),0,newSize.width,newSize.height)];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
+
 @end

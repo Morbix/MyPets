@@ -9,8 +9,10 @@
 #import "MPVacinasViewController.h"
 #import "MPCoreDataService.h"
 #import "Animal.h"
+#import "Vacina.h"
 #import "Veterinario.h"
 #import "MPLibrary.h"
+#import "MPAnimations.h"
 
 @interface MPVacinasViewController ()
 
@@ -34,6 +36,16 @@
 
     self.title = NSLS(@"Carteira Vacinação");
     self.navigationItem.title = self.title;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.tableView reloadData];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    ((MPCoreDataService *)[MPCoreDataService shared]).vacinaSelected = nil;
 }
 
 - (void)didReceiveMemoryWarning
@@ -79,7 +91,7 @@
     Vacina *vacina = nil;
     
     UITableViewCell *cell = nil;
-    
+
     if (indexPath.section == 0) {
         if ([animal getNextVacinas].count > 0) {
             cell = [tableView dequeueReusableCellWithIdentifier:@"Cell1" forIndexPath:indexPath];
@@ -114,12 +126,14 @@
         [valueVeterinario setText:vacina.cVeterinario];
         [valueData setText:[MPLibrary date:vacina.cDataVacina
                                   toFormat:NSLS(@"dd.MM.yyyy")]];
+        [imageViewFoto setImage:[vacina getFoto]];
         
-#warning pendencia
-        //celula nova para quando nao tem foto
-        //preencher foto
-        //editar
-        //
+        if (vacina.cData) {
+            [valueRevacina setText:[MPLibrary date:vacina.cData
+                                      toFormat:NSLS(@"dd.MM.yyyy")]];
+        }else{
+            [valueRevacina setText:@""];
+        }
     }
     
     return cell;
@@ -151,6 +165,34 @@
         }else{
             return 44.0f;
         }
+    }
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    Animal *animal = [[MPCoreDataService shared] animalSelected];
+    Vacina *vacina = nil;
+    
+    if (indexPath.section == 0) {
+        if ([animal getNextVacinas].count > 0) {
+            vacina = [[animal getNextVacinas] objectAtIndex:indexPath.row];
+        }
+    }else{
+        if ([animal getPreviousVacinas].count > 0) {
+            vacina = [[animal getPreviousVacinas] objectAtIndex:indexPath.row];
+        }
+    }
+
+    if (vacina) {
+        UIImageView *imageView = (UIImageView *)[[tableView cellForRowAtIndexPath:indexPath] viewWithTag:10];
+        
+        [MPAnimations animationPressDown:imageView];
+        
+        [[MPCoreDataService shared] setVacinaSelected:vacina];
+        
+        [self performSegueWithIdentifier:@"vacinaEditViewController" sender:nil];
     }
 }
 
