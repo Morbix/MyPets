@@ -118,6 +118,7 @@
         UILabel *valueData        = (UILabel *)[cell viewWithTag:60];
         UILabel *valueRevacina    = (UILabel *)[cell viewWithTag:70];
         UIImageView *imageViewFoto = (UIImageView *)[cell viewWithTag:10];
+        UIImageView *imageViewAlarme = (UIImageView *)[cell viewWithTag:80];
         
         [labelVeterinario setText:NSLS(@"Veterinário")];
         [labelData setText:NSLS(@"Data")];
@@ -131,9 +132,16 @@
         if (vacina.cData) {
             [valueRevacina setText:[MPLibrary date:vacina.cData
                                       toFormat:NSLS(@"dd.MM.yyyy")]];
+            if ([vacina.cLembrete isEqualToString:NSLS(@"Nunca")]) {
+                [imageViewAlarme setHidden:YES];
+            }else{
+                [imageViewAlarme setHidden:NO];
+            }
         }else{
             [valueRevacina setText:@""];
+            [imageViewAlarme setHidden:YES];
         }
+        
     }
     
     return cell;

@@ -118,6 +118,7 @@
         UILabel *valueData        = (UILabel *)[cell viewWithTag:60];
         UILabel *valueReforco     = (UILabel *)[cell viewWithTag:70];
         UIImageView *imageViewFoto = (UIImageView *)[cell viewWithTag:10];
+        UIImageView *imageViewAlarme = (UIImageView *)[cell viewWithTag:80];
         
         [labelDose setText:NSLS(@"Dose")];
         [labelData setText:NSLS(@"Data")];
@@ -131,8 +132,14 @@
         if (vermifugo.cData) {
             [valueReforco setText:[MPLibrary date:vermifugo.cData
                                           toFormat:NSLS(@"dd.MM.yyyy")]];
+            if ([vermifugo.cLembrete isEqualToString:NSLS(@"Nunca")]) {
+                [imageViewAlarme setHidden:YES];
+            }else{
+                [imageViewAlarme setHidden:NO];
+            }
         }else{
             [valueReforco setText:@""];
+            [imageViewAlarme setHidden:YES];
         }
     }
     

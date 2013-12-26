@@ -72,6 +72,8 @@
 		E6952F15186BC26B0050FB64 /* MPConsultaEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6952F14186BC26A0050FB64 /* MPConsultaEditViewController.m */; };
 		E6952F18186BC2770050FB64 /* MPBanhoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6952F17186BC2770050FB64 /* MPBanhoEditViewController.m */; };
 		E6952F1B186BC2840050FB64 /* MPMedicamentoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6952F1A186BC2840050FB64 /* MPMedicamentoEditViewController.m */; };
+		E6952F1E186BC77E0050FB64 /* iPhone_iconAlarme.png in Resources */ = {isa = PBXBuildFile; fileRef = E6952F1C186BC77E0050FB64 /* iPhone_iconAlarme.png */; };
+		E6952F1F186BC77E0050FB64 /* iPhone_iconAlarme@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6952F1D186BC77E0050FB64 /* iPhone_iconAlarme@2x.png */; };
 		E6D47AD0185AA226009C2905 /* MPHumanAge.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D47ACF185AA226009C2905 /* MPHumanAge.m */; };
 		E6D47AD3185BF028009C2905 /* MPPetEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D47AD2185BF028009C2905 /* MPPetEditViewController.m */; };
 		E6D47AE1185FD696009C2905 /* menuBanho.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D47AD9185FD696009C2905 /* menuBanho.png */; };
@@ -196,6 +198,8 @@
 		E6952F17186BC2770050FB64 /* MPBanhoEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPBanhoEditViewController.m; sourceTree = "<group>"; };
 		E6952F19186BC2840050FB64 /* MPMedicamentoEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMedicamentoEditViewController.h; sourceTree = "<group>"; };
 		E6952F1A186BC2840050FB64 /* MPMedicamentoEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMedicamentoEditViewController.m; sourceTree = "<group>"; };
+		E6952F1C186BC77E0050FB64 /* iPhone_iconAlarme.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPhone_iconAlarme.png; sourceTree = "<group>"; };
+		E6952F1D186BC77E0050FB64 /* iPhone_iconAlarme@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone_iconAlarme@2x.png"; sourceTree = "<group>"; };
 		E6D47ACE185AA226009C2905 /* MPHumanAge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPHumanAge.h; sourceTree = "<group>"; };
 		E6D47ACF185AA226009C2905 /* MPHumanAge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPHumanAge.m; sourceTree = "<group>"; };
 		E6D47AD1185BF028009C2905 /* MPPetEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPetEditViewController.h; sourceTree = "<group>"; };
@@ -419,6 +423,8 @@
 				E63DB41D18627C0A00094368 /* Lixo */,
 				E63DB41618626BE100094368 /* vacinaDefault.jpg */,
 				E63DB41718626BE100094368 /* vacinaDefault@2x.jpg */,
+				E6952F1C186BC77E0050FB64 /* iPhone_iconAlarme.png */,
+				E6952F1D186BC77E0050FB64 /* iPhone_iconAlarme@2x.png */,
 				E6D47AD9185FD696009C2905 /* menuBanho.png */,
 				E6D47ADA185FD696009C2905 /* menuBanho@2x.png */,
 				E6D47ADB185FD696009C2905 /* menuConsulta.png */,
@@ -528,6 +534,7 @@
 				A78D073E181899F600DC64CD /* Default-568h@2x.png in Resources */,
 				E63DB4291862812200094368 /* 6.png in Resources */,
 				A78D075A18189B4D00DC64CD /* Storyboard.storyboard in Resources */,
+				E6952F1F186BC77E0050FB64 /* iPhone_iconAlarme@2x.png in Resources */,
 				E63DB41F18627C1700094368 /* 5.png in Resources */,
 				E6D47AE4185FD696009C2905 /* menuConsulta@2x.png in Resources */,
 				A7A13316181B296000D7D016 /* colorClouds.png in Resources */,
@@ -542,6 +549,7 @@
 				A71ABC23183152A10039DF25 /* background.png in Resources */,
 				E6D47AE5185FD696009C2905 /* menuVacina.png in Resources */,
 				A71ABC24183152A10039DF25 /* background@2x.png in Resources */,
+				E6952F1E186BC77E0050FB64 /* iPhone_iconAlarme.png in Resources */,
 				A71ABC2C183158B70039DF25 /* fotoSombra.png in Resources */,
 				E6952F0F186BBACD0050FB64 /* menuMedicamento@2x.png in Resources */,
 				A71ABC2D183158B70039DF25 /* fotoSombra@2x.png in Resources */,
