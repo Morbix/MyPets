@@ -7,6 +7,11 @@
 //
 
 #import "MPConsultasViewController.h"
+#import "MPCoreDataService.h"
+#import "Animal.h"
+#import "Consulta.h"
+#import "MPLibrary.h"
+#import "MPAnimations.h"
 
 @interface MPConsultasViewController ()
 
@@ -30,6 +35,16 @@
 
     self.title = NSLS(@"Agenda Consultas");
     self.navigationItem.title = self.title;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.tableView reloadData];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    ((MPCoreDataService *)[MPCoreDataService shared]).consultaSelected = nil;
 }
 
 - (void)didReceiveMemoryWarning

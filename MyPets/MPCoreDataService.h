@@ -14,6 +14,9 @@
 #import "Animal.h"
 #import "Vacina.h"
 #import "Vermifugo.h"
+#import "Banho.h"
+#import "Consulta.h"
+#import "Medicamento.h"
 
 @interface MPCoreDataService : NSObject
 
@@ -22,6 +25,9 @@
 @property (nonatomic, strong) Animal *animalSelected;
 @property (nonatomic, strong) Vacina *vacinaSelected;
 @property (nonatomic, strong) Vermifugo *vermifugoSelected;
+@property (nonatomic, strong) Consulta *consultaSelected;
+@property (nonatomic, strong) Banho *banhoSelected;
+@property (nonatomic, strong) Medicamento *medicamentoSelected;
 
 + (id)shared;
 + (void)saveContext;

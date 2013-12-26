@@ -7,6 +7,11 @@
 //
 
 #import "MPMedicamentosViewController.h"
+#import "MPCoreDataService.h"
+#import "Animal.h"
+#import "Banho.h"
+#import "MPLibrary.h"
+#import "MPAnimations.h"
 
 @interface MPMedicamentosViewController ()
 
@@ -29,6 +34,16 @@
 
     self.title = NSLS(@"Agenda Medicamentos");
     self.navigationItem.title = self.title;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.tableView reloadData];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    ((MPCoreDataService *)[MPCoreDataService shared]).medicamentoSelected = nil;
 }
 
 - (void)didReceiveMemoryWarning

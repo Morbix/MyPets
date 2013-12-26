@@ -7,6 +7,11 @@
 //
 
 #import "MPBanhosViewController.h"
+#import "MPCoreDataService.h"
+#import "Animal.h"
+#import "Banho.h"
+#import "MPLibrary.h"
+#import "MPAnimations.h"
 
 @interface MPBanhosViewController ()
 
@@ -30,6 +35,16 @@
 
     self.title = NSLS(@"Agenda Banhos");
     self.navigationItem.title = self.title;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.tableView reloadData];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    ((MPCoreDataService *)[MPCoreDataService shared]).banhoSelected = nil;
 }
 
 - (void)didReceiveMemoryWarning
