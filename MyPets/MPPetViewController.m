@@ -24,10 +24,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelVermifugo;
 @property (weak, nonatomic) IBOutlet UILabel *labelConsultas;
 @property (weak, nonatomic) IBOutlet UILabel *labelBanhos;
+@property (weak, nonatomic) IBOutlet UILabel *labelMedicamentos;
 @property (weak, nonatomic) IBOutlet LKBadgeView *badgeVacina;
 @property (weak, nonatomic) IBOutlet LKBadgeView *badgeVermifugo;
 @property (weak, nonatomic) IBOutlet LKBadgeView *badgeConsultas;
 @property (weak, nonatomic) IBOutlet LKBadgeView *badgeBanhos;
+@property (weak, nonatomic) IBOutlet LKBadgeView *badgeMedicamentos;
 @end
 
 @implementation MPPetViewController
@@ -39,23 +41,26 @@
         // Custom initialization
     }
     return self;
+#warning pendencia menu medicamento
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    self.barButtonRight.title  = NSLS(@"Editar");
-    self.labelVacinacao.text   = NSLS(@"Carteira Vacinação");
-    self.labelVermifugo.text   = NSLS(@"Carteira Vermífugo");
-    self.labelConsultas.text   = NSLS(@"Agenda Consultas");
-    self.labelBanhos.text      = NSLS(@"Agenda Banhos");
+    self.barButtonRight.title   = NSLS(@"Editar");
+    self.labelVacinacao.text    = NSLS(@"Carteira Vacinação");
+    self.labelVermifugo.text    = NSLS(@"Carteira Vermífugo");
+    self.labelConsultas.text    = NSLS(@"Agenda Consultas");
+    self.labelBanhos.text       = NSLS(@"Agenda Banhos");
+    self.labelMedicamentos.text = NSLS(@"Agenda Medicamentos");
     
     
     [self configurarBadge:self.badgeVacina];
     [self configurarBadge:self.badgeVermifugo];
     [self configurarBadge:self.badgeConsultas];
     [self configurarBadge:self.badgeBanhos];
+    [self configurarBadge:self.badgeMedicamentos];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -87,6 +92,7 @@
         self.badgeVermifugo.text = [NSString stringWithFormat:@"%d", [animal getNextVermifugos].count];
         self.badgeConsultas.text = [NSString stringWithFormat:@"%d", [animal getNextConsultas].count];
         self.badgeBanhos.text    = [NSString stringWithFormat:@"%d", [animal getNextBanhos].count];
+        self.badgeMedicamentos.text    = [NSString stringWithFormat:@"%d", [animal getNextMedicamentos].count];
     }
 }
 
@@ -140,6 +146,8 @@
             case 2: { [self performSegueWithIdentifier:@"consultasViewController" sender:Nil]; }
                 break;
             case 3: { [self performSegueWithIdentifier:@"banhosViewController" sender:Nil]; }
+                break;
+            case 4: { [self performSegueWithIdentifier:@"medicamentosViewController" sender:Nil]; }
                 break;
         }
     }

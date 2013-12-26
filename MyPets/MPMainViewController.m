@@ -32,6 +32,11 @@
         // Custom initialization
     }
     return self;
+    
+#warning Menu Configuração
+    //About Me
+    //Lembretes Programados
+    //Instagram
 }
 
 - (void)viewDidLoad

@@ -66,6 +66,12 @@
 		E63DB42B186281F500094368 /* 7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E63DB42A186281F500094368 /* 7.jpg */; };
 		E6952F081867CA2F0050FB64 /* MPLembretes.m in Sources */ = {isa = PBXBuildFile; fileRef = E6952F071867CA2F0050FB64 /* MPLembretes.m */; };
 		E6952F0B186B143F0050FB64 /* MPVermifugoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6952F0A186B143F0050FB64 /* MPVermifugoEditViewController.m */; };
+		E6952F0E186BBACD0050FB64 /* menuMedicamento.png in Resources */ = {isa = PBXBuildFile; fileRef = E6952F0C186BBACD0050FB64 /* menuMedicamento.png */; };
+		E6952F0F186BBACD0050FB64 /* menuMedicamento@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6952F0D186BBACD0050FB64 /* menuMedicamento@2x.png */; };
+		E6952F12186BBD2F0050FB64 /* MPMedicamentosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6952F11186BBD2F0050FB64 /* MPMedicamentosViewController.m */; };
+		E6952F15186BC26B0050FB64 /* MPConsultaEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6952F14186BC26A0050FB64 /* MPConsultaEditViewController.m */; };
+		E6952F18186BC2770050FB64 /* MPBanhoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6952F17186BC2770050FB64 /* MPBanhoEditViewController.m */; };
+		E6952F1B186BC2840050FB64 /* MPMedicamentoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6952F1A186BC2840050FB64 /* MPMedicamentoEditViewController.m */; };
 		E6D47AD0185AA226009C2905 /* MPHumanAge.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D47ACF185AA226009C2905 /* MPHumanAge.m */; };
 		E6D47AD3185BF028009C2905 /* MPPetEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D47AD2185BF028009C2905 /* MPPetEditViewController.m */; };
 		E6D47AE1185FD696009C2905 /* menuBanho.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D47AD9185FD696009C2905 /* menuBanho.png */; };
@@ -180,6 +186,16 @@
 		E6952F071867CA2F0050FB64 /* MPLembretes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPLembretes.m; sourceTree = "<group>"; };
 		E6952F09186B143F0050FB64 /* MPVermifugoEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPVermifugoEditViewController.h; sourceTree = "<group>"; };
 		E6952F0A186B143F0050FB64 /* MPVermifugoEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPVermifugoEditViewController.m; sourceTree = "<group>"; };
+		E6952F0C186BBACD0050FB64 /* menuMedicamento.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuMedicamento.png; sourceTree = "<group>"; };
+		E6952F0D186BBACD0050FB64 /* menuMedicamento@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuMedicamento@2x.png"; sourceTree = "<group>"; };
+		E6952F10186BBD2F0050FB64 /* MPMedicamentosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMedicamentosViewController.h; sourceTree = "<group>"; };
+		E6952F11186BBD2F0050FB64 /* MPMedicamentosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMedicamentosViewController.m; sourceTree = "<group>"; };
+		E6952F13186BC26A0050FB64 /* MPConsultaEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPConsultaEditViewController.h; sourceTree = "<group>"; };
+		E6952F14186BC26A0050FB64 /* MPConsultaEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPConsultaEditViewController.m; sourceTree = "<group>"; };
+		E6952F16186BC2770050FB64 /* MPBanhoEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPBanhoEditViewController.h; sourceTree = "<group>"; };
+		E6952F17186BC2770050FB64 /* MPBanhoEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPBanhoEditViewController.m; sourceTree = "<group>"; };
+		E6952F19186BC2840050FB64 /* MPMedicamentoEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMedicamentoEditViewController.h; sourceTree = "<group>"; };
+		E6952F1A186BC2840050FB64 /* MPMedicamentoEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMedicamentoEditViewController.m; sourceTree = "<group>"; };
 		E6D47ACE185AA226009C2905 /* MPHumanAge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPHumanAge.h; sourceTree = "<group>"; };
 		E6D47ACF185AA226009C2905 /* MPHumanAge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPHumanAge.m; sourceTree = "<group>"; };
 		E6D47AD1185BF028009C2905 /* MPPetEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPetEditViewController.h; sourceTree = "<group>"; };
@@ -302,8 +318,16 @@
 				E6952F0A186B143F0050FB64 /* MPVermifugoEditViewController.m */,
 				E6D47AF318611456009C2905 /* MPConsultasViewController.h */,
 				E6D47AF418611456009C2905 /* MPConsultasViewController.m */,
+				E6952F13186BC26A0050FB64 /* MPConsultaEditViewController.h */,
+				E6952F14186BC26A0050FB64 /* MPConsultaEditViewController.m */,
 				E6D47AF618611461009C2905 /* MPBanhosViewController.h */,
 				E6D47AF718611461009C2905 /* MPBanhosViewController.m */,
+				E6952F16186BC2770050FB64 /* MPBanhoEditViewController.h */,
+				E6952F17186BC2770050FB64 /* MPBanhoEditViewController.m */,
+				E6952F10186BBD2F0050FB64 /* MPMedicamentosViewController.h */,
+				E6952F11186BBD2F0050FB64 /* MPMedicamentosViewController.m */,
+				E6952F19186BC2840050FB64 /* MPMedicamentoEditViewController.h */,
+				E6952F1A186BC2840050FB64 /* MPMedicamentoEditViewController.m */,
 				A71ABC5318316F150039DF25 /* CoreData Classes */,
 				A7A1332F181B2C5F00D7D016 /* Imagens */,
 				A7A132FB181B21C500D7D016 /* Classes */,
@@ -403,6 +427,8 @@
 				E6D47ADE185FD696009C2905 /* menuVacina@2x.png */,
 				E6D47ADF185FD696009C2905 /* menuVermifugo.png */,
 				E6D47AE0185FD696009C2905 /* menuVermifugo@2x.png */,
+				E6952F0C186BBACD0050FB64 /* menuMedicamento.png */,
+				E6952F0D186BBACD0050FB64 /* menuMedicamento@2x.png */,
 				A7A13330181B2C6900D7D016 /* iPhone_Navigation.png */,
 				A7A13331181B2C6900D7D016 /* iPhone_Navigation@2x.png */,
 				A71ABC21183152A10039DF25 /* background.png */,
@@ -506,6 +532,7 @@
 				E6D47AE4185FD696009C2905 /* menuConsulta@2x.png in Resources */,
 				A7A13316181B296000D7D016 /* colorClouds.png in Resources */,
 				E6D47AE1185FD696009C2905 /* menuBanho.png in Resources */,
+				E6952F0E186BBACD0050FB64 /* menuMedicamento.png in Resources */,
 				E63DB42718627D6B00094368 /* 2.jpg in Resources */,
 				A7A13317181B296000D7D016 /* colorClouds@2x.png in Resources */,
 				A7A13332181B2C6900D7D016 /* iPhone_Navigation.png in Resources */,
@@ -516,6 +543,7 @@
 				E6D47AE5185FD696009C2905 /* menuVacina.png in Resources */,
 				A71ABC24183152A10039DF25 /* background@2x.png in Resources */,
 				A71ABC2C183158B70039DF25 /* fotoSombra.png in Resources */,
+				E6952F0F186BBACD0050FB64 /* menuMedicamento@2x.png in Resources */,
 				A71ABC2D183158B70039DF25 /* fotoSombra@2x.png in Resources */,
 				A71ABC30183158CC0039DF25 /* dog.jpg in Resources */,
 				A71ABC31183158CC0039DF25 /* dog@2x.jpg in Resources */,
@@ -548,15 +576,18 @@
 				A7A13326181B297200D7D016 /* SDWebImageDownloader.m in Sources */,
 				A7A13327181B297200D7D016 /* SDWebImageManager.m in Sources */,
 				E6D47AEC185FDAB1009C2905 /* LKBadgeView.m in Sources */,
+				E6952F12186BBD2F0050FB64 /* MPMedicamentosViewController.m in Sources */,
 				A7A1332B181B2A3100D7D016 /* MPLibrary.m in Sources */,
 				E6D47AFB186120D6009C2905 /* MPVacinaEditViewController.m in Sources */,
 				E63DB41C1862721A00094368 /* UIImage+ResizeAndCrop.m in Sources */,
+				E6952F1B186BC2840050FB64 /* MPMedicamentoEditViewController.m in Sources */,
 				E605548318594C0000D11CE9 /* MPAnimations.m in Sources */,
 				E6952F081867CA2F0050FB64 /* MPLembretes.m in Sources */,
 				A7A1332E181B2B2E00D7D016 /* MPMainViewController.m in Sources */,
 				E6952F0B186B143F0050FB64 /* MPVermifugoEditViewController.m in Sources */,
 				A71ABC27183154E10039DF25 /* MPCellMainPet.m in Sources */,
 				A71ABC3418316D150039DF25 /* MPCoreDataService.m in Sources */,
+				E6952F15186BC26B0050FB64 /* MPConsultaEditViewController.m in Sources */,
 				E6D47AD3185BF028009C2905 /* MPPetEditViewController.m in Sources */,
 				A71ABC3718316ED70039DF25 /* Animal.m in Sources */,
 				A71ABC3A18316F060039DF25 /* Vacina.m in Sources */,
@@ -572,6 +603,7 @@
 				E6D47AEF1861143E009C2905 /* MPVacinasViewController.m in Sources */,
 				A71ABC4F18316F0B0039DF25 /* MyPets.m in Sources */,
 				A71ABC5218316F0B0039DF25 /* Medicamento.m in Sources */,
+				E6952F18186BC2770050FB64 /* MPBanhoEditViewController.m in Sources */,
 				E6D47AF21861144B009C2905 /* MPVermifugosViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

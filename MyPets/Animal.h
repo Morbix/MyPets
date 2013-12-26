@@ -43,10 +43,12 @@
 - (NSArray *)getNextVermifugos;
 - (NSArray *)getNextConsultas;
 - (NSArray *)getNextBanhos;
+- (NSArray *)getNextMedicamentos;
 - (NSArray *)getPreviousVacinas;
 - (NSArray *)getPreviousVermifugos;
 - (NSArray *)getPreviousConsultas;
 - (NSArray *)getPreviousBanhos;
+- (NSArray *)getPreviousMedicamentos;
 @end
 
 @interface Animal (CoreDataGeneratedAccessors)

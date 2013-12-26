@@ -245,6 +245,11 @@
     return [self getJustNextsFrom:[self.cArrayBanhos allObjects] andInverse:NO];
 }
 
+- (NSArray *)getNextMedicamentos
+{
+    return [self getJustNextsFrom:[self.cArrayMedicamentos allObjects] andInverse:NO];
+}
+
 - (NSArray *)getPreviousVacinas
 {
     return [self getJustNextsFrom:[self.cArrayVacinas allObjects] andInverse:YES];
@@ -263,6 +268,11 @@
 - (NSArray *)getPreviousBanhos
 {
     return [self getJustNextsFrom:[self.cArrayBanhos allObjects] andInverse:YES];
+}
+
+- (NSArray *)getPreviousMedicamentos
+{
+    return [self getJustNextsFrom:[self.cArrayMedicamentos allObjects] andInverse:YES];
 }
 
 - (NSArray *)getJustNextsFrom:(NSArray *)array andInverse:(BOOL)inverse
