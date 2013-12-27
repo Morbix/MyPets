@@ -200,6 +200,7 @@
 		E6952F1A186BC2840050FB64 /* MPMedicamentoEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMedicamentoEditViewController.m; sourceTree = "<group>"; };
 		E6952F1C186BC77E0050FB64 /* iPhone_iconAlarme.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPhone_iconAlarme.png; sourceTree = "<group>"; };
 		E6952F1D186BC77E0050FB64 /* iPhone_iconAlarme@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone_iconAlarme@2x.png"; sourceTree = "<group>"; };
+		E6952F20186D158B0050FB64 /* Model_1_for_iOS7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = Model_1_for_iOS7.xcdatamodel; sourceTree = "<group>"; };
 		E6D47ACE185AA226009C2905 /* MPHumanAge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPHumanAge.h; sourceTree = "<group>"; };
 		E6D47ACF185AA226009C2905 /* MPHumanAge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPHumanAge.m; sourceTree = "<group>"; };
 		E6D47AD1185BF028009C2905 /* MPPetEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPetEditViewController.h; sourceTree = "<group>"; };
@@ -501,6 +502,11 @@
 				CLASSPREFIX = MP;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Henrique Morbin";
+				TargetAttributes = {
+					A78D0721181899F600DC64CD = {
+						DevelopmentTeam = U4D7MD5WUL;
+					};
+				};
 			};
 			buildConfigurationList = A78D071D181899F600DC64CD /* Build configuration list for PBXProject "MyPets" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -700,6 +706,7 @@
 		A78D0745181899F600DC64CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MyPets/MyPets-Prefix.pch";
 				INFOPLIST_FILE = "MyPets/MyPets-Info.plist";
@@ -713,6 +720,7 @@
 		A78D0746181899F600DC64CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MyPets/MyPets-Prefix.pch";
 				INFOPLIST_FILE = "MyPets/MyPets-Info.plist";
@@ -750,12 +758,13 @@
 		A78D075318189ACC00DC64CD /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				E6952F20186D158B0050FB64 /* Model_1_for_iOS7.xcdatamodel */,
 				A78D075418189ACC00DC64CD /* Model 3.xcdatamodel */,
 				A78D075518189ACC00DC64CD /* Model 4.xcdatamodel */,
 				A78D075618189ACC00DC64CD /* Model.xcdatamodel */,
 				A78D075718189ACC00DC64CD /* Model2.xcdatamodel */,
 			);
-			currentVersion = A78D075518189ACC00DC64CD /* Model 4.xcdatamodel */;
+			currentVersion = E6952F20186D158B0050FB64 /* Model_1_for_iOS7.xcdatamodel */;
 			name = Model.xcdatamodeld;
 			path = MyPets/Model.xcdatamodeld;
 			sourceTree = "<group>";
