@@ -28,6 +28,7 @@
 
 
 "dd.MM.yyyy - hh:mm a" = "MM.dd.yyyy - hh:mm a";
+"dd.MM.yyyy hh:mm a" = "MM.dd.yyyy hh:mm a";
 "dd.MM.yyyy"           = "MM.dd.yyyy";
 "dd.MM.yyyy hh:mm"     = "MM.dd.yyyy hh:mm";
 "hh:mm a"           = "hh:mm a";

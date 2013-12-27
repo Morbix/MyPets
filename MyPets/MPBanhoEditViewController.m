@@ -225,15 +225,19 @@
 {
     Banho *banho = [[MPCoreDataService shared] banhoSelected];
     BOOL loadAll = FALSE;
+    BOOL loadNotify = FALSE;
     
     if (textField == self.editData) {
         [banho setCData:[(UIDatePicker *)self.editData.inputView date]];
         [(UIDatePicker *)self.editHora.inputView setDate:banho.cData];
+        loadNotify = YES;
     }else if (textField == self.editHora){
         [banho setCData:[(UIDatePicker *)self.editHora.inputView date]];
         [(UIDatePicker *)self.editData.inputView setDate:banho.cData];
+        loadNotify = YES;
     }else if (textField == self.editLembreteTipo){
         [banho setCLembrete:self.editLembreteTipo.text];
+        loadNotify = YES;
     }else if (textField == self.editNotas){
         [banho setCObs:self.editNotas.text];
     }
@@ -241,6 +245,10 @@
     [MPCoreDataService saveContext];
     if (loadAll) {
         [[MPCoreDataService shared] loadAllPets];
+    }
+    
+    if (loadNotify) {
+        [[MPLembretes shared] scheduleNotification:banho];
     }
     
 }

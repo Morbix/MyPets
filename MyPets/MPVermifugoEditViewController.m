@@ -295,6 +295,7 @@
 {
     Vermifugo *vermifugo = [[MPCoreDataService shared] vermifugoSelected];
     BOOL loadAll = FALSE;
+    BOOL loadNotify = FALSE;
     
     if (textField == self.editData) {
         [vermifugo setCDataVacina:[(UIDatePicker *)self.editData.inputView date]];
@@ -305,11 +306,14 @@
     }else if (textField == self.editLembreteData) {
         [vermifugo setCData:[(UIDatePicker *)self.editLembreteData.inputView date]];
         [(UIDatePicker *)self.editLembreteHora.inputView setDate:vermifugo.cData];
+        loadNotify = YES;
     }else if (textField == self.editLembreteHora){
         [vermifugo setCData:[(UIDatePicker *)self.editLembreteHora.inputView date]];
         [(UIDatePicker *)self.editLembreteData.inputView setDate:vermifugo.cData];
+        loadNotify = YES;
     }else if (textField == self.editLembreteTipo){
         [vermifugo setCLembrete:self.editLembreteTipo.text];
+        loadNotify = YES;
     }else if (textField == self.editDose){
         [vermifugo setCDose:self.editDose.text];
     }else if (textField == self.editNotas){
@@ -319,6 +323,10 @@
     [MPCoreDataService saveContext];
     if (loadAll) {
         [[MPCoreDataService shared] loadAllPets];
+    }
+    
+    if (loadNotify) {
+        [[MPLembretes shared] scheduleNotification:vermifugo];
     }
     
 }

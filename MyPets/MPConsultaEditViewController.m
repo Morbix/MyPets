@@ -225,15 +225,19 @@
 {
     Consulta *consulta = [[MPCoreDataService shared] consultaSelected];
     BOOL loadAll = FALSE;
+    BOOL loadNotify = FALSE;
     
     if (textField == self.editData) {
         [consulta setCData:[(UIDatePicker *)self.editData.inputView date]];
         [(UIDatePicker *)self.editHora.inputView setDate:consulta.cData];
+        loadNotify = YES;
     }else if (textField == self.editHora){
         [consulta setCData:[(UIDatePicker *)self.editHora.inputView date]];
         [(UIDatePicker *)self.editData.inputView setDate:consulta.cData];
+        loadNotify = YES;
     }else if (textField == self.editLembreteTipo){
         [consulta setCLembrete:self.editLembreteTipo.text];
+        loadNotify = YES;
     }else if (textField == self.editNotas){
         [consulta setCObs:self.editNotas.text];
     }
@@ -241,6 +245,10 @@
     [MPCoreDataService saveContext];
     if (loadAll) {
         [[MPCoreDataService shared] loadAllPets];
+    }
+    
+    if (loadNotify) {
+        [[MPLembretes shared] scheduleNotification:consulta];
     }
     
 }

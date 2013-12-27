@@ -74,6 +74,7 @@
 		E6952F1B186BC2840050FB64 /* MPMedicamentoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6952F1A186BC2840050FB64 /* MPMedicamentoEditViewController.m */; };
 		E6952F1E186BC77E0050FB64 /* iPhone_iconAlarme.png in Resources */ = {isa = PBXBuildFile; fileRef = E6952F1C186BC77E0050FB64 /* iPhone_iconAlarme.png */; };
 		E6952F1F186BC77E0050FB64 /* iPhone_iconAlarme@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6952F1D186BC77E0050FB64 /* iPhone_iconAlarme@2x.png */; };
+		E6952F23186E39810050FB64 /* MPLembretesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6952F22186E39810050FB64 /* MPLembretesViewController.m */; };
 		E6D47AD0185AA226009C2905 /* MPHumanAge.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D47ACF185AA226009C2905 /* MPHumanAge.m */; };
 		E6D47AD3185BF028009C2905 /* MPPetEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D47AD2185BF028009C2905 /* MPPetEditViewController.m */; };
 		E6D47AE1185FD696009C2905 /* menuBanho.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D47AD9185FD696009C2905 /* menuBanho.png */; };
@@ -200,7 +201,9 @@
 		E6952F1A186BC2840050FB64 /* MPMedicamentoEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMedicamentoEditViewController.m; sourceTree = "<group>"; };
 		E6952F1C186BC77E0050FB64 /* iPhone_iconAlarme.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPhone_iconAlarme.png; sourceTree = "<group>"; };
 		E6952F1D186BC77E0050FB64 /* iPhone_iconAlarme@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone_iconAlarme@2x.png"; sourceTree = "<group>"; };
-		E6952F20186D158B0050FB64 /* Model_1_for_iOS7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = Model_1_for_iOS7.xcdatamodel; sourceTree = "<group>"; };
+		E6952F20186D158B0050FB64 /* Model_1_for_iOS7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model_1_for_iOS7.xcdatamodel; sourceTree = "<group>"; };
+		E6952F21186E39810050FB64 /* MPLembretesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPLembretesViewController.h; sourceTree = "<group>"; };
+		E6952F22186E39810050FB64 /* MPLembretesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPLembretesViewController.m; sourceTree = "<group>"; };
 		E6D47ACE185AA226009C2905 /* MPHumanAge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPHumanAge.h; sourceTree = "<group>"; };
 		E6D47ACF185AA226009C2905 /* MPHumanAge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPHumanAge.m; sourceTree = "<group>"; };
 		E6D47AD1185BF028009C2905 /* MPPetEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPetEditViewController.h; sourceTree = "<group>"; };
@@ -333,6 +336,8 @@
 				E6952F11186BBD2F0050FB64 /* MPMedicamentosViewController.m */,
 				E6952F19186BC2840050FB64 /* MPMedicamentoEditViewController.h */,
 				E6952F1A186BC2840050FB64 /* MPMedicamentoEditViewController.m */,
+				E6952F21186E39810050FB64 /* MPLembretesViewController.h */,
+				E6952F22186E39810050FB64 /* MPLembretesViewController.m */,
 				A71ABC5318316F150039DF25 /* CoreData Classes */,
 				A7A1332F181B2C5F00D7D016 /* Imagens */,
 				A7A132FB181B21C500D7D016 /* Classes */,
@@ -617,6 +622,7 @@
 				E6D47AEF1861143E009C2905 /* MPVacinasViewController.m in Sources */,
 				A71ABC4F18316F0B0039DF25 /* MyPets.m in Sources */,
 				A71ABC5218316F0B0039DF25 /* Medicamento.m in Sources */,
+				E6952F23186E39810050FB64 /* MPLembretesViewController.m in Sources */,
 				E6952F18186BC2770050FB64 /* MPBanhoEditViewController.m in Sources */,
 				E6D47AF21861144B009C2905 /* MPVermifugosViewController.m in Sources */,
 			);

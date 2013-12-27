@@ -40,6 +40,7 @@
     //Ads
     //Parse Notification
     //GoogleAnalytics
+    //AppIRater
     
     //Ativar Lembretes
     //Tela Pet UpComing
@@ -84,6 +85,12 @@
     [[MPCoreDataService shared] setAnimalSelected:[[MPCoreDataService shared] newAnimal]];
     
     [self performSegueWithIdentifier:@"petViewController" sender:nil];
+}
+
+- (IBAction)barButtonLeftTouched:(id)sender
+{
+    [self performSegueWithIdentifier:@"lembretesViewController" sender:nil];
+    
 }
 
 #pragma mark - UICollectionView

@@ -294,6 +294,7 @@
 {
     Vacina *vacina = [[MPCoreDataService shared] vacinaSelected];
     BOOL loadAll = FALSE;
+    BOOL loadNotify = FALSE;
     
     if (textField == self.editData) {
         [vacina setCDataVacina:[(UIDatePicker *)self.editData.inputView date]];
@@ -304,11 +305,14 @@
     }else if (textField == self.editLembreteData) {
         [vacina setCData:[(UIDatePicker *)self.editLembreteData.inputView date]];
         [(UIDatePicker *)self.editLembreteHora.inputView setDate:vacina.cData];
+        loadNotify = YES;
     }else if (textField == self.editLembreteHora){
         [vacina setCData:[(UIDatePicker *)self.editLembreteHora.inputView date]];
         [(UIDatePicker *)self.editLembreteData.inputView setDate:vacina.cData];
+        loadNotify = YES;
     }else if (textField == self.editLembreteTipo){
         [vacina setCLembrete:self.editLembreteTipo.text];
+        loadNotify = YES;
     }else if (textField == self.editVeterinario){
         [vacina setCVeterinario:self.editVeterinario.text];
     }else if (textField == self.editNotas){
@@ -320,6 +324,9 @@
         [[MPCoreDataService shared] loadAllPets];
     }
     
+    if (loadNotify) {
+        [[MPLembretes shared] scheduleNotification:vacina];
+    }
 }
 
 #pragma mark - UITableViewDelegate and UITableViewDataSource

@@ -235,19 +235,24 @@
 {
     Medicamento *medicamento = [[MPCoreDataService shared] medicamentoSelected];
     BOOL loadAll = FALSE;
+    BOOL loadNotify = FALSE;
     
     if (textField == self.editData) {
         [medicamento setCData:[(UIDatePicker *)self.editData.inputView date]];
         [(UIDatePicker *)self.editHora.inputView setDate:medicamento.cData];
+        loadNotify = YES;
     }else if (textField == self.editHora){
         [medicamento setCData:[(UIDatePicker *)self.editHora.inputView date]];
         [(UIDatePicker *)self.editData.inputView setDate:medicamento.cData];
+        loadNotify = YES;
     }else if (textField == self.editLembreteTipo){
         [medicamento setCLembrete:self.editLembreteTipo.text];
+        loadNotify = YES;
     }else if (textField == self.editNotas){
         [medicamento setCObs:self.editNotas.text];
     }else if (textField == self.editMedicamento){
         [medicamento setCNome:self.editMedicamento.text];
+        loadNotify = YES;
     }else if (textField == self.editDose){
         [medicamento setCDose:self.editDose.text];
     }
@@ -255,6 +260,10 @@
     [MPCoreDataService saveContext];
     if (loadAll) {
         [[MPCoreDataService shared] loadAllPets];
+    }
+    
+    if (loadNotify) {
+        [[MPLembretes shared] scheduleNotification:medicamento];
     }
     
 }

@@ -8,7 +8,7 @@
 
 #import "MPCoreDataService.h"
 #import "MPAppDelegate.h"
-
+#import "MPLembretes.h"
 
 @implementation MPCoreDataService
 
@@ -94,6 +94,8 @@
 
 - (void)deleteAnimalSelected
 {
+    [[MPLembretes shared] deleteNotificationFromPet:self.animalSelected];
+    
     [self.context deleteObject:self.animalSelected];
     [self.arrayPets removeObject:self.animalSelected];
     
@@ -134,6 +136,8 @@
 
 - (void)deleteVacinaSelected
 {
+    [[MPLembretes shared] deleteNotificationFromObject:self.vacinaSelected];
+    
     [self.animalSelected removeCArrayVacinasObject:self.vacinaSelected];
     [self.context deleteObject:self.vacinaSelected];
     
@@ -172,6 +176,8 @@
 
 - (void)deleteVermifugoSelected
 {
+    [[MPLembretes shared] deleteNotificationFromObject:self.vermifugoSelected];
+    
     [self.animalSelected removeCArrayVermifugosObject:self.vermifugoSelected];
     [self.context deleteObject:self.vermifugoSelected];
     
@@ -209,6 +215,8 @@
 
 - (void)deleteConsultaSelected
 {
+    [[MPLembretes shared] deleteNotificationFromObject:self.consultaSelected];
+    
     [self.animalSelected removeCArrayConsultasObject:self.consultaSelected];
     [self.context deleteObject:self.consultaSelected];
     
@@ -247,6 +255,8 @@
 
 - (void)deleteBanhoSelected
 {
+    [[MPLembretes shared] deleteNotificationFromObject:self.banhoSelected];
+    
     [self.animalSelected removeCArrayBanhosObject:self.banhoSelected];
     [self.context deleteObject:self.banhoSelected];
     
@@ -288,6 +298,8 @@
 
 - (void)deleteMedicamentoSelected
 {
+    [[MPLembretes shared] deleteNotificationFromObject:self.medicamentoSelected];
+    
     [self.animalSelected removeCArrayMedicamentosObject:self.medicamentoSelected];
     [self.context deleteObject:self.medicamentoSelected];
     

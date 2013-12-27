@@ -29,8 +29,17 @@
     [self.navigationPaneViewController setMasterViewController:masterViewController];
     [self.navigationPaneViewController setOpenDirection:MSNavigationPaneOpenDirectionLeft];*/
     
+    UILocalNotification *localNotif = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+    if (localNotif){
+        NSLog(@"Recieved Notification [1]");
+    }
     
     return YES;
+}
+
+- (void)application:(UIApplication *)app didReceiveLocalNotification:(UILocalNotification *)notif
+{
+	NSLog(@"Recieved Notification [2]");
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
