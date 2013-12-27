@@ -179,4 +179,120 @@
     
     self.vermifugoSelected = nil;
 }
+
+#pragma mark - Consulta
+- (Consulta *)newConsultaToAnimal:(Animal *)animal
+{
+    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Consulta" inManagedObjectContext:self.context];
+    
+    Consulta * consulta = [[Consulta alloc] initWithEntity:entityDesc insertIntoManagedObjectContext:self.context];
+    consulta.cData       = nil;
+    consulta.cAnimal     = animal;
+    consulta.cLembrete   = NSLS(@"Nunca");
+    consulta.cID         = [consulta.objectID description];
+    consulta.cHorario    = nil;
+    
+    
+    NSError *error = nil;
+    [self.context save:&error];
+    
+    if (!error) {
+        NSLog(@"MPCoreDataService:buscarConsultas:%d - Completed", animal.cArrayConsultas.count);
+        [[NSNotificationCenter defaultCenter] postNotificationName:MTPSNotificationPetsConsultas object:nil userInfo:nil];
+        
+        return consulta;
+    }else{
+        SHOW_ERROR(error.description);
+        return nil;
+    }
+}
+
+- (void)deleteConsultaSelected
+{
+    [self.animalSelected removeCArrayConsultasObject:self.consultaSelected];
+    [self.context deleteObject:self.consultaSelected];
+    
+    [self save];
+    
+    self.consultaSelected = nil;
+}
+
+#pragma mark - Banho
+- (Banho *)newBanhoToAnimal:(Animal *)animal
+{
+    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Banho" inManagedObjectContext:self.context];
+    
+    Banho * banho = [[Banho alloc] initWithEntity:entityDesc insertIntoManagedObjectContext:self.context];
+    banho.cData       = nil;
+    banho.cPeso       = @0.0f;
+    banho.cAnimal     = animal;
+    banho.cLembrete   = NSLS(@"Nunca");
+    banho.cID         = [banho.objectID description];
+    banho.cHorario    = nil;
+    
+    
+    NSError *error = nil;
+    [self.context save:&error];
+    
+    if (!error) {
+        NSLog(@"MPCoreDataService:buscarBanhos:%d - Completed", animal.cArrayBanhos.count);
+        [[NSNotificationCenter defaultCenter] postNotificationName:MTPSNotificationPetsBanhos object:nil userInfo:nil];
+        
+        return banho;
+    }else{
+        SHOW_ERROR(error.description);
+        return nil;
+    }
+}
+
+- (void)deleteBanhoSelected
+{
+    [self.animalSelected removeCArrayBanhosObject:self.banhoSelected];
+    [self.context deleteObject:self.banhoSelected];
+    
+    [self save];
+    
+    self.banhoSelected = nil;
+}
+
+#pragma mark - Medicamento
+- (Medicamento *)newMedicamentoToAnimal:(Animal *)animal
+{
+    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Medicamento" inManagedObjectContext:self.context];
+    
+    Medicamento * medicamento = [[Medicamento alloc] initWithEntity:entityDesc insertIntoManagedObjectContext:self.context];
+    medicamento.cNome = NSLS(@"Medicamento");
+    medicamento.cDose = @"";
+    medicamento.cData = nil;
+    medicamento.cTipo = @"";
+    medicamento.cPeso = @0.0f;
+    medicamento.cAnimal     = animal;
+    medicamento.cLembrete   = NSLS(@"Nunca");
+    medicamento.cID         = [medicamento.objectID description];
+    medicamento.cHorario    = nil;
+    
+    
+    NSError *error = nil;
+    [self.context save:&error];
+    
+    if (!error) {
+        NSLog(@"MPCoreDataService:buscarMedicamentos:%d - Completed", animal.cArrayMedicamentos.count);
+        [[NSNotificationCenter defaultCenter] postNotificationName:MTPSNotificationPetsMedicamentos object:nil userInfo:nil];
+        
+        return medicamento;
+    }else{
+        SHOW_ERROR(error.description);
+        return nil;
+    }
+}
+
+- (void)deleteMedicamentoSelected
+{
+    [self.animalSelected removeCArrayMedicamentosObject:self.medicamentoSelected];
+    [self.context deleteObject:self.medicamentoSelected];
+    
+    [self save];
+    
+    self.medicamentoSelected = nil;
+}
 @end

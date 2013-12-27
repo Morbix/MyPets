@@ -97,9 +97,13 @@
 "Banho"       = "Banho";
 "Medicamento" = "Medicamento";
 "Consulta"    = "Consulta";
+"Banhos"       = "Banhos";
+"Medicamentos" = "Medicamentos";
+"Consultas"    = "Consultas";
 "Veterinário" = "Veterinário";
 "Veterinário e Notas" = "Veterinário e Notas";
 "Dose e Notas" = "Dose e Notas";
+"Medicamento e Dose" = "Medicamento e Dose";
 "Data"        = "Data";
 "Data e Hora" = "Data e Hora";
 "Revacina"    = "Revacina";
@@ -107,6 +111,9 @@
 "Lembrete Reforço"    = "Lembrete Reforço";
 "Próximas Revacinas" = "Próximas Revacinas";
 "Próximos Reforços" = "Próximos Reforços";
+"Próximas Consultas" = "Próximas Consultas";
+"Próximos Banhos" = "Próximos Banhos";
+"Próximos Medicamentos" = "Próximos Medicamentos";
 "Próxima"     = "Próxima";
 "Vacinas"     = "Vacinas";
 "Vacina"     = "Vacina";

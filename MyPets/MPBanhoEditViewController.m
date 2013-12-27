@@ -7,8 +7,17 @@
 //
 
 #import "MPBanhoEditViewController.h"
+#import "MPCoreDataService.h"
+#import "MPLibrary.h"
+#import "MPLembretes.h"
 
-@interface MPBanhoEditViewController ()
+@interface MPBanhoEditViewController () <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIActionSheetDelegate>
+
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *barButtonRight;
+@property (weak, nonatomic) IBOutlet UITextField *editData;
+@property (weak, nonatomic) IBOutlet UITextField *editHora;
+@property (weak, nonatomic) IBOutlet UITextField *editLembreteTipo;
+@property (weak, nonatomic) IBOutlet UITextField *editNotas;
 
 @end
 
@@ -27,11 +36,30 @@
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.title = NSLS(@"Editar");
+    self.navigationItem.title = self.title;
+    
+    self.editData.placeholder         = NSLS(@"placeholderPetData");
+    self.editHora.placeholder         = NSLS(@"placeholderPetHora");
+    self.editLembreteTipo.placeholder = NSLS(@"placeholderLembrete");
+    self.editNotas.placeholder        = NSLS(@"placeholderNotas");
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+    
+    [self carregarTeclados];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self atualizarPagina];
 }
 
 - (void)didReceiveMemoryWarning
@@ -40,81 +68,228 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+#pragma mark - Métodos
+- (void)atualizarPagina
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    if ([[MPCoreDataService shared] banhoSelected]) {
+        Banho *banho = [[MPCoreDataService shared] banhoSelected];
+        
+        
+        if (banho.cData) {
+            self.editData.text = [MPLibrary date:banho.cData
+                                        toFormat:NSLS(@"dd.MM.yyyy")];
+            self.editHora.text = [MPLibrary date:banho.cData
+                                        toFormat:NSLS(@"hh:mm a")];
+        }
+        
+        self.editLembreteTipo.text = banho.cLembrete;
+        self.editNotas.text        = banho.cObs;
+    }
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (void)carregarTeclados
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    Banho *banho = nil;
+    if ([[MPCoreDataService shared] banhoSelected]) {
+        banho = [[MPCoreDataService shared] banhoSelected];
+    }
     
-    // Configure the cell...
+    UITextField *__editData = self.editData;
+    [self.editData setInputAccessoryView:[self returnToolBarToDismiss:&__editData]];
+    UITextField *__editHora = self.editHora;
+    [self.editHora setInputAccessoryView:[self returnToolBarToDismiss:&__editHora]];
+    UITextField *__editLembreteTipo = self.editLembreteTipo;
+    [self.editLembreteTipo setInputAccessoryView:[self returnToolBarToDismiss:&__editLembreteTipo]];
+    UITextField *__editNotas = self.editNotas;
+    [self.editNotas setInputAccessoryView:[self returnToolBarToDismiss:&__editNotas]];
     
-    return cell;
+    
+    
+    //Data
+    UIDatePicker *datePicker1 = [[UIDatePicker alloc] initWithFrame:CGRectZero];
+    [datePicker1 setTimeZone:[NSTimeZone defaultTimeZone]];
+    [datePicker1 setDatePickerMode:UIDatePickerModeDate];
+    [datePicker1 addTarget:self
+                    action:@selector(datePickerValueChanged:)
+          forControlEvents:UIControlEventValueChanged];
+    [datePicker1 setTag:1];
+    if (banho) {
+        [datePicker1 setDate:banho.cData ? banho.cData : [NSDate date]];
+    }else{
+        [datePicker1 setDate:[NSDate date]];
+    }
+    [self.editData setInputAccessoryView:[self returnToolBarToDismiss:&__editData]];
+    [self.editData setInputView:datePicker1];
+    
+    //Hora
+    UIDatePicker *datePicker2 = [[UIDatePicker alloc] initWithFrame:CGRectZero];
+    [datePicker2 setTimeZone:[NSTimeZone defaultTimeZone]];
+    [datePicker2 setDatePickerMode:UIDatePickerModeTime];
+    [datePicker2 addTarget:self
+                    action:@selector(datePickerValueChanged:)
+          forControlEvents:UIControlEventValueChanged];
+    [datePicker2 setTag:1];
+    if (banho) {
+        [datePicker2 setDate:banho.cData ? banho.cData : [NSDate date]];
+    }else{
+        [datePicker2 setDate:[NSDate date]];
+    }
+    [self.editHora setInputAccessoryView:[self returnToolBarToDismiss:&__editHora]];
+    [self.editHora setInputView:datePicker2];
+    
+    
+    UIPickerView *pickerViewLembrete = [[UIPickerView alloc] initWithFrame:CGRectZero];
+    [pickerViewLembrete setDelegate:self];
+    [pickerViewLembrete setDataSource:self];
+    [pickerViewLembrete setTag:1];
+    [self.editLembreteTipo setInputAccessoryView:[self returnToolBarToDismiss:&__editLembreteTipo]];
+    [self.editLembreteTipo setInputView:pickerViewLembrete];
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+- (UIToolbar *)returnToolBarToDismiss:(UITextField **)textField
 {
-    // Return NO if you do not want the specified item to be editable.
+    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:*textField action:@selector(resignFirstResponder)];
+    [barButton setStyle:UIBarButtonItemStyleDone];
+    [barButton setTitle:@"Ok"];
+    
+    UIBarButtonItem *barSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    [toolbar setBarStyle:UIBarStyleDefault];
+    [toolbar setItems:[NSArray arrayWithObjects:barSpace,barButton, nil]];
+    
+    return toolbar;
+}
+
+#pragma mark - UIKeyboardNotification
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    UIEdgeInsets edge =  UIEdgeInsetsMake(self.tableView.scrollIndicatorInsets.top, self.tableView.scrollIndicatorInsets.left, 264, self.tableView.scrollIndicatorInsets.right);
+    [self.tableView setScrollIndicatorInsets:edge];
+    [self.tableView setContentInset:edge];
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification
+{
+    UIEdgeInsets edge =  UIEdgeInsetsMake(self.tableView.scrollIndicatorInsets.top, self.tableView.scrollIndicatorInsets.left, 0, self.tableView.scrollIndicatorInsets.right);
+    [self.tableView setScrollIndicatorInsets:edge];
+    [self.tableView setContentInset:edge];
+}
+
+#pragma mark - IBActions
+- (IBAction)barButtonRightTouched:(id)sender
+{
+    NSString *title = [NSString stringWithFormat:@"%@ %@?",NSLS(@"Deseja apagar"),NSLS(@"Banho")];
+    
+    UIActionSheet * sheet = [[UIActionSheet alloc] initWithTitle:title
+                                                        delegate:self
+                                               cancelButtonTitle:NSLS(@"Cancelar")
+                                          destructiveButtonTitle:NSLS(@"Apagar")
+                                               otherButtonTitles:nil];
+    
+    [sheet setTag:1];
+    [sheet showFromBarButtonItem:self.barButtonRight animated:YES];
+}
+
+- (IBAction)datePickerValueChanged:(id)sender
+{
+    UIDatePicker *datePicker = (UIDatePicker *)sender;
+    
+    if (datePicker.tag == 1) {
+        self.editData.text = [MPLibrary date:datePicker.date
+                                    toFormat:NSLS(@"dd.MM.yyyy")];
+        self.editHora.text = [MPLibrary date:datePicker.date
+                                    toFormat:NSLS(@"hh:mm a")];
+    }
+}
+
+#pragma mark - UITextFieldDelegate
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    [self keyboardWillShow:nil];
+    UIView *view = [[[textField superview] superview] superview];
+    if ([view isKindOfClass:[UITableViewCell class]]) {
+        UITableViewCell *cell = (UITableViewCell *)view;
+        [self.tableView scrollToRowAtIndexPath:[self.tableView indexPathForCell:cell] atScrollPosition:UITableViewScrollPositionNone animated:YES];
+    }
     return YES;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
+    [textField resignFirstResponder];
     return YES;
 }
-*/
 
-/*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+-(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    Banho *banho = [[MPCoreDataService shared] banhoSelected];
+    BOOL loadAll = FALSE;
+    
+    if (textField == self.editData) {
+        [banho setCData:[(UIDatePicker *)self.editData.inputView date]];
+        [(UIDatePicker *)self.editHora.inputView setDate:banho.cData];
+    }else if (textField == self.editHora){
+        [banho setCData:[(UIDatePicker *)self.editHora.inputView date]];
+        [(UIDatePicker *)self.editData.inputView setDate:banho.cData];
+    }else if (textField == self.editLembreteTipo){
+        [banho setCLembrete:self.editLembreteTipo.text];
+    }else if (textField == self.editNotas){
+        [banho setCObs:self.editNotas.text];
+    }
+    
+    [MPCoreDataService saveContext];
+    if (loadAll) {
+        [[MPCoreDataService shared] loadAllPets];
+    }
+    
 }
 
- */
+#pragma mark - UITableViewDelegate and UITableViewDataSource
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    switch (section) {
+        case 0: { return NSLS(@"Data e Hora"); }
+            break;
+        case 1: { return NSLS(@"Lembrete"); }
+            break;
+        case 2: { return NSLS(@"Notas"); }
+            break;
+    }
+    
+    return @"";
+}
 
+#pragma mark - UIPickerViewDelegate and UIPickerViewDataSource
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return [[MPLembretes shared] arrayLembretes].count;
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return [[[MPLembretes shared] arrayLembretes] objectAtIndex:row];
+}
+
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    self.editLembreteTipo.text = [[[MPLembretes shared] arrayLembretes] objectAtIndex:row];
+}
+
+#pragma mark - UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (actionSheet.tag == 1) {
+        if (buttonIndex == 0) {
+            [[MPCoreDataService shared] deleteBanhoSelected];
+            [self.navigationController popViewControllerAnimated:YES];
+            
+        }
+    }
+}
 @end

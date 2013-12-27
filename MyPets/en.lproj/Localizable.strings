@@ -97,9 +97,13 @@
 "Banho"       = "Bath";
 "Medicamento" = "Medicine";
 "Consulta"    = "Appointment";
+"Banhos"       = "Baths";
+"Medicamentos" = "Medicines";
+"Consultas"    = "Appointments";
 "Veterinário" = "Vet's Name";
 "Veterinário e Notas" = "Vet's Name and Notes";
 "Dose e Notas" = "Dose and Notes";
+"Medicamento e Dose" = "Medicine and Dose";
 "Data"        = "Date";
 "Data e Hora" = "Date and Hour";
 "Revacina"    = "Re-Vaccine";
@@ -107,6 +111,9 @@
 "Lembrete Reforço"    = "Fortification Reminder";
 "Próximas Revacinas" = "Upcoming Re-Vaccines";
 "Próximos Reforços" = "Upcoming Fortifications";
+"Próximas Consultas" = "Upcoming Appointments";
+"Próximos Banhos" = "Upcoming Baths";
+"Próximos Medicamentos" = "Upcoming Medicines";
 "Próxima"     = "Next";
 "Vacinas"     = "Vaccines";
 "Vacina"     = "Vaccine";

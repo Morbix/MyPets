@@ -283,7 +283,7 @@
     NSMutableArray *filteredArray = [NSMutableArray new];
     for (id object in sortArray) {
         NSDate * date1 = [object valueForKey:@"cData"];
-        NSDate * date2 = [object valueForKey:@"cDataVacina"];
+        NSDate * date2 = [object respondsToSelector:@selector(cDataVacina)] ? [object valueForKey:@"cDataVacina"] : NULL;
         NSComparisonResult order = NSOrderedDescending;
         //NSLog(@"\n\ninverse: %d \ndate1 %@ \ndate2 %@\ndate1==order: %d\ndate2==order:%d", inverse, date1.description, date2.description, ([date1 compare:[NSDate date]] == order),([date2 compare:[NSDate date]] == order));
         if (

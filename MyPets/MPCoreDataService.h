@@ -9,6 +9,9 @@
 #define MTPSNotificationPets @"br.com.alltouch.mypets.notification.pets"
 #define MTPSNotificationPetsVacinas @"br.com.alltouch.mypets.notification.vacinas"
 #define MTPSNotificationPetsVermifugos @"br.com.alltouch.mypets.notification.vermifugos"
+#define MTPSNotificationPetsConsultas @"br.com.alltouch.mypets.notification.consultas"
+#define MTPSNotificationPetsBanhos @"br.com.alltouch.mypets.notification.banhos"
+#define MTPSNotificationPetsMedicamentos @"br.com.alltouch.mypets.notification.medicamentos"
 
 #import <Foundation/Foundation.h>
 #import "Animal.h"
@@ -44,5 +47,17 @@
 #pragma mark - Vermifugo
 - (Vermifugo *)newVermifugoToAnimal:(Animal *)animal;
 - (void)deleteVermifugoSelected;
+
+#pragma mark - Consulta
+- (Consulta *)newConsultaToAnimal:(Animal *)animal;
+- (void)deleteConsultaSelected;
+
+#pragma mark - Banho
+- (Banho *)newBanhoToAnimal:(Animal *)animal;
+- (void)deleteBanhoSelected;
+
+#pragma mark - Medicamento
+- (Medicamento *)newMedicamentoToAnimal:(Animal *)animal;
+- (void)deleteMedicamentoSelected;
 
 @end

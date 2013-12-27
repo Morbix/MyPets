@@ -37,6 +37,12 @@
     //About Me
     //Lembretes Programados
     //Instagram
+    //Ads
+    //Parse Notification
+    //GoogleAnalytics
+    
+    //Ativar Lembretes
+    //Tela Pet UpComing
 }
 
 - (void)viewDidLoad

@@ -55,7 +55,13 @@
 #pragma mark - IBActions
 - (IBAction)barButtonRightTouched:(id)sender
 {
+    Animal *animal = [[MPCoreDataService shared] animalSelected];
     
+    Medicamento *medicamento = [[MPCoreDataService shared] newMedicamentoToAnimal:animal];
+    
+    [[MPCoreDataService shared] setMedicamentoSelected:medicamento];
+    
+    [self performSegueWithIdentifier:@"medicamentoEditViewController" sender:nil];
 }
 
 #pragma mark - Table view data source
@@ -67,68 +73,137 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    Animal *animal = [[MPCoreDataService shared] animalSelected];
+    
+    if (section == 0) {
+        return [animal getNextMedicamentos].count > 0 ? [animal getNextMedicamentos].count : 1;
+    }else{
+        return [animal getPreviousMedicamentos].count > 0 ? [animal getPreviousMedicamentos].count : 1;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    Animal *animal = [[MPCoreDataService shared] animalSelected];
     
-    // Configure the cell...
+    Medicamento *medicamento = nil;
+    
+    UITableViewCell *cell = nil;
+    
+    if (indexPath.section == 0) {
+        if ([animal getNextMedicamentos].count > 0) {
+            medicamento = [[animal getNextMedicamentos] objectAtIndex:indexPath.row];
+        }else{
+            cell = [tableView dequeueReusableCellWithIdentifier:@"NoData" forIndexPath:indexPath];
+            [(UILabel *)[cell viewWithTag:10] setText:NSLS(@"Sem Registros")];
+        }
+    }else{
+        if ([animal getPreviousMedicamentos].count > 0) {
+            medicamento = [[animal getPreviousMedicamentos] objectAtIndex:indexPath.row];
+        }else{
+            cell = [tableView dequeueReusableCellWithIdentifier:@"NoData" forIndexPath:indexPath];
+            [(UILabel *)[cell viewWithTag:10] setText:NSLS(@"Sem Registros")];
+        }
+    }
+    
+    if (medicamento) {
+        if ([medicamento.cLembrete isEqualToString:NSLS(@"Nunca")]) {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"Cell1" forIndexPath:indexPath];
+        }else{
+            cell = [tableView dequeueReusableCellWithIdentifier:@"Cell2" forIndexPath:indexPath];
+        }
+        
+        UILabel *labelMedicamento = (UILabel *)[cell viewWithTag:10];
+        UILabel *labelDose        = (UILabel *)[cell viewWithTag:20];
+        UILabel *labelData        = (UILabel *)[cell viewWithTag:30];
+        UILabel *labelLembrete    = (UILabel *)[cell viewWithTag:40];
+        
+        
+        [labelMedicamento setText:medicamento.cNome];
+        [labelDose setText:medicamento.cDose];
+        
+        if (medicamento.cData) {
+            [labelData setText:[MPLibrary date:medicamento.cData
+                                      toFormat:NSLS(@"dd.MM.yyyy hh:mm")]];
+        }else{
+            [labelData setText:@"-"];
+        }
+        
+        if (labelLembrete) {
+            [labelLembrete setText:medicamento.cLembrete];
+        }
+        
+    }
     
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if (section == 0) {
+        return NSLS(@"Próximos Medicamentos");
+    }else{
+        return NSLS(@"Medicamentos");
+    }
 }
 
- */
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    Animal *animal = [[MPCoreDataService shared] animalSelected];
+    Medicamento *medicamento = nil;
+    
+    if (indexPath.section == 0) {
+        if ([animal getNextMedicamentos].count > 0) {
+            medicamento = [[animal getNextMedicamentos] objectAtIndex:indexPath.row];
+        }else{
+            medicamento = nil;
+        }
+    }else{
+        if ([animal getPreviousMedicamentos].count > 0) {
+            medicamento = [[animal getPreviousMedicamentos] objectAtIndex:indexPath.row];
+        }else{
+            medicamento = nil;
+        }
+    }
+    
+    if (medicamento) {
+        if ([medicamento.cLembrete isEqualToString:NSLS(@"Nunca")]) {
+            return 60.0f;
+        }else{
+            return 80.0f;
+        }
+    }else{
+        return 44.0f;
+    }
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    Animal *animal = [[MPCoreDataService shared] animalSelected];
+    Medicamento *medicamento = nil;
+    
+    if (indexPath.section == 0) {
+        if ([animal getNextMedicamentos].count > 0) {
+            medicamento = [[animal getNextMedicamentos] objectAtIndex:indexPath.row];
+        }
+    }else{
+        if ([animal getPreviousMedicamentos].count > 0) {
+            medicamento = [[animal getPreviousMedicamentos] objectAtIndex:indexPath.row];
+        }
+    }
+    
+    if (medicamento) {
+        UIImageView *imageView = (UIImageView *)[[tableView cellForRowAtIndexPath:indexPath] viewWithTag:10];
+        
+        [MPAnimations animationPressDown:imageView];
+        
+        [[MPCoreDataService shared] setMedicamentoSelected:medicamento];
+        
+        [self performSegueWithIdentifier:@"medicamentoEditViewController" sender:nil];
+    }
+}
 
 @end

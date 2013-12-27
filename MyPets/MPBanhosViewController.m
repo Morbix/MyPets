@@ -56,7 +56,13 @@
 #pragma mark - IBActions
 - (IBAction)barButtonRightTouched:(id)sender
 {
+    Animal *animal = [[MPCoreDataService shared] animalSelected];
     
+    Banho *banho = [[MPCoreDataService shared] newBanhoToAnimal:animal];
+    
+    [[MPCoreDataService shared] setBanhoSelected:banho];
+    
+    [self performSegueWithIdentifier:@"banhoEditViewController" sender:nil];
 }
 
 #pragma mark - UITableViewDelegate and UITableViewDataSource
@@ -68,68 +74,136 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    Animal *animal = [[MPCoreDataService shared] animalSelected];
+    
+    if (section == 0) {
+        return [animal getNextBanhos].count > 0 ? [animal getNextBanhos].count : 1;
+    }else{
+        return [animal getPreviousBanhos].count > 0 ? [animal getPreviousBanhos].count : 1;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    Animal *animal = [[MPCoreDataService shared] animalSelected];
     
-    // Configure the cell...
+    Banho *banho = nil;
+    
+    UITableViewCell *cell = nil;
+    
+    if (indexPath.section == 0) {
+        if ([animal getNextBanhos].count > 0) {
+            banho = [[animal getNextBanhos] objectAtIndex:indexPath.row];
+        }else{
+            cell = [tableView dequeueReusableCellWithIdentifier:@"NoData" forIndexPath:indexPath];
+            [(UILabel *)[cell viewWithTag:10] setText:NSLS(@"Sem Registros")];
+        }
+    }else{
+        if ([animal getPreviousBanhos].count > 0) {
+            banho = [[animal getPreviousBanhos] objectAtIndex:indexPath.row];
+        }else{
+            cell = [tableView dequeueReusableCellWithIdentifier:@"NoData" forIndexPath:indexPath];
+            [(UILabel *)[cell viewWithTag:10] setText:NSLS(@"Sem Registros")];
+        }
+    }
+    
+    if (banho) {
+        if ([banho.cLembrete isEqualToString:NSLS(@"Nunca")]) {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"Cell1" forIndexPath:indexPath];
+        }else{
+            cell = [tableView dequeueReusableCellWithIdentifier:@"Cell2" forIndexPath:indexPath];
+        }
+        
+        UILabel *labelBanho    = (UILabel *)[cell viewWithTag:10];
+        UILabel *labelData        = (UILabel *)[cell viewWithTag:20];
+        UILabel *labelLembrete    = (UILabel *)[cell viewWithTag:30];
+        
+        
+        [labelBanho setText:NSLS(@"Banho")];
+        
+        if (banho.cData) {
+            [labelData setText:[MPLibrary date:banho.cData
+                                      toFormat:NSLS(@"dd.MM.yyyy hh:mm")]];
+        }else{
+            [labelData setText:@"-"];
+        }
+        
+        if (labelLembrete) {
+            [labelLembrete setText:banho.cLembrete];
+        }
+        
+    }
     
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if (section == 0) {
+        return NSLS(@"Próximos Banhos");
+    }else{
+        return NSLS(@"Banhos");
+    }
 }
 
- */
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    Animal *animal = [[MPCoreDataService shared] animalSelected];
+    Banho *banho = nil;
+    
+    if (indexPath.section == 0) {
+        if ([animal getNextBanhos].count > 0) {
+            banho = [[animal getNextBanhos] objectAtIndex:indexPath.row];
+        }else{
+            banho = nil;
+        }
+    }else{
+        if ([animal getPreviousBanhos].count > 0) {
+            banho = [[animal getPreviousBanhos] objectAtIndex:indexPath.row];
+        }else{
+            banho = nil;
+        }
+    }
+    
+    if (banho) {
+        if ([banho.cLembrete isEqualToString:NSLS(@"Nunca")]) {
+            return 44.0f;
+        }else{
+            return 60.0f;
+        }
+    }else{
+        return 44.0f;
+    }
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    Animal *animal = [[MPCoreDataService shared] animalSelected];
+    Banho *banho = nil;
+    
+    if (indexPath.section == 0) {
+        if ([animal getNextBanhos].count > 0) {
+            banho = [[animal getNextBanhos] objectAtIndex:indexPath.row];
+        }
+    }else{
+        if ([animal getPreviousBanhos].count > 0) {
+            banho = [[animal getPreviousBanhos] objectAtIndex:indexPath.row];
+        }
+    }
+    
+    if (banho) {
+        UIImageView *imageView = (UIImageView *)[[tableView cellForRowAtIndexPath:indexPath] viewWithTag:10];
+        
+        [MPAnimations animationPressDown:imageView];
+        
+        [[MPCoreDataService shared] setBanhoSelected:banho];
+        
+        [self performSegueWithIdentifier:@"banhoEditViewController" sender:nil];
+    }
+}
+
 
 @end
