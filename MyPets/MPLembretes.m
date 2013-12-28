@@ -9,12 +9,8 @@
 #import "MPLembretes.h"
 
 #warning pendencia
-// Delete animal Ok
-// Delete Objetos Ok
-// Edit Lembretes
-// Edit Datas e Horarios
-// Celulas Alarme usando MPLembretes
 // Tela Lembretes
+// Lembrete Local
 
 @implementation MPLembretes
 +(id)shared

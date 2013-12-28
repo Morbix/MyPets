@@ -12,6 +12,7 @@
 #import "Banho.h"
 #import "MPLibrary.h"
 #import "MPAnimations.h"
+#import "MPLembretes.h"
 
 @interface MPMedicamentosViewController ()
 
@@ -107,7 +108,7 @@
     }
     
     if (medicamento) {
-        if ([medicamento.cLembrete isEqualToString:NSLS(@"Nunca")]) {
+        if (![[MPLembretes shared] existNotificationFromObject:medicamento]) {
             cell = [tableView dequeueReusableCellWithIdentifier:@"Cell1" forIndexPath:indexPath];
         }else{
             cell = [tableView dequeueReusableCellWithIdentifier:@"Cell2" forIndexPath:indexPath];
@@ -168,7 +169,7 @@
     }
     
     if (medicamento) {
-        if ([medicamento.cLembrete isEqualToString:NSLS(@"Nunca")]) {
+        if (![[MPLembretes shared] existNotificationFromObject:medicamento]) {
             return 60.0f;
         }else{
             return 80.0f;

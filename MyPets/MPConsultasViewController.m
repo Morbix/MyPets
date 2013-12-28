@@ -12,6 +12,7 @@
 #import "Consulta.h"
 #import "MPLibrary.h"
 #import "MPAnimations.h"
+#import "MPLembretes.h"
 
 @interface MPConsultasViewController ()
 
@@ -108,7 +109,7 @@
     }
     
     if (consulta) {
-        if ([consulta.cLembrete isEqualToString:NSLS(@"Nunca")]) {
+        if (![[MPLembretes shared] existNotificationFromObject:consulta]) {
             cell = [tableView dequeueReusableCellWithIdentifier:@"Cell1" forIndexPath:indexPath];
         }else{
             cell = [tableView dequeueReusableCellWithIdentifier:@"Cell2" forIndexPath:indexPath];
@@ -167,7 +168,7 @@
     }
     
     if (consulta) {
-        if ([consulta.cLembrete isEqualToString:NSLS(@"Nunca")]) {
+        if (![[MPLembretes shared] existNotificationFromObject:consulta]) {
             return 44.0f;
         }else{
             return 60.0f;

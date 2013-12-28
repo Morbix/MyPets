@@ -37,9 +37,25 @@
     return YES;
 }
 
-- (void)application:(UIApplication *)app didReceiveLocalNotification:(UILocalNotification *)notif
+- (void)application:(UIApplication *)app didReceiveLocalNotification:(UILocalNotification *)notification
 {
-	NSLog(@"Recieved Notification [2]");
+    if (notification) {
+        NSLog(@"Recieved Notification [2]");
+        if ([app applicationState] == UIApplicationStateActive) {
+            if (!_notificationAlert) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                                message:nil
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"Ok"
+                                                      otherButtonTitles:nil];
+                [self setNotificationAlert:alert];
+            }
+            
+            [_notificationAlert setTitle:[notification alertBody]];
+
+            [_notificationAlert show];
+        }
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

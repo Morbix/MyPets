@@ -12,6 +12,7 @@
 #import "Banho.h"
 #import "MPLibrary.h"
 #import "MPAnimations.h"
+#import "MPLembretes.h"
 
 @interface MPBanhosViewController ()
 
@@ -108,7 +109,7 @@
     }
     
     if (banho) {
-        if ([banho.cLembrete isEqualToString:NSLS(@"Nunca")]) {
+        if (![[MPLembretes shared] existNotificationFromObject:banho]) {
             cell = [tableView dequeueReusableCellWithIdentifier:@"Cell1" forIndexPath:indexPath];
         }else{
             cell = [tableView dequeueReusableCellWithIdentifier:@"Cell2" forIndexPath:indexPath];
@@ -167,7 +168,7 @@
     }
     
     if (banho) {
-        if ([banho.cLembrete isEqualToString:NSLS(@"Nunca")]) {
+        if (![[MPLembretes shared] existNotificationFromObject:banho]) {
             return 44.0f;
         }else{
             return 60.0f;

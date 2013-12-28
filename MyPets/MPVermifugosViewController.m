@@ -13,6 +13,7 @@
 #import "Veterinario.h"
 #import "MPLibrary.h"
 #import "MPAnimations.h"
+#import "MPLembretes.h"
 
 @interface MPVermifugosViewController ()
 
@@ -132,7 +133,7 @@
         if (vermifugo.cData) {
             [valueReforco setText:[MPLibrary date:vermifugo.cData
                                           toFormat:NSLS(@"dd.MM.yyyy")]];
-            if ([vermifugo.cLembrete isEqualToString:NSLS(@"Nunca")]) {
+            if (![[MPLembretes shared] existNotificationFromObject:vermifugo]) {
                 [imageViewAlarme setHidden:YES];
             }else{
                 [imageViewAlarme setHidden:NO];
