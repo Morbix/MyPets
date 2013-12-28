@@ -34,15 +34,16 @@
     return self;
     
 #warning Menu Configuração
-    //About Me
-    //Lembretes Programados
-    //Instagram
+    //2.0
     //Ads
     //Parse Notification
     //GoogleAnalytics
     //AppIRater
     
-    //Ativar Lembretes
+    //Later
+    //About Me
+    //Lembretes Programados
+    //Instagram
     //Tela Pet UpComing
 }
 

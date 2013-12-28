@@ -10,7 +10,6 @@
 
 #warning pendencia
 // Tela Lembretes
-// Lembrete Local
 
 @implementation MPLembretes
 +(id)shared
