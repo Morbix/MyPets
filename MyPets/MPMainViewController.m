@@ -12,7 +12,10 @@
 #import "MPCoreDataService.h"
 #import "Animal.h"
 #import "MPAnimations.h"
-
+#import "GAI.h"
+#import "GAITracker.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAIFields.h"
 @interface MPMainViewController ()
 {
     BOOL CALLBACK_LOCAL;
@@ -35,16 +38,23 @@
     
 #warning Menu Configuração
     //2.0
-    //Ads
-    //Parse Notification
-    //GoogleAnalytics
-    //AppIRater
+    //Ok - Ads
+    //Ok - Parse Notification
+    //Ok - GoogleAnalytics
+    //Ok - AppIRater
     
     //Later
     //About Me
     //Lembretes Programados
     //Instagram
     //Tela Pet UpComing
+    
+    //Events
+    //Ok - Telas
+    //Ok - Add com total de itnes
+    //Ok - Delecoes 
+    //Ok - Fotos
+    //Ok - Lembretes
 }
 
 - (void)viewDidLoad
@@ -67,6 +77,13 @@
     DIV = 1;
     CALLBACK_LOCAL = FALSE;
     [[MPCoreDataService shared] loadAllPets];
+    
+    [self loadBanner];
+    
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName
+           value:@"Main Screen"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -85,6 +102,12 @@
 {
     [[MPCoreDataService shared] setAnimalSelected:[[MPCoreDataService shared] newAnimal]];
     
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Adicionar"     // Event category (required)
+                                                          action:@"Novo Pet"  // Event action (required)
+                                                           label:@"Novo Pet"          // Event label
+                                                           value:[NSNumber numberWithInt:[[MPCoreDataService shared] arrayPets].count]] build]];
+    
     [self performSegueWithIdentifier:@"petViewController" sender:nil];
 }
 
@@ -92,6 +115,32 @@
 {
     [self performSegueWithIdentifier:@"lembretesViewController" sender:nil];
     
+}
+
+#pragma mark - Métodos
+- (void)loadBanner
+{
+    bannerView_ = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
+    [bannerView_ setFrame:CGRectMake(0, self.view.frame.size.height-bannerView_.frame.size.height, bannerView_.frame.size.width, bannerView_.frame.size.height)];
+    
+    bannerView_.adUnitID = @"ca-app-pub-8687233994493144/1806932365";
+    
+
+    bannerView_.rootViewController = self;
+    bannerView_.delegate = self;
+    [self.view addSubview:bannerView_];
+    
+    GADRequest *request = [GADRequest request];
+    request.testing = NO;
+    [bannerView_ loadRequest: request];
+}
+
+#pragma mark - GADBannerDelegate
+- (void)adViewDidReceiveAd:(GADBannerView *)view
+{
+    UIEdgeInsets edge =  UIEdgeInsetsMake(self.collection.scrollIndicatorInsets.top, self.collection.scrollIndicatorInsets.left, bannerView_.frame.size.height*1, self.collection.scrollIndicatorInsets.right);
+    [self.collection setScrollIndicatorInsets:edge];
+    [self.collection setContentInset:edge];
 }
 
 #pragma mark - UICollectionView

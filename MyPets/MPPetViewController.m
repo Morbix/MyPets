@@ -12,6 +12,10 @@
 #import "Animal.h"
 #import "UIFlatColor.h"
 #import "LKBadgeView.h"
+#import "GAI.h"
+#import "GAITracker.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAIFields.h"
 
 @interface MPPetViewController ()
 
@@ -30,6 +34,7 @@
 @property (weak, nonatomic) IBOutlet LKBadgeView *badgeConsultas;
 @property (weak, nonatomic) IBOutlet LKBadgeView *badgeBanhos;
 @property (weak, nonatomic) IBOutlet LKBadgeView *badgeMedicamentos;
+@property (weak, nonatomic) IBOutlet UIView *bannerSpace;
 @end
 
 @implementation MPPetViewController
@@ -41,7 +46,6 @@
         // Custom initialization
     }
     return self;
-#warning pendencia menu medicamento
 }
 
 - (void)viewDidLoad
@@ -61,6 +65,13 @@
     [self configurarBadge:self.badgeConsultas];
     [self configurarBadge:self.badgeBanhos];
     [self configurarBadge:self.badgeMedicamentos];
+    
+    [self loadBanner];
+    
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName
+           value:@"Pet Screen"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -108,10 +119,35 @@
     [badge setTextColor:[UIColor whiteColor]];
 }
 
+- (void)loadBanner
+{
+    //self.view.frame.size.height-bannerView_.frame.size.height;
+    bannerView_ = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
+    [bannerView_ setFrame:CGRectMake(0, 0, bannerView_.frame.size.width, bannerView_.frame.size.height)];
+    
+    bannerView_.adUnitID = @"ca-app-pub-8687233994493144/9330199164";
+    
+    
+    bannerView_.rootViewController = self;
+    [self.bannerSpace addSubview:bannerView_];
+    
+    GADRequest *request = [GADRequest request];
+    request.testing = NO;
+    [bannerView_ loadRequest: request];
+}
+
 #pragma mark - IBAction
 - (IBAction)barButtonRightTouched:(id)sender
 {
     [self performSegueWithIdentifier:@"petEditViewController" sender:nil];
+}
+
+#pragma mark - GADBannerDelegate
+- (void)adViewDidReceiveAd:(GADBannerView *)view
+{
+    UIEdgeInsets edge =  UIEdgeInsetsMake(self.tableView.scrollIndicatorInsets.top, self.tableView.scrollIndicatorInsets.left, bannerView_.frame.size.height, self.tableView.scrollIndicatorInsets.right);
+    [self.tableView setScrollIndicatorInsets:edge];
+    [self.tableView setContentInset:edge];
 }
 
 #pragma mark - UITableViewDelegate and UITableViewDataSource

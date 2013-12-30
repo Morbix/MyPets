@@ -13,6 +13,10 @@
 #import "MPLibrary.h"
 #import "MPAnimations.h"
 #import "MPLembretes.h"
+#import "GAI.h"
+#import "GAITracker.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAIFields.h"
 
 @interface MPConsultasViewController ()
 
@@ -36,6 +40,11 @@
 
     self.title = NSLS(@"Agenda Consultas");
     self.navigationItem.title = self.title;
+    
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName
+           value:@"Consultas Screen"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -62,6 +71,12 @@
     Consulta *consulta = [[MPCoreDataService shared] newConsultaToAnimal:animal];
     
     [[MPCoreDataService shared] setConsultaSelected:consulta];
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Adicionar"     // Event category (required)
+                                                          action:@"Nova Consulta"  // Event action (required)
+                                                           label:@"Nova Consulta"          // Event label
+                                                           value:[NSNumber numberWithInt:animal.cArrayConsultas.count]] build]];
     
     [self performSegueWithIdentifier:@"consultaEditViewController" sender:nil];
 }

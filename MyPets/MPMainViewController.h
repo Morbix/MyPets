@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GADBannerView.h"
 
-@interface MPMainViewController : UIViewController
-
+@interface MPMainViewController : UIViewController <GADBannerViewDelegate>
+{
+    GADBannerView *bannerView_;
+}
 @property (strong, nonatomic) IBOutlet UICollectionView *collection;
 @end

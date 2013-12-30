@@ -14,6 +14,10 @@
 #import "MPLibrary.h"
 #import "MPAnimations.h"
 #import "MPLembretes.h"
+#import "GAI.h"
+#import "GAITracker.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAIFields.h"
 
 @interface MPVermifugosViewController ()
 
@@ -36,6 +40,11 @@
     [super viewDidLoad];
     self.title = NSLS(@"Carteira Vermífugo");
     self.navigationItem.title = self.title;
+    
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName
+           value:@"Vermífugos Screen"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -62,6 +71,12 @@
     Vermifugo *vermifugo = [[MPCoreDataService shared] newVermifugoToAnimal:animal];
     
     [[MPCoreDataService shared] setVermifugoSelected:vermifugo];
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Adicionar"     // Event category (required)
+                                                          action:@"Novo Vermífugo"  // Event action (required)
+                                                           label:@"Novo Vermífugo"          // Event label
+                                                           value:[NSNumber numberWithInt:animal.cArrayVermifugos.count]] build]];
     
     [self performSegueWithIdentifier:@"vermifugoEditViewController" sender:nil];
 }

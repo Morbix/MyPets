@@ -14,6 +14,10 @@
 #import "MPLibrary.h"
 #import "MPAnimations.h"
 #import "MPLembretes.h"
+#import "GAI.h"
+#import "GAITracker.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAIFields.h"
 
 @interface MPVacinasViewController ()
 
@@ -37,6 +41,11 @@
 
     self.title = NSLS(@"Carteira Vacinação");
     self.navigationItem.title = self.title;
+    
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName
+           value:@"Vacinas Screen"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -63,6 +72,12 @@
     Vacina *vacina = [[MPCoreDataService shared] newVacinaToAnimal:animal];
     
     [[MPCoreDataService shared] setVacinaSelected:vacina];
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Adicionar"     // Event category (required)
+                                                          action:@"Nova Vacina"  // Event action (required)
+                                                           label:@"Nova Vacina"          // Event label
+                                                           value:[NSNumber numberWithInt:animal.cArrayVacinas.count]] build]];
     
     [self performSegueWithIdentifier:@"vacinaEditViewController" sender:nil];
 }

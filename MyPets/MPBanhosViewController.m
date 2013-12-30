@@ -13,6 +13,10 @@
 #import "MPLibrary.h"
 #import "MPAnimations.h"
 #import "MPLembretes.h"
+#import "GAI.h"
+#import "GAITracker.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAIFields.h"
 
 @interface MPBanhosViewController ()
 
@@ -36,6 +40,11 @@
 
     self.title = NSLS(@"Agenda Banhos");
     self.navigationItem.title = self.title;
+    
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName
+           value:@"Banhos Screen"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -62,6 +71,12 @@
     Banho *banho = [[MPCoreDataService shared] newBanhoToAnimal:animal];
     
     [[MPCoreDataService shared] setBanhoSelected:banho];
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Adicionar"     // Event category (required)
+                                                          action:@"Novo Banho"  // Event action (required)
+                                                           label:@"Novo Banho"          // Event label
+                                                           value:[NSNumber numberWithInt:animal.cArrayBanhos.count]] build]];
     
     [self performSegueWithIdentifier:@"banhoEditViewController" sender:nil];
 }

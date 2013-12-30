@@ -10,6 +10,10 @@
 #import "MPCoreDataService.h"
 #import "MPLibrary.h"
 #import "MPLembretes.h"
+#import "GAI.h"
+#import "GAITracker.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAIFields.h"
 
 @interface MPConsultaEditViewController () <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIActionSheetDelegate>
 
@@ -55,6 +59,11 @@
                                                object:nil];
     
     [self carregarTeclados];
+    
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName
+           value:@"Consulta Edit Screen"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -294,6 +303,12 @@
 {
     if (actionSheet.tag == 1) {
         if (buttonIndex == 0) {
+            id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+            [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Deletar"     // Event category (required)
+                                                                  action:@"Deletar Consulta"  // Event action (required)
+                                                                   label:@"Deletar Consulta"          // Event label
+                                                                   value:nil] build]];
+            
             [[MPCoreDataService shared] deleteConsultaSelected];
             [self.navigationController popViewControllerAnimated:YES];
             

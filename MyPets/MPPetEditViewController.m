@@ -10,6 +10,10 @@
 #import "MPCoreDataService.h"
 #import "Animal.h"
 #import "MPLibrary.h"
+#import "GAI.h"
+#import "GAITracker.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAIFields.h"
 
 @interface MPPetEditViewController ()  <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -59,6 +63,11 @@
                                                object:nil];
     
     [self carregarTeclados];
+    
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName
+           value:@"Pet Edit Screen"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -310,6 +319,12 @@
 {
     if (actionSheet.tag == 1) {
         if (buttonIndex == 0) {
+            id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+            [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Deletar"     // Event category (required)
+                                                                  action:@"Deletar Pet"  // Event action (required)
+                                                                   label:@"Deletar Pet"          // Event label
+                                                                   value:nil] build]];
+            
             [[MPCoreDataService shared] deleteAnimalSelected];
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
@@ -347,6 +362,12 @@
     
     [MPCoreDataService saveContext];
     [[MPCoreDataService shared] loadAllPets];
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Fotos"     // Event category (required)
+                                                          action:@"Foto Pet"  // Event action (required)
+                                                           label:@"Foto Pet"          // Event label
+                                                           value:nil] build]];
 
     [self dismissViewControllerAnimated:YES completion:^{}];
 }

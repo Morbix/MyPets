@@ -124,6 +124,12 @@
 "Reforço" = "Fortification";
 "Reforços" = "Fortifications";
 
+"Did you like MyPets?" = "Did you like MyPets?";
+"Rate %@" = "Rate %@";
+"No, thanks" = "No, thanks";
+"Rate now %@" = "Rate now %@";
+"Remember later" = "Remember later";
+
 /*
  "Meus Pets"        = "My Pets";
 "Eventos"          = "Tasks";

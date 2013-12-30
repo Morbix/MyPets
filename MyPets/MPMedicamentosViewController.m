@@ -13,6 +13,10 @@
 #import "MPLibrary.h"
 #import "MPAnimations.h"
 #import "MPLembretes.h"
+#import "GAI.h"
+#import "GAITracker.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAIFields.h"
 
 @interface MPMedicamentosViewController ()
 
@@ -35,6 +39,11 @@
 
     self.title = NSLS(@"Agenda Medicamentos");
     self.navigationItem.title = self.title;
+    
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName
+           value:@"Medicamentos Screen"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -61,6 +70,12 @@
     Medicamento *medicamento = [[MPCoreDataService shared] newMedicamentoToAnimal:animal];
     
     [[MPCoreDataService shared] setMedicamentoSelected:medicamento];
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Adicionar"     // Event category (required)
+                                                          action:@"Novo Medicamento"  // Event action (required)
+                                                           label:@"Novo Medicamento"          // Event label
+                                                           value:[NSNumber numberWithInt:animal.cArrayVacinas.count]] build]];
     
     [self performSegueWithIdentifier:@"medicamentoEditViewController" sender:nil];
 }

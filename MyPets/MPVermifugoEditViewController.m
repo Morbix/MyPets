@@ -10,6 +10,10 @@
 #import "MPCoreDataService.h"
 #import "MPLibrary.h"
 #import "MPLembretes.h"
+#import "GAI.h"
+#import "GAITracker.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAIFields.h"
 
 @interface MPVermifugoEditViewController () <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -63,6 +67,11 @@
                                                object:nil];
     
     [self carregarTeclados];
+    
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName
+           value:@"Vermífugo Edit Screen"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -384,6 +393,12 @@
 {
     if (actionSheet.tag == 1) {
         if (buttonIndex == 0) {
+            id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+            [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Deletar"     // Event category (required)
+                                                                  action:@"Deletar Vermífugo"  // Event action (required)
+                                                                   label:@"Deletar Vermífugo"          // Event label
+                                                                   value:nil] build]];
+            
             [[MPCoreDataService shared] deleteVermifugoSelected];
             [self.navigationController popViewControllerAnimated:YES];
             
@@ -421,6 +436,12 @@
     [self.imageFoto setImage:[vermifugo getFoto]];
     
     [MPCoreDataService saveContext];
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Fotos"     // Event category (required)
+                                                          action:@"Foto Vermífugo"  // Event action (required)
+                                                           label:@"Foto Vermífugo"          // Event label
+                                                           value:nil] build]];
     
     [self dismissViewControllerAnimated:YES completion:^{}];
 }

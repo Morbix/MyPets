@@ -8,6 +8,11 @@
 
 #import "MPAppDelegate.h"
 #import "MPLibrary.h"
+#import "Appirater.h"
+#import <Parse/Parse.h>
+#import "GAI.h"
+#import "GAITracker.h"
+#import "GAIDictionaryBuilder.h"
 
 @implementation MPAppDelegate
 
@@ -19,15 +24,28 @@
 {
     [MPLibrary appearanceCustom];
     
+    [Appirater appLaunched:YES];
     
-    /*self.navigationPaneViewController = (MSNavigationPaneViewController *)self.window.rootViewController;
-    MSMasterViewController *masterViewController = (MSMasterViewController *)[self.navigationPaneViewController.storyboard instantiateViewControllerWithIdentifier:@"masterViewController"];
-
-    masterViewController.navigationPaneViewController = self.navigationPaneViewController;
+    [Parse setApplicationId:@"VOfi2AierOCqzfMPjFWkUeAVAM4tjT7ODkzqSCOm" clientKey:@"8byEO3HfZvG5vhaNnPeZ5jY76dW4AkWXl7acnV8D"];
     
-    [self.navigationPaneViewController setAppearanceType:MSNavigationPaneAppearanceTypeParallax];
-    [self.navigationPaneViewController setMasterViewController:masterViewController];
-    [self.navigationPaneViewController setOpenDirection:MSNavigationPaneOpenDirectionLeft];*/
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    [application registerForRemoteNotificationTypes:
+     UIRemoteNotificationTypeBadge |
+     UIRemoteNotificationTypeAlert |
+     UIRemoteNotificationTypeSound];
+    
+    
+    [GAI sharedInstance].trackUncaughtExceptions = YES;
+    [GAI sharedInstance].dispatchInterval = 20;
+    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelNone];
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] trackerWithTrackingId:@"UA-46756135-1"];
+    
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Application"     // Event category (required)
+                                                          action:@"Launching"  // Event action (required)
+                                                           label:@"Launching"          // Event label
+                                                           value:nil] build]];    // Event value
     
     UILocalNotification *localNotif = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
     if (localNotif){
@@ -37,6 +55,7 @@
     return YES;
 }
 
+#pragma mark - LocalNotification
 - (void)application:(UIApplication *)app didReceiveLocalNotification:(UILocalNotification *)notification
 {
     if (notification) {
@@ -58,6 +77,20 @@
     }
 }
 
+
+#pragma mark - ParseNotification
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
+    // Store the deviceToken in the current installation and save it to Parse.
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:newDeviceToken];
+    [currentInstallation saveInBackground];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [PFPush handlePush:userInfo];
+}
+
+#pragma mark - UIApplicationDelegate
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -73,6 +106,8 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    
+    [Appirater appEnteredForeground:YES];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

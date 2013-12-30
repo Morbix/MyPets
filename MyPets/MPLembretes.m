@@ -7,9 +7,11 @@
 //
 
 #import "MPLembretes.h"
+#import "GAI.h"
+#import "GAITracker.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAIFields.h"
 
-#warning pendencia
-// Tela Lembretes
 
 @implementation MPLembretes
 +(id)shared
@@ -38,25 +40,26 @@
     NSString * _alertBody = @"";
     NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:NSLS(@"dd.MM.yyyy hh:mm a")];
+    NSString *analytics = @"";
     
     if ([object isKindOfClass:[Medicamento class]]) {
-        Medicamento * med = (Medicamento *)object;
+        Medicamento * med = (Medicamento *)object; analytics = @"Lembrete Medicamento";
         
         _alertBody = [NSString stringWithFormat:@"%@ %@ %@\n%@",NSLocalizedString(@"Lembrete",nil),med.cNome,med.cAnimal.cNome,[formatter stringFromDate:med.cData]];
     }else if ([object isKindOfClass:[Banho class]]) {
-        Banho * ban = (Banho *)object;
+        Banho * ban = (Banho *)object; analytics = @"Lembrete Banho";
         
         _alertBody = [NSString stringWithFormat:@"%@ %@ %@\n%@",NSLocalizedString(@"Lembrete",nil),NSLocalizedString(@"Banho",nil),ban.cAnimal.cNome,[formatter stringFromDate:ban.cData]];
     }else if ([object isKindOfClass:[Consulta class]]) {
-        Consulta * con = (Consulta *)object;
+        Consulta * con = (Consulta *)object; analytics = @"Lembrete Consulta";
         
         _alertBody = [NSString stringWithFormat:@"%@ %@ %@\n%@",NSLocalizedString(@"Lembrete",nil),NSLocalizedString(@"Consulta",nil),con.cAnimal.cNome,[formatter stringFromDate:con.cData]];
     }else if ([object isKindOfClass:[Vacina class]]) {
-        Vacina * van = (Vacina *)object;
+        Vacina * van = (Vacina *)object; analytics = @"Lembrete Vacina";
         
         _alertBody = [NSString stringWithFormat:@"%@ %@ %@\n%@",NSLocalizedString(@"Lembrete",nil),NSLocalizedString(@"Vacina",nil),van.cAnimal.cNome,[formatter stringFromDate:van.cData]];
     }else if ([object isKindOfClass:[Vermifugo class]]) {
-        Vermifugo * ver = (Vermifugo *)object;
+        Vermifugo * ver = (Vermifugo *)object; analytics = @"Lembrete Vermífugo";
         
         _alertBody = [NSString stringWithFormat:@"%@ %@ %@\n%@",NSLocalizedString(@"Lembrete",nil),NSLocalizedString(@"Vermífugo",nil),ver.cAnimal.cNome,[formatter stringFromDate:ver.cData]];
     }
@@ -75,7 +78,17 @@
     localNotification.userInfo = infoDict;
     
     if (![[object valueForKey:@"cID"] isEqualToString:@""]) {
-        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+        if (localNotification.fireDate) {
+            if ([localNotification.fireDate timeIntervalSinceNow] > 1) {
+                [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+                
+                id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+                [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Lembrete"     // Event category (required)
+                                                                      action:analytics  // Event action (required)
+                                                                       label:analytics          // Event label
+                                                                       value:[NSNumber numberWithDouble:[localNotification.fireDate timeIntervalSinceNow]]] build]];
+            }
+        }
     }
     
     //[localNotification release]; localNotification = nil;

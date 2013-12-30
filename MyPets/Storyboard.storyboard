@@ -98,11 +98,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="MSI-PH-dNO">
-                        <barButtonItem key="leftBarButtonItem" systemItem="organize" id="EOv-34-Ner">
-                            <connections>
-                                <action selector="barButtonLeftTouched:" destination="liv-io-tMB" id="a0b-lX-XCW"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="yH6-J7-pqx">
                             <connections>
                                 <action selector="barButtonRightTouched:" destination="liv-io-tMB" id="Vug-sN-Tg6"/>
@@ -128,11 +123,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="Omu-Bd-fqF">
+                            <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        </view>
                         <sections>
                             <tableViewSection id="Bvx-9Q-Uvs">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="320" id="jTb-sp-Gxr">
-                                        <rect key="frame" x="0.0" y="99" width="320" height="320"/>
+                                        <rect key="frame" x="0.0" y="108" width="320" height="320"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jTb-sp-Gxr" id="3pT-dg-AJv">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="319"/>
@@ -176,7 +176,7 @@
                             <tableViewSection headerTitle="Acompanhamento" id="lR0-eL-NLk">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="WO9-Na-NKW">
-                                        <rect key="frame" x="0.0" y="467" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="476" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WO9-Na-NKW" id="7Ue-Z0-ZdQ">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -203,7 +203,7 @@
                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="vcI-kS-DuS">
-                                        <rect key="frame" x="0.0" y="511" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="520" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vcI-kS-DuS" id="7sn-38-KpL">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -230,7 +230,7 @@
                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="ksW-Bz-v6O">
-                                        <rect key="frame" x="0.0" y="555" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="564" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ksW-Bz-v6O" id="bPZ-bw-rPZ">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -257,7 +257,7 @@
                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="g6Y-cU-fuQ">
-                                        <rect key="frame" x="0.0" y="599" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="608" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="g6Y-cU-fuQ" id="VbZ-6S-ysl">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -284,7 +284,7 @@
                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="w6y-3F-4iM">
-                                        <rect key="frame" x="0.0" y="643" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="652" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="w6y-3F-4iM" id="7mU-ff-Sax">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -312,28 +312,6 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Próximos Eventos" id="Bgf-2S-1Or">
-                                <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="detailButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Gqk-cD-8Ya" style="IBUITableViewCellStyleDefault" id="YId-sc-v09">
-                                        <rect key="frame" x="0.0" y="735" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YId-sc-v09" id="WZH-YF-w7j">
-                                            <rect key="frame" x="0.0" y="0.0" width="273" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Sem Registros" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Gqk-cD-8Ya">
-                                                    <rect key="frame" x="15" y="0.0" width="258" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="nFB-w5-pFL" id="Knx-yE-Q5k"/>
@@ -354,6 +332,7 @@
                         <outlet property="badgeMedicamentos" destination="IIU-bO-hC9" id="HEB-Ob-GTY"/>
                         <outlet property="badgeVacina" destination="AEa-lF-Aqs" id="kAj-X8-TVS"/>
                         <outlet property="badgeVermifugo" destination="xxd-V2-DTg" id="Zir-DG-Ln5"/>
+                        <outlet property="bannerSpace" destination="Omu-Bd-fqF" id="e7a-yE-P5n"/>
                         <outlet property="barButtonRight" destination="tFa-8A-ZWo" id="bYp-9t-Tx1"/>
                         <outlet property="imageFoto" destination="ib9-H9-p2E" id="rbe-t6-5rZ"/>
                         <outlet property="labelBanhos" destination="Ris-pP-acO" id="JBY-dD-f3s"/>
