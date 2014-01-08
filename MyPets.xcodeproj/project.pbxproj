@@ -64,6 +64,7 @@
 		E63DB42718627D6B00094368 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E63DB42518627D6B00094368 /* 2.jpg */; };
 		E63DB4291862812200094368 /* 6.png in Resources */ = {isa = PBXBuildFile; fileRef = E63DB4281862812200094368 /* 6.png */; };
 		E63DB42B186281F500094368 /* 7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E63DB42A186281F500094368 /* 7.jpg */; };
+		E644BAF7187CF40000247278 /* Peso.m in Sources */ = {isa = PBXBuildFile; fileRef = E644BAF6187CF40000247278 /* Peso.m */; };
 		E684CE6B187131670019C4BE /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E684CE6A187131670019C4BE /* AVFoundation.framework */; };
 		E684CE74187133660019C4BE /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E684CE73187133660019C4BE /* libGoogleAdMobAds.a */; };
 		E684CE76187136FC0019C4BE /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E684CE75187136FC0019C4BE /* Accounts.framework */; };
@@ -205,6 +206,9 @@
 		E63DB42518627D6B00094368 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
 		E63DB4281862812200094368 /* 6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6.png; sourceTree = "<group>"; };
 		E63DB42A186281F500094368 /* 7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 7.jpg; sourceTree = "<group>"; };
+		E644BAF4187CEAA000247278 /* Model_2_for_iOS7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = Model_2_for_iOS7.xcdatamodel; sourceTree = "<group>"; };
+		E644BAF5187CF40000247278 /* Peso.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Peso.h; path = MyPets/Peso.h; sourceTree = "<group>"; };
+		E644BAF6187CF40000247278 /* Peso.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Peso.m; path = MyPets/Peso.m; sourceTree = "<group>"; };
 		E684CE5B18712F300019C4BE /* GADAdMobExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdMobExtras.h; sourceTree = "<group>"; };
 		E684CE5C18712F300019C4BE /* GADAdNetworkExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdNetworkExtras.h; sourceTree = "<group>"; };
 		E684CE5D18712F300019C4BE /* GADAdSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSize.h; sourceTree = "<group>"; };
@@ -335,6 +339,8 @@
 				A78D075318189ACC00DC64CD /* Model.xcdatamodeld */,
 				A71ABC5018316F0B0039DF25 /* Medicamento.h */,
 				A71ABC5118316F0B0039DF25 /* Medicamento.m */,
+				E644BAF5187CF40000247278 /* Peso.h */,
+				E644BAF6187CF40000247278 /* Peso.m */,
 				A71ABC4D18316F0A0039DF25 /* MyPets.h */,
 				A71ABC4E18316F0B0039DF25 /* MyPets.m */,
 				A71ABC4A18316F0A0039DF25 /* Banho.h */,
@@ -756,6 +762,7 @@
 				A7A13326181B297200D7D016 /* SDWebImageDownloader.m in Sources */,
 				A7A13327181B297200D7D016 /* SDWebImageManager.m in Sources */,
 				E6D47AEC185FDAB1009C2905 /* LKBadgeView.m in Sources */,
+				E644BAF7187CF40000247278 /* Peso.m in Sources */,
 				E6952F12186BBD2F0050FB64 /* MPMedicamentosViewController.m in Sources */,
 				A7A1332B181B2A3100D7D016 /* MPLibrary.m in Sources */,
 				E6D47AFB186120D6009C2905 /* MPVacinaEditViewController.m in Sources */,
@@ -955,13 +962,14 @@
 		A78D075318189ACC00DC64CD /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				E644BAF4187CEAA000247278 /* Model_2_for_iOS7.xcdatamodel */,
 				E6952F20186D158B0050FB64 /* Model_1_for_iOS7.xcdatamodel */,
 				A78D075418189ACC00DC64CD /* Model 3.xcdatamodel */,
 				A78D075518189ACC00DC64CD /* Model 4.xcdatamodel */,
 				A78D075618189ACC00DC64CD /* Model.xcdatamodel */,
 				A78D075718189ACC00DC64CD /* Model2.xcdatamodel */,
 			);
-			currentVersion = E6952F20186D158B0050FB64 /* Model_1_for_iOS7.xcdatamodel */;
+			currentVersion = E644BAF4187CEAA000247278 /* Model_2_for_iOS7.xcdatamodel */;
 			name = Model.xcdatamodeld;
 			path = MyPets/Model.xcdatamodeld;
 			sourceTree = "<group>";

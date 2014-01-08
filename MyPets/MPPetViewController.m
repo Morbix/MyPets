@@ -132,6 +132,7 @@
     [self.bannerSpace addSubview:bannerView_];
     
     GADRequest *request = [GADRequest request];
+    request.testDevices = @[ @"d739ce5a07568c089d5498568147e06a" ];
     request.testing = NO;
     [bannerView_ loadRequest: request];
 }

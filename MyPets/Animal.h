@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Banho, Consulta, Fotos, Medicamento, Vacina, Vermifugo;
+@class Banho, Consulta, Fotos, Medicamento, Vacina, Vermifugo, Peso;
 
 @interface Animal : NSManagedObject
 
@@ -32,6 +32,7 @@
 @property (nonatomic, retain) NSSet *cArrayMedicamentos;
 @property (nonatomic, retain) NSSet *cArrayVacinas;
 @property (nonatomic, retain) NSSet *cArrayVermifugos;
+@property (nonatomic, retain) NSSet *cArrayPesos;
 
 - (UIImage *)getFoto;
 - (NSString *)getNome;
@@ -82,5 +83,10 @@
 - (void)removeCArrayVermifugosObject:(Vermifugo *)value;
 - (void)addCArrayVermifugos:(NSSet *)values;
 - (void)removeCArrayVermifugos:(NSSet *)values;
+
+- (void)addCArrayPesosObject:(Peso *)value;
+- (void)removeCArrayPesosObject:(Peso *)value;
+- (void)addCArrayPesos:(NSSet *)values;
+- (void)removeCArrayPesos:(NSSet *)values;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "Animal.h"
 #import "Banho.h"
+#import "Peso.h"
 #import "Consulta.h"
 #import "Fotos.h"
 #import "Medicamento.h"
@@ -38,6 +39,7 @@
 @dynamic cArrayMedicamentos;
 @dynamic cArrayVacinas;
 @dynamic cArrayVermifugos;
+@dynamic cArrayPesos;
 
 - (UIImage *)getFoto
 {

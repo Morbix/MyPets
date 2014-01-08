@@ -82,11 +82,10 @@
             if ([localNotification.fireDate timeIntervalSinceNow] > 1) {
                 [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
                 
+                int interval = (int)floor([localNotification.fireDate timeIntervalSinceNow]);
+                                          
                 id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-                [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Lembrete"     // Event category (required)
-                                                                      action:analytics  // Event action (required)
-                                                                       label:analytics          // Event label
-                                                                       value:[NSNumber numberWithDouble:[localNotification.fireDate timeIntervalSinceNow]]] build]];
+                [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Lembrete" action:analytics label:analytics value:[NSNumber numberWithInt:(int)(interval/86400)]] build]];
             }
         }
     }
