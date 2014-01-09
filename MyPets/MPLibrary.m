@@ -116,6 +116,20 @@
     return newImage;
 }
 
++ (UIImage*)imageWithoutCutsWithImage:(UIImage*)image widthBased:(float)width
+{
+    float aux = image.size.width / width;
+    
+    CGSize newSize = CGSizeMake(width, image.size.height / aux);
+    
+    UIGraphicsBeginImageContext(newSize);
+    [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
+
 + (UIImage*)imageWithImage:(UIImage*)image heightBased:(float)height
 {
     float aux = image.size.height / height;

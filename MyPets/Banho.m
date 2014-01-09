@@ -18,6 +18,7 @@
 @dynamic cID;
 @dynamic cLembrete;
 @dynamic cObs;
+@dynamic syncID;
 @dynamic cPeso;
 @dynamic cAnimal;
 @dynamic cPetShop;

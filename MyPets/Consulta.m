@@ -17,6 +17,7 @@
 @dynamic cID;
 @dynamic cLembrete;
 @dynamic cObs;
+@dynamic syncID;
 @dynamic cAnimal;
 
 @end

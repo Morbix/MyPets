@@ -20,6 +20,7 @@
 #import "Banho.h"
 #import "Consulta.h"
 #import "Medicamento.h"
+#import "Peso.h"
 
 @interface MPCoreDataService : NSObject
 

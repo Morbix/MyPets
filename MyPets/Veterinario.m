@@ -17,6 +17,7 @@
 @dynamic cEspecializacao;
 @dynamic cNome;
 @dynamic cObs;
+@dynamic syncID;
 @dynamic cTelefone;
 @dynamic cArrayMedicamentos;
 

@@ -17,6 +17,7 @@
 @property (nonatomic, retain) NSString * cEndereco;
 @property (nonatomic, retain) NSString * cNome;
 @property (nonatomic, retain) NSString * cObs;
+@property (nonatomic, retain) NSString * syncID;
 @property (nonatomic, retain) NSString * cTelefone;
 @property (nonatomic, retain) NSSet *cArrayBanhos;
 @end

@@ -20,6 +20,7 @@
 @dynamic cLembrete;
 @dynamic cNome;
 @dynamic cObs;
+@dynamic syncID;
 @dynamic cPeso;
 @dynamic cTipo;
 @dynamic cAnimal;

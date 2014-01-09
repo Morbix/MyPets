@@ -18,6 +18,7 @@
 @property (nonatomic, retain) NSString * cEspecializacao;
 @property (nonatomic, retain) NSString * cNome;
 @property (nonatomic, retain) NSString * cObs;
+@property (nonatomic, retain) NSString * syncID;
 @property (nonatomic, retain) NSString * cTelefone;
 @property (nonatomic, retain) NSSet *cArrayMedicamentos;
 @end

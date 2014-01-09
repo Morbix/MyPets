@@ -20,6 +20,7 @@
 @property (nonatomic, retain) NSString * cLembrete;
 @property (nonatomic, retain) NSString * cNome;
 @property (nonatomic, retain) NSString * cObs;
+@property (nonatomic, retain) NSString * syncID;
 @property (nonatomic, retain) NSNumber * cPeso;
 @property (nonatomic, retain) NSString * cTipo;
 @property (nonatomic, retain) Animal *cAnimal;

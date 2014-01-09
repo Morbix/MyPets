@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ParcelKit.h"
 
 @interface MPAppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -17,8 +18,10 @@
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 @property (strong, nonatomic) UIAlertView *notificationAlert;
+@property (strong, nonatomic) PKSyncManager *syncManager;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
+- (void)setSyncEnabled:(BOOL)enabled;
 
 @end

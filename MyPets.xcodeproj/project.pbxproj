@@ -65,6 +65,12 @@
 		E63DB4291862812200094368 /* 6.png in Resources */ = {isa = PBXBuildFile; fileRef = E63DB4281862812200094368 /* 6.png */; };
 		E63DB42B186281F500094368 /* 7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E63DB42A186281F500094368 /* 7.jpg */; };
 		E644BAF7187CF40000247278 /* Peso.m in Sources */ = {isa = PBXBuildFile; fileRef = E644BAF6187CF40000247278 /* Peso.m */; };
+		E644BB3A187E1FCF00247278 /* Dropbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E644BB39187E1FCF00247278 /* Dropbox.framework */; };
+		E644BB3C187E1FEF00247278 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E644BB3B187E1FEF00247278 /* libc++.dylib */; };
+		E644BB49187E27F500247278 /* DBRecord+ParcelKit.m in Sources */ = {isa = PBXBuildFile; fileRef = E644BB41187E27F500247278 /* DBRecord+ParcelKit.m */; };
+		E644BB4A187E27F500247278 /* NSManagedObject+ParcelKit.m in Sources */ = {isa = PBXBuildFile; fileRef = E644BB43187E27F500247278 /* NSManagedObject+ParcelKit.m */; };
+		E644BB4B187E27F500247278 /* PKSyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E644BB48187E27F500247278 /* PKSyncManager.m */; };
+		E644BB54187E2FB400247278 /* MPConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E644BB53187E2FB400247278 /* MPConfigViewController.m */; };
 		E684CE6B187131670019C4BE /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E684CE6A187131670019C4BE /* AVFoundation.framework */; };
 		E684CE74187133660019C4BE /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E684CE73187133660019C4BE /* libGoogleAdMobAds.a */; };
 		E684CE76187136FC0019C4BE /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E684CE75187136FC0019C4BE /* Accounts.framework */; };
@@ -206,9 +212,25 @@
 		E63DB42518627D6B00094368 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
 		E63DB4281862812200094368 /* 6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6.png; sourceTree = "<group>"; };
 		E63DB42A186281F500094368 /* 7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 7.jpg; sourceTree = "<group>"; };
-		E644BAF4187CEAA000247278 /* Model_2_for_iOS7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = Model_2_for_iOS7.xcdatamodel; sourceTree = "<group>"; };
+		E644BAF4187CEAA000247278 /* Model_2_for_iOS7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model_2_for_iOS7.xcdatamodel; sourceTree = "<group>"; };
 		E644BAF5187CF40000247278 /* Peso.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Peso.h; path = MyPets/Peso.h; sourceTree = "<group>"; };
 		E644BAF6187CF40000247278 /* Peso.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Peso.m; path = MyPets/Peso.m; sourceTree = "<group>"; };
+		E644BB39187E1FCF00247278 /* Dropbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Dropbox.framework; sourceTree = "<group>"; };
+		E644BB3B187E1FEF00247278 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		E644BB3D187E248E00247278 /* Model_3_for_iOS7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model_3_for_iOS7.xcdatamodel; sourceTree = "<group>"; };
+		E644BB3E187E24F500247278 /* Model_4_for_iOS7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model_4_for_iOS7.xcdatamodel; sourceTree = "<group>"; };
+		E644BB40187E27F500247278 /* DBRecord+ParcelKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DBRecord+ParcelKit.h"; sourceTree = "<group>"; };
+		E644BB41187E27F500247278 /* DBRecord+ParcelKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DBRecord+ParcelKit.m"; sourceTree = "<group>"; };
+		E644BB42187E27F500247278 /* NSManagedObject+ParcelKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+ParcelKit.h"; sourceTree = "<group>"; };
+		E644BB43187E27F500247278 /* NSManagedObject+ParcelKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+ParcelKit.m"; sourceTree = "<group>"; };
+		E644BB44187E27F500247278 /* ParcelKit-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ParcelKit-Prefix.pch"; sourceTree = "<group>"; };
+		E644BB45187E27F500247278 /* ParcelKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParcelKit.h; sourceTree = "<group>"; };
+		E644BB46187E27F500247278 /* PKConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKConstants.h; sourceTree = "<group>"; };
+		E644BB47187E27F500247278 /* PKSyncManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKSyncManager.h; sourceTree = "<group>"; };
+		E644BB48187E27F500247278 /* PKSyncManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKSyncManager.m; sourceTree = "<group>"; };
+		E644BB52187E2FB400247278 /* MPConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPConfigViewController.h; sourceTree = "<group>"; };
+		E644BB53187E2FB400247278 /* MPConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPConfigViewController.m; sourceTree = "<group>"; };
+		E644BB55187E4B2300247278 /* Model_5_for_iOS7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = Model_5_for_iOS7.xcdatamodel; sourceTree = "<group>"; };
 		E684CE5B18712F300019C4BE /* GADAdMobExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdMobExtras.h; sourceTree = "<group>"; };
 		E684CE5C18712F300019C4BE /* GADAdNetworkExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdNetworkExtras.h; sourceTree = "<group>"; };
 		E684CE5D18712F300019C4BE /* GADAdSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSize.h; sourceTree = "<group>"; };
@@ -304,6 +326,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E644BB3C187E1FEF00247278 /* libc++.dylib in Frameworks */,
 				E684CE76187136FC0019C4BE /* Accounts.framework in Frameworks */,
 				E684CE6B187131670019C4BE /* AVFoundation.framework in Frameworks */,
 				E6952F611871036C0050FB64 /* libz.dylib in Frameworks */,
@@ -323,6 +346,7 @@
 				E6952F3A1870F71E0050FB64 /* SystemConfiguration.framework in Frameworks */,
 				A7A13308181B21FC00D7D016 /* QuartzCore.framework in Frameworks */,
 				E6952F56187101850050FB64 /* Parse.framework in Frameworks */,
+				E644BB3A187E1FCF00247278 /* Dropbox.framework in Frameworks */,
 				A78D0726181899F600DC64CD /* UIKit.framework in Frameworks */,
 				A78D0728181899F600DC64CD /* Foundation.framework in Frameworks */,
 				A78D072A181899F600DC64CD /* CoreGraphics.framework in Frameworks */,
@@ -384,6 +408,8 @@
 		A78D0724181899F600DC64CD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E644BB3B187E1FEF00247278 /* libc++.dylib */,
+				E644BB39187E1FCF00247278 /* Dropbox.framework */,
 				E684CE77187137D30019C4BE /* FacebookSDK.framework */,
 				E684CE75187136FC0019C4BE /* Accounts.framework */,
 				E684CE6A187131670019C4BE /* AVFoundation.framework */,
@@ -446,6 +472,8 @@
 				E6952F1A186BC2840050FB64 /* MPMedicamentoEditViewController.m */,
 				E6952F21186E39810050FB64 /* MPLembretesViewController.h */,
 				E6952F22186E39810050FB64 /* MPLembretesViewController.m */,
+				E644BB52187E2FB400247278 /* MPConfigViewController.h */,
+				E644BB53187E2FB400247278 /* MPConfigViewController.m */,
 				A71ABC5318316F150039DF25 /* CoreData Classes */,
 				A7A1332F181B2C5F00D7D016 /* Imagens */,
 				A7A132FB181B21C500D7D016 /* Classes */,
@@ -495,6 +523,7 @@
 		A7A132FC181B21CA00D7D016 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				E644BB3F187E27F500247278 /* ParcelKit */,
 				E6952F571871033E0050FB64 /* GoogleAnalytics */,
 				E6952F451870FD940050FB64 /* Appirater */,
 				E6952F261870F6D60050FB64 /* AdMob */,
@@ -579,6 +608,22 @@
 				E63DB42518627D6B00094368 /* 2.jpg */,
 			);
 			name = Lixo;
+			sourceTree = "<group>";
+		};
+		E644BB3F187E27F500247278 /* ParcelKit */ = {
+			isa = PBXGroup;
+			children = (
+				E644BB40187E27F500247278 /* DBRecord+ParcelKit.h */,
+				E644BB41187E27F500247278 /* DBRecord+ParcelKit.m */,
+				E644BB42187E27F500247278 /* NSManagedObject+ParcelKit.h */,
+				E644BB43187E27F500247278 /* NSManagedObject+ParcelKit.m */,
+				E644BB44187E27F500247278 /* ParcelKit-Prefix.pch */,
+				E644BB45187E27F500247278 /* ParcelKit.h */,
+				E644BB46187E27F500247278 /* PKConstants.h */,
+				E644BB47187E27F500247278 /* PKSyncManager.h */,
+				E644BB48187E27F500247278 /* PKSyncManager.m */,
+			);
+			path = ParcelKit;
 			sourceTree = "<group>";
 		};
 		E684CE6C187133520019C4BE /* Mediation */ = {
@@ -773,10 +818,13 @@
 				A7A1332E181B2B2E00D7D016 /* MPMainViewController.m in Sources */,
 				E6952F0B186B143F0050FB64 /* MPVermifugoEditViewController.m in Sources */,
 				A71ABC27183154E10039DF25 /* MPCellMainPet.m in Sources */,
+				E644BB4B187E27F500247278 /* PKSyncManager.m in Sources */,
+				E644BB4A187E27F500247278 /* NSManagedObject+ParcelKit.m in Sources */,
 				A71ABC3418316D150039DF25 /* MPCoreDataService.m in Sources */,
 				E6952F15186BC26B0050FB64 /* MPConsultaEditViewController.m in Sources */,
 				E6D47AD3185BF028009C2905 /* MPPetEditViewController.m in Sources */,
 				A71ABC3718316ED70039DF25 /* Animal.m in Sources */,
+				E644BB54187E2FB400247278 /* MPConfigViewController.m in Sources */,
 				A71ABC3A18316F060039DF25 /* Vacina.m in Sources */,
 				A71ABC3D18316F080039DF25 /* Vermifugo.m in Sources */,
 				E6D47AF518611456009C2905 /* MPConsultasViewController.m in Sources */,
@@ -787,6 +835,7 @@
 				E6952F481870FD9F0050FB64 /* Appirater.m in Sources */,
 				A71ABC4618316F090039DF25 /* Fotos.m in Sources */,
 				A71ABC4918316F0A0039DF25 /* Consulta.m in Sources */,
+				E644BB49187E27F500247278 /* DBRecord+ParcelKit.m in Sources */,
 				A71ABC4C18316F0A0039DF25 /* Banho.m in Sources */,
 				E6D47AEF1861143E009C2905 /* MPVacinasViewController.m in Sources */,
 				A71ABC4F18316F0B0039DF25 /* MyPets.m in Sources */,
@@ -962,14 +1011,17 @@
 		A78D075318189ACC00DC64CD /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				E644BB55187E4B2300247278 /* Model_5_for_iOS7.xcdatamodel */,
+				E644BB3E187E24F500247278 /* Model_4_for_iOS7.xcdatamodel */,
 				E644BAF4187CEAA000247278 /* Model_2_for_iOS7.xcdatamodel */,
+				E644BB3D187E248E00247278 /* Model_3_for_iOS7.xcdatamodel */,
 				E6952F20186D158B0050FB64 /* Model_1_for_iOS7.xcdatamodel */,
 				A78D075418189ACC00DC64CD /* Model 3.xcdatamodel */,
 				A78D075518189ACC00DC64CD /* Model 4.xcdatamodel */,
 				A78D075618189ACC00DC64CD /* Model.xcdatamodel */,
 				A78D075718189ACC00DC64CD /* Model2.xcdatamodel */,
 			);
-			currentVersion = E644BAF4187CEAA000247278 /* Model_2_for_iOS7.xcdatamodel */;
+			currentVersion = E644BB55187E4B2300247278 /* Model_5_for_iOS7.xcdatamodel */;
 			name = Model.xcdatamodeld;
 			path = MyPets/Model.xcdatamodeld;
 			sourceTree = "<group>";

@@ -9,6 +9,7 @@
 #import "MPCoreDataService.h"
 #import "MPAppDelegate.h"
 #import "MPLembretes.h"
+#import "MPLibrary.h"
 
 @implementation MPCoreDataService
 
@@ -20,6 +21,17 @@
         manager = [MPCoreDataService new];
         manager.arrayPets = [NSMutableArray new];
         manager.context = [(MPAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+        
+#warning pendencia
+        // nao salvar foto padrao nas vacinas e vermifugos
+        //Ok - limpar sem animal
+        //Ok - redimensionar fotos na entrada
+        // redimensionar fotos ao salvar
+        
+        [manager fixCleanWithoutAnimal];
+        [manager fixResizePhotos];
+        //[manager loadAll1];
+        //[manager loadAll2];
     });
     
     return manager;
@@ -37,6 +49,120 @@
     
     if (error) {
         SHOW_ERROR(error.description);
+    }
+}
+
+- (void)fixCleanWithoutAnimal
+{
+    NSArray *arrayEntidades = @[@"Banho", @"Medicamento", @"Consulta", @"Vacina", @"Vermifugo"];
+    BOOL save = FALSE;
+    
+    for (NSString *entidade in arrayEntidades) {
+        NSEntityDescription *entityDesc = [NSEntityDescription entityForName:entidade inManagedObjectContext:self.context];
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        [request setEntity:entityDesc];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(cAnimal = NIL)"];
+        [request setPredicate:predicate];
+        
+        NSError *error;
+        NSArray *arrayResult = [self.context executeFetchRequest:request error:&error];
+        if (!error){
+            if (arrayResult.count > 0) {
+                NSLog(@"---- Fix_without_cAnimal: N. %@: %d",entidade, arrayResult.count);
+                for (NSManagedObject *object in arrayResult) {
+                    [self.context deleteObject:object]; save = TRUE;
+                }
+            }
+        }
+    }
+    
+    if (save) {
+        [self save];
+    }
+}
+
+- (void)fixResizePhotos
+{
+    NSArray *arrayEntidades = @[@"Animal", @"Vacina", @"Vermifugo"];
+    BOOL save = FALSE;
+    
+    for (NSString *entidade in arrayEntidades) {
+        NSEntityDescription *entityDesc = [NSEntityDescription entityForName:entidade inManagedObjectContext:self.context];
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        [request setEntity:entityDesc];
+        if ([entidade isEqualToString:@"Animal"]) {
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(cFoto != NIL) AND (cFoto_Edited = NIL)"];
+            [request setPredicate:predicate];
+        }else{
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(cSelo != NIL) AND (cFoto_Edited = NIL)"];
+            [request setPredicate:predicate];
+        }
+        
+        NSError *error;
+        NSArray *arrayResult = [self.context executeFetchRequest:request error:&error];
+        if (!error){
+            if (arrayResult.count > 0) {
+                int edited = 0;
+                for (NSManagedObject *object in arrayResult) {
+                    if ([object isKindOfClass:[Animal class]]) {
+                        NSData * foto = [(Animal *)object cFoto];
+                        
+                        UIImage*image = [UIImage imageWithData:foto];
+                        if (image.size.width > 320) {
+                            UIImage *newImage = [MPLibrary imageWithoutCutsWithImage:image widthBased:320];
+                            [(Animal *)object setCFoto:UIImagePNGRepresentation(newImage)];
+                            [(Animal *)object setCFoto_Edited:[NSNumber numberWithBool:YES]];
+                            save = TRUE; edited++;
+                        }
+                    }else if ([object isKindOfClass:[Vacina class]]) {
+                        NSData * foto = [(Vacina *)object cSelo];
+                        
+                        UIImage*image = [UIImage imageWithData:foto];
+                        if (image.size.width > 320) {
+                            UIImage *newImage = [MPLibrary imageWithoutCutsWithImage:image widthBased:320];
+                            [(Vacina *)object setCSelo:UIImagePNGRepresentation(newImage)];
+                            [(Vacina *)object setCFoto_Edited:[NSNumber numberWithBool:YES]];
+                            save = TRUE; edited++;
+                        }
+                    }else if ([object isKindOfClass:[Vermifugo class]]) {
+                        NSData * foto = [(Vermifugo *)object cSelo];
+                        
+                        UIImage*image = [UIImage imageWithData:foto];
+                        if (image.size.width > 320) {
+                            UIImage *newImage = [MPLibrary imageWithoutCutsWithImage:image widthBased:320];
+                            [(Vermifugo *)object setCSelo:UIImagePNGRepresentation(newImage)];
+                            [(Vermifugo *)object setCFoto_Edited:[NSNumber numberWithBool:YES]];
+                            save = TRUE; edited++;
+                        }
+                    }
+                }
+                if (edited > 0) {
+                    NSLog(@"---- Fix_ResizePhoto:  N. %@: %d",entidade, edited);
+                }
+            }
+        }
+    }
+    
+    if (save) {
+        [self save];
+    }
+}
+
+- (void)loadAll2
+{
+    NSArray *arrayEntidades = @[@"Configuracao", @"Fotos", @"PetShop", @"Veterinario"];
+    
+    for (NSString *entidade in arrayEntidades) {
+        NSEntityDescription *entityDesc = [NSEntityDescription entityForName:entidade inManagedObjectContext:self.context];
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        [request setEntity:entityDesc];
+        //NSPredicate *predicate = [NSPredicate predicateWithFormat:@"cAnimal = NIL"];
+        //[request setPredicate:predicate];
+        NSError *error;
+        NSArray *arrayResult = [self.context executeFetchRequest:request error:&error];
+        if (!error){
+            NSLog(@"----- N. %@: %d",entidade, arrayResult.count);
+        }
     }
 }
 
@@ -95,6 +221,25 @@
 - (void)deleteAnimalSelected
 {
     [[MPLembretes shared] deleteNotificationFromPet:self.animalSelected];
+    
+    for (Vacina* object in self.animalSelected.cArrayVacinas) {
+        [self.context delete:object];
+    }
+    for (Vermifugo* object in self.animalSelected.cArrayVermifugos) {
+        [self.context deleteObject:object];
+    }
+    for (Consulta* object in self.animalSelected.cArrayConsultas) {
+        [self.context deleteObject:object];
+    }
+    for (Banho* object in self.animalSelected.cArrayBanhos) {
+        [self.context deleteObject:object];
+    }
+    for (Medicamento* object in self.animalSelected.cArrayMedicamentos) {
+        [self.context deleteObject:object];
+    }
+    for (Peso* object in self.animalSelected.cArrayPesos) {
+        [self.context deleteObject:object];
+    }
     
     [self.context deleteObject:self.animalSelected];
     [self.arrayPets removeObject:self.animalSelected];

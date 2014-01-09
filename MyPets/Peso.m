@@ -16,6 +16,7 @@
 @dynamic cPeso;
 @dynamic cData;
 @dynamic cObs;
+@dynamic syncID;
 @dynamic cAnimal;
 
 @end

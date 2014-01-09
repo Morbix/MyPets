@@ -19,6 +19,8 @@
 @dynamic cID;
 @dynamic cLembrete;
 @dynamic cObs;
+@dynamic syncID;
+@dynamic cFoto_Edited;
 @dynamic cPeso;
 @dynamic cSelo;
 @dynamic cAnimal;

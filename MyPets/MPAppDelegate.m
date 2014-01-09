@@ -10,9 +10,14 @@
 #import "MPLibrary.h"
 #import "Appirater.h"
 #import <Parse/Parse.h>
+#import <Dropbox/Dropbox.h>
 #import "GAI.h"
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
+
+#define DropboxAppKey @"tnmjxymp32xgs8y"
+#define DropboxAppSecret @"czkt8b3dhrcj30b"
+#define kSIZE 10
 
 @implementation MPAppDelegate
 
@@ -47,6 +52,14 @@
                                                            label:@"Launching"          // Event label
                                                            value:nil] build]];    // Event value
     
+    DBAccountManager *accountManager = [[DBAccountManager alloc] initWithAppKey:DropboxAppKey secret:DropboxAppSecret];
+    [DBAccountManager setSharedManager:accountManager];
+    
+    if ([accountManager linkedAccount]) {
+        [self setSyncEnabled:YES];
+    }
+    
+    
     UILocalNotification *localNotif = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
     if (localNotif){
         NSLog(@"Recieved Notification [1]");
@@ -77,6 +90,153 @@
     }
 }
 
+#pragma mark - Dropbox
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    DBAccount *account = [[DBAccountManager sharedManager] handleOpenURL:url];
+    if (account) {
+        return YES;
+    }
+    return NO;
+}
+
+- (void)setSyncEnabled:(BOOL)enabled
+{
+    DBAccountManager *accountManager = [DBAccountManager sharedManager];
+    
+    if (enabled) {
+        if (!self.syncManager) {
+            DBAccount *account = [accountManager linkedAccount];
+            
+            if (account) {
+                __weak typeof(self) weakSelf = self;
+                [accountManager addObserver:self block:^(DBAccount *account) {
+                    typeof(self) strongSelf = weakSelf; if (!strongSelf) return;
+                    if (![account isLinked]) {
+                        [strongSelf setSyncEnabled:NO];
+                        NSLog(@"Unlinked account: %@", account);
+                    }
+                }];
+                
+                DBError *dberror = nil;
+                DBDatastore *datastore = [DBDatastore openDefaultStoreForAccount:account error:&dberror];
+                if (datastore) {
+                    self.syncManager = [[PKSyncManager alloc] initWithManagedObjectContext:self.managedObjectContext datastore:datastore];
+                    [self.syncManager setTablesForEntityNamesWithDictionary:@{@"Animal": @"animal", @"Banho": @"banho", @"Consulta": @"consulta", @"Medicamento": @"medicamento", @"Peso": @"peso", @"Vacina": @"vacina", @"Vermifugo": @"vermifugo"}];
+                    
+                    NSError *error = nil;
+                    if (![self addMissingSyncAttributeValueToCoreDataObjects:&error]) {
+                        NSLog(@"Error adding missing sync attribute value to Core Data objects: %@", error);
+                    } else if ([[datastore getTables:nil] count] == 0) {
+                        if (![self updateDropboxFromCoreData:&error]) {
+                            NSLog(@"Error updating Dropbox from Core Data: %@", error);
+                        }
+                    }
+                } else {
+                    NSLog(@"Error opening default datastore: %@", dberror);
+                }
+            }
+        }
+        
+        [self.syncManager startObserving];
+    } else {
+        [self.syncManager stopObserving];
+        self.syncManager = nil;
+        
+        [accountManager removeObserver:self];
+    }
+}
+
+- (BOOL)addMissingSyncAttributeValueToCoreDataObjects:(NSError **)error
+{
+    NSManagedObjectContext *managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    [managedObjectContext setPersistentStoreCoordinator:self.persistentStoreCoordinator];
+    [managedObjectContext setUndoManager:nil];
+    
+    NSString *syncAttributeName = self.syncManager.syncAttributeName;
+    NSArray *entityNames = [self.syncManager entityNames];
+    for (NSString *entityName in entityNames) {
+        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:entityName];
+        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"%K == nil", syncAttributeName]];
+        [fetchRequest setFetchBatchSize:kSIZE];
+        
+        NSArray *objects = [managedObjectContext executeFetchRequest:fetchRequest error:error];
+        if (objects) {
+            for (NSManagedObject *managedObject in objects) {
+                if (![managedObject valueForKey:syncAttributeName]) {
+                    [managedObject setValue:[PKSyncManager syncID] forKey:syncAttributeName];
+                }
+            }
+        } else {
+            return NO;
+        }
+    }
+    
+    if ([managedObjectContext hasChanges]) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncManagedObjectContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:managedObjectContext];
+        BOOL saved = [managedObjectContext save:error];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:NSManagedObjectContextDidSaveNotification object:managedObjectContext];
+        return saved;
+    }
+    
+    return YES;
+}
+
+- (BOOL)updateDropboxFromCoreData:(NSError **)error
+{
+    __block BOOL result = YES;
+    NSManagedObjectContext *managedObjectContext = self.syncManager.managedObjectContext;
+    DBDatastore *datastore = self.syncManager.datastore;
+    NSString *syncAttributeName = self.syncManager.syncAttributeName;
+    
+    NSDictionary *tablesByEntityName = [self.syncManager tablesByEntityName];
+    [tablesByEntityName enumerateKeysAndObjectsUsingBlock:^(NSString *entityName, NSString *tableId, BOOL *stop) {
+        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:entityName];
+        [fetchRequest setFetchBatchSize:kSIZE];
+        
+        NSArray *managedObjects = [managedObjectContext executeFetchRequest:fetchRequest error:error];
+        if (managedObjects) {
+            for (NSManagedObject *managedObject in managedObjects) {
+                DBTable *table = [datastore getTable:tableId];
+                DBError *dberror = nil;
+                DBRecord *record = [table getOrInsertRecord:[managedObject valueForKey:syncAttributeName] fields:nil inserted:NULL error:&dberror];
+                if (record) {
+                    [record pk_setFieldsWithManagedObject:managedObject syncAttributeName:syncAttributeName];
+                    DBError *dberror = nil;
+                    [datastore sync:&dberror];
+                    if (dberror) {
+                        NSLog(@"--: %@",dberror.description);
+                    }
+                } else {
+                    if (error) {
+                        *error = [NSError errorWithDomain:[dberror domain] code:[dberror code] userInfo:[dberror userInfo]];
+                    }
+                    result = NO;
+                    *stop = YES;
+                }
+            }
+        } else {
+            *stop = YES;
+        }
+    }];
+    
+    if (result) {
+        DBError *dberror = nil;
+        if ([datastore sync:&dberror]) {
+            return YES;
+        } else {
+            if (error) *error = [NSError errorWithDomain:[dberror domain] code:[dberror code] userInfo:[dberror userInfo]];
+            return NO;
+        }
+    } else {
+        return NO;
+    }
+}
+
+- (void)syncManagedObjectContextDidSave:(NSNotification *)notification
+{
+    [self.managedObjectContext mergeChangesFromContextDidSaveNotification:notification];
+}
 
 #pragma mark - ParseNotification
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
@@ -147,7 +307,7 @@
     
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     if (coordinator != nil) {
-        _managedObjectContext = [[NSManagedObjectContext alloc] init];
+        _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
         [_managedObjectContext setPersistentStoreCoordinator:coordinator];
     }
     return _managedObjectContext;

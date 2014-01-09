@@ -22,8 +22,10 @@
 @property (nonatomic, retain) NSString * cLocation;
 @property (nonatomic, retain) NSData * cMapa;
 @property (nonatomic, retain) NSNumber * cNeedUpdate;
+@property (nonatomic, retain) NSNumber * cFoto_Edited;
 @property (nonatomic, retain) NSString * cNome;
 @property (nonatomic, retain) NSString * cObs;
+@property (nonatomic, retain) NSString * syncID;
 @property (nonatomic, retain) NSString * cRaca;
 @property (nonatomic, retain) NSString * cSexo;
 @property (nonatomic, retain) NSSet *cArrayBanhos;

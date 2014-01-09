@@ -17,6 +17,7 @@
 @property (nonatomic, retain) NSData * cFoto;
 @property (nonatomic, retain) NSString * cIDParse;
 @property (nonatomic, retain) NSString * cTags;
+@property (nonatomic, retain) NSString * syncID;
 @property (nonatomic, retain) Animal *cAnimal;
 
 @end

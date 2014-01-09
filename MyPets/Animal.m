@@ -31,6 +31,8 @@
 @dynamic cNeedUpdate;
 @dynamic cNome;
 @dynamic cObs;
+@dynamic syncID;
+@dynamic cFoto_Edited;
 @dynamic cRaca;
 @dynamic cSexo;
 @dynamic cArrayBanhos;

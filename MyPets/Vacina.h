@@ -19,6 +19,8 @@
 @property (nonatomic, retain) NSString * cID;
 @property (nonatomic, retain) NSString * cLembrete;
 @property (nonatomic, retain) NSString * cObs;
+@property (nonatomic, retain) NSString * syncID;
+@property (nonatomic, retain) NSNumber * cFoto_Edited;
 @property (nonatomic, retain) NSString * cPeso;
 @property (nonatomic, retain) NSData * cSelo;
 @property (nonatomic, retain) NSString * cVeterinario;

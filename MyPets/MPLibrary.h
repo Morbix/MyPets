@@ -20,4 +20,5 @@
 + (UIImage*)imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize;
 + (UIImage*)imageWithImage:(UIImage*)image widthBased:(float)width;
 + (UIImage*)imageWithImage:(UIImage*)image heightBased:(float)height;
++ (UIImage*)imageWithoutCutsWithImage:(UIImage*)image widthBased:(float)width;
 @end

@@ -117,10 +117,10 @@
         <element name="Consulta" positionX="0" positionY="0" width="0" height="0"/>
         <element name="Fotos" positionX="0" positionY="0" width="0" height="0"/>
         <element name="Medicamento" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Peso" positionX="0" positionY="0" width="0" height="0"/>
         <element name="PetShop" positionX="0" positionY="0" width="0" height="0"/>
         <element name="Vacina" positionX="0" positionY="0" width="0" height="0"/>
         <element name="Vermifugo" positionX="0" positionY="0" width="0" height="0"/>
         <element name="Veterinario" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Peso" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

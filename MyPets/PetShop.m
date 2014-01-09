@@ -16,6 +16,7 @@
 @dynamic cEndereco;
 @dynamic cNome;
 @dynamic cObs;
+@dynamic syncID;
 @dynamic cTelefone;
 @dynamic cArrayBanhos;
 

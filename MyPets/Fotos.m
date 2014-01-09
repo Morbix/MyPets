@@ -16,6 +16,7 @@
 @dynamic cFoto;
 @dynamic cIDParse;
 @dynamic cTags;
+@dynamic syncID;
 @dynamic cAnimal;
 
 @end

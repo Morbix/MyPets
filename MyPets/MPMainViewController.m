@@ -16,6 +16,7 @@
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
+#import "PKSyncManager.h"
 @interface MPMainViewController ()
 {
     BOOL CALLBACK_LOCAL;
@@ -44,6 +45,7 @@
     //Ok - AppIRater
     
     //Later
+    //Melhorar sombra
     //About Me
     //Lembretes Programados
     //Instagram
@@ -73,6 +75,8 @@
     [self.collection setAllowsSelection:YES];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callbackPetsCompleted:) name:MTPSNotificationPets object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dropboxNotification:) name:PKSyncManagerDatastoreStatusDidChangeNotification object:nil];
+    
     
     DIV = 1;
     CALLBACK_LOCAL = FALSE;
@@ -113,7 +117,7 @@
 
 - (IBAction)barButtonLeftTouched:(id)sender
 {
-    [self performSegueWithIdentifier:@"lembretesViewController" sender:nil];
+    [self performSegueWithIdentifier:@"configuracaoViewController" sender:nil];
     
 }
 
@@ -131,7 +135,7 @@
     [self.view addSubview:bannerView_];
     
     GADRequest *request = [GADRequest request];
-    request.testDevices = @[ @"d739ce5a07568c089d5498568147e06a" ];
+    request.testDevices = @[ @"d739ce5a07568c089d5498568147e06a", @"7229798c8732c56f536549c0f153d45f"];
     request.testing = NO;
     [bannerView_ loadRequest: request];
 }
@@ -251,6 +255,14 @@
         NSLog(@"error: %s", __PRETTY_FUNCTION__);
     }else{
         [self.collection reloadData];
+    }
+}
+
+- (void)dropboxNotification:(NSNotification *)notification
+{
+    if (notification.userInfo) {
+        NSLog(@"%s Notification: %@", __PRETTY_FUNCTION__, notification.userInfo);
+        [[MPCoreDataService shared] loadAllPets];
     }
 }
 
