@@ -229,6 +229,17 @@
 }
 
 #pragma mark - Arrays
+- (int)getUpcomingTotal
+{
+    int total = 0;
+    total = total + [self getNextVacinas].count;
+    total = total + [self getNextVermifugos].count;
+    total = total + [self getNextConsultas].count;
+    total = total + [self getNextBanhos].count;
+    total = total + [self getNextMedicamentos].count;
+    return total;
+}
+
 - (NSArray *)getNextVacinas
 {
     return [self getJustNextsFrom:[self.cArrayVacinas allObjects] andInverse:NO];

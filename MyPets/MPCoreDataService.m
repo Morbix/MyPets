@@ -11,6 +11,8 @@
 #import "MPLembretes.h"
 #import "MPLibrary.h"
 
+#define kMAX_PHOTO_SIZE 640
+
 @implementation MPCoreDataService
 
 + (id)shared
@@ -21,17 +23,10 @@
         manager = [MPCoreDataService new];
         manager.arrayPets = [NSMutableArray new];
         manager.context = [(MPAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
-        
-#warning pendencia
-        // nao salvar foto padrao nas vacinas e vermifugos
-        //Ok - limpar sem animal
-        //Ok - redimensionar fotos na entrada
-        // redimensionar fotos ao salvar
+    
         
         [manager fixCleanWithoutAnimal];
         [manager fixResizePhotos];
-        //[manager loadAll1];
-        //[manager loadAll2];
     });
     
     return manager;
@@ -54,7 +49,7 @@
 
 - (void)fixCleanWithoutAnimal
 {
-    NSArray *arrayEntidades = @[@"Banho", @"Medicamento", @"Consulta", @"Vacina", @"Vermifugo"];
+    NSArray *arrayEntidades = @[@"Banho", @"Medicamento", @"Consulta", @"Vacina", @"Vermifugo", @"Peso"];
     BOOL save = FALSE;
     
     for (NSString *entidade in arrayEntidades) {
@@ -108,8 +103,8 @@
                         NSData * foto = [(Animal *)object cFoto];
                         
                         UIImage*image = [UIImage imageWithData:foto];
-                        if (image.size.width > 320) {
-                            UIImage *newImage = [MPLibrary imageWithoutCutsWithImage:image widthBased:320];
+                        if (image.size.width > kMAX_PHOTO_SIZE) {
+                            UIImage *newImage = [MPLibrary imageWithoutCutsWithImage:image widthBased:kMAX_PHOTO_SIZE];
                             [(Animal *)object setCFoto:UIImagePNGRepresentation(newImage)];
                             [(Animal *)object setCFoto_Edited:[NSNumber numberWithBool:YES]];
                             save = TRUE; edited++;
@@ -118,8 +113,8 @@
                         NSData * foto = [(Vacina *)object cSelo];
                         
                         UIImage*image = [UIImage imageWithData:foto];
-                        if (image.size.width > 320) {
-                            UIImage *newImage = [MPLibrary imageWithoutCutsWithImage:image widthBased:320];
+                        if (image.size.width > kMAX_PHOTO_SIZE) {
+                            UIImage *newImage = [MPLibrary imageWithoutCutsWithImage:image widthBased:kMAX_PHOTO_SIZE];
                             [(Vacina *)object setCSelo:UIImagePNGRepresentation(newImage)];
                             [(Vacina *)object setCFoto_Edited:[NSNumber numberWithBool:YES]];
                             save = TRUE; edited++;
@@ -128,8 +123,8 @@
                         NSData * foto = [(Vermifugo *)object cSelo];
                         
                         UIImage*image = [UIImage imageWithData:foto];
-                        if (image.size.width > 320) {
-                            UIImage *newImage = [MPLibrary imageWithoutCutsWithImage:image widthBased:320];
+                        if (image.size.width > kMAX_PHOTO_SIZE) {
+                            UIImage *newImage = [MPLibrary imageWithoutCutsWithImage:image widthBased:kMAX_PHOTO_SIZE];
                             [(Vermifugo *)object setCSelo:UIImagePNGRepresentation(newImage)];
                             [(Vermifugo *)object setCFoto_Edited:[NSNumber numberWithBool:YES]];
                             save = TRUE; edited++;
@@ -148,23 +143,7 @@
     }
 }
 
-- (void)loadAll2
-{
-    NSArray *arrayEntidades = @[@"Configuracao", @"Fotos", @"PetShop", @"Veterinario"];
-    
-    for (NSString *entidade in arrayEntidades) {
-        NSEntityDescription *entityDesc = [NSEntityDescription entityForName:entidade inManagedObjectContext:self.context];
-        NSFetchRequest *request = [[NSFetchRequest alloc] init];
-        [request setEntity:entityDesc];
-        //NSPredicate *predicate = [NSPredicate predicateWithFormat:@"cAnimal = NIL"];
-        //[request setPredicate:predicate];
-        NSError *error;
-        NSArray *arrayResult = [self.context executeFetchRequest:request error:&error];
-        if (!error){
-            NSLog(@"----- N. %@: %d",entidade, arrayResult.count);
-        }
-    }
-}
+
 
 - (void)loadAllPets
 {
@@ -175,11 +154,13 @@
     [request setEntity:entityDesc];
     
     NSError *error;
-    NSArray *arrayResult = [self.context executeFetchRequest:request error:&error];
+    NSMutableArray *arrayResult = [NSMutableArray arrayWithArray:[self.context executeFetchRequest:request error:&error]];
     if (arrayResult) {
+        [MPLibrary sortMutableArray:&arrayResult withAttribute:@"Nome" andAscending:YES];
         [self.arrayPets removeAllObjects];
         for (int i = 0; i < 1; i++) {
             for (Animal *animal in arrayResult) {
+                //static int x = 0; if (x > 6) break; x++;
                 [self.arrayPets addObject:animal];
             }
         }

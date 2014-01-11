@@ -32,7 +32,7 @@
     if (self.cSelo) {
         seloCompleto = [UIImage imageWithData:self.cSelo];
     }else{
-        seloCompleto = [UIImage imageNamed:@"vacinaDefault.jpg"];
+        seloCompleto = [UIImage imageNamed:@"comprimidos.png"];
     }
     
     CGSize expectedSize = CGSizeMake(320, 160);

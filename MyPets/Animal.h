@@ -42,6 +42,7 @@
 - (NSString *)getIdade;
 
 #pragma mark - Arrays
+- (int)getUpcomingTotal;
 - (NSArray *)getNextVacinas;
 - (NSArray *)getNextVermifugos;
 - (NSArray *)getNextConsultas;

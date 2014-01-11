@@ -119,6 +119,7 @@
     if (!self.font) {
         self.font = [UIFont boldSystemFontOfSize:16.0f];
     }
+    
     CGSize suffixSize = [LK_BADGE_VIEW_TRUNCATED_SUFFIX sizeWithAttributes:@{NSFontAttributeName:self.font}];
 
     CGFloat paddinWidth = LK_BADGE_VIEW_HORIZONTAL_PADDING*2;

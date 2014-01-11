@@ -15,6 +15,8 @@
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
 
+#define kMAX_PHOTO_SIZE 640
+
 @interface MPPetEditViewController ()  <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 
@@ -353,10 +355,11 @@
 
 -(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-	UIImage *selectedPhoto = [info objectForKey:UIImagePickerControllerEditedImage];
+	UIImage *pickedPhoto = [info objectForKey:UIImagePickerControllerEditedImage];
+    UIImage *resizedPhoto = [MPLibrary imageWithoutCutsWithImage:pickedPhoto widthBased:kMAX_PHOTO_SIZE];
 	
     Animal *animal = [[MPCoreDataService shared] animalSelected];
-    [animal setCFoto:UIImageJPEGRepresentation(selectedPhoto, 1.0)];
+    [animal setCFoto:UIImageJPEGRepresentation(resizedPhoto, 1.0)];
     
     [self.btnFoto setImage:[animal getFoto] forState:UIControlStateNormal];
     

@@ -129,6 +129,15 @@
 "No, thanks" = "No, thanks";
 "Rate now %@" = "Rate now %@";
 "Remember later" = "Remember later";
+"Configuração" = "Configuration";
+"Salve seus dados na nuvem" = "Save your data in the cloud";
+"Mostrar lembretes" = "Show reminders";
+
+"Curtir a nossa página" = "Like our Fan Page";
+"Enviar um e-mail" = "Send us a mail";
+"Avaliar o MyPets" = "Rate the MyPets";
+"Conhecer nossos outros apps" = "Discover our other apps";
+"Contatos e Feedback" = "Contacts and Feedback";
 
 /*
  "Meus Pets"        = "My Pets";

@@ -15,6 +15,8 @@
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
 
+#define kMAX_PHOTO_SIZE 640
+
 @interface MPVermifugoEditViewController () <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *barButtonRight;
@@ -428,10 +430,11 @@
 
 -(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-	UIImage *selectedPhoto = [info objectForKey:UIImagePickerControllerEditedImage];
+	UIImage *pickedPhoto = [info objectForKey:UIImagePickerControllerEditedImage];
+    UIImage *resizedPhoto = [MPLibrary imageWithoutCutsWithImage:pickedPhoto widthBased:kMAX_PHOTO_SIZE];
 	
     Vermifugo *vermifugo = [[MPCoreDataService shared] vermifugoSelected];
-    [vermifugo setCSelo:UIImageJPEGRepresentation(selectedPhoto, 1.0)];
+    [vermifugo setCSelo:UIImageJPEGRepresentation(resizedPhoto, 1.0)];
     
     [self.imageFoto setImage:[vermifugo getFoto]];
     

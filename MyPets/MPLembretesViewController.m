@@ -8,6 +8,7 @@
 
 #import "MPLembretesViewController.h"
 #import "MPLembretes.h"
+#import "MPLibrary.h"
 
 @interface MPLembretesViewController ()
 
@@ -27,6 +28,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = NSLS(@"Lembretes");
+    self.navigationItem.title = self.title;
 
 }
 
@@ -56,8 +59,8 @@
     // Configure the cell...
     
     UILocalNotification *noti = [[MPLembretes getNotifications] objectAtIndex:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@", noti.fireDate.description];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", noti.timeZone.description];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [MPLibrary date:noti.fireDate toFormat:NSLS(@"dd.MM.yyyy - hh:mm a")]];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", noti.alertBody];
     
     return cell;
 }

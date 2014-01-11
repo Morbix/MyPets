@@ -17,6 +17,10 @@
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
 #import "PKSyncManager.h"
+#import "Appirater.h"
+#import "LKBadgeView.h"
+#import "UIFlatColor.h"
+
 @interface MPMainViewController ()
 {
     BOOL CALLBACK_LOCAL;
@@ -37,19 +41,55 @@
     }
     return self;
     
-#warning Menu Configuração
+#warning Pendencias
     //2.0
     //Ok - Ads
     //Ok - Parse Notification
     //Ok - GoogleAnalytics
     //Ok - AppIRater
     
+    //2.1.0
+    //---Publicacao
+    //Prints da app stora melhor com gatos
+    //Melhor descricao com reviews, mídia e posicoes
+    //Free e Pago -ATENCAO, tem que duplicar appirater, remover ads, analytics
+    //Add Frances, Italiano, Espanhol
+    //---Desenvolvimento
+    //Tela de Configuração com link para app pago para tirar propagandas
+    //Teste quando atualizar dropbox o q fazer com os pets sendo atualizados
+    //Peso
+    //Gráfico
+    //Analytics Track - Dropbox connect e desconnect
+    //Analytics Track - Peso
+    //Analytics Track - e pageview nas configuracoes (todos os abouts) e lembretes
+    //Criar um track ou PageView também para os status do SKStore Clicou e Carregou
+    //---Oks
+    //Ok - About Me (versao, novidades, pagina do face, mais apps, email de contato)
+    //Ok - Alterar imagem do clock
+    //Ok - Badge na collection do numero de upcoming
+    //Ok - Lembretes Programados
+    //Ok - Ordem por nome
+    //Ok - redimensionar fotos ao salvar
+    //Ok - Tradução da tela configuracoes
+    //Ok - Diminuicão do tamanho do banco interno
+    //Ok - Foto de vermífugo padrao
+    //Ok - Correção de bug do Evento Lembretes
+    //Ok - Melhorar sombra
+    //Ok - Evento significante ao add pet Appirater
+    //Ok - Dropbox
+    //Ok - iAds
+    //Ok - FIX - nao salvar foto padrao nas vacinas e vermifugos
+    //Ok - FIX - limpar sem animal
+    //Ok - redimensionar fotos na entrada
+    
+    
+    
     //Later
-    //Melhorar sombra
-    //About Me
-    //Lembretes Programados
+    //iPad
     //Instagram
     //Tela Pet UpComing
+    //Alterar a ordem da lista
+    //Selecionar Collection ou Lista
     
     //Events
     //Ok - Telas
@@ -57,6 +97,10 @@
     //Ok - Delecoes 
     //Ok - Fotos
     //Ok - Lembretes
+    //Dropbox connect e desconnect
+    //Peso
+    //Event track e pageview nas configuracoes e lembretes
+    
 }
 
 - (void)viewDidLoad
@@ -112,6 +156,8 @@
                                                            label:@"Novo Pet"          // Event label
                                                            value:[NSNumber numberWithInt:[[MPCoreDataService shared] arrayPets].count]] build]];
     
+    [Appirater userDidSignificantEvent:YES];
+    
     [self performSegueWithIdentifier:@"petViewController" sender:nil];
 }
 
@@ -138,6 +184,17 @@
     request.testDevices = @[ @"d739ce5a07568c089d5498568147e06a", @"7229798c8732c56f536549c0f153d45f"];
     request.testing = NO;
     [bannerView_ loadRequest: request];
+}
+
+- (void)configurarBadge:(LKBadgeView *)badge
+{
+    [badge setBadgeColor:[UIColor colorWithRed:255.0f/255.0f green:202.0f/255.0f blue:80.0f/255.0f alpha:1.0f]];
+    [badge setShadowColor:[UIFlatColor blueColor]];
+    [badge setHorizontalAlignment:LKBadgeViewHorizontalAlignmentCenter];
+    [badge setWidthMode:LKBadgeViewWidthModeStandard];
+    [badge setHeightMode:LKBadgeViewHeightModeStandard];
+    [badge setFont:[UIFont systemFontOfSize:12.0f]];
+    
 }
 
 #pragma mark - GADBannerDelegate
@@ -172,19 +229,51 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     UICollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:[NSString stringWithFormat:@"cell%d",DIV] forIndexPath:indexPath];
     
     MPCellMainPet *cellView = (MPCellMainPet *)[cell viewWithTag:10];
+    LKBadgeView *badge = (LKBadgeView *)[cell viewWithTag:20];
     if (!cellView) {
         cellView = [[MPCellMainPet alloc] initWithDiv:DIV andWidth:self.collection.frame.size.width];
         [cellView setTag:10];
         [cell addSubview:cellView];
     }
     
+    if (!badge) {
+        CGRect badgeRect;
+        switch (DIV) {
+            case 1:
+                badgeRect = CGRectMake(cell.frame.size.width-60, -4, 60, 60);
+                break;
+            case 2:
+                badgeRect = CGRectMake(cell.frame.size.width-40, -2, 36, 36);
+                break;
+            case 3:
+                badgeRect = CGRectMake(cell.frame.size.width-32, -6, 30, 30);
+                break;
+                
+            default:
+                break;
+        }
+        badge = [[LKBadgeView alloc] initWithFrame:badgeRect];
+        [badge setTag:20];
+        [self configurarBadge:badge];
+        [cell addSubview:badge];
+    }
+    
+    
     Animal *animal = [[[MPCoreDataService shared] arrayPets] objectAtIndex:indexPath.row];
     [cellView.imagemPet setImage:[animal getFoto]];
     [cellView.labelNome setText:[animal getNome]];
+    
+    int upcoming = [animal getUpcomingTotal];
+    if (upcoming > 0) {
+        [badge setText:[NSString stringWithFormat:@"%d", upcoming]];
+        [badge setHidden:NO];
+    }else{
+        [badge setHidden:YES];
+    }
+    
     
     return cell;
 }
@@ -227,7 +316,7 @@
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    return CGSizeZero;
+    return CGSizeMake(0, 4);
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
 {

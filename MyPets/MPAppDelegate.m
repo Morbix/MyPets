@@ -31,6 +31,7 @@
     
     [Appirater appLaunched:YES];
     
+    
     [Parse setApplicationId:@"VOfi2AierOCqzfMPjFWkUeAVAM4tjT7ODkzqSCOm" clientKey:@"8byEO3HfZvG5vhaNnPeZ5jY76dW4AkWXl7acnV8D"];
     
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];

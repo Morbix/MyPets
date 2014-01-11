@@ -15,6 +15,8 @@
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
 
+#define kMAX_PHOTO_SIZE 640
+
 @interface MPVacinaEditViewController () <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *barButtonRight;
@@ -426,10 +428,11 @@
 
 -(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-	UIImage *selectedPhoto = [info objectForKey:UIImagePickerControllerEditedImage];
+	UIImage *pickedPhoto = [info objectForKey:UIImagePickerControllerEditedImage];
+    UIImage *resizedPhoto = [MPLibrary imageWithoutCutsWithImage:pickedPhoto widthBased:kMAX_PHOTO_SIZE];
 	
     Vacina *vacina = [[MPCoreDataService shared] vacinaSelected];
-    [vacina setCSelo:UIImageJPEGRepresentation(selectedPhoto, 1.0)];
+    [vacina setCSelo:UIImageJPEGRepresentation(resizedPhoto, 1.0)];
     
     [self.imageFoto setImage:[vacina getFoto]];
     
