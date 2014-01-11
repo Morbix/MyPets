@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A78D0721181899F600DC64CD"
-               BuildableName = "MyPets.app"
-               BlueprintName = "MyPets"
+               BlueprintIdentifier = "E60CC1711881A80C00826B59"
+               BuildableName = "MyPets copy.app"
+               BlueprintName = "MyPets copy"
                ReferencedContainer = "container:MyPets.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,23 +28,13 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E60CC15C1881A74500826B59"
-               BuildableName = "MyPets PaidTests.xctest"
-               BlueprintName = "MyPets PaidTests"
-               ReferencedContainer = "container:MyPets.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A78D0721181899F600DC64CD"
-            BuildableName = "MyPets.app"
-            BlueprintName = "MyPets"
+            BlueprintIdentifier = "E60CC1711881A80C00826B59"
+            BuildableName = "MyPets copy.app"
+            BlueprintName = "MyPets copy"
             ReferencedContainer = "container:MyPets.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -61,9 +51,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A78D0721181899F600DC64CD"
-            BuildableName = "MyPets.app"
-            BlueprintName = "MyPets"
+            BlueprintIdentifier = "E60CC1711881A80C00826B59"
+            BuildableName = "MyPets copy.app"
+            BlueprintName = "MyPets copy"
             ReferencedContainer = "container:MyPets.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -79,9 +69,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A78D0721181899F600DC64CD"
-            BuildableName = "MyPets.app"
-            BlueprintName = "MyPets"
+            BlueprintIdentifier = "E60CC1711881A80C00826B59"
+            BuildableName = "MyPets copy.app"
+            BlueprintName = "MyPets copy"
             ReferencedContainer = "container:MyPets.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

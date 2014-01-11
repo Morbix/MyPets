@@ -57,7 +57,7 @@
     //---Desenvolvimento
     //Tela de Configuração com link para app pago para tirar propagandas
     //Teste quando atualizar dropbox o q fazer com os pets sendo atualizados
-    //Peso
+    //Peso - arrays e upcomings
     //Gráfico
     //Analytics Track - Dropbox connect e desconnect
     //Analytics Track - Peso
@@ -90,6 +90,8 @@
     //Tela Pet UpComing
     //Alterar a ordem da lista
     //Selecionar Collection ou Lista
+    //Exportar
+    //Informacoes Adicionais vinda de parceiros
     
     //Events
     //Ok - Telas

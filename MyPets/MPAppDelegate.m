@@ -14,6 +14,7 @@
 #import "GAI.h"
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
+#import "MPTargets.h"
 
 #define DropboxAppKey @"tnmjxymp32xgs8y"
 #define DropboxAppSecret @"czkt8b3dhrcj30b"

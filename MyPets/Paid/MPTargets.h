@@ -1,5 +1,5 @@
 //
-//  MPTargetPaid.h
+//  MPTargets.h
 //  MyPets
 //
 //  Created by HP Developer on 11/01/14.
@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MPTargetPaid : NSObject
+@interface MPTargets : NSObject
 
 @end

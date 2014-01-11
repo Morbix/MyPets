@@ -1,13 +1,13 @@
 //
-//  MPTargetFree.h
+//  MPTargets.m
 //  MyPets
 //
 //  Created by HP Developer on 11/01/14.
 //  Copyright (c) 2014 Henrique Morbin. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "MPTargets.h"
 
-@interface MPTargetFree : NSObject
+@implementation MPTargets
 
 @end
