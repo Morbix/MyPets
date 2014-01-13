@@ -9,6 +9,10 @@
 #import "MPLembretesViewController.h"
 #import "MPLembretes.h"
 #import "MPLibrary.h"
+#import "GAI.h"
+#import "GAITracker.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAIFields.h"
 
 @interface MPLembretesViewController ()
 
@@ -31,6 +35,14 @@
     self.title = NSLS(@"Lembretes");
     self.navigationItem.title = self.title;
 
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName
+           value:@"Lembretes Screen"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
 - (void)didReceiveMemoryWarning

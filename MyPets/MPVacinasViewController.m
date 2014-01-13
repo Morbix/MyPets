@@ -41,6 +41,11 @@
 
     self.title = NSLS(@"Carteira Vacinação");
     self.navigationItem.title = self.title;
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    ((MPCoreDataService *)[MPCoreDataService shared]).vacinaSelected = nil;
     
     id tracker = [[GAI sharedInstance] defaultTracker];
     [tracker set:kGAIScreenName
@@ -51,11 +56,6 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [self.tableView reloadData];
-}
-
--(void)viewDidAppear:(BOOL)animated
-{
-    ((MPCoreDataService *)[MPCoreDataService shared]).vacinaSelected = nil;
 }
 
 - (void)didReceiveMemoryWarning

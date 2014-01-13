@@ -40,6 +40,11 @@
     [super viewDidLoad];
     self.title = NSLS(@"Carteira Vermífugo");
     self.navigationItem.title = self.title;
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    ((MPCoreDataService *)[MPCoreDataService shared]).vermifugoSelected = nil;
     
     id tracker = [[GAI sharedInstance] defaultTracker];
     [tracker set:kGAIScreenName
@@ -50,11 +55,6 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [self.tableView reloadData];
-}
-
--(void)viewDidAppear:(BOOL)animated
-{
-    ((MPCoreDataService *)[MPCoreDataService shared]).vermifugoSelected = nil;
 }
 
 - (void)didReceiveMemoryWarning

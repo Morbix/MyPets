@@ -39,6 +39,11 @@
 
     self.title = NSLS(@"Agenda Medicamentos");
     self.navigationItem.title = self.title;
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    ((MPCoreDataService *)[MPCoreDataService shared]).medicamentoSelected = nil;
     
     id tracker = [[GAI sharedInstance] defaultTracker];
     [tracker set:kGAIScreenName
@@ -49,11 +54,6 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [self.tableView reloadData];
-}
-
--(void)viewDidAppear:(BOOL)animated
-{
-    ((MPCoreDataService *)[MPCoreDataService shared]).medicamentoSelected = nil;
 }
 
 - (void)didReceiveMemoryWarning
@@ -140,7 +140,7 @@
         
         if (medicamento.cData) {
             [labelData setText:[MPLibrary date:medicamento.cData
-                                      toFormat:NSLS(@"dd.MM.yyyy hh:mm")]];
+                                      toFormat:NSLS(@"dd.MM.yyyy hh:mm a")]];
         }else{
             [labelData setText:@"-"];
         }

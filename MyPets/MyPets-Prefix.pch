@@ -41,5 +41,6 @@ NSLog(@"[%s] error: %@",__PRETTY_FUNCTION__, (key))
 //itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=553815375
 #define kLinkRate     @"https://userpub.itunes.apple.com/WebObjects/MZUserPublishing.woa/wa/addUserReview?id=553815375&type=Purple+Software"
 #define kLinkFacebook @"fb://profile/514093821950781"
+#define kLinkFacebook2 @"https://www.facebook.com/AppMyPets"
 #define kLinkMail @"mailto:henrique@alltouch.com.br?subject=App%20MyPets"
 #define kLinkMoreApps @"https://itunes.apple.com/br/artist/henrique-guttler-morbin/id422347491?uo=4"

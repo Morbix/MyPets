@@ -1,33 +1,30 @@
 //
-//  MPMedicamentoEditViewController.m
+//  MPPesoEditViewController.m
 //  MyPets
 //
-//  Created by HP Developer on 25/12/13.
-//  Copyright (c) 2013 Henrique Morbin. All rights reserved.
+//  Created by HP Developer on 12/01/14.
+//  Copyright (c) 2014 Henrique Morbin. All rights reserved.
 //
 
-#import "MPMedicamentoEditViewController.h"
+#import "MPPesoEditViewController.h"
 #import "MPCoreDataService.h"
 #import "MPLibrary.h"
-#import "MPLembretes.h"
 #import "GAI.h"
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
 
-@interface MPMedicamentoEditViewController () <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIActionSheetDelegate>
+@interface MPPesoEditViewController () <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIActionSheetDelegate>
+
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *barButtonRight;
-@property (weak, nonatomic) IBOutlet UITextField *editMedicamento;
-@property (weak, nonatomic) IBOutlet UITextField *editDose;
 @property (weak, nonatomic) IBOutlet UITextField *editData;
-@property (weak, nonatomic) IBOutlet UITextField *editHora;
-@property (weak, nonatomic) IBOutlet UITextField *editLembreteTipo;
+@property (weak, nonatomic) IBOutlet UITextField *editPeso;
 @property (weak, nonatomic) IBOutlet UITextField *editNotas;
 
 @end
 
-@implementation MPMedicamentoEditViewController
+@implementation MPPesoEditViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -45,11 +42,8 @@
     self.title = NSLS(@"Editar");
     self.navigationItem.title = self.title;
     
-    self.editMedicamento.placeholder  = NSLS(@"placeholderPetMedicamento");
-    self.editDose.placeholder         = NSLS(@"placeholderDose");
     self.editData.placeholder         = NSLS(@"placeholderPetData");
-    self.editHora.placeholder         = NSLS(@"placeholderPetHora");
-    self.editLembreteTipo.placeholder = NSLS(@"placeholderLembrete");
+    self.editPeso.placeholder         = NSLS(@"placeholderPeso");
     self.editNotas.placeholder        = NSLS(@"placeholderNotas");
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -69,7 +63,7 @@
 {
     id tracker = [[GAI sharedInstance] defaultTracker];
     [tracker set:kGAIScreenName
-           value:@"Medicamento Edit Screen"];
+           value:@"Peso Edit Screen"];
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
@@ -87,41 +81,31 @@
 #pragma mark - Métodos
 - (void)atualizarPagina
 {
-    if ([[MPCoreDataService shared] medicamentoSelected]) {
-        Medicamento *medicamento = [[MPCoreDataService shared] medicamentoSelected];
+    if ([[MPCoreDataService shared] pesoSelected]) {
+        Peso *peso = [[MPCoreDataService shared] pesoSelected];
         
         
-        if (medicamento.cData) {
-            self.editData.text = [MPLibrary date:medicamento.cData
+        if (peso.cData) {
+            self.editData.text = [MPLibrary date:peso.cData
                                         toFormat:NSLS(@"dd.MM.yyyy")];
-            self.editHora.text = [MPLibrary date:medicamento.cData
-                                        toFormat:NSLS(@"hh:mm a")];
         }
         
-        self.editMedicamento.text  = medicamento.cNome;
-        self.editDose.text         = medicamento.cDose;
-        self.editLembreteTipo.text = medicamento.cLembrete;
-        self.editNotas.text        = medicamento.cObs;
+        self.editPeso.text         = [NSString stringWithFormat:@"%.2f",peso.cPeso?peso.cPeso.floatValue : 0.0f];
+        self.editNotas.text        = peso.cObs;
     }
 }
 
 - (void)carregarTeclados
 {
-    Medicamento *medicamento = nil;
-    if ([[MPCoreDataService shared] medicamentoSelected]) {
-        medicamento = [[MPCoreDataService shared] medicamentoSelected];
+    Peso *peso = nil;
+    if ([[MPCoreDataService shared] pesoSelected]) {
+        peso = [[MPCoreDataService shared] pesoSelected];
     }
     
-    UITextField *__editMedicamento = self.editMedicamento;
-    [self.editMedicamento setInputAccessoryView:[self returnToolBarToDismiss:&__editMedicamento]];
-    UITextField *__editDose = self.editDose;
-    [self.editDose setInputAccessoryView:[self returnToolBarToDismiss:&__editDose]];
+    UITextField *__editPeso = self.editPeso;
+    [self.editPeso setInputAccessoryView:[self returnToolBarToDismiss:&__editPeso]];
     UITextField *__editData = self.editData;
     [self.editData setInputAccessoryView:[self returnToolBarToDismiss:&__editData]];
-    UITextField *__editHora = self.editHora;
-    [self.editHora setInputAccessoryView:[self returnToolBarToDismiss:&__editHora]];
-    UITextField *__editLembreteTipo = self.editLembreteTipo;
-    [self.editLembreteTipo setInputAccessoryView:[self returnToolBarToDismiss:&__editLembreteTipo]];
     UITextField *__editNotas = self.editNotas;
     [self.editNotas setInputAccessoryView:[self returnToolBarToDismiss:&__editNotas]];
     
@@ -135,37 +119,21 @@
                     action:@selector(datePickerValueChanged:)
           forControlEvents:UIControlEventValueChanged];
     [datePicker1 setTag:1];
-    if (medicamento) {
-        [datePicker1 setDate:medicamento.cData ? medicamento.cData : [NSDate date]];
+    if (peso) {
+        [datePicker1 setDate:peso.cData ? peso.cData : [NSDate date]];
     }else{
         [datePicker1 setDate:[NSDate date]];
     }
     [self.editData setInputAccessoryView:[self returnToolBarToDismiss:&__editData]];
     [self.editData setInputView:datePicker1];
     
-    //Hora
-    UIDatePicker *datePicker2 = [[UIDatePicker alloc] initWithFrame:CGRectZero];
-    [datePicker2 setTimeZone:[NSTimeZone defaultTimeZone]];
-    [datePicker2 setDatePickerMode:UIDatePickerModeTime];
-    [datePicker2 addTarget:self
-                    action:@selector(datePickerValueChanged:)
-          forControlEvents:UIControlEventValueChanged];
-    [datePicker2 setTag:1];
-    if (medicamento) {
-        [datePicker2 setDate:medicamento.cData ? medicamento.cData : [NSDate date]];
-    }else{
-        [datePicker2 setDate:[NSDate date]];
-    }
-    [self.editHora setInputAccessoryView:[self returnToolBarToDismiss:&__editHora]];
-    [self.editHora setInputView:datePicker2];
     
-    
-    UIPickerView *pickerViewLembrete = [[UIPickerView alloc] initWithFrame:CGRectZero];
-    [pickerViewLembrete setDelegate:self];
-    [pickerViewLembrete setDataSource:self];
-    [pickerViewLembrete setTag:1];
-    [self.editLembreteTipo setInputAccessoryView:[self returnToolBarToDismiss:&__editLembreteTipo]];
-    [self.editLembreteTipo setInputView:pickerViewLembrete];
+    UIPickerView *pickerViewPeso = [[UIPickerView alloc] initWithFrame:CGRectZero];
+    [pickerViewPeso setDelegate:self];
+    [pickerViewPeso setDataSource:self];
+    [pickerViewPeso setTag:1];
+    [self.editPeso setInputAccessoryView:[self returnToolBarToDismiss:&__editPeso]];
+    [self.editPeso setInputView:pickerViewPeso];
 }
 
 - (UIToolbar *)returnToolBarToDismiss:(UITextField **)textField
@@ -201,7 +169,7 @@
 #pragma mark - IBActions
 - (IBAction)barButtonRightTouched:(id)sender
 {
-    NSString *title = [NSString stringWithFormat:@"%@ %@?",NSLS(@"Deseja apagar"),NSLS(@"Medicamento")];
+    NSString *title = [NSString stringWithFormat:@"%@ %@?",NSLS(@"Deseja apagar"),NSLS(@"Peso")];
     
     UIActionSheet * sheet = [[UIActionSheet alloc] initWithTitle:title
                                                         delegate:self
@@ -220,8 +188,6 @@
     if (datePicker.tag == 1) {
         self.editData.text = [MPLibrary date:datePicker.date
                                     toFormat:NSLS(@"dd.MM.yyyy")];
-        self.editHora.text = [MPLibrary date:datePicker.date
-                                    toFormat:NSLS(@"hh:mm a")];
     }
 }
 
@@ -245,52 +211,33 @@
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    Medicamento *medicamento = [[MPCoreDataService shared] medicamentoSelected];
+    Peso *peso = [[MPCoreDataService shared] pesoSelected];
     BOOL loadAll = FALSE;
-    BOOL loadNotify = FALSE;
     
     if (textField == self.editData) {
-        [medicamento setCData:[(UIDatePicker *)self.editData.inputView date]];
-        [(UIDatePicker *)self.editHora.inputView setDate:medicamento.cData];
-        loadNotify = YES;
-    }else if (textField == self.editHora){
-        [medicamento setCData:[(UIDatePicker *)self.editHora.inputView date]];
-        [(UIDatePicker *)self.editData.inputView setDate:medicamento.cData];
-        loadNotify = YES;
-    }else if (textField == self.editLembreteTipo){
-        [medicamento setCLembrete:self.editLembreteTipo.text];
-        loadNotify = YES;
+        [peso setCData:[(UIDatePicker *)self.editData.inputView date]];
     }else if (textField == self.editNotas){
-        [medicamento setCObs:self.editNotas.text];
-    }else if (textField == self.editMedicamento){
-        [medicamento setCNome:self.editMedicamento.text];
-        loadNotify = YES;
-    }else if (textField == self.editDose){
-        [medicamento setCDose:self.editDose.text];
+        [peso setCObs:self.editNotas.text];
+    }else if (textField == self.editPeso){
+        [peso setCPeso:[NSNumber numberWithFloat:self.editPeso.text.floatValue]];
+        NSLog(@"peso %@",peso.cPeso.description);
     }
     
     [MPCoreDataService saveContext];
     if (loadAll) {
         [[MPCoreDataService shared] loadAllPets];
     }
-    
-    if (loadNotify) {
-        [[MPLembretes shared] scheduleNotification:medicamento];
-    }
-    
 }
 
 #pragma mark - UITableViewDelegate and UITableViewDataSource
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     switch (section) {
-        case 0: { return NSLS(@"Medicamento e Dose"); }
+        case 0: { return NSLS(@"Data"); }
             break;
-        case 1: { return NSLS(@"Data e Hora"); }
+        case 1: { return NSLS(@"Peso"); }
             break;
-        case 2: { return NSLS(@"Lembrete"); }
-            break;
-        case 3: { return NSLS(@"Notas"); }
+        case 2: { return NSLS(@"Notas"); }
             break;
     }
     
@@ -300,22 +247,29 @@
 #pragma mark - UIPickerViewDelegate and UIPickerViewDataSource
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return [[MPLembretes shared] arrayLembretes].count;
+    return 100;
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    return [[[MPLembretes shared] arrayLembretes] objectAtIndex:row];
+    if (component == 1 && row < 10) {
+        return [NSString stringWithFormat:@"0%d",row];
+    }
+    return [NSString stringWithFormat:@"%d",row];
 }
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    self.editLembreteTipo.text = [[[MPLembretes shared] arrayLembretes] objectAtIndex:row];
+    if ([pickerView selectedRowInComponent:1] < 10) {
+        self.editPeso.text = [NSString stringWithFormat:@"%d.0%d",[pickerView selectedRowInComponent:0], [pickerView selectedRowInComponent:1]];
+    }else{
+        self.editPeso.text = [NSString stringWithFormat:@"%d.%d",[pickerView selectedRowInComponent:0], [pickerView selectedRowInComponent:1]];
+    }
 }
 
 #pragma mark - UIActionSheetDelegate
@@ -325,15 +279,14 @@
         if (buttonIndex == 0) {
             id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
             [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Deletar"     // Event category (required)
-                                                                  action:@"Deletar Medicamento"  // Event action (required)
-                                                                   label:@"Deletar Medicamento"          // Event label
+                                                                  action:@"Deletar Peso"  // Event action (required)
+                                                                   label:@"Deletar Peso"          // Event label
                                                                    value:nil] build]];
             
-            [[MPCoreDataService shared] deleteMedicamentoSelected];
+            [[MPCoreDataService shared] deletePesoSelected];
             [self.navigationController popViewControllerAnimated:YES];
             
         }
     }
 }
-
 @end

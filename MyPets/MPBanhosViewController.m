@@ -40,6 +40,11 @@
 
     self.title = NSLS(@"Agenda Banhos");
     self.navigationItem.title = self.title;
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    ((MPCoreDataService *)[MPCoreDataService shared]).banhoSelected = nil;
     
     id tracker = [[GAI sharedInstance] defaultTracker];
     [tracker set:kGAIScreenName
@@ -50,11 +55,6 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [self.tableView reloadData];
-}
-
--(void)viewDidAppear:(BOOL)animated
-{
-    ((MPCoreDataService *)[MPCoreDataService shared]).banhoSelected = nil;
 }
 
 - (void)didReceiveMemoryWarning
@@ -139,7 +139,7 @@
         
         if (banho.cData) {
             [labelData setText:[MPLibrary date:banho.cData
-                                      toFormat:NSLS(@"dd.MM.yyyy hh:mm")]];
+                                      toFormat:NSLS(@"dd.MM.yyyy hh:mm a")]];
         }else{
             [labelData setText:@"-"];
         }

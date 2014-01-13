@@ -12,6 +12,7 @@
 #define MTPSNotificationPetsConsultas @"br.com.alltouch.mypets.notification.consultas"
 #define MTPSNotificationPetsBanhos @"br.com.alltouch.mypets.notification.banhos"
 #define MTPSNotificationPetsMedicamentos @"br.com.alltouch.mypets.notification.medicamentos"
+#define MTPSNotificationPetsPesos @"br.com.alltouch.mypets.notification.pesos"
 
 #import <Foundation/Foundation.h>
 #import "Animal.h"
@@ -32,6 +33,7 @@
 @property (nonatomic, strong) Consulta *consultaSelected;
 @property (nonatomic, strong) Banho *banhoSelected;
 @property (nonatomic, strong) Medicamento *medicamentoSelected;
+@property (nonatomic, strong) Peso *pesoSelected;
 
 + (id)shared;
 + (void)saveContext;
@@ -60,5 +62,9 @@
 #pragma mark - Medicamento
 - (Medicamento *)newMedicamentoToAnimal:(Animal *)animal;
 - (void)deleteMedicamentoSelected;
+
+#pragma mark - Peso
+- (Peso *)newPesoToAnimal:(Animal *)animal;
+- (void)deletePesoSelected;
 
 @end

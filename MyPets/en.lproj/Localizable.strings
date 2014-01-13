@@ -24,6 +24,12 @@
 "meses" = "months";
 "dia"   = "day";
 "dias"  = "days";
+"Ano"   = "Year";
+"Anos"  = "Years";
+"Mês"   = "Month";
+"Meses" = "Months";
+"Dia"   = "Day";
+"Dias"  = "Days";
 "anos humanos" = "human's age";
 
 
@@ -47,6 +53,7 @@
 "placeholderVeterinario"    = "Example: Dra. Ana";
 "placeholderNotas"          = "Notes";
 "placeholderLembrete"       = "Example: Never";
+"placeholderPeso"           = "Example: 0.00";
 "Nome"                      = "Name";
 "Nascimento"                = "Born";
 "Espécie"                   = "Specie";
@@ -123,6 +130,8 @@
 "Peso" = "Weight";
 "Reforço" = "Fortification";
 "Reforços" = "Fortifications";
+"Controle de Peso" = "Weight Control";
+"Data e Peso" = "Date and Weight";
 
 "Did you like MyPets?" = "Did you like MyPets?";
 "Rate %@" = "Rate %@";
@@ -138,6 +147,11 @@
 "Avaliar o MyPets" = "Rate the MyPets";
 "Conhecer nossos outros apps" = "Discover our other apps";
 "Contatos e Feedback" = "Contacts and Feedback";
+
+"Quer remover os anúncios?" = "Do you want to remove the Ads?";
+"Lembretes Programados" = "Scheduled reminders";
+"Baixe o MyPets sem anúncios e sincronize seus dados com o Dropbox" = "Download MyPets without Ads and synchronize your data with Dropbox";
+"Ative o Dropbox para ele salvar os seus dados na nuvem e poder sincronizar com seus outros dispositivos automaticamente" = "Enable Dropbox to save your data in the cloud and it will sync with your other devices automatically";
 
 /*
  "Meus Pets"        = "My Pets";

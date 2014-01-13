@@ -433,4 +433,40 @@
     
     self.medicamentoSelected = nil;
 }
+
+#pragma mark - Peso
+- (Peso *)newPesoToAnimal:(Animal *)animal
+{
+    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Peso" inManagedObjectContext:self.context];
+    
+    Peso * peso = [[Peso alloc] initWithEntity:entityDesc insertIntoManagedObjectContext:self.context];
+    peso.cData = [NSDate date];
+    peso.cPeso = @0.0;
+    peso.cAnimal     = animal;
+    peso.cID         = [peso.objectID description];
+    
+    
+    NSError *error = nil;
+    [self.context save:&error];
+    
+    if (!error) {
+        NSLog(@"MPCoreDataService:buscarPesos:%d - Completed", animal.cArrayPesos.count);
+        [[NSNotificationCenter defaultCenter] postNotificationName:MTPSNotificationPetsPesos object:nil userInfo:nil];
+        
+        return peso;
+    }else{
+        SHOW_ERROR(error.description);
+        return nil;
+    }
+}
+
+- (void)deletePesoSelected
+{    
+    [self.animalSelected removeCArrayPesosObject:self.pesoSelected];
+    [self.context deleteObject:self.pesoSelected];
+    
+    [self save];
+    
+    self.pesoSelected = nil;
+}
 @end

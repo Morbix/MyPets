@@ -8,6 +8,12 @@
 
 #import "MPTargets.h"
 
+//appirater
+//ads
+//analytics
+//channer parse
+//numero de sections nas configuracoes
+
 @implementation MPTargets
 
 @end

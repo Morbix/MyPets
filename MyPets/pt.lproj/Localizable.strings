@@ -24,6 +24,12 @@
 "meses" = "meses";
 "dia"   = "dia";
 "dias"  = "dias";
+"Ano"   = "Ano";
+"Anos"  = "Anos";
+"Mês"   = "Mês";
+"Meses" = "meses";
+"Dia"   = "Dia";
+"Dias"  = "Dias";
 "anos humanos" = "anos humano";
 
 "dd.MM.yyyy - hh:mm a" = "MM.dd.yyyy - hh:mm a";
@@ -46,6 +52,7 @@
 "placeholderVeterinario"    = "Exemplo: Dra. Ana";
 "placeholderNotas"          = "Notas";
 "placeholderLembrete"       = "Exemplo: Nunca";
+"placeholderPeso"           = "Exemplo: 0.00";
 "Nome"                      = "Nome";
 "Nascimento"                = "Nascimento";
 "Espécie"                   = "Espécie";
@@ -123,6 +130,8 @@
 "Peso" = "Peso";
 "Reforço" = "Reforço";
 "Reforços" = "Reforços";
+"Controle de Peso" = "Controle de Peso";
+"Data e Peso" = "Data e Peso";
 
 "Did you like MyPets?" = "Você gostou do MyPets?";
 "Rate %@" = "Avaliar %@";
@@ -138,6 +147,11 @@
 "Avaliar o MyPets" = "Avaliar o MyPets";
 "Conhecer nossos outros apps" = "Conhecer nossos outros apps";
 "Contatos e Feedback" = "Contatos e Feedback";
+
+"Quer remover os anúncios?" = "Quer remover os anúncios?";
+"Lembretes Programados" = "Lembretes Programados";
+"Baixe o MyPets sem anúncios e sincronize seus dados com o Dropbox" = "Baixe o MyPets sem anúncios e sincronize seus dados com o Dropbox";
+"Ative o Dropbox para ele salvar os seus dados na nuvem e poder sincronizar com seus outros dispositivos automaticamente" = "Ative o Dropbox para ele salvar os seus dados na nuvem e poder sincronizar com seus outros dispositivos automaticamente";
 
 
 /*

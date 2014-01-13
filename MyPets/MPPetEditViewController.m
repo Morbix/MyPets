@@ -65,7 +65,10 @@
                                                object:nil];
     
     [self carregarTeclados];
-    
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
     id tracker = [[GAI sharedInstance] defaultTracker];
     [tracker set:kGAIScreenName
            value:@"Pet Edit Screen"];

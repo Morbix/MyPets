@@ -50,20 +50,20 @@
     
     //2.1.0
     //---Publicacao
+    //Setar o Parse para o mesmo nos dois
+    //Inscrever usuario em canais distintos
     //Prints da app stora melhor com gatos
     //Melhor descricao com reviews, mídia e posicoes
     //Free e Pago -ATENCAO, tem que duplicar appirater, remover ads, analytics
-    //Add Frances, Italiano, Espanhol
+    //Ativar iAds apenas no FREE
     //---Desenvolvimento
-    //Tela de Configuração com link para app pago para tirar propagandas
-    //Teste quando atualizar dropbox o q fazer com os pets sendo atualizados
-    //Peso - arrays e upcomings
-    //Gráfico
-    //Analytics Track - Dropbox connect e desconnect
-    //Analytics Track - Peso
-    //Analytics Track - e pageview nas configuracoes (todos os abouts) e lembretes
-    //Criar um track ou PageView também para os status do SKStore Clicou e Carregou
     //---Oks
+    //Nada - Teste quando atualizar dropbox o q fazer com os pets sendo atualizados
+    //Ok - PageViewTrack nos viewDidAppear
+    //Ok - Analytics Track - Dropbox connect e desconnect
+    //Ok - Analytics Track - e pageview nas configuracoes (todos os abouts) e lembretes
+    //Ok - Criar um track ou PageView também para os status do SKStore Clicou e Carregou
+    //Ok - Tela de Configuração com link para app pago para tirar propagandas
     //Ok - About Me (versao, novidades, pagina do face, mais apps, email de contato)
     //Ok - Alterar imagem do clock
     //Ok - Badge na collection do numero de upcoming
@@ -81,6 +81,9 @@
     //Ok - FIX - nao salvar foto padrao nas vacinas e vermifugos
     //Ok - FIX - limpar sem animal
     //Ok - redimensionar fotos na entrada
+    //Ok - Peso - arrays e upcomings
+    //Ok - Gráfico
+    //Ok - Analytics Track - Peso
     
     
     
@@ -92,6 +95,7 @@
     //Selecionar Collection ou Lista
     //Exportar
     //Informacoes Adicionais vinda de parceiros
+    //Add Frances, Italiano, Espanhol
     
     //Events
     //Ok - Telas
@@ -99,9 +103,10 @@
     //Ok - Delecoes 
     //Ok - Fotos
     //Ok - Lembretes
-    //Dropbox connect e desconnect
+    //Ok - Dropbox connect e desconnect
     //Peso
-    //Event track e pageview nas configuracoes e lembretes
+    //Ok - Event track e pageview nas configuracoes e lembretes
+#warning Pendencias
     
 }
 
@@ -129,16 +134,16 @@
     [[MPCoreDataService shared] loadAllPets];
     
     [self loadBanner];
-    
-    id tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker set:kGAIScreenName
-           value:@"Main Screen"];
-    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
     ((MPCoreDataService *)[MPCoreDataService shared]).animalSelected = nil;
+    
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName
+           value:@"Main Screen"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -183,7 +188,7 @@
     [self.view addSubview:bannerView_];
     
     GADRequest *request = [GADRequest request];
-    request.testDevices = @[ @"d739ce5a07568c089d5498568147e06a", @"7229798c8732c56f536549c0f153d45f"];
+    request.testDevices = @[ @"d739ce5a07568c089d5498568147e06a", @"7229798c8732c56f536549c0f153d45f", GAD_SIMULATOR_ID];
     request.testing = NO;
     [bannerView_ loadRequest: request];
 }
