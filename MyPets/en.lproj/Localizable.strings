@@ -153,6 +153,10 @@
 "Baixe o MyPets sem anúncios e sincronize seus dados com o Dropbox" = "Download MyPets without Ads and synchronize your data with Dropbox";
 "Ative o Dropbox para ele salvar os seus dados na nuvem e poder sincronizar com seus outros dispositivos automaticamente" = "Enable Dropbox to save your data in the cloud and it will sync with your other devices automatically";
 
+"Sincronizado com sucesso!" = "Synchronized successfully!";
+"Sincronizando..." = "Synchronizing...";
+
+
 /*
  "Meus Pets"        = "My Pets";
 "Eventos"          = "Tasks";

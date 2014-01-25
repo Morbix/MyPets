@@ -43,6 +43,7 @@
 @dynamic cArrayVermifugos;
 @dynamic cArrayPesos;
 
+#pragma mark - Gets
 - (UIImage *)getFoto
 {
     if (self.cFoto) {
@@ -90,9 +91,9 @@
         
         NSDateComponents *comps = [[NSCalendar currentCalendar] components:unitFlags fromDate:startDate  toDate:endDate  options:0];
         
-        int year   = [comps year];
-        int months = [comps month];
-        int days   = [comps day];
+        int year   = abs([comps year]);
+        int months = abs([comps month]);
+        int days   = abs([comps day]);
         
         NSString * _ano = @"";
         NSString * _mes = @"";
@@ -185,7 +186,7 @@
             if ([_animal.cEspecie isEqualToString:NSLS(@"Canino")]) {
                 NSMutableArray *arrayCanino = [[MPHumanAge shared] arrayCanino];
                 
-                int meses = months + (year*12);
+                int meses = abs(months + (year*12));
                 int i = 0;
                 for (NSArray * a in arrayCanino) {
                     
@@ -196,8 +197,8 @@
                     }
                 }
                 
-                if (i == [arrayCanino count]) {
-                    return [NSString stringWithFormat:@"(200 %@)",NSLS(@"anos humanos")];
+                if (i >= [arrayCanino count]) {
+                    return [NSString stringWithFormat:@"(+200 %@)",NSLS(@"anos humanos")];
                 }else{
                     return [NSString stringWithFormat:@"(%d %@)",[[(NSArray*)[arrayCanino objectAtIndex:i-1] objectAtIndex:1] intValue],NSLS(@"anos humanos")];
                 }
@@ -206,7 +207,7 @@
             }else if ([_animal.cEspecie isEqualToString:NSLS(@"Felino")]) {
                 NSMutableArray *arrayFelino = [[MPHumanAge shared] arrayFelino];
                 
-                int meses = months + (year*12);
+                int meses = abs(months + (year*12));
                 int i = 0;
                 for (NSArray * a in arrayFelino) {
                     if (meses < [[a objectAtIndex:0] intValue]) {

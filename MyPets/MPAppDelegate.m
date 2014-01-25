@@ -14,7 +14,7 @@
 #import "GAI.h"
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
-#import "MPTargets.h"
+#import "MPDropboxNotification.h"
 
 #define DropboxAppKey @"tnmjxymp32xgs8y"
 #define DropboxAppSecret @"czkt8b3dhrcj30b"
@@ -47,12 +47,14 @@
     [GAI sharedInstance].dispatchInterval = 20;
     [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelError];
     
-    id<GAITracker> tracker = [[GAI sharedInstance] trackerWithTrackingId:@"UA-46756135-1"];
+    id<GAITracker> tracker = [[GAI sharedInstance] trackerWithTrackingId:[MPTargets targetAnalyticsID]];
     
     [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Application"     // Event category (required)
                                                           action:@"Launching"  // Event action (required)
                                                            label:@"Launching"          // Event label
                                                            value:nil] build]];    // Event value
+    
+    [MPDropboxNotification shared];
     
     DBAccountManager *accountManager = [[DBAccountManager alloc] initWithAppKey:DropboxAppKey secret:DropboxAppSecret];
     [DBAccountManager setSharedManager:accountManager];
@@ -243,7 +245,9 @@
 #pragma mark - ParseNotification
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
     // Store the deviceToken in the current installation and save it to Parse.
+    PRETTY_FUNCTION;
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation addUniqueObject:[MPTargets targetChannel] forKey:@"channels"];
     [currentInstallation setDeviceTokenFromData:newDeviceToken];
     [currentInstallation saveInBackground];
 }

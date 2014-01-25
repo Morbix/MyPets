@@ -8,12 +8,34 @@
 @class DBDatastoreManager;
 
 enum DBDatastoreStatusFlags {
-    DBDatastoreConnected = 1 << 0, // The API is connected with the server
-    DBDatastoreDownloading = 1 << 1, // Changes are currently downloading
-    DBDatastoreUploading = 1 << 2, // Changes are currently uploading
-    DBDatastoreIncoming = 1 << 3, // There are remote changes waiting to be synced
-    DBDatastoreOutgoing = 1 << 4 // There are local changes waiting to be synced
+    DBDatastoreConnected = 1 << 0, // The API is connected with the server 1
+    DBDatastoreDownloading = 1 << 1, // Changes are currently downloading 2
+    DBDatastoreUploading = 1 << 2, // Changes are currently uploading 4
+    DBDatastoreIncoming = 1 << 3, // There are remote changes waiting to be synced 8
+    DBDatastoreOutgoing = 1 << 4 // There are local changes waiting to be synced 16
 };
+
+/*
+ 0001 = 0001 - Conectado
+ 0002 = 0010 - Baixando
+ 0003 = 0011 - Conectado e Baixando
+ 0004 = 0100 - Subindo
+ 0005 = 0101 - Conectado e Subindo
+ 0006 = 0110 - Baixando e Subindo
+ 0007 = 0111 - Conectado e Baixando e Subindo
+ 0008 = 1000 - Esperando para baixar
+ 0009 = 1001 - Conectado e Esperando para baixar
+ 0010 = 1010 - Baixando e Esperando para baixar
+ 0011 = 1011 - Conectado e Baixando e Esperando para baixar
+ 0012 = 1100 - Subindo e  Esperando para baixar
+ 0013 = 1101 - Conectado e Subindo e Esperando para baixar
+ 0014 = 1110 - Baixando e Subindo e Esperando para baixar
+ 0015 = 1111 - Conectado e Baixando e Subindo e Esperando para baixar
+ 0016 =10000 - Esperando para subir
+ .
+ .
+ .
+ */
 
 /** A bitset indicating the current sync status of the datastore. */
 typedef NSUInteger DBDatastoreStatus;

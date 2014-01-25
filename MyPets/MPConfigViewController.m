@@ -18,6 +18,7 @@
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
+#import "MPDropboxNotification.h"
 
 @interface MPConfigViewController () <SKStoreProductViewControllerDelegate>
 
@@ -58,6 +59,8 @@
     [self.imageIcone.layer setCornerRadius:6];
     [self.imageIcone.layer setMasksToBounds:YES];
     [self configurarBadge:self.badgeLembretes];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dropboxStatusUpdateNotification:) name:MTPSNotificationSyncUpdate object:nil];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -121,6 +124,7 @@
         MPAppDelegate *appDelegate = (MPAppDelegate *)[[UIApplication sharedApplication] delegate];
         [appDelegate setSyncEnabled:NO];
         [account unlink];
+        [self.tableView reloadData];
         id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
         [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Dropbox"
                                                               action:@"Desconectou"
@@ -139,7 +143,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 4;
+    return [MPTargets targetNumberOfSections];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -182,6 +186,16 @@
 -(NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
     if (section == 0) {
+        if ([[DBAccountManager sharedManager] linkedAccount] != nil) {
+            PKSyncManager *syncManger = [(MPAppDelegate *)[[UIApplication sharedApplication] delegate] syncManager];
+            if (syncManger) {
+                if (syncManger.datastore.status > 1) { //!= DBDatastoreConnected
+                    return NSLS(@"Sincronizando...");
+                }else{
+                    return NSLS(@"Sincronizado com sucesso!");
+                }
+            }
+        }
         return NSLS(@"Ative o Dropbox para ele salvar os seus dados na nuvem e poder sincronizar com seus outros dispositivos automaticamente");
     }else if (section == 1){
         return NSLS(@"");
@@ -245,10 +259,10 @@
                                                                           action:@"MyPets Free"
                                                                            label:@"MyPets Free"
                                                                            value:nil] build]];
-                    //553815375 - MyPets
+                    //553815375 - kTargetAppID
                     //422347491 - Morbix
                     //795757886 - MyPets Paid
-                    NSDictionary *parameters = [NSDictionary dictionaryWithObject:@"553815375"
+                    NSDictionary *parameters = [NSDictionary dictionaryWithObject:[MPTargets targetAppID]
                                                                            forKey:SKStoreProductParameterITunesItemIdentifier];
                     
                     SKStoreProductViewController *tela = [[SKStoreProductViewController alloc] init];
@@ -355,6 +369,12 @@
     [self dismissViewControllerAnimated:YES completion:^{
         
     }];
+}
+
+#pragma mark - MTPSNotifications
+- (void)dropboxStatusUpdateNotification:(NSNotification *)notification
+{
+    [self.tableView reloadData];
 }
 
 @end

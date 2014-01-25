@@ -71,12 +71,17 @@
     [self configurarBadge:self.badgeConsultas];
     [self configurarBadge:self.badgeBanhos];
     [self configurarBadge:self.badgeMedicamentos];
-    
-    [self loadBanner];
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        if ([MPTargets targetAds]) {
+            [self loadBanner];
+        }
+    });
+    
     id tracker = [[GAI sharedInstance] defaultTracker];
     [tracker set:kGAIScreenName
            value:@"Pet Screen"];

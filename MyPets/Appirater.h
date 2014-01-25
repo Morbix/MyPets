@@ -44,10 +44,6 @@ extern NSString *const kAppiraterRatedCurrentVersion;
 extern NSString *const kAppiraterDeclinedToRate;
 extern NSString *const kAppiraterReminderRequestDate;
 
-/*
- Place your Apple generated software id here.
- */
-#define APPIRATER_APP_ID				553815375 
 
 /*
  Your app's name.

@@ -204,7 +204,7 @@
     [[MPLembretes shared] deleteNotificationFromPet:self.animalSelected];
     
     for (Vacina* object in self.animalSelected.cArrayVacinas) {
-        [self.context delete:object];
+        [self.context deleteObject:object];
     }
     for (Vermifugo* object in self.animalSelected.cArrayVermifugos) {
         [self.context deleteObject:object];

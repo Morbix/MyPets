@@ -32,11 +32,11 @@
 "Dias"  = "Dias";
 "anos humanos" = "anos humano";
 
-"dd.MM.yyyy - hh:mm a" = "MM.dd.yyyy - hh:mm a";
-"dd.MM.yyyy hh:mm a" = "dd.MM.yyyy hh:mm a";
-"dd.MM.yyyy"           = "MM.dd.yyyy";
-"dd.MM.yyyy hh:mm"     = "MM.dd.yyyy hh:mm";
-"hh:mm a"           = "hh:mm a";
+"dd.MM.yyyy - hh:mm a" = "dd.MM.yyyy - HH:mm";
+"dd.MM.yyyy hh:mm a" = "dd.MM.yyyy HH:mm";
+"dd.MM.yyyy"           = "dd.MM.yyyy";
+"dd.MM.yyyy hh:mm"     = "dd.MM.yyyy HH:mm";
+"hh:mm a"           = "HH:mm";
 
 "placeholderPetNome"       = "Exemplo: Rex, Mike";
 "placeholderPetNascimento" = "Exemplo: dd.mm.yyyy";
@@ -152,6 +152,9 @@
 "Lembretes Programados" = "Lembretes Programados";
 "Baixe o MyPets sem anúncios e sincronize seus dados com o Dropbox" = "Baixe o MyPets sem anúncios e sincronize seus dados com o Dropbox";
 "Ative o Dropbox para ele salvar os seus dados na nuvem e poder sincronizar com seus outros dispositivos automaticamente" = "Ative o Dropbox para ele salvar os seus dados na nuvem e poder sincronizar com seus outros dispositivos automaticamente";
+
+"Sincronizado com sucesso!" = "Sincronizado com sucesso!";
+"Sincronizando..." = "Sincronizando...";
 
 
 /*

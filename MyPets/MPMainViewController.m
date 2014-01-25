@@ -21,6 +21,7 @@
 #import "LKBadgeView.h"
 #import "UIFlatColor.h"
 
+
 @interface MPMainViewController ()
 {
     BOOL CALLBACK_LOCAL;
@@ -42,22 +43,53 @@
     return self;
     
 #warning Pendencias
-    //2.0
-    //Ok - Ads
-    //Ok - Parse Notification
-    //Ok - GoogleAnalytics
-    //Ok - AppIRater
+    //AdMob+iAds: TelaMain Ok
     
+    //2.1.x
+    //Ok - Bug da data de nascimento futura
+    //Ok - Bug do formato americano
+    //Ok - Status do Dropbox com notificações visuais
+    //###Alta
+    //- Versão iPad
+    //- Verificar track do erro no dropbox
+    //- Implementar Ads do FelipeOliveira, checa iAd else AdMob
+    //- Corrigir link do Rate
+    //###Média
+    //- Formato de Review do Felipe Oliveira
+    //- Fotos das Vacinas com overlay, ou ver foto inteira, ou reposicionar
+    //- Sync iCloud
+    //- Adicionar outras linguagens (Espanho, Frances, Italiano, Alemão)
+    //- Sistema de Ajuda pelo app inteiro
+    //- Otimização no CoreData transferindo arquivos de dados para outras entidades
+    //###Baixa
+    //- algoritmo para sincronizar os alarmes: status nulo(não analisado), 1(sem lembrete), 2(com lembrete)(atenção ao implementar)
+    //- Cadastro de Veterinárias
+    //- Possibilidade de adicionar PDFs
+    //- Possibilidade de adicionar eventos gerais para os apps
+    //- Tracking de passeios (MyWay)
+    //- Lembretes com recorrência
+    //- Lembrete Geral de Vacina!
+    //- Cadastro do Cio das Fêmeas
+    //- Anexar o Pedigree em PDF
+    //- Contatos dos veterinários e veterinárias 24hs
+    //- Tela dos próximos eventos
+    //- Instapets, Petsgram (trazer mais interações)
+    //- Possibilidade de Selecionar formato de Grid ou Lista na tela Principal
+    //- Possibilidade de Exportar os dados como um Relatório
+    //- Criar sistema de compartilhamento do pet com outros usuários através de um arquivo
+    //- Controle Financeiro com os gastos com o Cão
+    //- Cálculo de Ração de acordo com o peso
+
     //2.1.0
     //---Publicacao
-    //Setar o Parse para o mesmo nos dois
-    //Inscrever usuario em canais distintos
-    //Prints da app stora melhor com gatos
-    //Melhor descricao com reviews, mídia e posicoes
-    //Free e Pago -ATENCAO, tem que duplicar appirater, remover ads, analytics
-    //Ativar iAds apenas no FREE
     //---Desenvolvimento
     //---Oks
+    //Ok - Prints da app stora melhor com gatos
+    //Ok - Melhor descricao com reviews, mídia e posicoes
+    //Ok - Free e Pago -ATENCAO, tem que duplicar appirater, remover ads, analytics
+    //Ok - Ativar iAds apenas no FREE
+    //Ok - Setar o Parse para o mesmo nos dois
+    //Ok - Inscrever usuario em canais distintos
     //Nada - Teste quando atualizar dropbox o q fazer com os pets sendo atualizados
     //Ok - PageViewTrack nos viewDidAppear
     //Ok - Analytics Track - Dropbox connect e desconnect
@@ -85,14 +117,15 @@
     //Ok - Gráfico
     //Ok - Analytics Track - Peso
     
+    //2.0
+    //Ok - Ads
+    //Ok - Parse Notification
+    //Ok - GoogleAnalytics
+    //Ok - AppIRater
+    
     
     
     //Later
-    //iPad
-    //Instagram
-    //Tela Pet UpComing
-    //Alterar a ordem da lista
-    //Selecionar Collection ou Lista
     //Exportar
     //Informacoes Adicionais vinda de parceiros
     //Add Frances, Italiano, Espanhol
@@ -106,7 +139,7 @@
     //Ok - Dropbox connect e desconnect
     //Peso
     //Ok - Event track e pageview nas configuracoes e lembretes
-#warning Pendencias
+//warning Pendencias
     
 }
 
@@ -126,18 +159,24 @@
     [self.collection setAllowsSelection:YES];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callbackPetsCompleted:) name:MTPSNotificationPets object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dropboxNotification:) name:PKSyncManagerDatastoreStatusDidChangeNotification object:nil];
+
     
     
     DIV = 1;
     CALLBACK_LOCAL = FALSE;
     [[MPCoreDataService shared] loadAllPets];
-    
-    [self loadBanner];
+
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        if ([MPTargets targetAds]) {
+            [self loadBanner];
+        }
+    });
+    
     ((MPCoreDataService *)[MPCoreDataService shared]).animalSelected = nil;
     
     id tracker = [[GAI sharedInstance] defaultTracker];
@@ -177,20 +216,9 @@
 #pragma mark - Métodos
 - (void)loadBanner
 {
-    bannerView_ = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
-    [bannerView_ setFrame:CGRectMake(0, self.view.frame.size.height-bannerView_.frame.size.height, bannerView_.frame.size.width, bannerView_.frame.size.height)];
-    
-    bannerView_.adUnitID = @"ca-app-pub-8687233994493144/1806932365";
-    
-
-    bannerView_.rootViewController = self;
-    bannerView_.delegate = self;
-    [self.view addSubview:bannerView_];
-    
-    GADRequest *request = [GADRequest request];
-    request.testDevices = @[ @"d739ce5a07568c089d5498568147e06a", @"7229798c8732c56f536549c0f153d45f", GAD_SIMULATOR_ID];
-    request.testing = NO;
-    [bannerView_ loadRequest: request];
+    banneriAdView_ = [[ADBannerView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-kGADAdSizeBanner.size.height, kGADAdSizeBanner.size.width, kGADAdSizeBanner.size.height)];
+    [banneriAdView_ setDelegate:self];
+    [self.view addSubview:banneriAdView_];
 }
 
 - (void)configurarBadge:(LKBadgeView *)badge
@@ -202,14 +230,6 @@
     [badge setHeightMode:LKBadgeViewHeightModeStandard];
     [badge setFont:[UIFont systemFontOfSize:12.0f]];
     
-}
-
-#pragma mark - GADBannerDelegate
-- (void)adViewDidReceiveAd:(GADBannerView *)view
-{
-    UIEdgeInsets edge =  UIEdgeInsetsMake(self.collection.scrollIndicatorInsets.top, self.collection.scrollIndicatorInsets.left, bannerView_.frame.size.height*1, self.collection.scrollIndicatorInsets.right);
-    [self.collection setScrollIndicatorInsets:edge];
-    [self.collection setContentInset:edge];
 }
 
 #pragma mark - UICollectionView
@@ -354,13 +374,44 @@
     }
 }
 
-- (void)dropboxNotification:(NSNotification *)notification
+#pragma mark - ADBannerViewDelegate
+-(void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
 {
-    if (notification.userInfo) {
-        NSLog(@"%s Notification: %@", __PRETTY_FUNCTION__, notification.userInfo);
-        [[MPCoreDataService shared] loadAllPets];
-    }
+    SHOW_ERROR(error);
+    [banneriAdView_ removeFromSuperview];
+    banneriAdView_ = Nil;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        bannerView_ = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
+        [bannerView_ setFrame:CGRectMake(0, self.view.frame.size.height-bannerView_.frame.size.height, bannerView_.frame.size.width, bannerView_.frame.size.height)];
+        
+        bannerView_.adUnitID = @"ca-app-pub-8687233994493144/1806932365";
+        
+        
+        bannerView_.rootViewController = self;
+        bannerView_.delegate = self;
+        [self.view addSubview:bannerView_];
+        
+        GADRequest *request = [GADRequest request];
+        request.testDevices = @[ @"d739ce5a07568c089d5498568147e06a", @"7229798c8732c56f536549c0f153d45f", GAD_SIMULATOR_ID];
+        request.testing = NO;
+        [bannerView_ loadRequest: request];
+    });
 }
 
+#pragma mark - GADBannerDelegate
+- (void)adViewDidReceiveAd:(GADBannerView *)view
+{
+    PRETTY_FUNCTION;
+    UIEdgeInsets edge =  UIEdgeInsetsMake(self.collection.scrollIndicatorInsets.top, self.collection.scrollIndicatorInsets.left, bannerView_.frame.size.height*1, self.collection.scrollIndicatorInsets.right);
+    [self.collection setScrollIndicatorInsets:edge];
+    [self.collection setContentInset:edge];
+}
+
+-(void)adView:(GADBannerView *)view didFailToReceiveAdWithError:(GADRequestError *)error
+{
+    SHOW_ERROR(error);
+}
 
 @end
