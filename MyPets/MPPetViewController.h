@@ -7,10 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GADBannerView.h"
 
-@interface MPPetViewController : UITableViewController <GADBannerViewDelegate>
-{
-    GADBannerView *bannerView_;
-}
+@interface MPPetViewController : UITableViewController
+
 @end

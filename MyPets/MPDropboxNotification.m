@@ -59,7 +59,7 @@
     [AJNotificationView showNoticeInView:[[[UIApplication sharedApplication] delegate] window]
                                     type:AJNotificationTypeGreen
                                    title:NSLS(@"Sincronizado com sucesso!")
-                         linedBackground:AJLinedBackgroundTypeStatic
+                         linedBackground:AJLinedBackgroundTypeDisabled
                                hideAfter:1.2f
                                 response:^{
                                     

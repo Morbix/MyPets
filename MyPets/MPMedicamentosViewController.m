@@ -17,8 +17,13 @@
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
+#import "MPAds.h"
+#import <iAd/iAd.h>
 
 @interface MPMedicamentosViewController ()
+{
+    MPAds *ads;
+}
 
 @end
 
@@ -39,6 +44,11 @@
 
     self.title = NSLS(@"Agenda Medicamentos");
     self.navigationItem.title = self.title;
+    
+    if ([MPTargets targetAds]) {
+        self.canDisplayBannerAds = YES;
+        ads = [[MPAds alloc] initWithScrollView:self.tableView viewController:self admobID:@"ca-app-pub-8687233994493144/7708375167"];
+    }
 }
 
 -(void)viewDidAppear:(BOOL)animated

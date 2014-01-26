@@ -20,12 +20,15 @@
 #import "Appirater.h"
 #import "LKBadgeView.h"
 #import "UIFlatColor.h"
+#import "MPAds.h"
+#import <iAd/iAd.h>
 
 
 @interface MPMainViewController ()
 {
     BOOL CALLBACK_LOCAL;
     int DIV;
+    MPAds *ads;
 }
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *barButtonRight;
@@ -42,19 +45,18 @@
     }
     return self;
     
-#warning Pendencias
-    //AdMob+iAds: TelaMain Ok
-    
+//#warning Pendencias
     //2.1.x
     //Ok - Bug da data de nascimento futura
     //Ok - Bug do formato americano
     //Ok - Status do Dropbox com notificações visuais
+    //Ok - Verificar track do erro no dropbox
+    //Ok - Corrigir link do Rate, Appirater atualizado
+    //Ok - Implementar Ads do FelipeOliveira, checa iAd else AdMob
     //###Alta
-    //- Versão iPad
-    //- Verificar track do erro no dropbox
-    //- Implementar Ads do FelipeOliveira, checa iAd else AdMob
-    //- Corrigir link do Rate
     //###Média
+    //- Clicar na foto do pet e mostrar fullscrenn + tracking analytics
+    //- Versão iPad
     //- Formato de Review do Felipe Oliveira
     //- Fotos das Vacinas com overlay, ou ver foto inteira, ou reposicionar
     //- Sync iCloud
@@ -165,18 +167,16 @@
     DIV = 1;
     CALLBACK_LOCAL = FALSE;
     [[MPCoreDataService shared] loadAllPets];
-
+    
+    
+    if ([MPTargets targetAds]) {
+        self.canDisplayBannerAds = YES;
+        ads = [[MPAds alloc] initWithScrollView:self.collection viewController:self admobID:@"ca-app-pub-8687233994493144/1806932365"];
+    }
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        if ([MPTargets targetAds]) {
-            [self loadBanner];
-        }
-    });
-    
     ((MPCoreDataService *)[MPCoreDataService shared]).animalSelected = nil;
     
     id tracker = [[GAI sharedInstance] defaultTracker];
@@ -214,13 +214,6 @@
 }
 
 #pragma mark - Métodos
-- (void)loadBanner
-{
-    banneriAdView_ = [[ADBannerView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-kGADAdSizeBanner.size.height, kGADAdSizeBanner.size.width, kGADAdSizeBanner.size.height)];
-    [banneriAdView_ setDelegate:self];
-    [self.view addSubview:banneriAdView_];
-}
-
 - (void)configurarBadge:(LKBadgeView *)badge
 {
     [badge setBadgeColor:[UIColor colorWithRed:255.0f/255.0f green:202.0f/255.0f blue:80.0f/255.0f alpha:1.0f]];
@@ -373,45 +366,4 @@
         [self.collection reloadData];
     }
 }
-
-#pragma mark - ADBannerViewDelegate
--(void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
-{
-    SHOW_ERROR(error);
-    [banneriAdView_ removeFromSuperview];
-    banneriAdView_ = Nil;
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        bannerView_ = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
-        [bannerView_ setFrame:CGRectMake(0, self.view.frame.size.height-bannerView_.frame.size.height, bannerView_.frame.size.width, bannerView_.frame.size.height)];
-        
-        bannerView_.adUnitID = @"ca-app-pub-8687233994493144/1806932365";
-        
-        
-        bannerView_.rootViewController = self;
-        bannerView_.delegate = self;
-        [self.view addSubview:bannerView_];
-        
-        GADRequest *request = [GADRequest request];
-        request.testDevices = @[ @"d739ce5a07568c089d5498568147e06a", @"7229798c8732c56f536549c0f153d45f", GAD_SIMULATOR_ID];
-        request.testing = NO;
-        [bannerView_ loadRequest: request];
-    });
-}
-
-#pragma mark - GADBannerDelegate
-- (void)adViewDidReceiveAd:(GADBannerView *)view
-{
-    PRETTY_FUNCTION;
-    UIEdgeInsets edge =  UIEdgeInsetsMake(self.collection.scrollIndicatorInsets.top, self.collection.scrollIndicatorInsets.left, bannerView_.frame.size.height*1, self.collection.scrollIndicatorInsets.right);
-    [self.collection setScrollIndicatorInsets:edge];
-    [self.collection setContentInset:edge];
-}
-
--(void)adView:(GADBannerView *)view didFailToReceiveAdWithError:(GADRequestError *)error
-{
-    SHOW_ERROR(error);
-}
-
 @end

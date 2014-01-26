@@ -13,8 +13,13 @@
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
+#import "MPAds.h"
+#import <iAd/iAd.h>
 
 @interface MPLembretesViewController ()
+{
+    MPAds *ads;
+}
 
 @end
 
@@ -35,6 +40,10 @@
     self.title = NSLS(@"Lembretes");
     self.navigationItem.title = self.title;
 
+    if ([MPTargets targetAds]) {
+        self.canDisplayBannerAds = YES;
+        ads = [[MPAds alloc] initWithScrollView:self.tableView viewController:self admobID:@"ca-app-pub-8687233994493144/4615307968"];
+    }
 }
 
 -(void)viewDidAppear:(BOOL)animated

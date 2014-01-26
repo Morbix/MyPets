@@ -21,8 +21,14 @@
 #import "PNLineChartDataItem.h"
 #import "MPLibrary.h"
 #import "MPPeso.h"
+#import "MPAds.h"
+#import <iAd/iAd.h>
+
 
 @interface MPPetViewController () <PNChartDelegate>
+{
+    MPAds *ads;
+}
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *barButtonRight;
 @property (weak, nonatomic) IBOutlet UILabel *labelNome;
@@ -71,17 +77,15 @@
     [self configurarBadge:self.badgeConsultas];
     [self configurarBadge:self.badgeBanhos];
     [self configurarBadge:self.badgeMedicamentos];
+    
+    if ([MPTargets targetAds]) {
+        self.canDisplayBannerAds = YES;
+        ads = [[MPAds alloc] initWithScrollView:self.tableView viewController:self admobID:@"ca-app-pub-8687233994493144/9330199164"];
+    }
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        if ([MPTargets targetAds]) {
-            [self loadBanner];
-        }
-    });
-    
     id tracker = [[GAI sharedInstance] defaultTracker];
     [tracker set:kGAIScreenName
            value:@"Pet Screen"];
@@ -192,36 +196,10 @@
     [badge setTextColor:[UIColor whiteColor]];
 }
 
-- (void)loadBanner
-{
-    //self.view.frame.size.height-bannerView_.frame.size.height;
-    bannerView_ = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
-    [bannerView_ setFrame:CGRectMake(0, 0, bannerView_.frame.size.width, bannerView_.frame.size.height)];
-    
-    bannerView_.adUnitID = @"ca-app-pub-8687233994493144/9330199164";
-    
-    
-    bannerView_.rootViewController = self;
-    [self.bannerSpace addSubview:bannerView_];
-    
-    GADRequest *request = [GADRequest request];
-    request.testDevices = @[ @"d739ce5a07568c089d5498568147e06a", @"7229798c8732c56f536549c0f153d45f", GAD_SIMULATOR_ID];
-    request.testing = NO;
-    [bannerView_ loadRequest: request];
-}
-
 #pragma mark - IBAction
 - (IBAction)barButtonRightTouched:(id)sender
 {
     [self performSegueWithIdentifier:@"petEditViewController" sender:nil];
-}
-
-#pragma mark - GADBannerDelegate
-- (void)adViewDidReceiveAd:(GADBannerView *)view
-{
-    UIEdgeInsets edge =  UIEdgeInsetsMake(self.tableView.scrollIndicatorInsets.top, self.tableView.scrollIndicatorInsets.left, bannerView_.frame.size.height, self.tableView.scrollIndicatorInsets.right);
-    [self.tableView setScrollIndicatorInsets:edge];
-    [self.tableView setContentInset:edge];
 }
 
 #pragma mark - UITableViewDelegate and UITableViewDataSource
@@ -237,6 +215,15 @@
     }
     
     return @"";
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section == 0) {
+        return CGFLOAT_MIN;
+    }
+    
+    return 40.0f;
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section

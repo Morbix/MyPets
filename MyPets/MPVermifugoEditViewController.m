@@ -14,10 +14,15 @@
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
+#import "MPAds.h"
+#import <iAd/iAd.h>
 
 #define kMAX_PHOTO_SIZE 640
 
 @interface MPVermifugoEditViewController () <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+{
+    MPAds *ads;
+}
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *barButtonRight;
 @property (weak, nonatomic) IBOutlet UIButton *btnFoto;
@@ -69,6 +74,11 @@
                                                object:nil];
     
     [self carregarTeclados];
+    
+    if ([MPTargets targetAds]) {
+        self.canDisplayBannerAds = YES;
+        ads = [[MPAds alloc] initWithScrollView:self.tableView viewController:self admobID:@"ca-app-pub-8687233994493144/9185108364"];
+    }
 }
 
 -(void)viewDidAppear:(BOOL)animated

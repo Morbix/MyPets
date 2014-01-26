@@ -19,8 +19,14 @@
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
 #import "MPDropboxNotification.h"
+#import "Appirater.h"
+#import "MPAds.h"
+#import <iAd/iAd.h>
 
 @interface MPConfigViewController () <SKStoreProductViewControllerDelegate>
+{
+    MPAds *ads;
+}
 
 @property (weak, nonatomic) IBOutlet UISwitch *syncSwitch;
 @property (weak, nonatomic) IBOutlet UILabel *labelLembretes;
@@ -51,16 +57,21 @@
     self.navigationItem.title = self.title;
     
     self.labelOutrosApps.text = NSLS(@"Conhecer nossos outros apps");
-    self.labelAvaliar.text = NSLS(@"Avaliar o MyPets");
-    self.labelEmail.text = NSLS(@"Enviar um e-mail");
-    self.labelFacebook.text = NSLS(@"Curtir a nossa página");
-    self.labelLembretes.text = NSLS(@"Mostrar lembretes");
+    self.labelAvaliar.text    = NSLS(@"Avaliar o MyPets");
+    self.labelEmail.text      = NSLS(@"Enviar um e-mail");
+    self.labelFacebook.text   = NSLS(@"Curtir a nossa página");
+    self.labelLembretes.text  = NSLS(@"Mostrar lembretes");
     
     [self.imageIcone.layer setCornerRadius:6];
     [self.imageIcone.layer setMasksToBounds:YES];
     [self configurarBadge:self.badgeLembretes];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dropboxStatusUpdateNotification:) name:MTPSNotificationSyncUpdate object:nil];
+    
+    if ([MPTargets targetAds]) {
+        self.canDisplayBannerAds = YES;
+        ads = [[MPAds alloc] initWithScrollView:self.tableView viewController:self admobID:@"ca-app-pub-8687233994493144/3138574766"];
+    }
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -256,10 +267,13 @@
                 {
                     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
                     [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Links"
-                                                                          action:@"MyPets Free"
-                                                                           label:@"MyPets Free"
+                                                                          action:@"Rate"
+                                                                           label:@"Rate"
                                                                            value:nil] build]];
-                    //553815375 - kTargetAppID
+                    
+                    [Appirater rateApp];
+                    
+                    /*//553815375 - kTargetAppID
                     //422347491 - Morbix
                     //795757886 - MyPets Paid
                     NSDictionary *parameters = [NSDictionary dictionaryWithObject:[MPTargets targetAppID]
@@ -280,7 +294,7 @@
                         [tracker set:kGAIScreenName
                                value:@"MyPets Free iTunes Screen"];
                         [tracker send:[[GAIDictionaryBuilder createAppView] build]];
-                    }];
+                    }];*/
                 }
                     break;
                 case 3:

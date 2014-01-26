@@ -30,6 +30,12 @@
 {
     [MPLibrary appearanceCustom];
     
+    [Appirater setAppId:[MPTargets targetAppID]];
+    [Appirater setDaysUntilPrompt:7];
+    [Appirater setUsesUntilPrompt:5];
+    [Appirater setSignificantEventsUntilPrompt:-1];
+    [Appirater setTimeBeforeReminding:2];
+    [Appirater setDebug:NO];
     [Appirater appLaunched:YES];
     
     

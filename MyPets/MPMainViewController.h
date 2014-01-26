@@ -7,13 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GADBannerView.h"
-#import <iAd/iAd.h>
 
-@interface MPMainViewController : UIViewController <GADBannerViewDelegate, ADBannerViewDelegate>
-{
-    GADBannerView *bannerView_;
-    ADBannerView  *banneriAdView_;
-}
+@interface MPMainViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UICollectionView *collection;
 @end
