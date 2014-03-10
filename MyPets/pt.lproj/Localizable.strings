@@ -66,6 +66,7 @@
 "Nascimento e Sexo"         = "Nascimento e Sexo";
 "Espécie e Raça"            = "Espécie e Raça";
 "Toque na foto para editar" = "Toque na foto para editar";
+"Toque na foto para editar ou para mostrar em tela cheia" = "Toque na foto para editar ou para mostrar em tela cheia";
 "Carteiras e Calendários"   = "Carteiras e Calendários";
 "Próximos Eventos"          = "Próximos Eventos";
 "Eventos Passados"          = "Eventos Passados";
@@ -155,6 +156,8 @@
 
 "Sincronizado com sucesso!" = "Sincronizado com sucesso!";
 "Sincronizando..." = "Sincronizando...";
+
+"Mostrar foto em tela cheia" = "Mostrar foto em tela cheia";
 
 
 /*

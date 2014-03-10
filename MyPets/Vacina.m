@@ -58,4 +58,17 @@
     return [resizedImage resizeToSize:newSize thenCropWithRect:CGRectMake(offset.x, offset.y, expectedSize.width, expectedSize.height)];
 }
 
+- (UIImage *)getFotoCompleta
+{
+    UIImage *seloCompleto = nil;
+    
+    if (self.cSelo) {
+        seloCompleto = [UIImage imageWithData:self.cSelo];
+    }else{
+        seloCompleto = [UIImage imageNamed:@"vacinaDefault.jpg"];
+    }
+    
+    return seloCompleto;
+}
+
 @end

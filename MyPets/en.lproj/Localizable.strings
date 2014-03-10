@@ -66,6 +66,7 @@
 "Nascimento e Sexo"         = "Born and Sex";
 "Espécie e Raça"            = "Specie and Breed";
 "Toque na foto para editar" = "Touch in the photo to edit";
+"Toque na foto para editar ou para mostrar em tela cheia" = "Touch in the photo to edit or to show in fullscren";
 "Carteiras e Calendários"   = "Cards and Schedules";
 "Próximos Eventos"          = "Upcoming Tasks";
 "Eventos Passados"          = "Past Tasks";
@@ -155,6 +156,8 @@
 
 "Sincronizado com sucesso!" = "Synchronized successfully!";
 "Sincronizando..." = "Synchronizing...";
+
+"Mostrar foto em tela cheia" = "Show photo in fullscreen";
 
 
 /*

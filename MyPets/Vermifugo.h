@@ -26,5 +26,5 @@
 @property (nonatomic, retain) Animal *cAnimal;
 
 - (UIImage *)getFoto;
-
+- (UIImage *)getFotoCompleta;
 @end

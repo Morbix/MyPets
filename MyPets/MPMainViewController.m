@@ -22,16 +22,25 @@
 #import "UIFlatColor.h"
 #import "MPAds.h"
 #import <iAd/iAd.h>
+#import "UIImageView+WebCache.h"
+#import "MPDropboxNotification.h"
+#import "MPAppDelegate.h"
+
+#define DropboxAppKey @"tnmjxymp32xgs8y"
+#define DropboxAppSecret @"czkt8b3dhrcj30b"
 
 
 @interface MPMainViewController ()
 {
+    NSArray *arrayPets;
     BOOL CALLBACK_LOCAL;
     int DIV;
     MPAds *ads;
+    BOOL ADS_ADDED;
 }
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *barButtonRight;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 
 @end
 
@@ -46,7 +55,10 @@
     return self;
     
 //#warning Pendencias
-    //2.1.x
+    //2.1.2
+    //Ok - Clicar na foto do pet e mostrar fullscrenn + tracking analytics
+    //Ok - Delay na tela principal para tentar parar de dar crash
+    //2.1.1
     //Ok - Bug da data de nascimento futura
     //Ok - Bug do formato americano
     //Ok - Status do Dropbox com notificações visuais
@@ -55,7 +67,6 @@
     //Ok - Implementar Ads do FelipeOliveira, checa iAd else AdMob
     //###Alta
     //###Média
-    //- Clicar na foto do pet e mostrar fullscrenn + tracking analytics
     //- Versão iPad
     //- Formato de Review do Felipe Oliveira
     //- Fotos das Vacinas com overlay, ou ver foto inteira, ou reposicionar
@@ -154,7 +165,7 @@
     
     
     
-    [self.collection setBackgroundColor:[UIColor clearColor]];
+    //[self.collection setBackgroundColor:[UIColor clearColor]];
     [self.collection registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell1"];
     [self.collection registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell2"];
     [self.collection registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell3"];
@@ -162,27 +173,50 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callbackPetsCompleted:) name:MTPSNotificationPets object:nil];
 
-    
+    arrayPets = [NSArray new];
     
     DIV = 1;
     CALLBACK_LOCAL = FALSE;
-    [[MPCoreDataService shared] loadAllPets];
+    ADS_ADDED = FALSE;
     
-    
-    if ([MPTargets targetAds]) {
-        self.canDisplayBannerAds = YES;
-        ads = [[MPAds alloc] initWithScrollView:self.collection viewController:self admobID:@"ca-app-pub-8687233994493144/1806932365"];
-    }
+    [self.collection setContentInset:UIEdgeInsetsMake(64.0f, 0, 0, 0)];
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    [self performSelector:@selector(delayToLoad) withObject:nil afterDelay:2.0f];
+    
     ((MPCoreDataService *)[MPCoreDataService shared]).animalSelected = nil;
     
     id tracker = [[GAI sharedInstance] defaultTracker];
     [tracker set:kGAIScreenName
            value:@"Main Screen"];
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+}
+
+- (void)delayToLoad
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [MPDropboxNotification shared];
+        
+        DBAccountManager *accountManager = [[DBAccountManager alloc] initWithAppKey:DropboxAppKey secret:DropboxAppSecret];
+        [DBAccountManager setSharedManager:accountManager];
+        
+        if ([accountManager linkedAccount]) {
+            [(MPAppDelegate *)[[UIApplication sharedApplication] delegate] setSyncEnabled:YES];
+        }
+    });
+    
+    
+    if ([MPTargets targetAds] && !ADS_ADDED) {
+        ADS_ADDED = TRUE;
+        self.canDisplayBannerAds = YES;
+        ads = [[MPAds alloc] initWithScrollView:self.collection viewController:self admobID:@"ca-app-pub-8687233994493144/1806932365"];
+    }
+    
+    [self.spinner stopAnimating];
+    [[MPCoreDataService shared] loadAllPets];
 }
 
 - (void)didReceiveMemoryWarning
@@ -229,7 +263,8 @@
 #pragma mark  UICollectionViewDatasource
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section
 {
-    int count = [[[MPCoreDataService shared] arrayPets] count];
+    //int count = [[[MPCoreDataService shared] arrayPets] count];
+    int count = [arrayPets count];
     
     if (count <= 2) {
         DIV = 1;
@@ -282,7 +317,8 @@
     }
     
     
-    Animal *animal = [[[MPCoreDataService shared] arrayPets] objectAtIndex:indexPath.row];
+    //Animal *animal = [[[MPCoreDataService shared] arrayPets] objectAtIndex:indexPath.row];
+    Animal *animal = [arrayPets objectAtIndex:indexPath.row];
     [cellView.imagemPet setImage:[animal getFoto]];
     [cellView.labelNome setText:[animal getNome]];
     
@@ -305,7 +341,8 @@
     
     [MPAnimations animationPressDown:cellView];
     
-    Animal *animal = [[[MPCoreDataService shared] arrayPets] objectAtIndex:indexPath.row];
+    //Animal *animal = [[[MPCoreDataService shared] arrayPets] objectAtIndex:indexPath.row];
+    Animal *animal = [arrayPets objectAtIndex:indexPath.row];
     [[MPCoreDataService shared] setAnimalSelected:animal];
     
     [self performSegueWithIdentifier:@"petViewController" sender:nil];
@@ -363,6 +400,10 @@
     if (notification.userInfo) {
         NSLog(@"error: %s", __PRETTY_FUNCTION__);
     }else{
+        if (arrayPets) {
+            arrayPets = nil;
+            arrayPets = [NSArray arrayWithArray:[[MPCoreDataService shared] arrayPets]];
+        }
         [self.collection reloadData];
     }
 }

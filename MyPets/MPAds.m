@@ -46,7 +46,7 @@
 - (void)adViewDidReceiveAd:(GADBannerView *)view
 {
     //PRETTY_FUNCTION;
-    UIEdgeInsets edge =  UIEdgeInsetsMake(self.scrollView.scrollIndicatorInsets.top, self.scrollView.scrollIndicatorInsets.left, self.bannerView.frame.size.height*1, self.scrollView.scrollIndicatorInsets.right);
+    UIEdgeInsets edge =  UIEdgeInsetsMake(self.scrollView.contentInset.top, self.scrollView.contentInset.left, self.bannerView.frame.size.height*1, self.scrollView.contentInset.right);
     //[self.collection setScrollIndicatorInsets:edge];
     [self.scrollView setContentInset:edge];
 }

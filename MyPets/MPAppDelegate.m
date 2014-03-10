@@ -16,8 +16,6 @@
 #import "GAIDictionaryBuilder.h"
 #import "MPDropboxNotification.h"
 
-#define DropboxAppKey @"tnmjxymp32xgs8y"
-#define DropboxAppSecret @"czkt8b3dhrcj30b"
 #define kSIZE 10
 
 @implementation MPAppDelegate
@@ -28,7 +26,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [MPLibrary appearanceCustom];
+    //[MPLibrary appearanceCustom];
     
     [Appirater setAppId:[MPTargets targetAppID]];
     [Appirater setDaysUntilPrompt:7];
@@ -52,22 +50,17 @@
     [GAI sharedInstance].trackUncaughtExceptions = YES;
     [GAI sharedInstance].dispatchInterval = 20;
     [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelError];
+    [[GAI sharedInstance] trackerWithTrackingId:[MPTargets targetAnalyticsID]];
+    //[tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Application" action:@"Launching"  label:@"Launching" value:nil] build]];    // Event value
     
-    id<GAITracker> tracker = [[GAI sharedInstance] trackerWithTrackingId:[MPTargets targetAnalyticsID]];
-    
-    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Application"     // Event category (required)
-                                                          action:@"Launching"  // Event action (required)
-                                                           label:@"Launching"          // Event label
-                                                           value:nil] build]];    // Event value
-    
-    [MPDropboxNotification shared];
+    /*[MPDropboxNotification shared];
     
     DBAccountManager *accountManager = [[DBAccountManager alloc] initWithAppKey:DropboxAppKey secret:DropboxAppSecret];
     [DBAccountManager setSharedManager:accountManager];
     
     if ([accountManager linkedAccount]) {
         [self setSyncEnabled:YES];
-    }
+    }*/
     
     
     UILocalNotification *localNotif = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];

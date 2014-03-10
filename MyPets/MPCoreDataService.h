@@ -34,6 +34,7 @@
 @property (nonatomic, strong) Banho *banhoSelected;
 @property (nonatomic, strong) Medicamento *medicamentoSelected;
 @property (nonatomic, strong) Peso *pesoSelected;
+@property (nonatomic, strong) UIImage *photoSelected;
 
 + (id)shared;
 + (void)saveContext;

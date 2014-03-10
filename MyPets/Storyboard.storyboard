@@ -10,7 +10,7 @@
             <objects>
                 <tableViewController id="3DH-C5-0Ny" customClass="MPConfigViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="2Mx-Ij-o5x">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
@@ -211,7 +211,7 @@
             <objects>
                 <tableViewController id="1hS-af-ZIC" customClass="MPLembretesViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="3NV-3C-BHN">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -264,22 +264,31 @@
                         <viewControllerLayoutGuide type="bottom" id="WPg-1C-mXS"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="BCc-LS-PXI">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="MTF-15-wOU">
+                                <rect key="frame" x="142" y="221" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="37" id="X7z-Yy-GhK"/>
+                                    <constraint firstAttribute="height" constant="37" id="xCN-WM-wG4"/>
+                                </constraints>
+                                <color key="color" red="1" green="0.79215693470000004" blue="0.31372550129999999" alpha="1" colorSpace="deviceRGB"/>
+                            </activityIndicatorView>
                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yy3-6n-13k">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="CLR-Tr-csh">
                                     <size key="itemSize" width="50" height="50"/>
-                                    <size key="headerReferenceSize" width="0.0" height="8"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Ikt-BP-Rne">
-                                        <rect key="frame" x="0.0" y="72" width="50" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -288,10 +297,6 @@
                                         </view>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="mls-4N-hLp">
-                                    <rect key="frame" x="0.0" y="64" width="320" height="8"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </collectionReusableView>
                                 <connections>
                                     <outlet property="dataSource" destination="liv-io-tMB" id="xlq-ak-5LG"/>
                                     <outlet property="delegate" destination="liv-io-tMB" id="MwQ-7m-O0F"/>
@@ -300,7 +305,9 @@
                         </subviews>
                         <color key="backgroundColor" red="0.95756271260000003" green="0.95756271260000003" blue="0.95756271260000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="centerY" secondItem="MTF-15-wOU" secondAttribute="centerY" id="53T-7n-2ru"/>
                             <constraint firstAttribute="bottom" secondItem="yy3-6n-13k" secondAttribute="bottom" id="BfO-ya-Dfe"/>
+                            <constraint firstAttribute="centerX" secondItem="MTF-15-wOU" secondAttribute="centerX" id="CYJ-8T-RWc"/>
                             <constraint firstAttribute="trailing" secondItem="yy3-6n-13k" secondAttribute="trailing" id="S3x-l4-ceG"/>
                             <constraint firstItem="yy3-6n-13k" firstAttribute="top" secondItem="hi7-01-e5b" secondAttribute="bottom" constant="-64" id="eSh-FY-znF"/>
                             <constraint firstItem="yy3-6n-13k" firstAttribute="leading" secondItem="BCc-LS-PXI" secondAttribute="leading" id="jlO-Fk-1pl"/>
@@ -321,6 +328,7 @@
                     <connections>
                         <outlet property="barButtonRight" destination="yH6-J7-pqx" id="1yw-aP-Hil"/>
                         <outlet property="collection" destination="yy3-6n-13k" id="YhD-fv-0T2"/>
+                        <outlet property="spinner" destination="MTF-15-wOU" id="6b4-s2-twU"/>
                         <segue destination="nFB-w5-pFL" kind="push" identifier="petViewController" id="jsJ-Vc-KGI"/>
                         <segue destination="1hS-af-ZIC" kind="push" identifier="lembretesViewController" id="pqe-P3-D5G"/>
                         <segue destination="3DH-C5-0Ny" kind="push" identifier="configuracaoViewController" id="Iqd-yX-Ci9"/>
@@ -335,7 +343,7 @@
             <objects>
                 <tableViewController id="nFB-w5-pFL" customClass="MPPetViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Yjd-D4-AUF">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
@@ -592,7 +600,7 @@
             <objects>
                 <tableViewController id="YQD-t4-zwi" customClass="MPPesosViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="xI5-ig-EAc">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
@@ -646,7 +654,7 @@
             <objects>
                 <tableViewController id="Ng9-9H-xRL" customClass="MPPesoEditViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="MpD-FF-BD2">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
@@ -748,7 +756,7 @@
             <objects>
                 <tableViewController id="22V-se-k2z" customClass="MPPetEditViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Tk3-Ol-rq0">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
@@ -915,7 +923,7 @@
             <objects>
                 <tableViewController id="4lJ-RJ-CqG" customClass="MPConsultasViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="ySQ-7Z-4KU">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <color key="sectionIndexTrackingBackgroundColor" red="0.95756271260000003" green="0.95756271260000003" blue="0.95756271260000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -1028,7 +1036,7 @@
             <objects>
                 <tableViewController id="zDB-8T-3O3" customClass="MPBanhosViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="fpp-be-hVB">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <color key="sectionIndexTrackingBackgroundColor" red="0.95756271260000003" green="0.95756271260000003" blue="0.95756271260000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -1141,7 +1149,7 @@
             <objects>
                 <tableViewController id="ikv-bx-x1z" customClass="MPMedicamentosViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="a6f-A6-J3E">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
@@ -1264,7 +1272,7 @@
             <objects>
                 <tableViewController id="ykl-Ir-IaO" customClass="MPVacinasViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="QnV-tM-Ghy">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <color key="sectionIndexTrackingBackgroundColor" red="0.95756271260000003" green="0.95756271260000003" blue="0.95756271260000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -1439,7 +1447,7 @@
             <objects>
                 <tableViewController id="a2L-vV-H7R" customClass="MPVacinaEditViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="1DT-mu-lbj">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
@@ -1640,18 +1648,19 @@
                         <outlet property="editNotas" destination="urs-xa-UrA" id="Ejj-EX-3O6"/>
                         <outlet property="editVeterinario" destination="A5h-h6-bNo" id="qg2-Xw-PQa"/>
                         <outlet property="imageFoto" destination="ajU-jP-3Sy" id="OzE-yU-6pq"/>
+                        <segue destination="bF7-DH-Pjk" kind="push" identifier="photoViewController" id="xk1-PS-Lik"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fQp-NI-MvT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="911" y="2293"/>
+            <point key="canvasLocation" x="911" y="2325"/>
         </scene>
         <!--Vermifugo Edit View Controller-->
         <scene sceneID="lYQ-Wc-WCI">
             <objects>
                 <tableViewController id="LpJ-tO-w9t" customClass="MPVermifugoEditViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="2mL-pf-D1h">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
@@ -1852,18 +1861,64 @@
                         <outlet property="editLembreteTipo" destination="Ujj-DQ-zL9" id="CFa-lP-uS5"/>
                         <outlet property="editNotas" destination="Hh7-2X-pqa" id="qP3-ND-ipg"/>
                         <outlet property="imageFoto" destination="UMG-js-Cxl" id="78N-KJ-l44"/>
+                        <segue destination="bF7-DH-Pjk" kind="push" identifier="photoViewController" id="PPw-ia-edl"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Pa-YM-h6l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1496" y="2325"/>
         </scene>
+        <!--Photo View Controller-->
+        <scene sceneID="EN2-Ms-MMc">
+            <objects>
+                <viewController id="bF7-DH-Pjk" customClass="MPPhotoViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1sp-dT-zUF"/>
+                        <viewControllerLayoutGuide type="bottom" id="IAs-bx-alD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="i8O-O1-AZp">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ksY-3z-i78">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dap-1l-NN2">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <connections>
+                                    <outlet property="delegate" destination="bF7-DH-Pjk" id="dJX-EV-eZe"/>
+                                </connections>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ksY-3z-i78" firstAttribute="leading" secondItem="i8O-O1-AZp" secondAttribute="leading" id="9gj-84-I6W"/>
+                            <constraint firstItem="ksY-3z-i78" firstAttribute="top" secondItem="i8O-O1-AZp" secondAttribute="top" id="Hxb-jA-Kfw"/>
+                            <constraint firstItem="IAs-bx-alD" firstAttribute="top" secondItem="ksY-3z-i78" secondAttribute="bottom" id="TVt-7H-8aq"/>
+                            <constraint firstAttribute="trailing" secondItem="ksY-3z-i78" secondAttribute="trailing" id="WeP-9x-AdK"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="0yz-ca-P0V"/>
+                    <connections>
+                        <outlet property="imagePhoto" destination="dap-1l-NN2" id="Zii-Uy-Jyo"/>
+                        <outlet property="scrollZoom" destination="ksY-3z-i78" id="sRI-P0-xlE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zHf-gV-wvi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1204" y="3037"/>
+        </scene>
         <!--Consulta Edit View Controller-->
         <scene sceneID="swz-Sc-fRT">
             <objects>
                 <tableViewController id="J0b-fg-7Lz" customClass="MPConsultaEditViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="zvE-bA-hsd">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
@@ -1985,7 +2040,7 @@
             <objects>
                 <tableViewController id="zvH-fN-oxr" customClass="MPBanhoEditViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="wJ6-ox-09b">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
@@ -2107,7 +2162,7 @@
             <objects>
                 <tableViewController id="yqH-BK-BsC" customClass="MPMedicamentoEditViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="qIJ-NJ-jpP">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
@@ -2273,7 +2328,7 @@
             <objects>
                 <tableViewController id="qv8-nH-eKb" customClass="MPVermifugosViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="B3d-7Z-Tt6">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <color key="sectionIndexTrackingBackgroundColor" red="0.95756271260000003" green="0.95756271260000003" blue="0.95756271260000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -2488,9 +2543,10 @@
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
+        <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="dgR-fW-BAk"/>
+        <segue reference="pqe-P3-D5G"/>
+        <segue reference="PPw-ia-edl"/>
     </inferredMetricsTieBreakers>
 </document>

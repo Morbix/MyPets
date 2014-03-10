@@ -315,6 +315,7 @@
 		E6D47AF518611456009C2905 /* MPConsultasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D47AF418611456009C2905 /* MPConsultasViewController.m */; };
 		E6D47AF818611461009C2905 /* MPBanhosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D47AF718611461009C2905 /* MPBanhosViewController.m */; };
 		E6D47AFB186120D6009C2905 /* MPVacinaEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D47AFA186120D6009C2905 /* MPVacinaEditViewController.m */; };
+		E6DFE25518CE2AE500F3F5F9 /* MPPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DFE25418CE2AE500F3F5F9 /* MPPhotoViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -611,6 +612,8 @@
 		E6D47AF718611461009C2905 /* MPBanhosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPBanhosViewController.m; sourceTree = "<group>"; };
 		E6D47AF9186120D6009C2905 /* MPVacinaEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPVacinaEditViewController.h; sourceTree = "<group>"; };
 		E6D47AFA186120D6009C2905 /* MPVacinaEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPVacinaEditViewController.m; sourceTree = "<group>"; };
+		E6DFE25318CE2AE500F3F5F9 /* MPPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPhotoViewController.h; sourceTree = "<group>"; };
+		E6DFE25418CE2AE500F3F5F9 /* MPPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPhotoViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -805,6 +808,8 @@
 				E6952F22186E39810050FB64 /* MPLembretesViewController.m */,
 				E644BB52187E2FB400247278 /* MPConfigViewController.h */,
 				E644BB53187E2FB400247278 /* MPConfigViewController.m */,
+				E6DFE25318CE2AE500F3F5F9 /* MPPhotoViewController.h */,
+				E6DFE25418CE2AE500F3F5F9 /* MPPhotoViewController.m */,
 				A71ABC5318316F150039DF25 /* CoreData Classes */,
 				A7A1332F181B2C5F00D7D016 /* Imagens */,
 				A7A132FB181B21C500D7D016 /* Classes */,
@@ -1433,6 +1438,7 @@
 				E60CC235188327F400826B59 /* PNLineChartDataItem.m in Sources */,
 				E60554631857E71C00D11CE9 /* MPPetViewController.m in Sources */,
 				A71ABC4618316F090039DF25 /* Fotos.m in Sources */,
+				E6DFE25518CE2AE500F3F5F9 /* MPPhotoViewController.m in Sources */,
 				A71ABC4918316F0A0039DF25 /* Consulta.m in Sources */,
 				E644BB49187E27F500247278 /* DBRecord+ParcelKit.m in Sources */,
 				A71ABC4C18316F0A0039DF25 /* Banho.m in Sources */,

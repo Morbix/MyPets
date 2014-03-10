@@ -56,7 +56,7 @@
     self.lastSyncingNotification = Nil;
     
     [[NSNotificationCenter defaultCenter] postNotificationName:MTPSNotificationSyncUpdate object:nil];
-    [AJNotificationView showNoticeInView:[[[UIApplication sharedApplication] delegate] window]
+    /*[AJNotificationView showNoticeInView:[[[UIApplication sharedApplication] delegate] window]
                                     type:AJNotificationTypeGreen
                                    title:NSLS(@"Sincronizado com sucesso!")
                          linedBackground:AJLinedBackgroundTypeDisabled
@@ -64,7 +64,7 @@
                                 response:^{
                                     
                                 }
-     ];
+     ];*/
 }
 
 - (void)showSyncingNotification

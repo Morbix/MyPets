@@ -291,7 +291,7 @@
                                                         delegate:self
                                                cancelButtonTitle:NSLS(@"Cancelar")
                                           destructiveButtonTitle:NSLS(@"Tirar uma foto")
-                                               otherButtonTitles:NSLS(@"Pegar do álbum"), nil];
+                                               otherButtonTitles:NSLS(@"Pegar do álbum"), NSLS(@"Mostrar foto em tela cheia"), nil];
     
     [sheet setTag:2];
     [sheet showFromBarButtonItem:self.barButtonRight animated:YES];
@@ -375,7 +375,7 @@
 -(NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
     switch (section) {
-        case 0: { return NSLS(@"Toque na foto para editar"); }
+        case 0: { return NSLS(@"Toque na foto para editar ou para mostrar em tela cheia"); }
             break;
     }
     
@@ -435,6 +435,10 @@
             [picker setAllowsEditing:YES];
             
             [self presentViewController:picker animated:YES completion:^{}];
+        }else if(buttonIndex == 2){
+            Vermifugo *vermifugo = [[MPCoreDataService shared] vermifugoSelected];
+            [[MPCoreDataService shared] setPhotoSelected:[vermifugo getFotoCompleta]];
+            [self performSegueWithIdentifier:@"photoViewController" sender:nil];
         }
     }
 }
