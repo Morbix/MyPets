@@ -63,7 +63,7 @@
         NSArray *arrayResult = [self.context executeFetchRequest:request error:&error];
         if (!error){
             if (arrayResult.count > 0) {
-                NSLog(@"---- Fix_without_cAnimal: N. %@: %d",entidade, arrayResult.count);
+                NSLog(@"---- Fix_without_cAnimal: N. %@: %d",entidade, (int)arrayResult.count);
                 for (NSManagedObject *object in arrayResult) {
                     [self.context deleteObject:object]; save = TRUE;
                 }
@@ -166,7 +166,7 @@
         }
     }
     
-    NSLog(@"MPCoreDataService:buscarPets:%d - Completed", self.arrayPets.count);
+    NSLog(@"MPCoreDataService:buscarPets:%d - Completed", (int)self.arrayPets.count);
     [[NSNotificationCenter defaultCenter] postNotificationName:MTPSNotificationPets object:nil userInfo:error ? [NSDictionary dictionaryWithObjectsAndKeys:error,@"error", nil] : nil];
 }
 
@@ -229,7 +229,7 @@
     
     self.animalSelected = nil;
     
-    NSLog(@"MPCoreDataService:buscarPets:%d - Completed", self.arrayPets.count);
+    NSLog(@"MPCoreDataService:buscarPets:%d - Completed", (int)self.arrayPets.count);
     [[NSNotificationCenter defaultCenter] postNotificationName:MTPSNotificationPets object:nil userInfo:nil];
 }
 

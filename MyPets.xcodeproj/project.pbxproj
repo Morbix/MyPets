@@ -234,6 +234,7 @@
 		E60CC2441883385F00826B59 /* MPPeso.m in Sources */ = {isa = PBXBuildFile; fileRef = E60CC2421883385F00826B59 /* MPPeso.m */; };
 		E60CC249188352B600826B59 /* icone.png in Resources */ = {isa = PBXBuildFile; fileRef = E60CC20D1881DB8200826B59 /* icone.png */; };
 		E60CC24A188352BE00826B59 /* icone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E60CC20E1881DB8200826B59 /* icone@2x.png */; };
+		E63443D618E257D50086332D /* MPPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DFE25418CE2AE500F3F5F9 /* MPPhotoViewController.m */; };
 		E63DB41818626BE100094368 /* vacinaDefault.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E63DB41618626BE100094368 /* vacinaDefault.jpg */; };
 		E63DB41918626BE100094368 /* vacinaDefault@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E63DB41718626BE100094368 /* vacinaDefault@2x.jpg */; };
 		E63DB41C1862721A00094368 /* UIImage+ResizeAndCrop.m in Sources */ = {isa = PBXBuildFile; fileRef = E63DB41B1862721A00094368 /* UIImage+ResizeAndCrop.m */; };
@@ -1508,6 +1509,7 @@
 				E60CC236188327F400826B59 /* PNLineChartDataItem.m in Sources */,
 				E60CC1971881A80C00826B59 /* MPPetViewController.m in Sources */,
 				E60CC1991881A80C00826B59 /* Fotos.m in Sources */,
+				E63443D618E257D50086332D /* MPPhotoViewController.m in Sources */,
 				E60CC19A1881A80C00826B59 /* Consulta.m in Sources */,
 				E60CC19B1881A80C00826B59 /* DBRecord+ParcelKit.m in Sources */,
 				E60CC19C1881A80C00826B59 /* Banho.m in Sources */,
@@ -1665,9 +1667,13 @@
 					"$(inherited)",
 					"/Users/HP/Developer/MyPets\\ 2.0/MyPets",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1692,9 +1698,14 @@
 					"$(inherited)",
 					"/Users/HP/Developer/MyPets\\ 2.0/MyPets",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1719,9 +1730,13 @@
 					"$(inherited)",
 					"/Users/HP/Developer/MyPets\\ 2.0/MyPets",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "MyPets copy";
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1746,9 +1761,14 @@
 					"$(inherited)",
 					"/Users/HP/Developer/MyPets\\ 2.0/MyPets",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "MyPets copy";
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -268,17 +268,17 @@
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     if (component == 1 && row < 10) {
-        return [NSString stringWithFormat:@"0%d",row];
+        return [NSString stringWithFormat:@"0%d",(int)row];
     }
-    return [NSString stringWithFormat:@"%d",row];
+    return [NSString stringWithFormat:@"%d",(int)row];
 }
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     if ([pickerView selectedRowInComponent:1] < 10) {
-        self.editPeso.text = [NSString stringWithFormat:@"%d.0%d",[pickerView selectedRowInComponent:0], [pickerView selectedRowInComponent:1]];
+        self.editPeso.text = [NSString stringWithFormat:@"%d.0%d", (int)[pickerView selectedRowInComponent:0], (int)[pickerView selectedRowInComponent:1]];
     }else{
-        self.editPeso.text = [NSString stringWithFormat:@"%d.%d",[pickerView selectedRowInComponent:0], [pickerView selectedRowInComponent:1]];
+        self.editPeso.text = [NSString stringWithFormat:@"%d.%d", (int)[pickerView selectedRowInComponent:0], (int)[pickerView selectedRowInComponent:1]];
     }
 }
 

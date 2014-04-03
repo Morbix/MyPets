@@ -234,7 +234,7 @@
     [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Adicionar"     // Event category (required)
                                                           action:@"Novo Pet"  // Event action (required)
                                                            label:@"Novo Pet"          // Event label
-                                                           value:[NSNumber numberWithInt:[[MPCoreDataService shared] arrayPets].count]] build]];
+                                                           value:[NSNumber numberWithInteger:[[MPCoreDataService shared] arrayPets].count]] build]];
     
     [Appirater userDidSignificantEvent:YES];
     
@@ -264,7 +264,7 @@
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section
 {
     //int count = [[[MPCoreDataService shared] arrayPets] count];
-    int count = [arrayPets count];
+    int count = (int)[arrayPets count];
     
     if (count <= 2) {
         DIV = 1;
@@ -308,6 +308,7 @@
                 break;
                 
             default:
+                badgeRect = CGRectZero;
                 break;
         }
         badge = [[LKBadgeView alloc] initWithFrame:badgeRect];
