@@ -244,7 +244,6 @@
 #pragma mark - ParseNotification
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
     // Store the deviceToken in the current installation and save it to Parse.
-    PRETTY_FUNCTION;
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
     [currentInstallation addUniqueObject:[MPTargets targetChannel] forKey:@"channels"];
     [currentInstallation setDeviceTokenFromData:newDeviceToken];

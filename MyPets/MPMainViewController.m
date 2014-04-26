@@ -54,6 +54,11 @@
     }
     return self;
     
+//
+    //Antipulgas
+    //Albuns
+    //Sync com facebook
+    //Histórico do pet
 //#warning Pendencias
     //2.1.2
     //Ok - Clicar na foto do pet e mostrar fullscrenn + tracking analytics
