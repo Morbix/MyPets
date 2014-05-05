@@ -196,3 +196,44 @@
 "Versão" = "Versão";
 
 */
+
+
+
+"Acesso Premium" = "Acesso Premium";
+
+"Você atingiu o limite máximo de 3 pets. Assine o MyPets Premium para ter acesso a todos os recursos e cadastro de pets ilimitado." = "Você atingiu o limite máximo de 3 pets. Assine o MyPets Premium para ter acesso a todos os recursos e cadastro de pets ilimitado.";
+
+"Cancelar" = "Cancelar";
+"Ver planos" = "Ver planos";
+
+"Reportar um erro" = "Reportar um erro";
+
+"Seja um usuário premium e cadastre quantos pets você precisar. Em breve teremos backup dos dados na nuvem, sincronismo com os outros dispositivos, acesso web e muito mais." = "Seja um usuário premium e cadastre quantos pets você precisar. Em breve teremos backup dos dados na nuvem, sincronismo com os outros dispositivos, acesso web e muito mais.";
+
+"O recurso do Dropbox foi desativado, pois não estávamos tendo uma boa experiência com o serviço. Estamos preparando uma nova forma de você salvar os dados na nuvem e poder sincronizar com seus outros dispositivos." = "O recurso do Dropbox foi desativado, pois não estávamos tendo uma boa experiência com o serviço. Estamos preparando uma nova forma de você salvar os dados na nuvem e poder sincronizar com seus outros dispositivos.";
+
+"Autenticação" = "Autenticação";
+"Você precisa se autenticar via Facebook." = "Você precisa se autenticar via Facebook.";
+"Não foi possível se conectar ao Facebook." = "Não foi possível se conectar ao Facebook.";
+
+"Restore" = "Restaurar";
+"Sign Out" = "Deslogar";
+
+"Autenticação" = "Autenticação";
+"Você precisa se autenticar via Facebook." = "Você precisa se autenticar via Facebook.";
+"Ok" = "Ok";
+
+"Sign In" = "Logar";
+"Renew" = "Renovar";
+"Subscribe" = "Comprar";
+"Buy" = "Comprar";
+
+"Subscribed! \nExpires: %@ (%i Days)" = "Premium! \nExpira em: %@ (%i dias)";
+"Not Subscribed" = "Você não é Premium ainda.";
+"dd/MM/yyyy" = "dd/MM/yyyy";
+"Ver os planos do acesso Premium" = "Ver os planos do acesso Premium";
+
+"Plano 1 Mês" = "Plano 1 Mês";
+"Plano 3 Meses" = "Plano 3 Meses";
+"Plano 6 Meses" = "Plano 6 Meses";
+"Plano 12 Meses" = "Plano 12 Meses";

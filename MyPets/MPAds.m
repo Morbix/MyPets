@@ -7,6 +7,7 @@
 //
 
 #import "MPAds.h"
+#import <iAd/iAd.h>
 
 @implementation MPAds
 
@@ -37,11 +38,18 @@
     [self.viewController.view addSubview:self.bannerView];
     
     GADRequest *request = [GADRequest request];
-    request.testDevices = @[ @"d739ce5a07568c089d5498568147e06a", @"7229798c8732c56f536549c0f153d45f", GAD_SIMULATOR_ID];
+    request.testDevices = @[ @"d739ce5a07568c089d5498568147e06a", @"7229798c8732c56f536549c0f153d45f", @"7c7b67f378df786ba6d42185734fa122", GAD_SIMULATOR_ID];
     request.testing = NO;
     [self.bannerView loadRequest: request];
 }
 
+- (void)removeAds
+{
+    PRETTY_FUNCTION;
+    self.viewController.canDisplayBannerAds = false;
+    [self.bannerView removeFromSuperview];
+    self.bannerView = nil;
+}
 #pragma mark - GADBannerDelegate
 - (void)adViewDidReceiveAd:(GADBannerView *)view
 {

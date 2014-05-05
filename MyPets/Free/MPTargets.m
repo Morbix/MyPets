@@ -9,7 +9,7 @@
 #import "MPTargets.h" //FREE
 
 #define kTargetAppID @"553815375"
-#define kTargetAds YES
+#define kTargetAds NO
 #define kTargetNumberOfSections 4
 #define kTargetAnalyticsID @"UA-46756135-1"
 #define kTargetChannel @"App_Free"

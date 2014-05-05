@@ -195,3 +195,44 @@
 "Versão" = "Version";
 
 */
+
+
+
+"Acesso Premium" = "Premium Access";
+
+"Você atingiu o limite máximo de 3 pets. Assine o MyPets Premium para ter acesso a todos os recursos e cadastro de pets ilimitado." = "You have reached the maximum of 3 pets. Subscribe to Premium MyPets to access all features and unlimited pets.";
+
+"Cancelar" = "Cancel";
+"Ver planos" = "See plans";
+
+"Reportar um erro" = "Report a bug";
+
+"Seja um usuário premium e cadastre quantos pets você precisar. Em breve teremos backup dos dados na nuvem, sincronismo com os outros dispositivos, acesso web e muito mais." = "Become a Premium user and register how many pets you need. Soon we will have backup your data in the cloud, sync with other devices, web access and much more.";
+
+"O recurso do Dropbox foi desativado, pois não estávamos tendo uma boa experiência com o serviço. Estamos preparando uma nova forma de você salvar os dados na nuvem e poder sincronizar com seus outros dispositivos." = "The Dropbox feature was disabled because we were not having a good experience with the service. We are preparing a new way for you to save data in the cloud and can sync with your other devices.";
+
+"Autenticação" = "Authentication";
+"Você precisa se autenticar via Facebook." = "You need sign in using Facebook.";
+"Não foi possível se conectar ao Facebook." = "You could not connect to Facebook.";
+
+"Restore" = "Restore";
+"Sign Out" = "Sign Out";
+
+"Autenticação" = "Authentication";
+"Você precisa se autenticar via Facebook." = "You need sign in using Facebook.";
+"Ok" = "Ok";
+
+"Sign In" = "Sign In";
+"Renew" = "Renew";
+"Subscribe" = "Buy";
+"Buy" = "Buy";
+
+"Subscribed! \nExpires: %@ (%i Days)" = "Subscribed! \nExpires: %@ (%i Days)";
+"Not Subscribed" = "You are not Premium yet.";
+"dd/MM/yyyy" = "MM/dd/yyyy";
+"Ver os planos do acesso Premium" = "See plans of Premium access";
+
+"Plano 1 Mês" = "Plan 1 Month";
+"Plano 3 Meses" = "Plan 3 Months";
+"Plano 6 Meses" = "Plan 6 Months";
+"Plano 12 Meses" = "Plan 12 Months";

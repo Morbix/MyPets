@@ -22,8 +22,9 @@
 #import "Appirater.h"
 #import "MPAds.h"
 #import <iAd/iAd.h>
+#import "MPGoogle.h"
 
-@interface MPConfigViewController () <SKStoreProductViewControllerDelegate>
+@interface MPConfigViewController () <SKStoreProductViewControllerDelegate, UIActionSheetDelegate>
 {
     MPAds *ads;
 }
@@ -36,6 +37,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelAvaliar;
 @property (weak, nonatomic) IBOutlet UILabel *labelOutrosApps;
 @property (weak, nonatomic) IBOutlet UIImageView *imageIcone;
+@property (weak, nonatomic) IBOutlet UILabel *labelPremium;
 @end
 
 @implementation MPConfigViewController
@@ -58,15 +60,17 @@
     
     self.labelOutrosApps.text = NSLS(@"Conhecer nossos outros apps");
     self.labelAvaliar.text    = NSLS(@"Avaliar o MyPets");
-    self.labelEmail.text      = NSLS(@"Enviar um e-mail");
+    self.labelEmail.text      = NSLS(@"Reportar um erro");
     self.labelFacebook.text   = NSLS(@"Curtir a nossa página");
     self.labelLembretes.text  = NSLS(@"Mostrar lembretes");
+    self.labelPremium.text    = NSLS(@"Ver os planos do acesso Premium");
     
     [self.imageIcone.layer setCornerRadius:6];
     [self.imageIcone.layer setMasksToBounds:YES];
     [self configurarBadge:self.badgeLembretes];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dropboxStatusUpdateNotification:) name:MTPSNotificationSyncUpdate object:nil];
+    
     
     if ([MPTargets targetAds]) {
         self.canDisplayBannerAds = YES;
@@ -182,13 +186,13 @@
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (section == 0) {
-        return NSLS(@"Salve seus dados na nuvem");
+        return NSLS(@"Acesso Premium");
     }else if (section == 1){
         return NSLS(@"Contatos e Feedback");
     }else if (section == 2){
         return NSLS(@"Lembretes Programados");
     }else if (section == 3){
-        return NSLS(@"Quer remover os anúncios?");
+        return NSLS(@"Salve seus dados na nuvem");
     }
     
     return @"";
@@ -197,23 +201,13 @@
 -(NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
     if (section == 0) {
-        if ([[DBAccountManager sharedManager] linkedAccount] != nil) {
-            PKSyncManager *syncManger = [(MPAppDelegate *)[[UIApplication sharedApplication] delegate] syncManager];
-            if (syncManger) {
-                if (syncManger.datastore.status > 1) { //!= DBDatastoreConnected
-                    return NSLS(@"Sincronizando...");
-                }else{
-                    return NSLS(@"Sincronizado com sucesso!");
-                }
-            }
-        }
-        return NSLS(@"Ative o Dropbox para ele salvar os seus dados na nuvem e poder sincronizar com seus outros dispositivos automaticamente");
+        return NSLS(@"Seja um usuário premium e cadastre quantos pets você precisar. Em breve teremos backup dos dados na nuvem, sincronismo com os outros dispositivos, acesso web e muito mais.");
     }else if (section == 1){
         return NSLS(@"");
     }else if (section == 2){
         return NSLS(@"");
     }else if (section == 3){
-        return NSLS(@"Baixe o MyPets sem anúncios e sincronize seus dados com o Dropbox");
+        return NSLS(@"O recurso do Dropbox foi desativado, pois não estávamos tendo uma boa experiência com o serviço. Estamos preparando uma nova forma de você salvar os dados na nuvem e poder sincronizar com seus outros dispositivos.");
     }
     
     return @"";
@@ -226,7 +220,11 @@
     switch (indexPath.section) {
         case 0:
         {
-            //Dropbox
+            [[MPGoogle shared] sendEventWithCategory:@"Links"
+                                              action:@"Planos"
+                                               label:@"Planos"];
+            
+            [self performSegueWithIdentifier:@"iapViewController" sender:nil];
         }
             break;
         case 1:
@@ -234,11 +232,10 @@
             switch (indexPath.row) {
                 case 0:
                 {
-                    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-                    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Links"
-                                                                          action:@"Facebook"
-                                                                           label:@"Facebook"
-                                                                           value:nil] build]];
+                    [[MPGoogle shared] sendEventWithCategory:@"Links"
+                                                      action:@"Facebook"
+                                                       label:@"Facebook"];
+
                     NSURL *url = [NSURL URLWithString:kLinkFacebook];
                     if ([[UIApplication sharedApplication] canOpenURL:url]) {
                         [[UIApplication sharedApplication] openURL:url];
@@ -252,11 +249,10 @@
                     break;
                 case 1:
                 {
-                    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-                    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Links"
-                                                                          action:@"Email"
-                                                                           label:@"Email"
-                                                                           value:nil] build]];
+                    [[MPGoogle shared] sendEventWithCategory:@"Links"
+                                                      action:@"Email"
+                                                       label:@"Email"];
+                    
                     NSURL *url = [NSURL URLWithString:kLinkMail];
                     if ([[UIApplication sharedApplication] canOpenURL:url]) {
                         [[UIApplication sharedApplication] openURL:url];
@@ -265,45 +261,18 @@
                     break;
                 case 2:
                 {
-                    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-                    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Links"
-                                                                          action:@"Rate"
-                                                                           label:@"Rate"
-                                                                           value:nil] build]];
+                    [[MPGoogle shared] sendEventWithCategory:@"Links"
+                                                      action:@"Rate"
+                                                       label:@"Rate"];
                     
                     [Appirater rateApp];
-                    
-                    /*//553815375 - kTargetAppID
-                    //422347491 - Morbix
-                    //795757886 - MyPets Paid
-                    NSDictionary *parameters = [NSDictionary dictionaryWithObject:[MPTargets targetAppID]
-                                                                           forKey:SKStoreProductParameterITunesItemIdentifier];
-                    
-                    SKStoreProductViewController *tela = [[SKStoreProductViewController alloc] init];
-                    [tela setDelegate:self];
-                    [tela loadProductWithParameters:parameters
-                                    completionBlock:^(BOOL result, NSError *error) {
-                                        if (error) {
-                                            NSLog(@"%@",error.description);
-                                        }else{
-                                            
-                                        }
-                                    }];
-                    [self presentViewController:tela animated:YES completion:^{
-                        id tracker = [[GAI sharedInstance] defaultTracker];
-                        [tracker set:kGAIScreenName
-                               value:@"MyPets Free iTunes Screen"];
-                        [tracker send:[[GAIDictionaryBuilder createAppView] build]];
-                    }];*/
                 }
                     break;
                 case 3:
                 {
-                    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-                    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Links"
-                                                                          action:@"Morbix"
-                                                                           label:@"Morbix"
-                                                                           value:nil] build]];
+                    [[MPGoogle shared] sendEventWithCategory:@"Links"
+                                                      action:@"Morbix"
+                                                       label:@"Morbix"];
                     //553815375 - MyPets
                     //422347491 - Morbix
                     NSDictionary *parameters = [NSDictionary dictionaryWithObject:@"422347491"
@@ -320,10 +289,7 @@
                                         }
                                     }];
                     [self presentViewController:tela animated:YES completion:^{
-                        id tracker = [[GAI sharedInstance] defaultTracker];
-                        [tracker set:kGAIScreenName
-                               value:@"Morbix iTunes Screen"];
-                        [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+                        [[MPGoogle shared] sendTelaWithName:@"Morbix iTunes Screen"];
                     }];
                 }
                     break;
@@ -342,33 +308,7 @@
             break;
         case 3:
         {
-            id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-            [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Links"
-                                                                  action:@"MyPets Paid"
-                                                                   label:@"MyPets Paid"
-                                                                   value:nil] build]];
-            //553815375 - MyPets
-            //422347491 - Morbix
-            //795757886 - MyPets Paid
-            NSDictionary *parameters = [NSDictionary dictionaryWithObject:@"795757886"
-                                                                   forKey:SKStoreProductParameterITunesItemIdentifier];
-            
-            SKStoreProductViewController *tela = [[SKStoreProductViewController alloc] init];
-            [tela setDelegate:self];
-            [tela loadProductWithParameters:parameters
-                            completionBlock:^(BOOL result, NSError *error) {
-                                if (error) {
-                                    NSLog(@"%@",error.description);
-                                }else{
-                                    
-                                }
-                            }];
-            [self presentViewController:tela animated:YES completion:^{
-                id tracker = [[GAI sharedInstance] defaultTracker];
-                [tracker set:kGAIScreenName
-                       value:@"MyPets Paid iTunes Screen"];
-                [tracker send:[[GAIDictionaryBuilder createAppView] build]];
-            }];
+            [[[UIAlertView alloc] initWithTitle:@"Dropbox" message:NSLS(@"O recurso do Dropbox foi desativado, pois não estávamos tendo uma boa experiência com o serviço. Estamos preparando uma nova forma de você salvar os dados na nuvem e poder sincronizar com seus outros dispositivos.") delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
         }
             break;
             
@@ -389,6 +329,12 @@
 - (void)dropboxStatusUpdateNotification:(NSNotification *)notification
 {
     [self.tableView reloadData];
+}
+
+#pragma mark - UIActionSheetDelegate
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+
 }
 
 @end

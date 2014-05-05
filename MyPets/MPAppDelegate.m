@@ -15,6 +15,7 @@
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
 #import "MPDropboxNotification.h"
+#import "MyPetsIAPHelper.h"
 
 #define kSIZE 10
 
@@ -38,8 +39,10 @@
     
     
     [Parse setApplicationId:@"VOfi2AierOCqzfMPjFWkUeAVAM4tjT7ODkzqSCOm" clientKey:@"8byEO3HfZvG5vhaNnPeZ5jY76dW4AkWXl7acnV8D"];
-    
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    [PFFacebookUtils initializeFacebook];
+    
+    [MyPetsIAPHelper sharedInstance];
     
     [application registerForRemoteNotificationTypes:
      UIRemoteNotificationTypeBadge |
@@ -68,7 +71,60 @@
         NSLog(@"Recieved Notification [1]");
     }
     
+    
+    //[self teste];
+    
     return YES;
+}
+
+/*-(NSString *)getReceiptDate:(NSString*) featureId
+{
+    MKSKSubscriptionProduct *subscriptionProduct = [self.subscriptionProducts objectForKey:featureId];
+    
+    id jsonObject = [NSJSONSerialization JSONObjectWithData:subscriptionProduct.receipt options:NSJSONReadingAllowFragments error:nil];
+    NSData *receiptData = [NSData dataFromBase64String:[jsonObject objectForKey:@"latest_receipt"]];
+    
+    NSPropertyListFormat plistFormat;
+    NSDictionary *payloadDict = [NSPropertyListSerialization propertyListWithData:receiptData
+                                                                          options:NSPropertyListImmutable
+                                                                           format:&plistFormat
+                                                                            error:nil];
+    
+    receiptData = [NSData dataFromBase64String:[payloadDict objectForKey:@"purchase-info"]];
+    
+    NSDictionary *receiptDict = [NSPropertyListSerialization propertyListWithData:receiptData
+                                                                          options:NSPropertyListImmutable
+                                                                           format:&plistFormat
+                                                                            error:nil];
+    
+    return = [receiptDict objectForKey:@"expires-date-formatted"];
+}*/
+
+- (void)teste
+{
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"dbMyPets.sqlite"];
+    
+    NSData *dataSqlite = [NSData dataWithContentsOfURL:storeURL];
+    
+    if (dataSqlite) {
+        NSLog(@"\n\n---size: %@\n",[NSByteCountFormatter stringFromByteCount:dataSqlite.length countStyle:NSByteCountFormatterCountStyleFile]);
+    }
+    
+    //NSLog(@"\n\n---size: %f\n",dataSqlite.bytes);
+}
+
+#pragma mark - LocalNotification
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    return [FBAppCall handleOpenURL:url
+                  sourceApplication:sourceApplication
+                        withSession:[PFFacebookUtils session]];
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    [FBAppCall handleDidBecomeActiveWithSession:[PFFacebookUtils session]];
 }
 
 #pragma mark - LocalNotification
@@ -94,14 +150,14 @@
 }
 
 #pragma mark - Dropbox
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+/*- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
     DBAccount *account = [[DBAccountManager sharedManager] handleOpenURL:url];
     if (account) {
         return YES;
     }
     return NO;
-}
+}*/
 
 - (void)setSyncEnabled:(BOOL)enabled
 {
@@ -272,11 +328,6 @@
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     
     [Appirater appEnteredForeground:YES];
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

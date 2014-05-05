@@ -1,0 +1,198 @@
+/*
+ Localizable.strings
+ MyPets
+ 
+ Created by Datum Informatica on 11/09/12.
+ Copyright (c) 2012 Siemens. All rights reserved.
+ */
+
+////////////////////////////////////
+//////////////////PORTUGUES
+////////////////////////////////////
+
+"Meus Pets"        = "Meus Pets";
+"Macho"            = "Macho";
+"Fêmea"            = "Fêmea";
+"Editar"           = "Editar";
+"Canino"           = "Canino";
+"Felino"           = "Felino";
+"Outro"            = "Outro";
+
+"ano"   = "ano";
+"anos"  = "anos";
+"mês"   = "mês";
+"meses" = "meses";
+"dia"   = "dia";
+"dias"  = "dias";
+"Ano"   = "Ano";
+"Anos"  = "Anos";
+"Mês"   = "Mês";
+"Meses" = "meses";
+"Dia"   = "Dia";
+"Dias"  = "Dias";
+"anos humanos" = "anos humano";
+
+"dd.MM.yyyy - hh:mm a" = "dd.MM.yyyy - HH:mm";
+"dd.MM.yyyy hh:mm a" = "dd.MM.yyyy HH:mm";
+"dd.MM.yyyy"           = "dd.MM.yyyy";
+"dd.MM.yyyy hh:mm"     = "dd.MM.yyyy HH:mm";
+"hh:mm a"           = "HH:mm";
+
+"placeholderPetNome"       = "Exemplo: Rex, Mike";
+"placeholderPetNascimento" = "Exemplo: dd.mm.yyyy";
+"placeholderPetEspécie"    = "Exemplo: Canino, Felino";
+"placeholderPetRaça"       = "Exemplo: Labrador, Pérsa";
+"placeholderPetSexo"       = "Exemplo: Macho ou Fêmea";
+"placeholderPetNotas"      = "Exemplo: Notas";
+"placeholderPetData"       = "Exemplo: dd.mm.yyyy";
+"placeholderPetHora"       = "Exemplo: hh:mm";
+"placeholderPetMedicamento" = "Exemplo: Medicamento";
+"placeholderPetTipo"        = "Exemplo: Vermífugo";
+"placeholderDose"        = "Exemplo: 40ml ou 20g";
+"placeholderVeterinario"    = "Exemplo: Dra. Ana";
+"placeholderNotas"          = "Notas";
+"placeholderLembrete"       = "Exemplo: Nunca";
+"placeholderPeso"           = "Exemplo: 0.00";
+"Nome"                      = "Nome";
+"Nascimento"                = "Nascimento";
+"Espécie"                   = "Espécie";
+"Raça"                      = "Raça";
+"Sexo"                      = "Sexo";
+"Notas"                     = "Notas";
+"Hora"                      = "Hora";
+"Tipo"                      = "Tipo";
+"Dose"                      = "Dose";
+"Foto"                      = "Foto";
+"Nascimento e Sexo"         = "Nascimento e Sexo";
+"Espécie e Raça"            = "Espécie e Raça";
+"Toque na foto para editar" = "Toque na foto para editar";
+"Toque na foto para editar ou para mostrar em tela cheia" = "Toque na foto para editar ou para mostrar em tela cheia";
+"Carteiras e Calendários"   = "Carteiras e Calendários";
+"Próximos Eventos"          = "Próximos Eventos";
+"Eventos Passados"          = "Eventos Passados";
+
+"Adicionar"       = "Adicionar";
+"Alerta"          = "Alerta";
+"Apagar"          = "Apagar";
+"Deseja apagar"   = "Excluir";
+"Sem Registros"   = "Sem Registros";
+"Trocando a foto" = "Trocando a foto";
+"Trocando o selo" = "Trocando o selo";
+"Cancelar"        = "Cancelar";
+"Tirar um foto"   = "Tirar uma foto";
+"Pegar do álbum"  = "Pegar do álbum";
+"Adicionar o selo do fabricante" = "Adicionar o selo do fabricante";
+"Selo do Fabricante" = "Selo do Fabricante";
+"Carteira Vacinação" = "Carteira de Vacinação";
+"Carteira Vermífugo" = "Carteira de Vermífugo";
+"Agenda Consultas"   = "Agenda de Consultas";
+"Agenda Banhos"      = "Agenda de Banhos";
+"Agenda Medicamentos" = "Agenda Medicamentos";
+"Nunca"             = "Nunca";
+"Lembrete"          = "Lembrete";
+"Lembretes"          = "Lembretes";
+"Abrir"             = "Abrir";
+"Na hora do evento" = "Na hora do evento";
+"5 minutos antes"   = "5 minutos antes";
+"15 minutos antes"  = "15 minutos antes";
+"30 minutos antes"  = "30 minutos antes";
+"1 hora antes"      = "1 hora antes";
+"2 horas antes"     = "2 horas antes";
+"1 dia antes"       = "1 dia antes";
+"2 dias antes"      = "2 dias antes";
+"3 dias antes"      = "3 dias antes";
+"1 semana antes"    = "1 semana antes";
+"1 mês antes"       = "1 mês antes";
+"Banho"       = "Banho";
+"Medicamento" = "Medicamento";
+"Consulta"    = "Consulta";
+"Banhos"       = "Banhos";
+"Medicamentos" = "Medicamentos";
+"Consultas"    = "Consultas";
+"Veterinário" = "Veterinário";
+"Veterinário e Notas" = "Veterinário e Notas";
+"Dose e Notas" = "Dose e Notas";
+"Medicamento e Dose" = "Medicamento e Dose";
+"Data"        = "Data";
+"Data e Hora" = "Data e Hora";
+"Revacina"    = "Revacina";
+"Lembrete Revacina"    = "Lembrete Revacina";
+"Lembrete Reforço"    = "Lembrete Reforço";
+"Próximas Revacinas" = "Próximas Revacinas";
+"Próximos Reforços" = "Próximos Reforços";
+"Próximas Consultas" = "Próximas Consultas";
+"Próximos Banhos" = "Próximos Banhos";
+"Próximos Medicamentos" = "Próximos Medicamentos";
+"Próxima"     = "Próxima";
+"Vacinas"     = "Vacinas";
+"Vacina"     = "Vacina";
+"Vermífugo" = "Vermífugo";
+"Vermífugos" = "Vermífugos";
+"Peso" = "Peso";
+"Reforço" = "Reforço";
+"Reforços" = "Reforços";
+"Controle de Peso" = "Controle de Peso";
+"Data e Peso" = "Data e Peso";
+
+"Did you like MyPets?" = "Você gostou do MyPets?";
+"Rate %@" = "Avaliar %@";
+"No, thanks" = "Não";
+"Rate now %@" = "Sim";
+"Remember later" = "Perguntar depois";
+"Configuração" = "Configuração";
+"Salve seus dados na nuvem" = "Salve seus dados na nuvem";
+"Mostrar lembretes" = "Mostrar lembretes";
+
+"Curtir a nossa página" = "Curtir a nossa página";
+"Enviar um e-mail" = "Enviar um e-mail";
+"Avaliar o MyPets" = "Avaliar o MyPets";
+"Conhecer nossos outros apps" = "Conhecer nossos outros apps";
+"Contatos e Feedback" = "Contatos e Feedback";
+
+"Quer remover os anúncios?" = "Quer remover os anúncios?";
+"Lembretes Programados" = "Lembretes Programados";
+"Baixe o MyPets sem anúncios e sincronize seus dados com o Dropbox" = "Baixe o MyPets sem anúncios e sincronize seus dados com o Dropbox";
+"Ative o Dropbox para ele salvar os seus dados na nuvem e poder sincronizar com seus outros dispositivos automaticamente" = "Ative o Dropbox para ele salvar os seus dados na nuvem e poder sincronizar com seus outros dispositivos automaticamente";
+
+"Sincronizado com sucesso!" = "Sincronizado com sucesso!";
+"Sincronizando..." = "Sincronizando...";
+
+"Mostrar foto em tela cheia" = "Mostrar foto em tela cheia";
+
+
+/*
+"Meus Pets"        = "Meus Pets";
+"Eventos"          = "Eventos";
+"Instagram"        = "Instagram®";
+"Twitter"          = "Twitter®";
+"Sobre a AllTouch" = "Sobre a AllTouch";
+"Lista de Pets"    = "Lista de Pets";
+"Menu"             = "Menu";
+"Pets"             = "Pets";
+"Pet"              = "Pet";
+
+
+
+
+"Busca"         = "Busca";
+"Chat"          = "Chat";
+"Configurações" = "Configurações";
+
+"Error1" = "MyPets não consegue acessar a sua localização atual. \n\nPara visualizar outros pets próximos a você, vá nas configurações de localização do seu aparelho e ative o acesso para o MyPets.";
+"Error2" = "Não foi possível exibir o Twitter.";
+"Error3" = "Não foi possível exibir o Instagram.";
+
+"MENSAGEM_Instagram" = "Carregando informações do\nInstagram®";
+"MENSAGEM_Twitter"   = "Carregando informações do\nTwitter®";
+
+
+"iPad_btnRate.png" = "iPad_btnRate_PT.png";
+"iPad_btnMoreApps.png" = "iPad_btnMoreApps_PT.png";
+
+
+"inserir a espécie" = "inserir a espécie";
+"Avaliar o MyPets" = "Avaliar o MyPets";
+"Mais apps da Alltouch" = "Mais apps da Alltouch";
+"Versão" = "Versão";
+
+*/

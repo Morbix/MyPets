@@ -39,6 +39,7 @@
 + (id)shared;
 + (void)saveContext;
 - (void)loadAllPets;
+- (int)numberOfPets;
 
 #pragma mark - Animal
 - (Animal *)newAnimal;

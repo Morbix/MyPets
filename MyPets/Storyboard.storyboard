@@ -14,33 +14,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
-                            <tableViewSection headerTitle="Salve seus dados na nuvem" footerTitle="Ative o Dropbox para ele salvar os seus dados na nuvem e poder sincronizar com seus outros dispositivos automaticamente" id="vq0-he-9VT">
+                            <tableViewSection headerTitle="Acesso Premium" id="aXN-Cr-J2Z">
+                                <string key="footerTitle">Seja um usuário premium e cadastre quantos pets você precisar. Em breve teremos backup dos dados na nuvem, sincronismo com os outros dispositivos, acesso web e muito mais.</string>
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="mX7-uM-CGk">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="hdS-bM-4Wo">
                                         <rect key="frame" x="0.0" y="119" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mX7-uM-CGk" id="Xv2-c2-gx4">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hdS-bM-4Wo" id="Hhb-Ei-WmI">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dropbox" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0LH-eT-5Jq">
-                                                    <rect key="frame" x="36" y="11" width="67" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ver os planos do acesso Premium" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="rCn-uQ-4mb">
+                                                    <rect key="frame" x="10" y="4" width="280" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="8Of-2f-B9I">
-                                                    <rect key="frame" x="251" y="6" width="51" height="31"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <connections>
-                                                        <action selector="toggleSyncAction:" destination="3DH-C5-0Ny" eventType="valueChanged" id="uoN-wL-d1X"/>
-                                                    </connections>
-                                                </switch>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="207-dropbox.png" translatesAutoresizingMaskIntoConstraints="NO" id="Dqm-DH-Uhn">
-                                                    <rect key="frame" x="8" y="12" width="20" height="20"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -49,7 +38,7 @@
                             <tableViewSection headerTitle="Contatos e Feedback" id="daq-hR-FfZ">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="GbR-Yl-yE0">
-                                        <rect key="frame" x="0.0" y="271" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="305" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GbR-Yl-yE0" id="HHz-as-8Ud">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -69,7 +58,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="h5u-Db-jpE">
-                                        <rect key="frame" x="0.0" y="315" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="349" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h5u-Db-jpE" id="SYP-n2-XFB">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -89,7 +78,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="sC4-gp-0Cp">
-                                        <rect key="frame" x="0.0" y="359" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="393" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sC4-gp-0Cp" id="rRP-v0-Wdh">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -109,7 +98,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="1Wq-ff-NU3">
-                                        <rect key="frame" x="0.0" y="403" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="437" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Wq-ff-NU3" id="Elh-or-uLf">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -133,7 +122,7 @@
                             <tableViewSection headerTitle="Lembretes Programados" id="1Cd-L9-urv">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="hmA-60-Ybm">
-                                        <rect key="frame" x="0.0" y="495" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="529" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hmA-60-Ybm" id="XOy-Uk-0dZ">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -159,23 +148,32 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Quer remover os anúncios?" footerTitle="Baixe o MyPets sem anúncios e sincronize seus dados com o Dropbox" id="aXN-Cr-J2Z">
+                            <tableViewSection headerTitle="Salve seus dados na nuvem" id="vq0-he-9VT">
+                                <string key="footerTitle">O recurso do Dropbox foi desativado, pois não estávamos tendo uma experiência boa com o serviço. Estamos preparando uma nova forma de você salvar os dados na nuvem e poder sincronizar com seus outros dispositivos.</string>
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="hdS-bM-4Wo">
-                                        <rect key="frame" x="0.0" y="587" width="320" height="44"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="mX7-uM-CGk">
+                                        <rect key="frame" x="0.0" y="621" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hdS-bM-4Wo" id="Hhb-Ei-WmI">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mX7-uM-CGk" id="Xv2-c2-gx4">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MyPets - Pets Manager" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="242" translatesAutoresizingMaskIntoConstraints="NO" id="rCn-uQ-4mb">
-                                                    <rect key="frame" x="45" y="4" width="242" height="35"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dropbox" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0LH-eT-5Jq">
+                                                    <rect key="frame" x="36" y="11" width="67" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icone.png" translatesAutoresizingMaskIntoConstraints="NO" id="b5y-i1-6g9">
-                                                    <rect key="frame" x="8" y="8" width="29" height="29"/>
+                                                <switch opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="8Of-2f-B9I">
+                                                    <rect key="frame" x="251" y="6" width="51" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="toggleSyncAction:" destination="3DH-C5-0Ny" eventType="valueChanged" id="uoN-wL-d1X"/>
+                                                    </connections>
+                                                </switch>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="207-dropbox.png" translatesAutoresizingMaskIntoConstraints="NO" id="Dqm-DH-Uhn">
+                                                    <rect key="frame" x="8" y="12" width="20" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -192,19 +190,65 @@
                     <navigationItem key="navigationItem" title="Configuração" id="rFM-HX-Lam"/>
                     <connections>
                         <outlet property="badgeLembretes" destination="fXZ-3L-P8A" id="jD0-ju-rQM"/>
-                        <outlet property="imageIcone" destination="b5y-i1-6g9" id="VAX-iO-rIC"/>
                         <outlet property="labelAvaliar" destination="hAM-Dl-Zvq" id="d88-39-9mL"/>
                         <outlet property="labelEmail" destination="MM5-wD-j3o" id="CKG-8k-Cko"/>
                         <outlet property="labelFacebook" destination="C6d-ar-ZrA" id="fFM-lD-Yvy"/>
                         <outlet property="labelLembretes" destination="1Hb-Er-gZ7" id="oGE-i1-bVg"/>
                         <outlet property="labelOutrosApps" destination="8fV-Iy-dHa" id="KBw-Kb-nqe"/>
+                        <outlet property="labelPremium" destination="rCn-uQ-4mb" id="Idg-Lr-0r4"/>
                         <outlet property="syncSwitch" destination="8Of-2f-B9I" id="aon-s0-5Qb"/>
                         <segue destination="1hS-af-ZIC" kind="push" identifier="lembretesViewController" id="dgR-fW-BAk"/>
+                        <segue destination="9qr-NI-Kfw" kind="push" identifier="iapViewController" id="6nU-Uo-rgy"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oyN-1k-wlw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="369" y="68"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="jrE-Md-Qcl">
+            <objects>
+                <tableViewController storyboardIdentifier="iapViewController" id="9qr-NI-Kfw" customClass="MPIAPViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="L37-wE-I7x">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="uu0-hZ-LpV" detailTextLabel="EMs-h7-Ay7" style="IBUITableViewCellStyleSubtitle" id="64b-69-B1k">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="64b-69-B1k" id="S9J-I4-mG1">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uu0-hZ-LpV">
+                                            <rect key="frame" x="15" y="3" width="34" height="22"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="EMs-h7-Ay7">
+                                            <rect key="frame" x="15" y="25" width="43" height="15"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="9qr-NI-Kfw" id="ndl-Jn-RFS"/>
+                            <outlet property="delegate" destination="9qr-NI-Kfw" id="kMu-9N-5OB"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="ZS0-5P-CCw"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Kr-6w-a00" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="858" y="-530"/>
         </scene>
         <!--Lembretes View Controller - Lembretes-->
         <scene sceneID="fwf-7B-bnf">
@@ -385,6 +429,16 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Imk-8m-9Xc">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="319"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="barButtonRightTouched:" destination="nFB-w5-pFL" eventType="touchUpInside" id="akP-FX-DgB"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -2532,7 +2586,6 @@
         <image name="40-dialpad.png" width="22" height="22"/>
         <image name="dog.jpg" width="180" height="230"/>
         <image name="fotoDefault.png" width="136" height="136"/>
-        <image name="icone.png" width="29" height="29"/>
         <image name="menuBanho.png" width="56" height="50"/>
         <image name="menuConsulta.png" width="56" height="50"/>
         <image name="menuMedicamento.png" width="25" height="25"/>
@@ -2546,7 +2599,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="pqe-P3-D5G"/>
+        <segue reference="dgR-fW-BAk"/>
         <segue reference="PPw-ia-edl"/>
     </inferredMetricsTieBreakers>
 </document>

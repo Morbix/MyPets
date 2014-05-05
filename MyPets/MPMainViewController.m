@@ -25,12 +25,15 @@
 #import "UIImageView+WebCache.h"
 #import "MPDropboxNotification.h"
 #import "MPAppDelegate.h"
+#import "MyPetsIAPHelper.h"
+#import "MPGoogle.h"
+
 
 #define DropboxAppKey @"tnmjxymp32xgs8y"
 #define DropboxAppSecret @"czkt8b3dhrcj30b"
 
 
-@interface MPMainViewController ()
+@interface MPMainViewController () <UIAlertViewDelegate>
 {
     NSArray *arrayPets;
     BOOL CALLBACK_LOCAL;
@@ -178,6 +181,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callbackPetsCompleted:) name:MTPSNotificationPets object:nil];
 
+
     arrayPets = [NSArray new];
     
     DIV = 1;
@@ -193,15 +197,12 @@
     
     ((MPCoreDataService *)[MPCoreDataService shared]).animalSelected = nil;
     
-    id tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker set:kGAIScreenName
-           value:@"Main Screen"];
-    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+    [[MPGoogle shared] sendTelaWithName:@"Main Screen"];
 }
 
 - (void)delayToLoad
 {
-    static dispatch_once_t onceToken;
+    /*static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [MPDropboxNotification shared];
         
@@ -211,7 +212,7 @@
         if ([accountManager linkedAccount]) {
             [(MPAppDelegate *)[[UIApplication sharedApplication] delegate] setSyncEnabled:YES];
         }
-    });
+    });*/
     
     
     if ([MPTargets targetAds] && !ADS_ADDED) {
@@ -233,17 +234,25 @@
 #pragma mark - IBAction
 - (IBAction)barButtonRightTouched:(id)sender
 {
-    [[MPCoreDataService shared] setAnimalSelected:[[MPCoreDataService shared] newAnimal]];
-    
-    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Adicionar"     // Event category (required)
-                                                          action:@"Novo Pet"  // Event action (required)
-                                                           label:@"Novo Pet"          // Event label
-                                                           value:[NSNumber numberWithInteger:[[MPCoreDataService shared] arrayPets].count]] build]];
-    
-    [Appirater userDidSignificantEvent:YES];
-    
-    [self performSegueWithIdentifier:@"petViewController" sender:nil];
+    if (!([[MPCoreDataService shared] numberOfPets] < 3) && !([[MyPetsIAPHelper sharedInstance] isPremium])) {
+        [[[UIAlertView alloc] initWithTitle:NSLS(@"Acesso Premium")
+                                   message:NSLS(@"Você atingiu o limite máximo de 3 pets. Assine o MyPets Premium para ter acesso a todos os recursos e cadastro de pets ilimitado.")
+                                  delegate:self
+                         cancelButtonTitle:NSLS(@"Cancelar")
+                         otherButtonTitles:NSLS(@"Ver planos"), nil] show];
+    }else{
+        [[MPCoreDataService shared] setAnimalSelected:[[MPCoreDataService shared] newAnimal]];
+        
+        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Adicionar"     // Event category (required)
+                                                              action:@"Novo Pet"  // Event action (required)
+                                                               label:@"Novo Pet"          // Event label
+                                                               value:[NSNumber numberWithInteger:[[MPCoreDataService shared] arrayPets].count]] build]];
+        
+        [Appirater userDidSignificantEvent:YES];
+        
+        [self performSegueWithIdentifier:@"petViewController" sender:nil];
+    }
 }
 
 - (IBAction)barButtonLeftTouched:(id)sender
@@ -343,15 +352,23 @@
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    MPCellMainPet *cellView = (MPCellMainPet *)[[self.collection cellForItemAtIndexPath:indexPath] viewWithTag:10];
-    
-    [MPAnimations animationPressDown:cellView];
-    
-    //Animal *animal = [[[MPCoreDataService shared] arrayPets] objectAtIndex:indexPath.row];
-    Animal *animal = [arrayPets objectAtIndex:indexPath.row];
-    [[MPCoreDataService shared] setAnimalSelected:animal];
-    
-    [self performSegueWithIdentifier:@"petViewController" sender:nil];
+    if (!([[MPCoreDataService shared] numberOfPets] < 3) && !([[MyPetsIAPHelper sharedInstance] isPremium])) {
+        [[[UIAlertView alloc] initWithTitle:NSLS(@"Acesso Premium")
+                                    message:NSLS(@"Você atingiu o limite máximo de 3 pets. Assine o MyPets Premium para ter acesso a todos os recursos e cadastro de pets ilimitado.")
+                                   delegate:self
+                          cancelButtonTitle:NSLS(@"Cancelar")
+                          otherButtonTitles:NSLS(@"Ver planos"), nil] show];
+    }else{
+        MPCellMainPet *cellView = (MPCellMainPet *)[[self.collection cellForItemAtIndexPath:indexPath] viewWithTag:10];
+        
+        [MPAnimations animationPressDown:cellView];
+        
+        //Animal *animal = [[[MPCoreDataService shared] arrayPets] objectAtIndex:indexPath.row];
+        Animal *animal = [arrayPets objectAtIndex:indexPath.row];
+        [[MPCoreDataService shared] setAnimalSelected:animal];
+        
+        [self performSegueWithIdentifier:@"petViewController" sender:nil];
+    }
 }
 
 
@@ -411,6 +428,15 @@
             arrayPets = [NSArray arrayWithArray:[[MPCoreDataService shared] arrayPets]];
         }
         [self.collection reloadData];
+    }
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        UIViewController *tela = [[self storyboard] instantiateViewControllerWithIdentifier:@"iapViewController"];
+        
+        [self.navigationController pushViewController:tela animated:YES];
     }
 }
 @end

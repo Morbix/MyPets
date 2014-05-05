@@ -170,6 +170,11 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:MTPSNotificationPets object:nil userInfo:error ? [NSDictionary dictionaryWithObjectsAndKeys:error,@"error", nil] : nil];
 }
 
+- (int)numberOfPets
+{
+    return self.arrayPets.count;
+}
+
 #pragma mark - Animal
 - (Animal *)newAnimal
 {
