@@ -86,7 +86,7 @@
 {
     [super viewWillAppear:animated];
     
-    self.syncSwitch.on = [[DBAccountManager sharedManager] linkedAccount] != nil;
+    //self.syncSwitch.on = [[DBAccountManager sharedManager] linkedAccount] != nil;
     [self.badgeLembretes setText:[NSString stringWithFormat:@"%d", [MPLembretes getCount]]];
 }
 
@@ -106,7 +106,9 @@
 #pragma mark - IBActions
 - (IBAction)toggleSyncAction:(id)sender
 {
-    DBAccountManager *accountManager = [DBAccountManager sharedManager];
+    return;
+    
+    /*DBAccountManager *accountManager = [DBAccountManager sharedManager];
     DBAccount *account = [accountManager linkedAccount];
     
     if ([sender isOn]) {
@@ -141,7 +143,7 @@
                                                               action:@"Desconectou"
                                                                label:@"Desconectou"
                                                                value:nil] build]];
-    }
+    }*/
 }
 
 - (void)didReceiveMemoryWarning
@@ -197,7 +199,7 @@
 -(NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
     if (section == 0) {
-        if ([[DBAccountManager sharedManager] linkedAccount] != nil) {
+        /*if ([[DBAccountManager sharedManager] linkedAccount] != nil) {
             PKSyncManager *syncManger = [(MPAppDelegate *)[[UIApplication sharedApplication] delegate] syncManager];
             if (syncManger) {
                 if (syncManger.datastore.status > 1) { //!= DBDatastoreConnected
@@ -206,8 +208,9 @@
                     return NSLS(@"Sincronizado com sucesso!");
                 }
             }
-        }
-        return NSLS(@"Ative o Dropbox para ele salvar os seus dados na nuvem e poder sincronizar com seus outros dispositivos automaticamente");
+        }*/
+
+        return NSLS(@"O Dropbox foi desativado. Estamos preparando uma nova forma para guardar seus dados.");
     }else if (section == 1){
         return NSLS(@"");
     }else if (section == 2){

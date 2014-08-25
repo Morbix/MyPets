@@ -70,11 +70,6 @@
                                                object:nil];
     
     [self carregarTeclados];
-    
-    if ([MPTargets targetAds]) {
-        //self.canDisplayBannerAds = YES;
-        ads = [[MPAds alloc] initWithScrollView:self.tableView viewController:self admobID:@"ca-app-pub-8687233994493144/1661841561"];
-    }
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -83,6 +78,13 @@
     [tracker set:kGAIScreenName
            value:@"Pet Edit Screen"];
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+    
+    if ([MPTargets targetAds]) {
+        //self.canDisplayBannerAds = YES;
+        if (!ads) {
+            ads = [[MPAds alloc] initWithScrollView:self.tableView viewController:self admobID:@"ca-app-pub-8687233994493144/1661841561"];
+        }
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated

@@ -46,11 +46,6 @@
 
     self.title = NSLS(@"Carteira Vacinação");
     self.navigationItem.title = self.title;
-    
-    if ([MPTargets targetAds]) {
-        //self.canDisplayBannerAds = YES;
-        ads = [[MPAds alloc] initWithScrollView:self.tableView viewController:self admobID:@"ca-app-pub-8687233994493144/7708375167"];
-    }
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -61,6 +56,13 @@
     [tracker set:kGAIScreenName
            value:@"Vacinas Screen"];
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+    
+    if ([MPTargets targetAds]) {
+        //self.canDisplayBannerAds = YES;
+        if (!ads) {
+            ads = [[MPAds alloc] initWithScrollView:self.tableView viewController:self admobID:@"ca-app-pub-8687233994493144/7708375167"];
+        }
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated

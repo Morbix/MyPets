@@ -201,7 +201,7 @@
 
 - (void)delayToLoad
 {
-    static dispatch_once_t onceToken;
+    /*static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [MPDropboxNotification shared];
         
@@ -211,7 +211,7 @@
         if ([accountManager linkedAccount]) {
             [(MPAppDelegate *)[[UIApplication sharedApplication] delegate] setSyncEnabled:YES];
         }
-    });
+    });*/
     
     
     if ([MPTargets targetAds] && !ADS_ADDED) {
