@@ -69,7 +69,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dropboxStatusUpdateNotification:) name:MTPSNotificationSyncUpdate object:nil];
     
     if ([MPTargets targetAds]) {
-        self.canDisplayBannerAds = YES;
+        //self.canDisplayBannerAds = YES;
         ads = [[MPAds alloc] initWithScrollView:self.tableView viewController:self admobID:@"ca-app-pub-8687233994493144/3138574766"];
     }
 }

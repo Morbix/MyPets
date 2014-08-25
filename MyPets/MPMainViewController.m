@@ -216,7 +216,7 @@
     
     if ([MPTargets targetAds] && !ADS_ADDED) {
         ADS_ADDED = TRUE;
-        self.canDisplayBannerAds = YES;
+        //self.canDisplayBannerAds = YES;
         ads = [[MPAds alloc] initWithScrollView:self.collection viewController:self admobID:@"ca-app-pub-8687233994493144/1806932365"];
     }
     

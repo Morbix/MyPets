@@ -133,7 +133,6 @@
 		E60CC1B01881A80C00826B59 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6952F411870F7480050FB64 /* AdSupport.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		E60CC1B11881A80C00826B59 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6952F421870F7480050FB64 /* iAd.framework */; };
 		E60CC1B21881A80C00826B59 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E684CE77187137D30019C4BE /* FacebookSDK.framework */; };
-		E60CC1B31881A80C00826B59 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E684CE73187133660019C4BE /* libGoogleAdMobAds.a */; };
 		E60CC1B41881A80C00826B59 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6952F3D1870F7300050FB64 /* AudioToolbox.framework */; };
 		E60CC1B51881A80C00826B59 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6952F3B1870F7270050FB64 /* MessageUI.framework */; };
 		E60CC1B61881A80C00826B59 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6952F391870F71E0050FB64 /* SystemConfiguration.framework */; };
@@ -234,6 +233,10 @@
 		E60CC2441883385F00826B59 /* MPPeso.m in Sources */ = {isa = PBXBuildFile; fileRef = E60CC2421883385F00826B59 /* MPPeso.m */; };
 		E60CC249188352B600826B59 /* icone.png in Resources */ = {isa = PBXBuildFile; fileRef = E60CC20D1881DB8200826B59 /* icone.png */; };
 		E60CC24A188352BE00826B59 /* icone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E60CC20E1881DB8200826B59 /* icone@2x.png */; };
+		E62E379119ABC27100537B9D /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E62E379019ABC27100537B9D /* libGoogleAdMobAds.a */; };
+		E62E379219ABC27100537B9D /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E62E379019ABC27100537B9D /* libGoogleAdMobAds.a */; };
+		E62E379619ABC3E800537B9D /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E62E379519ABC3E800537B9D /* CoreTelephony.framework */; };
+		E62E379719ABC3EE00537B9D /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E62E379519ABC3E800537B9D /* CoreTelephony.framework */; };
 		E63443D618E257D50086332D /* MPPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DFE25418CE2AE500F3F5F9 /* MPPhotoViewController.m */; };
 		E63DB41818626BE100094368 /* vacinaDefault.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E63DB41618626BE100094368 /* vacinaDefault.jpg */; };
 		E63DB41918626BE100094368 /* vacinaDefault@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E63DB41718626BE100094368 /* vacinaDefault@2x.jpg */; };
@@ -253,7 +256,6 @@
 		E644BB4B187E27F500247278 /* PKSyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E644BB48187E27F500247278 /* PKSyncManager.m */; };
 		E644BB54187E2FB400247278 /* MPConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E644BB53187E2FB400247278 /* MPConfigViewController.m */; };
 		E684CE6B187131670019C4BE /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E684CE6A187131670019C4BE /* AVFoundation.framework */; };
-		E684CE74187133660019C4BE /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E684CE73187133660019C4BE /* libGoogleAdMobAds.a */; };
 		E684CE76187136FC0019C4BE /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E684CE75187136FC0019C4BE /* Accounts.framework */; };
 		E684CE78187137D30019C4BE /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E684CE77187137D30019C4BE /* FacebookSDK.framework */; };
 		E6952F081867CA2F0050FB64 /* MPLembretes.m in Sources */ = {isa = PBXBuildFile; fileRef = E6952F071867CA2F0050FB64 /* MPLembretes.m */; };
@@ -453,6 +455,20 @@
 		E60CC23E188331E800826B59 /* MPPesoEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPesoEditViewController.m; sourceTree = "<group>"; };
 		E60CC2411883385F00826B59 /* MPPeso.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPeso.h; sourceTree = "<group>"; };
 		E60CC2421883385F00826B59 /* MPPeso.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPeso.m; sourceTree = "<group>"; };
+		E62E378419ABC27100537B9D /* GADAdMobExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdMobExtras.h; sourceTree = "<group>"; };
+		E62E378519ABC27100537B9D /* GADAdNetworkExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdNetworkExtras.h; sourceTree = "<group>"; };
+		E62E378619ABC27100537B9D /* GADAdSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSize.h; sourceTree = "<group>"; };
+		E62E378719ABC27100537B9D /* GADBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerView.h; sourceTree = "<group>"; };
+		E62E378819ABC27100537B9D /* GADBannerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerViewDelegate.h; sourceTree = "<group>"; };
+		E62E378919ABC27100537B9D /* GADInAppPurchase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInAppPurchase.h; sourceTree = "<group>"; };
+		E62E378A19ABC27100537B9D /* GADInAppPurchaseDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInAppPurchaseDelegate.h; sourceTree = "<group>"; };
+		E62E378B19ABC27100537B9D /* GADInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitial.h; sourceTree = "<group>"; };
+		E62E378C19ABC27100537B9D /* GADInterstitialDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitialDelegate.h; sourceTree = "<group>"; };
+		E62E378D19ABC27100537B9D /* GADModules.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADModules.h; sourceTree = "<group>"; };
+		E62E378E19ABC27100537B9D /* GADRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequest.h; sourceTree = "<group>"; };
+		E62E378F19ABC27100537B9D /* GADRequestError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequestError.h; sourceTree = "<group>"; };
+		E62E379019ABC27100537B9D /* libGoogleAdMobAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAdMobAds.a; sourceTree = "<group>"; };
+		E62E379519ABC3E800537B9D /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		E63DB41618626BE100094368 /* vacinaDefault.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = vacinaDefault.jpg; sourceTree = "<group>"; };
 		E63DB41718626BE100094368 /* vacinaDefault@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "vacinaDefault@2x.jpg"; sourceTree = "<group>"; };
 		E63DB41A1862721A00094368 /* UIImage+ResizeAndCrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ResizeAndCrop.h"; sourceTree = "<group>"; };
@@ -483,25 +499,9 @@
 		E644BB52187E2FB400247278 /* MPConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPConfigViewController.h; sourceTree = "<group>"; };
 		E644BB53187E2FB400247278 /* MPConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPConfigViewController.m; sourceTree = "<group>"; };
 		E644BB55187E4B2300247278 /* Model_5_for_iOS7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model_5_for_iOS7.xcdatamodel; sourceTree = "<group>"; };
-		E684CE5B18712F300019C4BE /* GADAdMobExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdMobExtras.h; sourceTree = "<group>"; };
-		E684CE5C18712F300019C4BE /* GADAdNetworkExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdNetworkExtras.h; sourceTree = "<group>"; };
-		E684CE5D18712F300019C4BE /* GADAdSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSize.h; sourceTree = "<group>"; };
-		E684CE5E18712F300019C4BE /* GADBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerView.h; sourceTree = "<group>"; };
-		E684CE5F18712F300019C4BE /* GADBannerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerViewDelegate.h; sourceTree = "<group>"; };
-		E684CE6018712F300019C4BE /* GADInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitial.h; sourceTree = "<group>"; };
-		E684CE6118712F300019C4BE /* GADInterstitialDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitialDelegate.h; sourceTree = "<group>"; };
-		E684CE6218712F300019C4BE /* GADRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequest.h; sourceTree = "<group>"; };
-		E684CE6318712F300019C4BE /* GADRequestError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequestError.h; sourceTree = "<group>"; };
 		E684CE6618712F680019C4BE /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		E684CE6818712F8D0019C4BE /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		E684CE6A187131670019C4BE /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		E684CE6D187133520019C4BE /* GADCustomEventBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADCustomEventBanner.h; sourceTree = "<group>"; };
-		E684CE6E187133520019C4BE /* GADCustomEventBannerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADCustomEventBannerDelegate.h; sourceTree = "<group>"; };
-		E684CE6F187133520019C4BE /* GADCustomEventExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADCustomEventExtras.h; sourceTree = "<group>"; };
-		E684CE70187133520019C4BE /* GADCustomEventInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADCustomEventInterstitial.h; sourceTree = "<group>"; };
-		E684CE71187133520019C4BE /* GADCustomEventInterstitialDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADCustomEventInterstitialDelegate.h; sourceTree = "<group>"; };
-		E684CE72187133520019C4BE /* GADCustomEventRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADCustomEventRequest.h; sourceTree = "<group>"; };
-		E684CE73187133660019C4BE /* libGoogleAdMobAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAdMobAds.a; sourceTree = "<group>"; };
 		E684CE75187136FC0019C4BE /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		E684CE77187137D30019C4BE /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		E6952F061867CA2F0050FB64 /* MPLembretes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPLembretes.h; sourceTree = "<group>"; };
@@ -622,6 +622,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E62E379619ABC3E800537B9D /* CoreTelephony.framework in Frameworks */,
 				E644BB3C187E1FEF00247278 /* libc++.dylib in Frameworks */,
 				E684CE76187136FC0019C4BE /* Accounts.framework in Frameworks */,
 				E684CE6B187131670019C4BE /* AVFoundation.framework in Frameworks */,
@@ -636,7 +637,7 @@
 				E6952F431870F7480050FB64 /* AdSupport.framework in Frameworks */,
 				E6952F441870F7480050FB64 /* iAd.framework in Frameworks */,
 				E684CE78187137D30019C4BE /* FacebookSDK.framework in Frameworks */,
-				E684CE74187133660019C4BE /* libGoogleAdMobAds.a in Frameworks */,
+				E62E379119ABC27100537B9D /* libGoogleAdMobAds.a in Frameworks */,
 				E6952F3E1870F7300050FB64 /* AudioToolbox.framework in Frameworks */,
 				E6952F3C1870F7270050FB64 /* MessageUI.framework in Frameworks */,
 				E6952F3A1870F71E0050FB64 /* SystemConfiguration.framework in Frameworks */,
@@ -654,6 +655,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E62E379719ABC3EE00537B9D /* CoreTelephony.framework in Frameworks */,
 				E60CC1A51881A80C00826B59 /* libc++.dylib in Frameworks */,
 				E60CC1A61881A80C00826B59 /* Accounts.framework in Frameworks */,
 				E60CC1A71881A80C00826B59 /* AVFoundation.framework in Frameworks */,
@@ -668,7 +670,7 @@
 				E60CC1B01881A80C00826B59 /* AdSupport.framework in Frameworks */,
 				E60CC1B11881A80C00826B59 /* iAd.framework in Frameworks */,
 				E60CC1B21881A80C00826B59 /* FacebookSDK.framework in Frameworks */,
-				E60CC1B31881A80C00826B59 /* libGoogleAdMobAds.a in Frameworks */,
+				E62E379219ABC27100537B9D /* libGoogleAdMobAds.a in Frameworks */,
 				E60CC1B41881A80C00826B59 /* AudioToolbox.framework in Frameworks */,
 				E60CC1B51881A80C00826B59 /* MessageUI.framework in Frameworks */,
 				E60CC1B61881A80C00826B59 /* SystemConfiguration.framework in Frameworks */,
@@ -738,6 +740,7 @@
 		A78D0724181899F600DC64CD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E62E379519ABC3E800537B9D /* CoreTelephony.framework */,
 				E644BB3B187E1FEF00247278 /* libc++.dylib */,
 				E644BB39187E1FCF00247278 /* Dropbox.framework */,
 				E684CE77187137D30019C4BE /* FacebookSDK.framework */,
@@ -775,42 +778,7 @@
 				A78D075918189B4D00DC64CD /* Storyboard.storyboard */,
 				A78D0736181899F600DC64CD /* MPAppDelegate.h */,
 				A78D0737181899F600DC64CD /* MPAppDelegate.m */,
-				A7A1332C181B2B2E00D7D016 /* MPMainViewController.h */,
-				A7A1332D181B2B2E00D7D016 /* MPMainViewController.m */,
-				E60554611857E71C00D11CE9 /* MPPetViewController.h */,
-				E60554621857E71C00D11CE9 /* MPPetViewController.m */,
-				E6D47AD1185BF028009C2905 /* MPPetEditViewController.h */,
-				E6D47AD2185BF028009C2905 /* MPPetEditViewController.m */,
-				E6D47AED1861143E009C2905 /* MPVacinasViewController.h */,
-				E6D47AEE1861143E009C2905 /* MPVacinasViewController.m */,
-				E6D47AF9186120D6009C2905 /* MPVacinaEditViewController.h */,
-				E6D47AFA186120D6009C2905 /* MPVacinaEditViewController.m */,
-				E6D47AF01861144B009C2905 /* MPVermifugosViewController.h */,
-				E6D47AF11861144B009C2905 /* MPVermifugosViewController.m */,
-				E6952F09186B143F0050FB64 /* MPVermifugoEditViewController.h */,
-				E6952F0A186B143F0050FB64 /* MPVermifugoEditViewController.m */,
-				E6D47AF318611456009C2905 /* MPConsultasViewController.h */,
-				E6D47AF418611456009C2905 /* MPConsultasViewController.m */,
-				E6952F13186BC26A0050FB64 /* MPConsultaEditViewController.h */,
-				E6952F14186BC26A0050FB64 /* MPConsultaEditViewController.m */,
-				E6D47AF618611461009C2905 /* MPBanhosViewController.h */,
-				E6D47AF718611461009C2905 /* MPBanhosViewController.m */,
-				E6952F16186BC2770050FB64 /* MPBanhoEditViewController.h */,
-				E6952F17186BC2770050FB64 /* MPBanhoEditViewController.m */,
-				E6952F10186BBD2F0050FB64 /* MPMedicamentosViewController.h */,
-				E6952F11186BBD2F0050FB64 /* MPMedicamentosViewController.m */,
-				E6952F19186BC2840050FB64 /* MPMedicamentoEditViewController.h */,
-				E6952F1A186BC2840050FB64 /* MPMedicamentoEditViewController.m */,
-				E60CC2391883313300826B59 /* MPPesosViewController.h */,
-				E60CC23A1883313300826B59 /* MPPesosViewController.m */,
-				E60CC23D188331E800826B59 /* MPPesoEditViewController.h */,
-				E60CC23E188331E800826B59 /* MPPesoEditViewController.m */,
-				E6952F21186E39810050FB64 /* MPLembretesViewController.h */,
-				E6952F22186E39810050FB64 /* MPLembretesViewController.m */,
-				E644BB52187E2FB400247278 /* MPConfigViewController.h */,
-				E644BB53187E2FB400247278 /* MPConfigViewController.m */,
-				E6DFE25318CE2AE500F3F5F9 /* MPPhotoViewController.h */,
-				E6DFE25418CE2AE500F3F5F9 /* MPPhotoViewController.m */,
+				E62E379319ABC29C00537B9D /* Controllers */,
 				A71ABC5318316F150039DF25 /* CoreData Classes */,
 				A7A1332F181B2C5F00D7D016 /* Imagens */,
 				A7A132FB181B21C500D7D016 /* Classes */,
@@ -840,8 +808,6 @@
 			children = (
 				A7A13329181B2A3000D7D016 /* MPLibrary.h */,
 				A7A1332A181B2A3000D7D016 /* MPLibrary.m */,
-				E63DB41A1862721A00094368 /* UIImage+ResizeAndCrop.h */,
-				E63DB41B1862721A00094368 /* UIImage+ResizeAndCrop.m */,
 				E605548118594C0000D11CE9 /* MPAnimations.h */,
 				E605548218594C0000D11CE9 /* MPAnimations.m */,
 				E6D47ACE185AA226009C2905 /* MPHumanAge.h */,
@@ -864,6 +830,7 @@
 		A7A132FC181B21CA00D7D016 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				E62E379419ABC2AE00537B9D /* ResizeAndCrop */,
 				E6B6AFD81894B1F500AA5DAD /* appirater-master */,
 				E6B6AFCF18936C6E00AA5DAD /* AJNotificationView */,
 				E60CC211188327F400826B59 /* PNChart */,
@@ -1024,6 +991,58 @@
 			path = ThirdPart;
 			sourceTree = "<group>";
 		};
+		E62E379319ABC29C00537B9D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A7A1332C181B2B2E00D7D016 /* MPMainViewController.h */,
+				A7A1332D181B2B2E00D7D016 /* MPMainViewController.m */,
+				E60554611857E71C00D11CE9 /* MPPetViewController.h */,
+				E60554621857E71C00D11CE9 /* MPPetViewController.m */,
+				E6D47AD1185BF028009C2905 /* MPPetEditViewController.h */,
+				E6D47AD2185BF028009C2905 /* MPPetEditViewController.m */,
+				E6D47AED1861143E009C2905 /* MPVacinasViewController.h */,
+				E6D47AEE1861143E009C2905 /* MPVacinasViewController.m */,
+				E6D47AF9186120D6009C2905 /* MPVacinaEditViewController.h */,
+				E6D47AFA186120D6009C2905 /* MPVacinaEditViewController.m */,
+				E6D47AF01861144B009C2905 /* MPVermifugosViewController.h */,
+				E6D47AF11861144B009C2905 /* MPVermifugosViewController.m */,
+				E6952F09186B143F0050FB64 /* MPVermifugoEditViewController.h */,
+				E6952F0A186B143F0050FB64 /* MPVermifugoEditViewController.m */,
+				E6D47AF318611456009C2905 /* MPConsultasViewController.h */,
+				E6D47AF418611456009C2905 /* MPConsultasViewController.m */,
+				E6952F13186BC26A0050FB64 /* MPConsultaEditViewController.h */,
+				E6952F14186BC26A0050FB64 /* MPConsultaEditViewController.m */,
+				E6D47AF618611461009C2905 /* MPBanhosViewController.h */,
+				E6D47AF718611461009C2905 /* MPBanhosViewController.m */,
+				E6952F16186BC2770050FB64 /* MPBanhoEditViewController.h */,
+				E6952F17186BC2770050FB64 /* MPBanhoEditViewController.m */,
+				E6952F10186BBD2F0050FB64 /* MPMedicamentosViewController.h */,
+				E6952F11186BBD2F0050FB64 /* MPMedicamentosViewController.m */,
+				E6952F19186BC2840050FB64 /* MPMedicamentoEditViewController.h */,
+				E6952F1A186BC2840050FB64 /* MPMedicamentoEditViewController.m */,
+				E60CC2391883313300826B59 /* MPPesosViewController.h */,
+				E60CC23A1883313300826B59 /* MPPesosViewController.m */,
+				E60CC23D188331E800826B59 /* MPPesoEditViewController.h */,
+				E60CC23E188331E800826B59 /* MPPesoEditViewController.m */,
+				E6952F21186E39810050FB64 /* MPLembretesViewController.h */,
+				E6952F22186E39810050FB64 /* MPLembretesViewController.m */,
+				E644BB52187E2FB400247278 /* MPConfigViewController.h */,
+				E644BB53187E2FB400247278 /* MPConfigViewController.m */,
+				E6DFE25318CE2AE500F3F5F9 /* MPPhotoViewController.h */,
+				E6DFE25418CE2AE500F3F5F9 /* MPPhotoViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		E62E379419ABC2AE00537B9D /* ResizeAndCrop */ = {
+			isa = PBXGroup;
+			children = (
+				E63DB41A1862721A00094368 /* UIImage+ResizeAndCrop.h */,
+				E63DB41B1862721A00094368 /* UIImage+ResizeAndCrop.m */,
+			);
+			name = ResizeAndCrop;
+			sourceTree = "<group>";
+		};
 		E63DB41D18627C0A00094368 /* Lixo */ = {
 			isa = PBXGroup;
 			children = (
@@ -1054,33 +1073,22 @@
 			path = ParcelKit;
 			sourceTree = "<group>";
 		};
-		E684CE6C187133520019C4BE /* Mediation */ = {
-			isa = PBXGroup;
-			children = (
-				E684CE6D187133520019C4BE /* GADCustomEventBanner.h */,
-				E684CE6E187133520019C4BE /* GADCustomEventBannerDelegate.h */,
-				E684CE6F187133520019C4BE /* GADCustomEventExtras.h */,
-				E684CE70187133520019C4BE /* GADCustomEventInterstitial.h */,
-				E684CE71187133520019C4BE /* GADCustomEventInterstitialDelegate.h */,
-				E684CE72187133520019C4BE /* GADCustomEventRequest.h */,
-			);
-			path = Mediation;
-			sourceTree = "<group>";
-		};
 		E6952F261870F6D60050FB64 /* AdMob */ = {
 			isa = PBXGroup;
 			children = (
-				E684CE6C187133520019C4BE /* Mediation */,
-				E684CE5B18712F300019C4BE /* GADAdMobExtras.h */,
-				E684CE5C18712F300019C4BE /* GADAdNetworkExtras.h */,
-				E684CE5D18712F300019C4BE /* GADAdSize.h */,
-				E684CE5E18712F300019C4BE /* GADBannerView.h */,
-				E684CE5F18712F300019C4BE /* GADBannerViewDelegate.h */,
-				E684CE6018712F300019C4BE /* GADInterstitial.h */,
-				E684CE6118712F300019C4BE /* GADInterstitialDelegate.h */,
-				E684CE6218712F300019C4BE /* GADRequest.h */,
-				E684CE6318712F300019C4BE /* GADRequestError.h */,
-				E684CE73187133660019C4BE /* libGoogleAdMobAds.a */,
+				E62E378419ABC27100537B9D /* GADAdMobExtras.h */,
+				E62E378519ABC27100537B9D /* GADAdNetworkExtras.h */,
+				E62E378619ABC27100537B9D /* GADAdSize.h */,
+				E62E378719ABC27100537B9D /* GADBannerView.h */,
+				E62E378819ABC27100537B9D /* GADBannerViewDelegate.h */,
+				E62E378919ABC27100537B9D /* GADInAppPurchase.h */,
+				E62E378A19ABC27100537B9D /* GADInAppPurchaseDelegate.h */,
+				E62E378B19ABC27100537B9D /* GADInterstitial.h */,
+				E62E378C19ABC27100537B9D /* GADInterstitialDelegate.h */,
+				E62E378D19ABC27100537B9D /* GADModules.h */,
+				E62E378E19ABC27100537B9D /* GADRequest.h */,
+				E62E378F19ABC27100537B9D /* GADRequestError.h */,
+				E62E379019ABC27100537B9D /* libGoogleAdMobAds.a */,
 			);
 			name = AdMob;
 			sourceTree = "<group>";
@@ -1668,7 +1676,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/HP/Developer/MyPets\\ 2.0/MyPets",
+					/Users/HP/Developer/MyPets,
+					2.0/MyPets,
+					"$(PROJECT_DIR)/MyPets",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1699,7 +1709,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/HP/Developer/MyPets\\ 2.0/MyPets",
+					/Users/HP/Developer/MyPets,
+					2.0/MyPets,
+					"$(PROJECT_DIR)/MyPets",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
@@ -1732,7 +1744,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/HP/Developer/MyPets\\ 2.0/MyPets",
+					/Users/HP/Developer/MyPets,
+					2.0/MyPets,
+					"$(PROJECT_DIR)/MyPets",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1765,7 +1779,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/HP/Developer/MyPets\\ 2.0/MyPets",
+					/Users/HP/Developer/MyPets,
+					2.0/MyPets,
+					"$(PROJECT_DIR)/MyPets",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (

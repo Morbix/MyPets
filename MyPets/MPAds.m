@@ -38,7 +38,6 @@
     
     GADRequest *request = [GADRequest request];
     request.testDevices = @[ @"d739ce5a07568c089d5498568147e06a", @"7229798c8732c56f536549c0f153d45f", GAD_SIMULATOR_ID];
-    request.testing = NO;
     [self.bannerView loadRequest: request];
 }
 
