@@ -53,8 +53,27 @@
         // Custom initialization
     }
     return self;
+  
+    //Ok - **** MyPet iPad ****
+    //Ok - Bug do popup foto
+    //Ok - Bug dos elementos centralizados
+    //
+    // - Conversor AdMob
+    // - GA Hit In-app Purchase Succeed
+    // - Conversor Facebook
+    // - Schema Facebook
+    // - Close Button Ads
+    // - In-App Remove Ads
+    // - Clique do gráfico
+    // - Clique na foto do Pet para editar
+    //Ok - Bug Ads
+    // - Ads separadas para iPad
+    // - Local Push Badge Persistence
+    //- Push Notifications Persistence
+    //- Has New Version
     
 //
+    //Cio
     //Antipulgas
     //Albuns
     //Sync com facebook
@@ -243,13 +262,29 @@
     
     [Appirater userDidSignificantEvent:YES];
     
-    [self performSegueWithIdentifier:@"petViewController" sender:nil];
+    [self abrirTelaPet];
 }
 
 - (IBAction)barButtonLeftTouched:(id)sender
 {
-    [self performSegueWithIdentifier:@"configuracaoViewController" sender:nil];
-    
+    if (kIPHONE) {
+        [self performSegueWithIdentifier:@"configuracaoViewController" sender:nil];
+    }else{
+        UIStoryboard *iPhone_Storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:[NSBundle mainBundle]];
+        
+        UIViewController *tela = [iPhone_Storyboard instantiateViewControllerWithIdentifier:@"configuracaoViewController"];
+        
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:tela];
+        
+        UIColor *amarelo = [UIColor colorWithRed:255.0f/255.0f green:202.0f/255.0f blue:80.0f/255.0f alpha:1.0f];
+        [nav.navigationBar setTintColor:[UIColor whiteColor]];
+         [nav setModalPresentationStyle:UIModalPresentationFormSheet];
+        [nav.navigationBar setTranslucent:YES];
+        [nav.navigationBar setBarTintColor:amarelo];
+        [nav.navigationBar setBackgroundColor:amarelo];
+        [nav.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, nil]];
+        [self presentViewController:nav animated:YES completion:nil];
+    }
 }
 
 #pragma mark - Métodos
@@ -264,6 +299,27 @@
     
 }
 
+- (void)abrirTelaPet
+{
+    if (kIPHONE) {
+        [self performSegueWithIdentifier:@"petViewController" sender:nil];
+    }else{
+        UIStoryboard *iPhone_Storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:[NSBundle mainBundle]];
+        
+        UIViewController *tela = [iPhone_Storyboard instantiateViewControllerWithIdentifier:@"petViewController"];
+        
+        
+        [self.navigationController pushViewController:tela animated:YES];
+        return;
+        
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:tela];
+        
+        nav.modalPresentationStyle = UIModalPresentationFormSheet;
+        
+        [self presentViewController:nav animated:YES completion:nil];
+    }
+}
+
 #pragma mark - UICollectionView
 #pragma mark  UICollectionViewDatasource
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section
@@ -271,10 +327,14 @@
     //int count = [[[MPCoreDataService shared] arrayPets] count];
     int count = (int)[arrayPets count];
     
-    if (count <= 2) {
-        DIV = 1;
-    }else if (count <= 6){
-        DIV = 2;
+    if (kIPHONE) {
+        if (count <= 2) {
+            DIV = 1;
+        }else if (count <= 6){
+            DIV = 2;
+        }else{
+            DIV = 3;
+        }
     }else{
         DIV = 3;
     }
@@ -345,13 +405,13 @@
 {
     MPCellMainPet *cellView = (MPCellMainPet *)[[self.collection cellForItemAtIndexPath:indexPath] viewWithTag:10];
     
-    [MPAnimations animationPressDown:cellView];
-    
-    //Animal *animal = [[[MPCoreDataService shared] arrayPets] objectAtIndex:indexPath.row];
-    Animal *animal = [arrayPets objectAtIndex:indexPath.row];
-    [[MPCoreDataService shared] setAnimalSelected:animal];
-    
-    [self performSegueWithIdentifier:@"petViewController" sender:nil];
+    [MPAnimations animationPressDown:cellView completion:^(BOOL finished) {
+        //Animal *animal = [[[MPCoreDataService shared] arrayPets] objectAtIndex:indexPath.row];
+        Animal *animal = [arrayPets objectAtIndex:indexPath.row];
+        [[MPCoreDataService shared] setAnimalSelected:animal];
+        
+        [self abrirTelaPet];
+    }];
 }
 
 

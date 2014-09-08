@@ -283,7 +283,7 @@
     }
 }
 
-- (IBAction)btnFotoTouched:(id)sender
+- (IBAction)btnFotoTouched:(UIButton *)sender
 {
     NSString *title = NSLS(@"Trocando a foto");
     UIActionSheet * sheet = [[UIActionSheet alloc] initWithTitle:title
@@ -293,7 +293,8 @@
                                                otherButtonTitles:NSLS(@"Pegar do álbum"), NSLS(@"Mostrar foto em tela cheia"), nil];
     
     [sheet setTag:2];
-    [sheet showFromBarButtonItem:self.barButtonRight animated:YES];
+    [sheet showFromRect:sender.frame inView:self.view animated:YES];
+    //[sheet showFromBarButtonItem:self.barButtonRight animated:YES];
 }
 
 #pragma mark - UITextFieldDelegate

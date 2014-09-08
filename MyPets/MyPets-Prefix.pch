@@ -15,6 +15,7 @@
     #import "MPTargets.h"
 #endif
 
+#define kIPHONE ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
 
 #define NSLS(key) \
 [[NSBundle mainBundle] localizedStringForKey:(key) value:@"" table:nil]
@@ -43,5 +44,5 @@ NSLog(@"[%s] error: %@",__PRETTY_FUNCTION__, (key))
 #define kLinkRate     @"https://userpub.itunes.apple.com/WebObjects/MZUserPublishing.woa/wa/addUserReview?id=553815375&type=Purple+Software"
 #define kLinkFacebook @"fb://profile/514093821950781"
 #define kLinkFacebook2 @"https://www.facebook.com/AppMyPets"
-#define kLinkMail @"mailto:henrique@alltouch.com.br?subject=App%20MyPets"
+#define kLinkMail @"mailto:morbin_@hotmail.com?subject=App%20MyPets"
 #define kLinkMoreApps @"https://itunes.apple.com/br/artist/henrique-guttler-morbin/id422347491?uo=4"

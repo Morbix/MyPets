@@ -18,7 +18,11 @@
     if (self) {
         float borda = 6;
         float borda2 = 6;
-        float fontSize = (div==1)?28.0f:((div==2)?16.0f:12.0f);
+        float fontSize = 28.0f;
+        
+        if (kIPHONE) {
+            fontSize = (div==1)?28.0f:((div==2)?16.0f:12.0f);
+        }
         
         self.imagemPet = [[UIImageView alloc] init];
         [self.imagemPet setFrame:CGRectMake(borda, borda, self.frame.size.width-(2*borda), self.frame.size.height-(2*borda))];

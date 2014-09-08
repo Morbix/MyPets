@@ -11,5 +11,5 @@
 @interface MPAnimations : NSObject
 
 + (void)animationPressDown:(UIView *)view;
-
++ (void)animationPressDown:(UIView *)view completion:(void (^)(BOOL finished))completion;
 @end

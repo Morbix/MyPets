@@ -81,6 +81,11 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
+    
+    [self atualizarGrafico];
+    
+    
     id tracker = [[GAI sharedInstance] defaultTracker];
     [tracker set:kGAIScreenName
            value:@"Pet Screen"];
@@ -96,6 +101,8 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    
     [self atualizarPagina];
 }
 
@@ -124,66 +131,69 @@
         self.badgeConsultas.text = [NSString stringWithFormat:@"%d", [animal getNextConsultas].count];
         self.badgeBanhos.text    = [NSString stringWithFormat:@"%d", [animal getNextBanhos].count];
         self.badgeMedicamentos.text    = [NSString stringWithFormat:@"%d", [animal getNextMedicamentos].count];
-        
-        [self atualizarGrafico];
     }
 }
 
 - (void)atualizarGrafico
 {
-    for (UIView *view in self.scrollPeso.subviews) {
-        [view removeFromSuperview];
-    }
-    
-    PNLineChart * lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0, 0, self.scrollPeso.frame.size.width, self.scrollPeso.frame.size.height)];
-    [lineChart setBackgroundColor:[UIColor clearColor]];
-    
-    
     Animal *animal = [[MPCoreDataService shared] animalSelected];
-    NSMutableArray *arrayPesos = [NSMutableArray new];
-    for (Peso *peso in [[animal cArrayPesos] allObjects]) {
-        if (peso.cData && peso.cPeso) {
-            MPPeso *mpPeso = [MPPeso new];
-            mpPeso.data = peso.cData;
-            mpPeso.valor = peso.cPeso;
-            mpPeso.dia = [MPLibrary date:peso.cData toFormat:@"d"];
-            mpPeso.mes = [MPLibrary date:peso.cData toFormat:@"M"];
-            mpPeso.ano = [MPLibrary date:peso.cData toFormat:@"yy"];
-            
-            [arrayPesos addObject:mpPeso];            
+    if (animal) {
+        for (UIView *view in self.scrollPeso.subviews) {
+            [view removeFromSuperview];
         }
+        
+        PNLineChart * lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0, 0, self.scrollPeso.frame.size.width, self.scrollPeso.frame.size.height)];
+        [lineChart setBackgroundColor:[UIColor clearColor]];
+        
+        
+        Animal *animal = [[MPCoreDataService shared] animalSelected];
+        NSMutableArray *arrayPesos = [NSMutableArray new];
+        for (Peso *peso in [[animal cArrayPesos] allObjects]) {
+            if (peso.cData && peso.cPeso) {
+                MPPeso *mpPeso = [MPPeso new];
+                mpPeso.data = peso.cData;
+                mpPeso.valor = peso.cPeso;
+                mpPeso.dia = [MPLibrary date:peso.cData toFormat:@"d"];
+                mpPeso.mes = [MPLibrary date:peso.cData toFormat:@"M"];
+                mpPeso.ano = [MPLibrary date:peso.cData toFormat:@"yy"];
+                
+                [arrayPesos addObject:mpPeso];
+            }
+        }
+        [MPLibrary sortMutableArray:&arrayPesos withAttribute:@"data" andAscending:YES];
+        int maxNumber = 20;
+        int minNumber = kIPHONE ? 6 : 20;
+        while (arrayPesos.count > maxNumber) {
+            [arrayPesos removeObjectAtIndex:0];
+        }
+        while (arrayPesos.count < minNumber) {
+            MPPeso *mpPeso = [MPPeso new];
+            mpPeso.valor = @0.0;
+            mpPeso.dia = @"0";
+            mpPeso.mes = @"0";
+            mpPeso.ano = @"0";
+            [arrayPesos insertObject:mpPeso atIndex:0];
+        }
+        
+        [lineChart setXLabels1:[arrayPesos mutableArrayValueForKey:@"dia"] andXLabels2:[arrayPesos mutableArrayValueForKey:@"mes"] andXLabels3:[arrayPesos mutableArrayValueForKey:@"ano"]];
+        NSArray * data01Array = [arrayPesos mutableArrayValueForKey:@"valor"];
+        
+        
+        PNLineChartData *data01 = [PNLineChartData new];
+        data01.color = PNFreshGreen;
+        data01.itemCount = lineChart.xLabels1.count;
+        data01.getData = ^(NSUInteger index) {
+            CGFloat yValue = [[data01Array objectAtIndex:index] floatValue];
+            return [PNLineChartDataItem dataItemWithY:yValue];
+        };
+        
+        lineChart.chartData = @[data01];
+        [lineChart strokeChart];
+        
+        lineChart.delegate = self;
+        
+        [self.scrollPeso addSubview:lineChart];
     }
-    [MPLibrary sortMutableArray:&arrayPesos withAttribute:@"data" andAscending:YES];
-    while (arrayPesos.count > 20) {
-        [arrayPesos removeObjectAtIndex:0];
-    }
-    while (arrayPesos.count < 6) {
-        MPPeso *mpPeso = [MPPeso new];
-        mpPeso.valor = @0.0;
-        mpPeso.dia = @"0";
-        mpPeso.mes = @"0";
-        mpPeso.ano = @"0";
-        [arrayPesos insertObject:mpPeso atIndex:0];
-    }
-    
-    [lineChart setXLabels1:[arrayPesos mutableArrayValueForKey:@"dia"] andXLabels2:[arrayPesos mutableArrayValueForKey:@"mes"] andXLabels3:[arrayPesos mutableArrayValueForKey:@"ano"]];
-    NSArray * data01Array = [arrayPesos mutableArrayValueForKey:@"valor"];
-    
-    
-    PNLineChartData *data01 = [PNLineChartData new];
-    data01.color = PNFreshGreen;
-    data01.itemCount = lineChart.xLabels1.count;
-    data01.getData = ^(NSUInteger index) {
-        CGFloat yValue = [[data01Array objectAtIndex:index] floatValue];
-        return [PNLineChartDataItem dataItemWithY:yValue];
-    };
-    
-    lineChart.chartData = @[data01];
-    [lineChart strokeChart];
-    
-    lineChart.delegate = self;
-    
-    [self.scrollPeso addSubview:lineChart];
 }
 
 - (void)configurarBadge:(LKBadgeView *)badge

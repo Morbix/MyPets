@@ -66,6 +66,8 @@
     [self.imageIcone.layer setMasksToBounds:YES];
     [self configurarBadge:self.badgeLembretes];
     
+    self.syncSwitch.enabled = false;
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dropboxStatusUpdateNotification:) name:MTPSNotificationSyncUpdate object:nil];
     
     if ([MPTargets targetAds]) {
@@ -76,6 +78,8 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
+    
     id tracker = [[GAI sharedInstance] defaultTracker];
     [tracker set:kGAIScreenName
            value:@"Configuração Screen"];
@@ -85,6 +89,15 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    if (!kIPHONE) {
+        UIBarButtonItem *back = [[UIBarButtonItem alloc] initWithTitle:@"Ok"
+                                                                 style:UIBarButtonItemStyleDone
+                                                                target:self
+                                                                action:@selector(dismissModalViewControllerAnimated:)];
+        [self.navigationItem setLeftBarButtonItem:back];
+    }
+    
     
     //self.syncSwitch.on = [[DBAccountManager sharedManager] linkedAccount] != nil;
     [self.badgeLembretes setText:[NSString stringWithFormat:@"%d", [MPLembretes getCount]]];
@@ -216,7 +229,7 @@
     }else if (section == 2){
         return NSLS(@"");
     }else if (section == 3){
-        return NSLS(@"Baixe o MyPets sem anúncios e sincronize seus dados com o Dropbox");
+        return NSLS(@"");
     }
     
     return @"";
