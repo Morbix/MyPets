@@ -67,7 +67,8 @@
     //Ok - Clique do gráfico
     //Ok - Clique na foto do Pet para editar
     //Ok - Bug Ads
-    // - Ads separadas para iPad
+    //Ok - Ads separadas para iPad
+    //   - BUG nas ADS
     // - Local Push Badge Persistence
     //- Push Notifications Persistence
     //- Has New Version
@@ -220,9 +221,8 @@
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
     
     if ([MPTargets targetAds]) {
-        if (!ads) {
-            ads = [[MPAds alloc] initWithScrollView:self.collection viewController:self admobID:@"ca-app-pub-8687233994493144/1806932365"];
-        }
+        ads = nil;
+        ads = [[MPAds alloc] initWithScrollView:self.collection viewController:self admobID:kBanner_Main];
     }
 }
 

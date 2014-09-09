@@ -26,7 +26,7 @@
 #pragma mark - Métodos
 - (void)loadBanner
 {
-    self.bannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
+    self.bannerView = [[GADBannerView alloc] initWithAdSize:kIPHONE ? kGADAdSizeBanner : kGADAdSizeLeaderboard];
     [self.bannerView setFrame:CGRectMake((self.viewController.view.frame.size.width/2) - (self.bannerView.frame.size.width/2),
                                          self.viewController.view.frame.size.height-self.bannerView.frame.size.height,
                                          self.bannerView.frame.size.width,
@@ -98,6 +98,6 @@
 
 -(void)adView:(GADBannerView *)view didFailToReceiveAdWithError:(GADRequestError *)error
 {
-    //SHOW_ERROR(error);
+    SHOW_ERROR(error);
 }
 @end

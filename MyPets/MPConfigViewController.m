@@ -81,10 +81,8 @@
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
     
     if ([MPTargets targetAds]) {
-        //self.canDisplayBannerAds = YES;
-        if (!ads) {
-            ads = [[MPAds alloc] initWithScrollView:self.tableView viewController:self admobID:@"ca-app-pub-8687233994493144/3138574766"];
-        }
+        ads = nil;
+        ads = [[MPAds alloc] initWithScrollView:self.tableView viewController:self admobID:kBanner_Config];
     }
 }
 
