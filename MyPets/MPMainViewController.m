@@ -208,6 +208,8 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
+    
     [self performSelector:@selector(delayToLoad) withObject:nil afterDelay:2.0f];
     
     ((MPCoreDataService *)[MPCoreDataService shared]).animalSelected = nil;
@@ -216,6 +218,12 @@
     [tracker set:kGAIScreenName
            value:@"Main Screen"];
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+    
+    if ([MPTargets targetAds]) {
+        if (!ads) {
+            ads = [[MPAds alloc] initWithScrollView:self.collection viewController:self admobID:@"ca-app-pub-8687233994493144/1806932365"];
+        }
+    }
 }
 
 - (void)delayToLoad
@@ -231,13 +239,6 @@
             [(MPAppDelegate *)[[UIApplication sharedApplication] delegate] setSyncEnabled:YES];
         }
     });*/
-    
-    
-    if ([MPTargets targetAds] && !ADS_ADDED) {
-        ADS_ADDED = TRUE;
-        //self.canDisplayBannerAds = YES;
-        ads = [[MPAds alloc] initWithScrollView:self.collection viewController:self admobID:@"ca-app-pub-8687233994493144/1806932365"];
-    }
     
     [self.spinner stopAnimating];
     [[MPCoreDataService shared] loadAllPets];

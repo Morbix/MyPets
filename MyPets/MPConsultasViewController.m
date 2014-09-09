@@ -45,21 +45,24 @@
 
     self.title = NSLS(@"Agenda Consultas");
     self.navigationItem.title = self.title;
-    
-    if ([MPTargets targetAds]) {
-        //self.canDisplayBannerAds = YES;
-        ads = [[MPAds alloc] initWithScrollView:self.tableView viewController:self admobID:@"ca-app-pub-8687233994493144/7708375167"];
-    }
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
+    
     ((MPCoreDataService *)[MPCoreDataService shared]).consultaSelected = nil;
     
     id tracker = [[GAI sharedInstance] defaultTracker];
     [tracker set:kGAIScreenName
            value:@"Consultas Screen"];
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+    
+    if ([MPTargets targetAds]) {
+        if (!ads) {
+            ads = [[MPAds alloc] initWithScrollView:self.tableView viewController:self admobID:@"ca-app-pub-8687233994493144/7708375167"];
+        }
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated

@@ -50,6 +50,8 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
+    
     ((MPCoreDataService *)[MPCoreDataService shared]).vacinaSelected = nil;
     
     id tracker = [[GAI sharedInstance] defaultTracker];

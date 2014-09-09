@@ -45,21 +45,24 @@
     [super viewDidLoad];
     self.title = NSLS(@"Carteira Vermífugo");
     self.navigationItem.title = self.title;
-    
-    if ([MPTargets targetAds]) {
-        //self.canDisplayBannerAds = YES;
-        ads = [[MPAds alloc] initWithScrollView:self.tableView viewController:self admobID:@"ca-app-pub-8687233994493144/7708375167"];
-    }
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
+    
     ((MPCoreDataService *)[MPCoreDataService shared]).vermifugoSelected = nil;
     
     id tracker = [[GAI sharedInstance] defaultTracker];
     [tracker set:kGAIScreenName
            value:@"Vermífugos Screen"];
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+    
+    if ([MPTargets targetAds]) {
+        if (!ads) {
+            ads = [[MPAds alloc] initWithScrollView:self.tableView viewController:self admobID:@"ca-app-pub-8687233994493144/7708375167"];
+        }
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated
