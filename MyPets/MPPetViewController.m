@@ -246,7 +246,9 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.section == 1) {
+    if (indexPath.section == 0) {
+        [self barButtonRightTouched:nil];
+    }else if (indexPath.section == 1) {
         switch (indexPath.row) {
             case 0: { [self performSegueWithIdentifier:@"vacinasViewController" sender:Nil]; }
                 break;

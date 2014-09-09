@@ -64,8 +64,8 @@
     // - Schema Facebook
     // - Close Button Ads
     // - In-App Remove Ads
-    // - Clique do gráfico
-    // - Clique na foto do Pet para editar
+    //Ok - Clique do gráfico
+    //Ok - Clique na foto do Pet para editar
     //Ok - Bug Ads
     // - Ads separadas para iPad
     // - Local Push Badge Persistence
