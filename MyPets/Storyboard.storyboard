@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="XHU-9T-pP0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13A584" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="XHU-9T-pP0">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -310,15 +310,26 @@
                                     <outlet property="delegate" destination="liv-io-tMB" id="MwQ-7m-O0F"/>
                                 </connections>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0qm-Kb-RIk" customClass="MXBannerView">
+                                <rect key="frame" x="0.0" y="430" width="320" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="fPy-AJ-o26"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.95756271260000003" green="0.95756271260000003" blue="0.95756271260000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="MTF-15-wOU" secondAttribute="centerY" id="53T-7n-2ru"/>
                             <constraint firstAttribute="bottom" secondItem="yy3-6n-13k" secondAttribute="bottom" id="BfO-ya-Dfe"/>
                             <constraint firstAttribute="centerX" secondItem="MTF-15-wOU" secondAttribute="centerX" id="CYJ-8T-RWc"/>
+                            <constraint firstAttribute="trailing" secondItem="0qm-Kb-RIk" secondAttribute="trailing" id="DOI-aS-oNa"/>
                             <constraint firstAttribute="trailing" secondItem="yy3-6n-13k" secondAttribute="trailing" id="S3x-l4-ceG"/>
                             <constraint firstItem="yy3-6n-13k" firstAttribute="top" secondItem="hi7-01-e5b" secondAttribute="bottom" constant="-64" id="eSh-FY-znF"/>
                             <constraint firstItem="yy3-6n-13k" firstAttribute="leading" secondItem="BCc-LS-PXI" secondAttribute="leading" id="jlO-Fk-1pl"/>
+                            <constraint firstItem="WPg-1C-mXS" firstAttribute="top" secondItem="0qm-Kb-RIk" secondAttribute="bottom" id="kv7-g5-iCx"/>
+                            <constraint firstItem="0qm-Kb-RIk" firstAttribute="leading" secondItem="BCc-LS-PXI" secondAttribute="leading" id="uCS-1m-0to"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="MSI-PH-dNO">
@@ -334,6 +345,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="bannerView" destination="0qm-Kb-RIk" id="K9M-Mh-inD"/>
                         <outlet property="barButtonRight" destination="yH6-J7-pqx" id="1yw-aP-Hil"/>
                         <outlet property="collection" destination="yy3-6n-13k" id="YhD-fv-0T2"/>
                         <outlet property="spinner" destination="MTF-15-wOU" id="6b4-s2-twU"/>

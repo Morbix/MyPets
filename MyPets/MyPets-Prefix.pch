@@ -13,7 +13,13 @@
     #import <Foundation/Foundation.h>
     #import <CoreData/CoreData.h>
     #import "MPTargets.h"
+    #import "Localizable.h"
+    #import "MXBannerView.h"
+    #import "MXBannerHeaderView.h"
+    #import "MXTableViewController.h"
 #endif
+
+
 
 #define kIPHONE ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
 

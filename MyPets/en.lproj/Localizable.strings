@@ -162,6 +162,10 @@
 "O Dropbox foi desativado. Estamos preparando uma nova forma para guardar seus dados." = "Dropbox has been disabled. We're preparing a new way to save your data.";
 
 
+"Remove Ads"         = "Remove Ads";
+"Restore"            = "Restore";
+"Cancel"             = "Cancel";
+
 /*
  "Meus Pets"        = "My Pets";
 "Eventos"          = "Tasks";

@@ -23,6 +23,7 @@
 #import "MPAds.h"
 #import <iAd/iAd.h>
 
+
 @interface MPConfigViewController () <SKStoreProductViewControllerDelegate>
 {
     MPAds *ads;
@@ -36,6 +37,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelAvaliar;
 @property (weak, nonatomic) IBOutlet UILabel *labelOutrosApps;
 @property (weak, nonatomic) IBOutlet UIImageView *imageIcone;
+
 @end
 
 @implementation MPConfigViewController
@@ -69,6 +71,10 @@
     self.syncSwitch.enabled = false;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dropboxStatusUpdateNotification:) name:MTPSNotificationSyncUpdate object:nil];
+
+    
+    
+    [self createBannerView];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -79,10 +85,14 @@
     [tracker set:kGAIScreenName
            value:@"Configuração Screen"];
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+
     
-    if ([MPTargets targetAds]) {
-        ads = nil;
-        ads = [[MPAds alloc] initWithScrollView:self.tableView viewController:self admobID:kBanner_Config];
+    if (self.bannerView) {
+        if ([self.bannerView requestBanner:kBanner_Config target:self]) {
+            self.tableView.tableHeaderView = self.headerView;
+        }else{
+            self.tableView.tableHeaderView = nil;
+        }
     }
 }
 
@@ -90,13 +100,7 @@
 {
     [super viewWillAppear:animated];
     
-    if (!kIPHONE) {
-        UIBarButtonItem *back = [[UIBarButtonItem alloc] initWithTitle:@"Ok"
-                                                                 style:UIBarButtonItemStyleDone
-                                                                target:self
-                                                                action:@selector(dismissModalViewControllerAnimated:)];
-        [self.navigationItem setLeftBarButtonItem:back];
-    }
+    
     
     
     //self.syncSwitch.on = [[DBAccountManager sharedManager] linkedAccount] != nil;

@@ -34,10 +34,10 @@
 
 + (void)saveContext
 {
-    [[MPCoreDataService shared] save];
+    [[MPCoreDataService shared] saveAllData];
 }
 
-- (void)save
+- (void)saveAllData
 {
     NSError *error = nil;
     [self.context save:&error];
@@ -72,7 +72,7 @@
     }
     
     if (save) {
-        [self save];
+        [self saveAllData];
     }
 }
 
@@ -139,7 +139,7 @@
     }
     
     if (save) {
-        [self save];
+        [self saveAllData];
     }
 }
 
@@ -225,7 +225,7 @@
     [self.context deleteObject:self.animalSelected];
     [self.arrayPets removeObject:self.animalSelected];
     
-    [self save];
+    [self saveAllData];
     
     self.animalSelected = nil;
     
@@ -267,7 +267,7 @@
     [self.animalSelected removeCArrayVacinasObject:self.vacinaSelected];
     [self.context deleteObject:self.vacinaSelected];
     
-    [self save];
+    [self saveAllData];
     
     self.vacinaSelected = nil;
 }
@@ -307,7 +307,7 @@
     [self.animalSelected removeCArrayVermifugosObject:self.vermifugoSelected];
     [self.context deleteObject:self.vermifugoSelected];
     
-    [self save];
+    [self saveAllData];
     
     self.vermifugoSelected = nil;
 }
@@ -346,7 +346,7 @@
     [self.animalSelected removeCArrayConsultasObject:self.consultaSelected];
     [self.context deleteObject:self.consultaSelected];
     
-    [self save];
+    [self saveAllData];
     
     self.consultaSelected = nil;
 }
@@ -386,7 +386,7 @@
     [self.animalSelected removeCArrayBanhosObject:self.banhoSelected];
     [self.context deleteObject:self.banhoSelected];
     
-    [self save];
+    [self saveAllData];
     
     self.banhoSelected = nil;
 }
@@ -429,7 +429,7 @@
     [self.animalSelected removeCArrayMedicamentosObject:self.medicamentoSelected];
     [self.context deleteObject:self.medicamentoSelected];
     
-    [self save];
+    [self saveAllData];
     
     self.medicamentoSelected = nil;
 }
@@ -465,7 +465,7 @@
     [self.animalSelected removeCArrayPesosObject:self.pesoSelected];
     [self.context deleteObject:self.pesoSelected];
     
-    [self save];
+    [self saveAllData];
     
     self.pesoSelected = nil;
 }

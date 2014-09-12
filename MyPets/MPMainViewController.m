@@ -26,6 +26,8 @@
 #import "MPDropboxNotification.h"
 #import "MPAppDelegate.h"
 
+
+
 #define DropboxAppKey @"tnmjxymp32xgs8y"
 #define DropboxAppSecret @"czkt8b3dhrcj30b"
 
@@ -41,6 +43,7 @@
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *barButtonRight;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
+@property (weak, nonatomic) IBOutlet MXBannerView *bannerView;
 
 @end
 
@@ -63,17 +66,23 @@
     // - Conversor Facebook
     // - Schema Facebook
     // - Close Button Ads
-    // - In-App Remove Ads
+    //Ok - In-App Remove Ads
     //Ok - Clique do gráfico
     //Ok - Clique na foto do Pet para editar
     //Ok - Bug Ads
     //Ok - Ads separadas para iPad
-    //   - BUG nas ADS
+    //OK - BUG nas ADS
+    // - Replicar correcao do BUG
     // - Local Push Badge Persistence
     //- Push Notifications Persistence
     //- Has New Version
+    //- Feedback visual para cadastrar um pet quando estiver vazio
+    //- Helpers First Visit
     
 //
+    //Repetir Evento
+    //Controle de Peso com fotos
+    //Código do Rastreador
     //Cio
     //Antipulgas
     //Albuns
@@ -220,10 +229,13 @@
            value:@"Main Screen"];
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
     
-    if ([MPTargets targetAds]) {
-        ads = nil;
-        ads = [[MPAds alloc] initWithScrollView:self.collection viewController:self admobID:kBanner_Main];
-    }
+    
+    
+    [self.bannerView requestBanner:kBanner_Main target:self];
+    //if ([MPTargets targetAds]) {
+        //ads = nil;
+        //ads = [[MPAds alloc] initWithScrollView:self.collection viewController:self admobID:kBanner_Main];
+    //}
 }
 
 - (void)delayToLoad
@@ -275,16 +287,23 @@
         
         UIViewController *tela = [iPhone_Storyboard instantiateViewControllerWithIdentifier:@"configuracaoViewController"];
         
-        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:tela];
         
-        UIColor *amarelo = [UIColor colorWithRed:255.0f/255.0f green:202.0f/255.0f blue:80.0f/255.0f alpha:1.0f];
-        [nav.navigationBar setTintColor:[UIColor whiteColor]];
-         [nav setModalPresentationStyle:UIModalPresentationFormSheet];
-        [nav.navigationBar setTranslucent:YES];
-        [nav.navigationBar setBarTintColor:amarelo];
-        [nav.navigationBar setBackgroundColor:amarelo];
-        [nav.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, nil]];
-        [self presentViewController:nav animated:YES completion:nil];
+        [self.navigationController pushViewController:tela animated:YES];
+//        return;
+//        UIStoryboard *iPhone_Storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:[NSBundle mainBundle]];
+//        
+//        UIViewController *tela = [iPhone_Storyboard instantiateViewControllerWithIdentifier:@"configuracaoViewController"];
+//        
+//        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:tela];
+//        
+//        UIColor *amarelo = [UIColor colorWithRed:255.0f/255.0f green:202.0f/255.0f blue:80.0f/255.0f alpha:1.0f];
+//        [nav.navigationBar setTintColor:[UIColor whiteColor]];
+//         [nav setModalPresentationStyle:UIModalPresentationFormSheet];
+//        [nav.navigationBar setTranslucent:YES];
+//        [nav.navigationBar setBarTintColor:amarelo];
+//        [nav.navigationBar setBackgroundColor:amarelo];
+//        [nav.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, nil]];
+//        [self presentViewController:nav animated:YES completion:nil];
     }
 }
 
@@ -456,6 +475,7 @@
 {
     return YES;
 }
+
 
 #pragma mark - MTNotifications
 - (void)callbackPetsCompleted:(NSNotification *)notification

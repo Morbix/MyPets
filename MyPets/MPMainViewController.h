@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MPMainViewController : UIViewController
+@interface MPMainViewController : UIViewController <UICollectionViewDataSource>
 @property (strong, nonatomic) IBOutlet UICollectionView *collection;
 @end

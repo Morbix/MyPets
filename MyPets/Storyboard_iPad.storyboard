@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="ht5-Fj-O5s">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13A584" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="ht5-Fj-O5s">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -51,10 +51,21 @@
                                     <outlet property="delegate" destination="s1v-qX-qTv" id="8Fi-nE-5rT"/>
                                 </connections>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="225-OO-DOV" customClass="MXBannerView">
+                                <rect key="frame" x="0.0" y="934" width="768" height="90"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="7gq-bg-A2a"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.95756271260000003" green="0.95756271260000003" blue="0.95756271260000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="z27-fX-3XK" firstAttribute="top" secondItem="225-OO-DOV" secondAttribute="bottom" id="4jH-lO-CBF"/>
+                            <constraint firstItem="225-OO-DOV" firstAttribute="leading" secondItem="k6p-AT-vwa" secondAttribute="leading" id="5uS-gi-UWh"/>
                             <constraint firstItem="U8h-8F-Rqe" firstAttribute="top" secondItem="k6p-AT-vwa" secondAttribute="top" id="CRT-UV-Mwi"/>
+                            <constraint firstAttribute="trailing" secondItem="225-OO-DOV" secondAttribute="trailing" id="DZq-q2-Gyw"/>
                             <constraint firstAttribute="centerX" secondItem="ZCy-Dv-cMr" secondAttribute="centerX" id="UPe-nZ-RoU"/>
                             <constraint firstAttribute="trailing" secondItem="U8h-8F-Rqe" secondAttribute="trailing" id="pCR-1F-Qw8"/>
                             <constraint firstAttribute="centerY" secondItem="ZCy-Dv-cMr" secondAttribute="centerY" id="rbf-Eq-glH"/>
@@ -75,6 +86,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="bannerView" destination="225-OO-DOV" id="tGP-1R-XGN"/>
                         <outlet property="barButtonRight" destination="c9G-Xo-Oge" id="kx2-tm-EpC"/>
                         <outlet property="collection" destination="U8h-8F-Rqe" id="hHR-0u-21C"/>
                         <outlet property="spinner" destination="ZCy-Dv-cMr" id="f5G-6p-f8V"/>

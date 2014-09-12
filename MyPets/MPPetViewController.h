@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MPPetViewController : UITableViewController
+@interface MPPetViewController : MXTableViewController
 
 @end

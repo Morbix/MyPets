@@ -15,6 +15,7 @@
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
 #import "MPDropboxNotification.h"
+#import "MXInAppPurchase.h"
 
 #define kSIZE 10
 
@@ -27,6 +28,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     //[MPLibrary appearanceCustom];
+    [PFPurchase addObserverForProduct:kIDENTIFIER_INAPP_REMOVEADS block:^(SKPaymentTransaction *transaction) {
+        PRETTY_FUNCTION;
+        [[MXInAppPurchase shared] saveRemoveAdsPurchased];
+    }];
     
     [Appirater setAppId:[MPTargets targetAppID]];
     [Appirater setDaysUntilPrompt:7];

@@ -70,6 +70,8 @@
                                                object:nil];
     
     [self carregarTeclados];
+    
+    [self createBannerView];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -81,10 +83,12 @@
            value:@"Pet Edit Screen"];
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
     
-    if ([MPTargets targetAds]) {
-        ads = nil;
-        ads = [[MPAds alloc] initWithScrollView:self.tableView viewController:self admobID:kBanner_Pet_Edit];
-    }
+    
+    [self requestBanner:kBanner_Pet_Edit];
+//    if ([MPTargets targetAds]) {
+//        ads = nil;
+//        ads = [[MPAds alloc] initWithScrollView:self.tableView viewController:self admobID:kBanner_Pet_Edit];
+//    }
 }
 
 -(void)viewWillAppear:(BOOL)animated

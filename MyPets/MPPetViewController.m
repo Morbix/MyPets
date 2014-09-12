@@ -77,6 +77,8 @@
     [self configurarBadge:self.badgeConsultas];
     [self configurarBadge:self.badgeBanhos];
     [self configurarBadge:self.badgeMedicamentos];
+    
+    [self createBannerView];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -91,10 +93,13 @@
            value:@"Pet Screen"];
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
     
-    if ([MPTargets targetAds]) {
-        ads = nil;
-        ads = [[MPAds alloc] initWithScrollView:self.tableView viewController:self admobID:kBanner_Pet];
-    }
+    
+    [self requestBanner:kBanner_Pet];
+    
+//    if ([MPTargets targetAds]) {
+//        ads = nil;
+//        ads = [[MPAds alloc] initWithScrollView:self.tableView viewController:self admobID:kBanner_Pet];
+//    }
 }
 
 -(void)viewWillAppear:(BOOL)animated
