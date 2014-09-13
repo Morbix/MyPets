@@ -15,6 +15,7 @@
 #import "MPDropboxNotification.h"
 #import "MXInAppPurchase.h"
 #import "MXGoogleAnalytics.h"
+#import "ACTReporter.h"
 
 #define kSIZE 10
 
@@ -76,6 +77,13 @@
             [MXGoogleAnalytics ga_trackEventWith:@"Launch" action:@"Organic"];
         }
     }
+    
+    // MyPets - Pets Manager Free - download
+    // Google iOS Download tracking snippet
+    // To track downloads of your app, add this snippet to your
+    // application delegate's application:didFinishLaunchingWithOptions: method.
+    
+    [ACTConversionReporter reportWithConversionID:@"1021940053" label:@"CLc8COSUplYQ1aKm5wM" value:@"0.00" isRepeatable:NO];
     
     return YES;
 }

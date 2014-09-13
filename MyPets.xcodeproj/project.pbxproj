@@ -55,6 +55,8 @@
 		A7A1332E181B2B2E00D7D016 /* MPMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7A1332D181B2B2E00D7D016 /* MPMainViewController.m */; };
 		A7A13332181B2C6900D7D016 /* iPhone_Navigation.png in Resources */ = {isa = PBXBuildFile; fileRef = A7A13330181B2C6900D7D016 /* iPhone_Navigation.png */; };
 		A7A13333181B2C6900D7D016 /* iPhone_Navigation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A7A13331181B2C6900D7D016 /* iPhone_Navigation@2x.png */; };
+		A7ADDC4719C4D1F300AB5E20 /* libGoogleConversionTracking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7ADDC4619C4D1F300AB5E20 /* libGoogleConversionTracking.a */; };
+		A7ADDC4819C4D1F300AB5E20 /* libGoogleConversionTracking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7ADDC4619C4D1F300AB5E20 /* libGoogleConversionTracking.a */; };
 		E60554631857E71C00D11CE9 /* MPPetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E60554621857E71C00D11CE9 /* MPPetViewController.m */; };
 		E605548318594C0000D11CE9 /* MPAnimations.m in Sources */ = {isa = PBXBuildFile; fileRef = E605548218594C0000D11CE9 /* MPAnimations.m */; };
 		E60CC10D1880C36900826B59 /* sombra.png in Resources */ = {isa = PBXBuildFile; fileRef = E60CC10B1880C36900826B59 /* sombra.png */; };
@@ -427,6 +429,8 @@
 		A7A1332D181B2B2E00D7D016 /* MPMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMainViewController.m; sourceTree = "<group>"; };
 		A7A13330181B2C6900D7D016 /* iPhone_Navigation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPhone_Navigation.png; sourceTree = "<group>"; };
 		A7A13331181B2C6900D7D016 /* iPhone_Navigation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone_Navigation@2x.png"; sourceTree = "<group>"; };
+		A7ADDC4519C4D1F300AB5E20 /* ACTReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ACTReporter.h; path = ../../../GoogleConversionTrackingSDK/ACTReporter.h; sourceTree = "<group>"; };
+		A7ADDC4619C4D1F300AB5E20 /* libGoogleConversionTracking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleConversionTracking.a; path = ../../../GoogleConversionTrackingSDK/libGoogleConversionTracking.a; sourceTree = "<group>"; };
 		E60554611857E71C00D11CE9 /* MPPetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPetViewController.h; sourceTree = "<group>"; };
 		E60554621857E71C00D11CE9 /* MPPetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPetViewController.m; sourceTree = "<group>"; };
 		E605548118594C0000D11CE9 /* MPAnimations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAnimations.h; sourceTree = "<group>"; };
@@ -674,6 +678,7 @@
 				E644BB3A187E1FCF00247278 /* Dropbox.framework in Frameworks */,
 				A78D0726181899F600DC64CD /* UIKit.framework in Frameworks */,
 				A78D0728181899F600DC64CD /* Foundation.framework in Frameworks */,
+				A7ADDC4719C4D1F300AB5E20 /* libGoogleConversionTracking.a in Frameworks */,
 				A78D072A181899F600DC64CD /* CoreGraphics.framework in Frameworks */,
 				A78D072C181899F600DC64CD /* CoreData.framework in Frameworks */,
 			);
@@ -696,6 +701,7 @@
 				E62E37A319ABC62B00537B9D /* Parse.framework in Frameworks */,
 				E60CC1AD1881A80C00826B59 /* libz.1.1.3.dylib in Frameworks */,
 				E60CC1AE1881A80C00826B59 /* CoreLocation.framework in Frameworks */,
+				A7ADDC4819C4D1F300AB5E20 /* libGoogleConversionTracking.a in Frameworks */,
 				E60CC1AF1881A80C00826B59 /* CFNetwork.framework in Frameworks */,
 				E60CC1B01881A80C00826B59 /* AdSupport.framework in Frameworks */,
 				E60CC1B11881A80C00826B59 /* iAd.framework in Frameworks */,
@@ -883,6 +889,7 @@
 				E60CC211188327F400826B59 /* PNChart */,
 				E644BB3F187E27F500247278 /* ParcelKit */,
 				E6952F571871033E0050FB64 /* GoogleAnalytics */,
+				A7ADDC4919C4D20300AB5E20 /* AdMob Converter */,
 				E6952F261870F6D60050FB64 /* AdMob */,
 				E6D47AE9185FDAA3009C2905 /* LKBadgeView */,
 				A7A13328181B297A00D7D016 /* LoadImageWebCache */,
@@ -977,6 +984,15 @@
 				A71ABC551831719A0039DF25 /* fotoDefault@2x.png */,
 			);
 			name = Imagens;
+			sourceTree = "<group>";
+		};
+		A7ADDC4919C4D20300AB5E20 /* AdMob Converter */ = {
+			isa = PBXGroup;
+			children = (
+				A7ADDC4519C4D1F300AB5E20 /* ACTReporter.h */,
+				A7ADDC4619C4D1F300AB5E20 /* libGoogleConversionTracking.a */,
+			);
+			name = "AdMob Converter";
 			sourceTree = "<group>";
 		};
 		E60CC1331881A5BF00826B59 /* Targets */ = {
@@ -1733,6 +1749,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MyPets",
+					/Users/Morbix/Documents/GoogleConversionTrackingSDK,
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1769,6 +1786,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MyPets",
+					/Users/Morbix/Documents/GoogleConversionTrackingSDK,
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
@@ -1807,6 +1825,7 @@
 					/Users/HP/Developer/MyPets,
 					2.0/MyPets,
 					"$(PROJECT_DIR)/MyPets",
+					/Users/Morbix/Documents/GoogleConversionTrackingSDK,
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1844,6 +1863,7 @@
 					/Users/HP/Developer/MyPets,
 					2.0/MyPets,
 					"$(PROJECT_DIR)/MyPets",
+					/Users/Morbix/Documents/GoogleConversionTrackingSDK,
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (

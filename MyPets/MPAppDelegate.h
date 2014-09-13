@@ -33,7 +33,7 @@
 //Ok - **** MyPet iPad ****
 //Ok - Bug do popup foto
 //Ok - Bug dos elementos centralizados
-// - Conversor AdMob
+//Ok - Conversor AdMob
 //Ok - GA Hit In-app Purchase Succeed
 //Ok - Conversor Facebook
 //Ok - Schema Facebook
