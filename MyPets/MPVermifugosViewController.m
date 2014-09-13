@@ -18,13 +18,9 @@
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
-#import "MPAds.h"
-#import <iAd/iAd.h>
+
 
 @interface MPVermifugosViewController ()
-{
-    MPAds *ads;
-}
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *barButtonRight;
 @end
@@ -45,6 +41,8 @@
     [super viewDidLoad];
     self.title = NSLS(@"Carteira Vermífugo");
     self.navigationItem.title = self.title;
+    
+    [self createBannerView];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -58,10 +56,7 @@
            value:@"Vermífugos Screen"];
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
     
-    if ([MPTargets targetAds]) {
-        ads = nil;
-        ads = [[MPAds alloc] initWithScrollView:self.tableView viewController:self admobID:kBanner_Listagem];
-    }
+    [self requestBanner:kBanner_Listagem];
 }
 
 -(void)viewWillAppear:(BOOL)animated

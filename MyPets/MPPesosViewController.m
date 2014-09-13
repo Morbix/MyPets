@@ -13,13 +13,8 @@
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
-#import "MPAds.h"
-#import <iAd/iAd.h>
 
 @interface MPPesosViewController ()
-{
-    MPAds *ads;
-}
 
 @end
 
@@ -40,6 +35,8 @@
 
     self.title = NSLS(@"Controle de Peso");
     self.navigationItem.title = self.title;
+    
+    [self createBannerView];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -53,10 +50,7 @@
            value:@"Pesos Screen"];
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
     
-    if ([MPTargets targetAds]) {
-        ads = nil;
-        ads = [[MPAds alloc] initWithScrollView:self.tableView viewController:self admobID:kBanner_Listagem];
-    }
+    [self requestBanner:kBanner_Listagem];
 }
 
 -(void)viewWillAppear:(BOOL)animated

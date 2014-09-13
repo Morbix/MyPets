@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MPBanhoEditViewController : UITableViewController
+@interface MPBanhoEditViewController : MXTableViewController
 
 @end

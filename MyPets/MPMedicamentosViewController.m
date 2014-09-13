@@ -17,13 +17,8 @@
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
-#import "MPAds.h"
-#import <iAd/iAd.h>
 
 @interface MPMedicamentosViewController ()
-{
-    MPAds *ads;
-}
 
 @end
 
@@ -44,6 +39,8 @@
 
     self.title = NSLS(@"Agenda Medicamentos");
     self.navigationItem.title = self.title;
+    
+    [self createBannerView];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -57,10 +54,7 @@
            value:@"Medicamentos Screen"];
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
     
-    if ([MPTargets targetAds]) {
-        ads = nil;
-        ads = [[MPAds alloc] initWithScrollView:self.tableView viewController:self admobID:kBanner_Listagem];
-    }
+    [self requestBanner:kBanner_Listagem];
 }
 
 -(void)viewWillAppear:(BOOL)animated

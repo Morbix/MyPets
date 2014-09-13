@@ -13,14 +13,8 @@
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
-#import "MPAds.h"
-#import <iAd/iAd.h>
 
 @interface MPPesoEditViewController () <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIActionSheetDelegate>
-{
-    MPAds *ads;
-}
-
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *barButtonRight;
 @property (weak, nonatomic) IBOutlet UITextField *editData;
@@ -62,6 +56,8 @@
                                                object:nil];
     
     [self carregarTeclados];
+    
+    [self createBannerView];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -73,10 +69,7 @@
            value:@"Peso Edit Screen"];
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
     
-    if ([MPTargets targetAds]) {
-        ads = nil;
-        ads = [[MPAds alloc] initWithScrollView:self.tableView viewController:self admobID:kBanner_Edits];
-    }
+    [self requestBanner:kBanner_Edits];
 }
 
 -(void)viewWillAppear:(BOOL)animated

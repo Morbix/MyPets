@@ -217,7 +217,7 @@
                 [[MXInAppPurchase shared] saveRemoveAdsPurchased];
             }else{
                 [[[UIAlertView alloc] initWithTitle:@""
-                                           message:error.description
+                                           message:error.localizedDescription
                                           delegate:nil
                                  cancelButtonTitle:@"Ok"
                                   otherButtonTitles:nil] show];

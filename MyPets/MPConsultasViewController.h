@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MPConsultasViewController : UITableViewController
+@interface MPConsultasViewController : MXTableViewController
 
 @end

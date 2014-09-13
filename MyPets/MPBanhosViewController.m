@@ -17,13 +17,9 @@
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
-#import "MPAds.h"
-#import <iAd/iAd.h>
 
 @interface MPBanhosViewController ()
-{
-    MPAds *ads;
-}
+
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *barButtonRight;
 @end
@@ -45,6 +41,8 @@
 
     self.title = NSLS(@"Agenda Banhos");
     self.navigationItem.title = self.title;
+    
+    [self createBannerView];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -58,10 +56,7 @@
            value:@"Banhos Screen"];
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
     
-    if ([MPTargets targetAds]) {
-        ads = nil;
-        ads = [[MPAds alloc] initWithScrollView:self.tableView viewController:self admobID:kBanner_Listagem];
-    }
+    [self requestBanner:kBanner_Listagem];
 }
 
 -(void)viewWillAppear:(BOOL)animated

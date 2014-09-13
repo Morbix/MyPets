@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MPMedicamentoEditViewController : UITableViewController
+@interface MPMedicamentoEditViewController : MXTableViewController
 
 @end

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MPVermifugosViewController : UITableViewController
+@interface MPVermifugosViewController : MXTableViewController
 
 @end

@@ -14,16 +14,10 @@
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
-#import "MPAds.h"
-#import <iAd/iAd.h>
 
 #define kMAX_PHOTO_SIZE 640
 
 @interface MPPetEditViewController ()  <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
-{
-    MPAds *ads;
-}
-
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *barButtonRight;
 @property (weak, nonatomic) IBOutlet UIButton *btnFoto;
@@ -85,10 +79,6 @@
     
     
     [self requestBanner:kBanner_Pet_Edit];
-//    if ([MPTargets targetAds]) {
-//        ads = nil;
-//        ads = [[MPAds alloc] initWithScrollView:self.tableView viewController:self admobID:kBanner_Pet_Edit];
-//    }
 }
 
 -(void)viewWillAppear:(BOOL)animated

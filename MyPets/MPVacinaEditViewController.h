@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MPVacinaEditViewController : UITableViewController
+@interface MPVacinaEditViewController : MXTableViewController
 
 @end

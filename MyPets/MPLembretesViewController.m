@@ -13,13 +13,9 @@
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
-#import "MPAds.h"
-#import <iAd/iAd.h>
+
 
 @interface MPLembretesViewController ()
-{
-    MPAds *ads;
-}
 
 @end
 
@@ -39,6 +35,8 @@
     [super viewDidLoad];
     self.title = NSLS(@"Lembretes");
     self.navigationItem.title = self.title;
+    
+    [self createBannerView];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -50,10 +48,7 @@
            value:@"Lembretes Screen"];
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
     
-    if ([MPTargets targetAds]) {
-        ads = nil;
-        ads = [[MPAds alloc] initWithScrollView:self.tableView viewController:self admobID:kBanner_Lembretes];
-    }
+    [self requestBanner:kBanner_Lembretes];
 }
 
 - (void)didReceiveMemoryWarning

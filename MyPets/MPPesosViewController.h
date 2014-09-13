@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MPPesosViewController : UITableViewController
+@interface MPPesosViewController : MXTableViewController
 
 @end

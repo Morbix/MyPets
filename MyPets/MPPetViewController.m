@@ -21,14 +21,9 @@
 #import "PNLineChartDataItem.h"
 #import "MPLibrary.h"
 #import "MPPeso.h"
-#import "MPAds.h"
-#import <iAd/iAd.h>
 
 
 @interface MPPetViewController () <PNChartDelegate>
-{
-    MPAds *ads;
-}
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *barButtonRight;
 @property (weak, nonatomic) IBOutlet UILabel *labelNome;
@@ -95,11 +90,6 @@
     
     
     [self requestBanner:kBanner_Pet];
-    
-//    if ([MPTargets targetAds]) {
-//        ads = nil;
-//        ads = [[MPAds alloc] initWithScrollView:self.tableView viewController:self admobID:kBanner_Pet];
-//    }
 }
 
 -(void)viewWillAppear:(BOOL)animated
