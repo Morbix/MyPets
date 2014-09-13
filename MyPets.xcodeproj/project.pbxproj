@@ -57,6 +57,7 @@
 		A7A13333181B2C6900D7D016 /* iPhone_Navigation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A7A13331181B2C6900D7D016 /* iPhone_Navigation@2x.png */; };
 		A7ADDC4719C4D1F300AB5E20 /* libGoogleConversionTracking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7ADDC4619C4D1F300AB5E20 /* libGoogleConversionTracking.a */; };
 		A7ADDC4819C4D1F300AB5E20 /* libGoogleConversionTracking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7ADDC4619C4D1F300AB5E20 /* libGoogleConversionTracking.a */; };
+		A7ADDC4A19C4D90E00AB5E20 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A79BABE019BD302C001C8467 /* FacebookSDK.framework */; };
 		E60554631857E71C00D11CE9 /* MPPetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E60554621857E71C00D11CE9 /* MPPetViewController.m */; };
 		E605548318594C0000D11CE9 /* MPAnimations.m in Sources */ = {isa = PBXBuildFile; fileRef = E605548218594C0000D11CE9 /* MPAnimations.m */; };
 		E60CC10D1880C36900826B59 /* sombra.png in Resources */ = {isa = PBXBuildFile; fileRef = E60CC10B1880C36900826B59 /* sombra.png */; };
@@ -670,6 +671,7 @@
 				E62E37AB19ABC77500537B9D /* Social.framework in Frameworks */,
 				E62E379719ABC3EE00537B9D /* CoreTelephony.framework in Frameworks */,
 				E60CC1A51881A80C00826B59 /* libc++.dylib in Frameworks */,
+				A7ADDC4A19C4D90E00AB5E20 /* FacebookSDK.framework in Frameworks */,
 				E60CC1A61881A80C00826B59 /* Accounts.framework in Frameworks */,
 				E60CC1A71881A80C00826B59 /* AVFoundation.framework in Frameworks */,
 				E60CC1A81881A80C00826B59 /* libz.dylib in Frameworks */,
@@ -976,6 +978,7 @@
 		E60CC1331881A5BF00826B59 /* Targets */ = {
 			isa = PBXGroup;
 			children = (
+				E60CC2071881A9EA00826B59 /* MPTargets.h */,
 				E60CC2051881A9C300826B59 /* Free */,
 				E60CC2061881A9C900826B59 /* Paid */,
 			);
@@ -985,7 +988,6 @@
 		E60CC2051881A9C300826B59 /* Free */ = {
 			isa = PBXGroup;
 			children = (
-				E60CC2071881A9EA00826B59 /* MPTargets.h */,
 				E60CC2081881A9EA00826B59 /* MPTargets.m */,
 			);
 			name = Free;
@@ -1230,6 +1232,11 @@
 				CLASSPREFIX = MP;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Henrique Morbin";
+				TargetAttributes = {
+					A78D0721181899F600DC64CD = {
+						DevelopmentTeam = U4D7MD5WUL;
+					};
+				};
 			};
 			buildConfigurationList = A78D071D181899F600DC64CD /* Build configuration list for PBXProject "MyPets" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1765,6 +1772,7 @@
 					2.0,
 					/Users/HP/Documents/FacebookSDK,
 					"$(PROJECT_DIR)",
+					/Users/Morbix/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MyPets/MyPets-Prefix.pch";
@@ -1803,6 +1811,7 @@
 					2.0,
 					/Users/HP/Documents/FacebookSDK,
 					"$(PROJECT_DIR)",
+					/Users/Morbix/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MyPets/MyPets-Prefix.pch";

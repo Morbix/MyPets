@@ -10,7 +10,7 @@
 
 #define kTargetAppID @"553815375"
 #define kTargetAds YES
-#define kTargetNumberOfSections 4
+#define kTargetNumberOfSections 3
 #define kTargetAnalyticsID @"UA-46756135-1"
 #define kTargetChannel @"App_Free"
 
