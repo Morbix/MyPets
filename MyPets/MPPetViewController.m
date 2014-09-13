@@ -22,7 +22,6 @@
 #import "MPLibrary.h"
 #import "MPPeso.h"
 
-
 @interface MPPetViewController () <PNChartDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *barButtonRight;
@@ -204,6 +203,11 @@
 #pragma mark - IBAction
 - (IBAction)barButtonRightTouched:(id)sender
 {
+    if (sender) {
+        [MXGoogleAnalytics ga_trackEventWith:@"Pet Actions" action:@"Edit" label:@"BarButtonItem"];
+    }else{
+        [MXGoogleAnalytics ga_trackEventWith:@"Pet Actions" action:@"Edit" label:@"Photo"];
+    }
     [self performSegueWithIdentifier:@"petEditViewController" sender:nil];
 }
 

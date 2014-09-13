@@ -45,7 +45,7 @@
 //Ok - Ads separadas para iPad
 //OK - BUG nas ADS
 //Ok - Replicar correcao do BUG
-//- Icones iPad
+//Ok - Icones iPad
 
 
 //

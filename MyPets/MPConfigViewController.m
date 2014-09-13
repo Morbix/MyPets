@@ -36,7 +36,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelEmail;
 @property (weak, nonatomic) IBOutlet UILabel *labelAvaliar;
 @property (weak, nonatomic) IBOutlet UILabel *labelOutrosApps;
-@property (weak, nonatomic) IBOutlet UIImageView *imageIcone;
 
 @end
 
@@ -64,8 +63,6 @@
     self.labelFacebook.text   = NSLS(@"Curtir a nossa página");
     self.labelLembretes.text  = NSLS(@"Mostrar lembretes");
     
-    [self.imageIcone.layer setCornerRadius:6];
-    [self.imageIcone.layer setMasksToBounds:YES];
     [self configurarBadge:self.badgeLembretes];
     
     self.syncSwitch.enabled = false;
@@ -206,8 +203,6 @@
         return NSLS(@"Contatos e Feedback");
     }else if (section == 2){
         return NSLS(@"Lembretes Programados");
-    }else if (section == 3){
-        return NSLS(@"Quer remover os anúncios?");
     }
     
     return @"";
@@ -231,8 +226,6 @@
     }else if (section == 1){
         return NSLS(@"");
     }else if (section == 2){
-        return NSLS(@"");
-    }else if (section == 3){
         return NSLS(@"");
     }
     
@@ -358,37 +351,6 @@
             if (indexPath.row == 0) {
                 [self performSegueWithIdentifier:@"lembretesViewController" sender:nil];
             }
-        }
-            break;
-        case 3:
-        {
-            id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-            [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Links"
-                                                                  action:@"MyPets Paid"
-                                                                   label:@"MyPets Paid"
-                                                                   value:nil] build]];
-            //553815375 - MyPets
-            //422347491 - Morbix
-            //795757886 - MyPets Paid
-            NSDictionary *parameters = [NSDictionary dictionaryWithObject:@"795757886"
-                                                                   forKey:SKStoreProductParameterITunesItemIdentifier];
-            
-            SKStoreProductViewController *tela = [[SKStoreProductViewController alloc] init];
-            [tela setDelegate:self];
-            [tela loadProductWithParameters:parameters
-                            completionBlock:^(BOOL result, NSError *error) {
-                                if (error) {
-                                    NSLog(@"%@",error.description);
-                                }else{
-                                    
-                                }
-                            }];
-            [self presentViewController:tela animated:YES completion:^{
-                id tracker = [[GAI sharedInstance] defaultTracker];
-                [tracker set:kGAIScreenName
-                       value:@"MyPets Paid iTunes Screen"];
-                [tracker send:[[GAIDictionaryBuilder createAppView] build]];
-            }];
         }
             break;
             

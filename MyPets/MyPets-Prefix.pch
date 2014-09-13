@@ -17,6 +17,7 @@
     #import "MXBannerView.h"
     #import "MXBannerHeaderView.h"
     #import "MXTableViewController.h"
+    #import "MXGoogleAnalytics.h"
 #endif
 
 
