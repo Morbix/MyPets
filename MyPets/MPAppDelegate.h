@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "ParcelKit.h"
+#import <FacebookSDK/FacebookSDK.h>
+#import <Parse/Parse.h>
+#import <Dropbox/Dropbox.h>
 
 @interface MPAppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -30,26 +33,27 @@
 //Ok - **** MyPet iPad ****
 //Ok - Bug do popup foto
 //Ok - Bug dos elementos centralizados
-//
 // - Conversor AdMob
-// - GA Hit In-app Purchase Succeed
-// - Conversor Facebook
-// - Schema Facebook
-// - Close Button Ads
+//Ok - GA Hit In-app Purchase Succeed
+//Ok - Conversor Facebook
+//Ok - Schema Facebook
+//Ok - Close Button Ads
 //Ok - In-App Remove Ads
 //Ok - Clique do gráfico
 //Ok - Clique na foto do Pet para editar
 //Ok - Bug Ads
 //Ok - Ads separadas para iPad
 //OK - BUG nas ADS
-// - Replicar correcao do BUG
-// - Local Push Badge Persistence
+//Ok - Replicar correcao do BUG
+//- Icones iPad
+
+
+//
+//- Local Push Badge Persistence
 //- Push Notifications Persistence
 //- Has New Version
 //- Feedback visual para cadastrar um pet quando estiver vazio
 //- Helpers First Visit
-
-//
 //Repetir Evento
 //Controle de Peso com fotos
 //Código do Rastreador
@@ -58,6 +62,9 @@
 //Albuns
 //Sync com facebook
 //Histórico do pet
+//Forma de Conversa com o Desenvolvedor
+//Ordenar tela inicial
+//Formato de lista para tela inicial
 //#warning Pendencias
 //2.1.2
 //Ok - Clicar na foto do pet e mostrar fullscrenn + tracking analytics
@@ -71,7 +78,7 @@
 //Ok - Implementar Ads do FelipeOliveira, checa iAd else AdMob
 //###Alta
 //###Média
-//- Versão iPad
+//Ok - Versão iPad
 //- Formato de Review do Felipe Oliveira
 //- Fotos das Vacinas com overlay, ou ver foto inteira, ou reposicionar
 //- Sync iCloud

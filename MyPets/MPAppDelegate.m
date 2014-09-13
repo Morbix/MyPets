@@ -9,13 +9,12 @@
 #import "MPAppDelegate.h"
 #import "MPLibrary.h"
 #import "Appirater.h"
-#import <Parse/Parse.h>
-#import <Dropbox/Dropbox.h>
 #import "GAI.h"
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
 #import "MPDropboxNotification.h"
 #import "MXInAppPurchase.h"
+#import "MXGoogleAnalytics.h"
 
 #define kSIZE 10
 
@@ -29,7 +28,6 @@
 {
     //[MPLibrary appearanceCustom];
     [PFPurchase addObserverForProduct:kIDENTIFIER_INAPP_REMOVEADS block:^(SKPaymentTransaction *transaction) {
-        PRETTY_FUNCTION;
         [[MXInAppPurchase shared] saveRemoveAdsPurchased];
     }];
     
@@ -37,13 +35,12 @@
     [Appirater setDaysUntilPrompt:7];
     [Appirater setUsesUntilPrompt:5];
     [Appirater setSignificantEventsUntilPrompt:-1];
-    [Appirater setTimeBeforeReminding:2];
+    [Appirater setTimeBeforeReminding:3];
     [Appirater setDebug:NO];
     [Appirater appLaunched:YES];
     
     
     [Parse setApplicationId:@"VOfi2AierOCqzfMPjFWkUeAVAM4tjT7ODkzqSCOm" clientKey:@"8byEO3HfZvG5vhaNnPeZ5jY76dW4AkWXl7acnV8D"];
-    
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     [application registerForRemoteNotificationTypes:
@@ -68,9 +65,16 @@
     }*/
     
     
-    UILocalNotification *localNotif = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
-    if (localNotif){
-        NSLog(@"Recieved Notification [1]");
+    NSDictionary *userInfoRemote = [launchOptions objectForKey: UIApplicationLaunchOptionsRemoteNotificationKey];
+    if (userInfoRemote != nil ){
+        [MXGoogleAnalytics ga_trackEventWith:@"Launch" action:@"Remote"];
+    }else{
+        NSDictionary *userInfoLocal = [launchOptions objectForKey: UIApplicationLaunchOptionsLocalNotificationKey];
+        if (userInfoLocal != nil ){
+            [MXGoogleAnalytics ga_trackEventWith:@"Launch" action:@"Local"];
+        }else{
+            [MXGoogleAnalytics ga_trackEventWith:@"Launch" action:@"Organic"];
+        }
     }
     
     return YES;
@@ -282,6 +286,11 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    [FBSettings setDefaultAppID:@"424666137577492"];
+    // Call the 'activateApp' method to log an app event for use in analytics and
+    // advertising reporting.
+    [FBAppEvents activateApp];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
