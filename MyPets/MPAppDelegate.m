@@ -32,8 +32,10 @@
     
     //[MPLibrary appearanceCustom];
     [PFPurchase addObserverForProduct:kIDENTIFIER_INAPP_REMOVEADS block:^(SKPaymentTransaction *transaction) {
-        PRETTY_FUNCTION;
-        [[MXInAppPurchase shared] saveRemoveAdsPurchasedFromObserver:YES];
+        if ((transaction.transactionState == SKPaymentTransactionStatePurchased) ||
+            (transaction.transactionState == SKPaymentTransactionStateRestored)) {
+            [[MXInAppPurchase shared] saveRemoveAdsPurchasedFromObserver:YES];
+        }
     }];
     
     [Appirater setAppId:[MPTargets targetAppID]];

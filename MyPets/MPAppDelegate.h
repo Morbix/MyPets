@@ -42,7 +42,7 @@
 //Ok - idfa
 //Ok - Notification iOS 8
 //Ok - Tag de Ads Removed correta
-//- Habilitar compra apenas nos status corretos de transaction
+//Ok - Habilitar compra apenas nos status corretos de transaction
 //- Reativar Dropbox
 //- Sync
 //- Atualizar UI apenas quando voltar da tela
