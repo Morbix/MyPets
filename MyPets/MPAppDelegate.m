@@ -59,6 +59,11 @@
     [Parse setApplicationId:@"VOfi2AierOCqzfMPjFWkUeAVAM4tjT7ODkzqSCOm" clientKey:@"8byEO3HfZvG5vhaNnPeZ5jY76dW4AkWXl7acnV8D"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
+    [PFUser enableAutomaticUser];
+    
+    PFACL *defaultACL = [PFACL ACL];
+    [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
+    
     [self configurarPushNotificationWithApplication:application
                                          andOptions:launchOptions];
     [self configurarAutomaticUser];
@@ -109,11 +114,14 @@
 
 - (void)configurarAutomaticUser
 {
-    [PFUser enableAutomaticUser];
-    [[PFUser currentUser] incrementKey:@"runCount"];
+    [[PFUser currentUser] incrementKey:@"RunCount"];
     if ([PFInstallation currentInstallation]) {
-        [[PFUser currentUser] setObject:[PFInstallation currentInstallation].deviceToken forKey:@"deviceToken"];
+        if ([PFInstallation currentInstallation].deviceToken) {
+            [[PFUser currentUser] setObject:[PFInstallation currentInstallation].deviceToken forKey:@"deviceToken"];
+        }
+        
     }
+
     [[PFUser currentUser] setObject:[[UIDevice currentDevice] name]
                              forKey:@"deviceName"];
     [[PFUser currentUser] setObject:[[UIDevice currentDevice] systemName]

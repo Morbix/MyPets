@@ -48,7 +48,7 @@
 //- Reativar Dropbox
 //- Sync
 //- Atualizar UI apenas quando voltar da tela
-//- Salvar SKTransaction no Parse
+
 
 
 //2.2.0
