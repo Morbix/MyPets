@@ -327,7 +327,7 @@
                     [tela loadProductWithParameters:parameters
                                     completionBlock:^(BOOL result, NSError *error) {
                                         if (error) {
-                                            NSLog(@"%@",error.description);
+                                            //NSLog(@"%@",error.description);
                                         }else{
                                             
                                         }

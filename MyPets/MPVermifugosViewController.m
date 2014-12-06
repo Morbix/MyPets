@@ -83,7 +83,7 @@
     [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Adicionar"     // Event category (required)
                                                           action:@"Novo Vermífugo"  // Event action (required)
                                                            label:@"Novo Vermífugo"          // Event label
-                                                           value:[NSNumber numberWithInt:animal.cArrayVermifugos.count]] build]];
+                                                           value:[NSNumber numberWithInt:(int)animal.cArrayVermifugos.count]] build]];
     
     [self performSegueWithIdentifier:@"vermifugoEditViewController" sender:nil];
 }

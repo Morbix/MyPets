@@ -63,7 +63,7 @@
         NSArray *arrayResult = [self.context executeFetchRequest:request error:&error];
         if (!error){
             if (arrayResult.count > 0) {
-                NSLog(@"---- Fix_without_cAnimal: N. %@: %d",entidade, (int)arrayResult.count);
+                //NSLog(@"---- Fix_without_cAnimal: N. %@: %d",entidade, (int)arrayResult.count);
                 for (NSManagedObject *object in arrayResult) {
                     [self.context deleteObject:object]; save = TRUE;
                 }
@@ -132,7 +132,7 @@
                     }
                 }
                 if (edited > 0) {
-                    NSLog(@"---- Fix_ResizePhoto:  N. %@: %d",entidade, edited);
+                    //NSLog(@"---- Fix_ResizePhoto:  N. %@: %d",entidade, edited);
                 }
             }
         }
@@ -166,7 +166,7 @@
         }
     }
     
-    NSLog(@"MPCoreDataService:buscarPets:%d - Completed", (int)self.arrayPets.count);
+    //NSLog(@"MPCoreDataService:buscarPets:%d - Completed", (int)self.arrayPets.count);
     [[NSNotificationCenter defaultCenter] postNotificationName:MTPSNotificationPets object:nil userInfo:error ? [NSDictionary dictionaryWithObjectsAndKeys:error,@"error", nil] : nil];
 }
 
@@ -229,7 +229,7 @@
     
     self.animalSelected = nil;
     
-    NSLog(@"MPCoreDataService:buscarPets:%d - Completed", (int)self.arrayPets.count);
+    //NSLog(@"MPCoreDataService:buscarPets:%d - Completed", (int)self.arrayPets.count);
     [[NSNotificationCenter defaultCenter] postNotificationName:MTPSNotificationPets object:nil userInfo:nil];
 }
 
@@ -250,7 +250,7 @@
     [self.context save:&error];
     
     if (!error) {
-        NSLog(@"MPCoreDataService:buscarVacinas:%d - Completed", animal.cArrayVacinas.count);
+        //NSLog(@"MPCoreDataService:buscarVacinas:%d - Completed", animal.cArrayVacinas.count);
         [[NSNotificationCenter defaultCenter] postNotificationName:MTPSNotificationPetsVacinas object:nil userInfo:nil];
         
         return vac;
@@ -290,7 +290,7 @@
     [self.context save:&error];
     
     if (!error) {
-        NSLog(@"MPCoreDataService:buscarVermifugos:%d - Completed", animal.cArrayVermifugos.count);
+        //NSLog(@"MPCoreDataService:buscarVermifugos:%d - Completed", animal.cArrayVermifugos.count);
         [[NSNotificationCenter defaultCenter] postNotificationName:MTPSNotificationPetsVermifugos object:nil userInfo:nil];
         
         return vermi;
@@ -329,7 +329,7 @@
     [self.context save:&error];
     
     if (!error) {
-        NSLog(@"MPCoreDataService:buscarConsultas:%d - Completed", animal.cArrayConsultas.count);
+        //NSLog(@"MPCoreDataService:buscarConsultas:%d - Completed", animal.cArrayConsultas.count);
         [[NSNotificationCenter defaultCenter] postNotificationName:MTPSNotificationPetsConsultas object:nil userInfo:nil];
         
         return consulta;
@@ -369,7 +369,7 @@
     [self.context save:&error];
     
     if (!error) {
-        NSLog(@"MPCoreDataService:buscarBanhos:%d - Completed", animal.cArrayBanhos.count);
+        //NSLog(@"MPCoreDataService:buscarBanhos:%d - Completed", animal.cArrayBanhos.count);
         [[NSNotificationCenter defaultCenter] postNotificationName:MTPSNotificationPetsBanhos object:nil userInfo:nil];
         
         return banho;
@@ -412,7 +412,7 @@
     [self.context save:&error];
     
     if (!error) {
-        NSLog(@"MPCoreDataService:buscarMedicamentos:%d - Completed", animal.cArrayMedicamentos.count);
+        //NSLog(@"MPCoreDataService:buscarMedicamentos:%d - Completed", animal.cArrayMedicamentos.count);
         [[NSNotificationCenter defaultCenter] postNotificationName:MTPSNotificationPetsMedicamentos object:nil userInfo:nil];
         
         return medicamento;
@@ -450,7 +450,7 @@
     [self.context save:&error];
     
     if (!error) {
-        NSLog(@"MPCoreDataService:buscarPesos:%d - Completed", animal.cArrayPesos.count);
+        //NSLog(@"MPCoreDataService:buscarPesos:%d - Completed", animal.cArrayPesos.count);
         [[NSNotificationCenter defaultCenter] postNotificationName:MTPSNotificationPetsPesos object:nil userInfo:nil];
         
         return peso;

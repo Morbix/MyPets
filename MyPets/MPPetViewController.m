@@ -118,11 +118,11 @@
         
         self.imageFoto.image = [animal getFoto];
         
-        self.badgeVacina.text    = [NSString stringWithFormat:@"%d", [animal getNextVacinas].count];
-        self.badgeVermifugo.text = [NSString stringWithFormat:@"%d", [animal getNextVermifugos].count];
-        self.badgeConsultas.text = [NSString stringWithFormat:@"%d", [animal getNextConsultas].count];
-        self.badgeBanhos.text    = [NSString stringWithFormat:@"%d", [animal getNextBanhos].count];
-        self.badgeMedicamentos.text    = [NSString stringWithFormat:@"%d", [animal getNextMedicamentos].count];
+        self.badgeVacina.text    = [NSString stringWithFormat:@"%d", (int)[animal getNextVacinas].count];
+        self.badgeVermifugo.text = [NSString stringWithFormat:@"%d", (int)[animal getNextVermifugos].count];
+        self.badgeConsultas.text = [NSString stringWithFormat:@"%d", (int)[animal getNextConsultas].count];
+        self.badgeBanhos.text    = [NSString stringWithFormat:@"%d", (int)[animal getNextBanhos].count];
+        self.badgeMedicamentos.text    = [NSString stringWithFormat:@"%d", (int)[animal getNextMedicamentos].count];
     }
 }
 

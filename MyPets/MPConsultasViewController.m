@@ -83,7 +83,7 @@
     [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Adicionar"     // Event category (required)
                                                           action:@"Nova Consulta"  // Event action (required)
                                                            label:@"Nova Consulta"          // Event label
-                                                           value:[NSNumber numberWithInt:animal.cArrayConsultas.count]] build]];
+                                                           value:[NSNumber numberWithInt:(int)animal.cArrayConsultas.count]] build]];
     
     [self performSegueWithIdentifier:@"consultaEditViewController" sender:nil];
 }

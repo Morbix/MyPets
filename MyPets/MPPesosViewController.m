@@ -77,7 +77,7 @@
     [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Adicionar"     // Event category (required)
                                                           action:@"Novo Peso"  // Event action (required)
                                                            label:@"Novo Peso"          // Event label
-                                                           value:[NSNumber numberWithInt:animal.cArrayPesos.count]] build]];
+                                                           value:[NSNumber numberWithInt:(int)animal.cArrayPesos.count]] build]];
     
     [self performSegueWithIdentifier:@"pesoEditViewController" sender:nil];
 }

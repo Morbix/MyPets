@@ -346,7 +346,7 @@
     CALLBACK_LOCAL = TRUE;
     
     if (notification.userInfo) {
-        NSLog(@"error: %s", __PRETTY_FUNCTION__);
+        //NSLog(@"error: %s", __PRETTY_FUNCTION__);
     }else{
         if (arrayPets) {
             arrayPets = nil;

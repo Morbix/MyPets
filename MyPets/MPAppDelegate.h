@@ -11,6 +11,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import <Parse/Parse.h>
 #import <Dropbox/Dropbox.h>
+#import <Crashlytics/Crashlytics.h>
 
 @interface MPAppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -30,6 +31,24 @@
 @end
 
 
+//Ok - Atualizar Parse
+//Ok - Atualizar Facebook
+//Ok - Atualizar Bolts
+//Ok - Adicionar arquiteturas
+//Ok - Remover NSLogs
+//Ok - crashlytics
+//Ok - Atualizar AdMob
+//- idfa
+//- MXGoogleAnalytics
+//- Notification iOS 8
+//- Reativar Dropbox
+//- Sync
+//- Atualizar UI apenas quando voltar da tela
+//- Usuario Anonimo
+//- Salvar SKTransaction no Parse
+
+
+//2.2.0
 //Ok - **** MyPet iPad ****
 //Ok - Bug do popup foto
 //Ok - Bug dos elementos centralizados
@@ -48,44 +67,31 @@
 //Ok - Icones iPad
 
 
-//
+//////////Backlog
+//- Itens dos emails
 //- Local Push Badge Persistence
 //- Push Notifications Persistence
 //- Has New Version
 //- Feedback visual para cadastrar um pet quando estiver vazio
 //- Helpers First Visit
-//Repetir Evento
-//Controle de Peso com fotos
-//Código do Rastreador
-//Cio
-//Antipulgas
-//Albuns
-//Sync com facebook
-//Histórico do pet
-//Forma de Conversa com o Desenvolvedor
-//Ordenar tela inicial
-//Formato de lista para tela inicial
-//#warning Pendencias
-//2.1.2
-//Ok - Clicar na foto do pet e mostrar fullscrenn + tracking analytics
-//Ok - Delay na tela principal para tentar parar de dar crash
-//2.1.1
-//Ok - Bug da data de nascimento futura
-//Ok - Bug do formato americano
-//Ok - Status do Dropbox com notificações visuais
-//Ok - Verificar track do erro no dropbox
-//Ok - Corrigir link do Rate, Appirater atualizado
-//Ok - Implementar Ads do FelipeOliveira, checa iAd else AdMob
-//###Alta
-//###Média
-//Ok - Versão iPad
+// -Repetir Evento
+// -Controle de Peso com fotos
+// -Código do Rastreador
+// -Cio
+// -Antipulgas
+// -Albuns
+// -Sync com facebook
+// -Histórico do pet
+// -Forma de Conversa com o Desenvolvedor
+// -Ordenar tela inicial
+// -Formato de lista para tela inicial
+// -#warning Pendencias
 //- Formato de Review do Felipe Oliveira
 //- Fotos das Vacinas com overlay, ou ver foto inteira, ou reposicionar
 //- Sync iCloud
 //- Adicionar outras linguagens (Espanho, Frances, Italiano, Alemão)
 //- Sistema de Ajuda pelo app inteiro
 //- Otimização no CoreData transferindo arquivos de dados para outras entidades
-//###Baixa
 //- algoritmo para sincronizar os alarmes: status nulo(não analisado), 1(sem lembrete), 2(com lembrete)(atenção ao implementar)
 //- Cadastro de Veterinárias
 //- Possibilidade de adicionar PDFs
@@ -103,18 +109,30 @@
 //- Criar sistema de compartilhamento do pet com outros usuários através de um arquivo
 //- Controle Financeiro com os gastos com o Cão
 //- Cálculo de Ração de acordo com o peso
+//- Exportar
+//- Informacoes Adicionais vinda de parceiros
+//- Add Frances, Italiano, Espanhol
+
+//2.1.2
+//Ok - Clicar na foto do pet e mostrar fullscrenn + tracking analytics
+//Ok - Delay na tela principal para tentar parar de dar crash
+
+//2.1.1
+//Ok - Bug da data de nascimento futura
+//Ok - Bug do formato americano
+//Ok - Status do Dropbox com notificações visuais
+//Ok - Verificar track do erro no dropbox
+//Ok - Corrigir link do Rate, Appirater atualizado
+//Ok - Implementar Ads do FelipeOliveira, checa iAd else AdMob
+//Ok - Versão iPad
 
 //2.1.0
-//---Publicacao
-//---Desenvolvimento
-//---Oks
 //Ok - Prints da app stora melhor com gatos
 //Ok - Melhor descricao com reviews, mídia e posicoes
 //Ok - Free e Pago -ATENCAO, tem que duplicar appirater, remover ads, analytics
 //Ok - Ativar iAds apenas no FREE
 //Ok - Setar o Parse para o mesmo nos dois
 //Ok - Inscrever usuario em canais distintos
-//Nada - Teste quando atualizar dropbox o q fazer com os pets sendo atualizados
 //Ok - PageViewTrack nos viewDidAppear
 //Ok - Analytics Track - Dropbox connect e desconnect
 //Ok - Analytics Track - e pageview nas configuracoes (todos os abouts) e lembretes
@@ -147,13 +165,6 @@
 //Ok - GoogleAnalytics
 //Ok - AppIRater
 
-
-
-//Later
-//Exportar
-//Informacoes Adicionais vinda de parceiros
-//Add Frances, Italiano, Espanhol
-
 //Events
 //Ok - Telas
 //Ok - Add com total de itnes
@@ -161,6 +172,4 @@
 //Ok - Fotos
 //Ok - Lembretes
 //Ok - Dropbox connect e desconnect
-//Peso
 //Ok - Event track e pageview nas configuracoes e lembretes
-//warning Pendencias

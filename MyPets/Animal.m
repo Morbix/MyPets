@@ -91,9 +91,9 @@
         
         NSDateComponents *comps = [[NSCalendar currentCalendar] components:unitFlags fromDate:startDate  toDate:endDate  options:0];
         
-        int year   = abs([comps year]);
-        int months = abs([comps month]);
-        int days   = abs([comps day]);
+        int year   = abs((int)[comps year]);
+        int months = abs((int)[comps month]);
+        int days   = abs((int)[comps day]);
         
         NSString * _ano = @"";
         NSString * _mes = @"";
@@ -178,8 +178,8 @@
         
         NSDateComponents *comps = [[NSCalendar currentCalendar] components:unitFlags fromDate:startDate  toDate:endDate  options:0];
         
-        int year   = [comps year];
-        int months = [comps month];
+        int year   = (int)[comps year];
+        int months = (int)[comps month];
         //int days   = [comps day];
         
         if (_animal.cEspecie) {
@@ -233,11 +233,11 @@
 - (int)getUpcomingTotal
 {
     int total = 0;
-    total = total + [self getNextVacinas].count;
-    total = total + [self getNextVermifugos].count;
-    total = total + [self getNextConsultas].count;
-    total = total + [self getNextBanhos].count;
-    total = total + [self getNextMedicamentos].count;
+    total = total + (int)[self getNextVacinas].count;
+    total = total + (int)[self getNextVermifugos].count;
+    total = total + (int)[self getNextConsultas].count;
+    total = total + (int)[self getNextBanhos].count;
+    total = total + (int)[self getNextMedicamentos].count;
     return total;
 }
 

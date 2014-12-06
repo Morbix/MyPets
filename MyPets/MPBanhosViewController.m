@@ -83,7 +83,7 @@
     [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Adicionar"     // Event category (required)
                                                           action:@"Novo Banho"  // Event action (required)
                                                            label:@"Novo Banho"          // Event label
-                                                           value:[NSNumber numberWithInt:animal.cArrayBanhos.count]] build]];
+                                                           value:[NSNumber numberWithInt:(int)animal.cArrayBanhos.count]] build]];
     
     [self performSegueWithIdentifier:@"banhoEditViewController" sender:nil];
 }

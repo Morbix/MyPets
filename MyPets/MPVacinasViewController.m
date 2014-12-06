@@ -83,7 +83,7 @@
     [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Adicionar"     // Event category (required)
                                                           action:@"Nova Vacina"  // Event action (required)
                                                            label:@"Nova Vacina"          // Event label
-                                                           value:[NSNumber numberWithInt:animal.cArrayVacinas.count]] build]];
+                                                           value:[NSNumber numberWithInt:(int)animal.cArrayVacinas.count]] build]];
     
     [self performSegueWithIdentifier:@"vacinaEditViewController" sender:nil];
 }

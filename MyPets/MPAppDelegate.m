@@ -17,6 +17,7 @@
 #import "MXGoogleAnalytics.h"
 #import "ACTReporter.h"
 
+
 #define kSIZE 10
 
 @implementation MPAppDelegate
@@ -27,6 +28,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [Crashlytics startWithAPIKey:@"4e076605a89bca6719313424e40c17037f78bc19"];
+    
     //[MPLibrary appearanceCustom];
     [PFPurchase addObserverForProduct:kIDENTIFIER_INAPP_REMOVEADS block:^(SKPaymentTransaction *transaction) {
         [[MXInAppPurchase shared] saveRemoveAdsPurchased];
@@ -92,7 +95,7 @@
 - (void)application:(UIApplication *)app didReceiveLocalNotification:(UILocalNotification *)notification
 {
     if (notification) {
-        NSLog(@"Recieved Notification [2]");
+        //NSLog(@"Recieved Notification [2]");
         if ([app applicationState] == UIApplicationStateActive) {
             if (!_notificationAlert) {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil

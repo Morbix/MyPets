@@ -10,24 +10,36 @@
 	<string>MyPets</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>784BBC64CD32FCA8C94A749E26FF25E92B282B0D</key>
+		<string>https://bitbucket.org/morbix/mypets-2.0.git</string>
 		<key>AB012357-8618-4DBD-9524-DDCCA0E9E0CE</key>
 		<string>https://bitbucket.org/morbix/mypets-2.0.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>MyPets.xcodeproj/project.xcworkspace</string>
+	<string>MyPets.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>AB012357-8618-4DBD-9524-DDCCA0E9E0CE</key>
+		<key>784BBC64CD32FCA8C94A749E26FF25E92B282B0D</key>
 		<string>../..</string>
+		<key>AB012357-8618-4DBD-9524-DDCCA0E9E0CE</key>
+		<string>../.. 2</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://bitbucket.org/morbix/mypets-2.0.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>AB012357-8618-4DBD-9524-DDCCA0E9E0CE</string>
+	<string>784BBC64CD32FCA8C94A749E26FF25E92B282B0D</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>784BBC64CD32FCA8C94A749E26FF25E92B282B0D</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MyPets</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
