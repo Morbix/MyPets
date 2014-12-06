@@ -132,6 +132,9 @@
                              forKey:@"deviceSystemVersion"];
     [[PFUser currentUser] setObject:[[UIDevice currentDevice] localizedModel]
                              forKey:@"deviceLocalizedModel"];
+    
+    [[PFUser currentUser] setObject:[MPTargets targetChannel] forKey:@"app"];
+    
     [[PFUser currentUser] saveInBackground];
     
     
