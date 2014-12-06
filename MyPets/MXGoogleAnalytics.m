@@ -1,10 +1,11 @@
 //
 //  MXGoogleAnalytics.m
-//  PickUpSticks
+//  Morbix
 //
 //  Created by Henrique Morbin on 26/07/14.
 //  Copyright (c) 2014 Henrique Morbin. All rights reserved.
 //
+//  MXGoogleAnalytics v2 
 
 #import "MXGoogleAnalytics.h"
 #import "GAI.h"
@@ -13,6 +14,45 @@
 
 @implementation MXGoogleAnalytics
 
++ (void)ga_inicializeWithTrackingId:(NSString *)trackingId
+{
+    // Optional: automatically send uncaught exceptions to Google Analytics.
+    [GAI sharedInstance].trackUncaughtExceptions = YES;
+    // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
+    [GAI sharedInstance].dispatchInterval = 20;
+    // Optional: set Logger to VERBOSE for debug information.
+    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelError];
+    // Initialize tracker. Replace with your tracking ID.
+    [[GAI sharedInstance] trackerWithTrackingId:trackingId];
+}
+
++ (void)ga_allowIDFACollection:(BOOL)allow
+{
+    /*Para ativar recursos de publicidade gráfica para iOS, colete o identificador para anunciantes (IDFA, na sigla em inglês). Para ativar a coleta do IDFA, vincule as bibliotecas libAdIdAccess.a e AdSupport.framework ao seu aplicativo e defina allowIDFACollection como YES em cada acompanhador que coletará o IDFA.*/
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    
+    [tracker setAllowIDFACollection:allow];
+}
+
+#pragma mark - Application
++ (void)ga_trackApplicationLauchingWithOptions:(NSDictionary *)launchOptions
+{
+    NSDictionary *userInfoRemote = [launchOptions objectForKey: UIApplicationLaunchOptionsRemoteNotificationKey];
+    
+    if (userInfoRemote != nil ){
+        [MXGoogleAnalytics ga_trackEventWith:@"Launch" action:@"Remote"];
+    }else{
+        NSDictionary *userInfoLocal = [launchOptions objectForKey: UIApplicationLaunchOptionsLocalNotificationKey];
+        if (userInfoLocal != nil ){
+            [MXGoogleAnalytics ga_trackEventWith:@"Launch" action:@"Local"];
+        }else{
+            [MXGoogleAnalytics ga_trackEventWith:@"Launch" action:@"Organic"];
+        }
+    }
+}
+
+#pragma mark - Screen
 + (void)ga_trackScreen:(NSString *)screen
 {
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
@@ -23,12 +63,13 @@
            value:screen];
     
     // Previous V3 SDK versions
-    // [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+    //[tracker send:[[GAIDictionaryBuilder createAppView] build]];
     
     // New SDK versions
     [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
+#pragma mark - Event
 + (void)ga_trackEventWith:(NSString *)category action:(NSString *)action label:(NSString *)label value:(NSNumber *)value
 {
     // May return nil if a tracker has not already been initialized with a property

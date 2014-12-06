@@ -30,7 +30,7 @@
 
 @end
 
-
+//2.2.1
 //Ok - Atualizar Parse
 //Ok - Atualizar Facebook
 //Ok - Atualizar Bolts
@@ -38,9 +38,11 @@
 //Ok - Remover NSLogs
 //Ok - crashlytics
 //Ok - Atualizar AdMob
-//- idfa
-//- MXGoogleAnalytics
-//- Notification iOS 8
+//OK - MXGoogleAnalytics
+//Ok - idfa
+//Ok - Notification iOS 8
+//Ok - Tag de Ads Removed correta
+//- Habilitar compra apenas nos status corretos de transaction
 //- Reativar Dropbox
 //- Sync
 //- Atualizar UI apenas quando voltar da tela

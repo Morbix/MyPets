@@ -214,7 +214,8 @@
         [MXGoogleAnalytics ga_trackEventWith:@"Ads" action:@"Remove Touched" label:bannerView_.adUnitID];
         [PFPurchase buyProduct:kIDENTIFIER_INAPP_REMOVEADS block:^(NSError *error) {
             if (!error) {
-                [[MXInAppPurchase shared] saveRemoveAdsPurchased];
+                PRETTY_FUNCTION;
+                [[MXInAppPurchase shared] saveRemoveAdsPurchasedFromObserver:NO];
             }else{
                 [[[UIAlertView alloc] initWithTitle:@""
                                            message:error.localizedDescription

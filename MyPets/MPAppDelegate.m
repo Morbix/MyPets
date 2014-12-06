@@ -32,7 +32,8 @@
     
     //[MPLibrary appearanceCustom];
     [PFPurchase addObserverForProduct:kIDENTIFIER_INAPP_REMOVEADS block:^(SKPaymentTransaction *transaction) {
-        [[MXInAppPurchase shared] saveRemoveAdsPurchased];
+        PRETTY_FUNCTION;
+        [[MXInAppPurchase shared] saveRemoveAdsPurchasedFromObserver:YES];
     }];
     
     [Appirater setAppId:[MPTargets targetAppID]];
@@ -47,17 +48,13 @@
     [Parse setApplicationId:@"VOfi2AierOCqzfMPjFWkUeAVAM4tjT7ODkzqSCOm" clientKey:@"8byEO3HfZvG5vhaNnPeZ5jY76dW4AkWXl7acnV8D"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
-    [application registerForRemoteNotificationTypes:
-     UIRemoteNotificationTypeBadge |
-     UIRemoteNotificationTypeAlert |
-     UIRemoteNotificationTypeSound];
     
+    [self configurarPushNotificationWithApplication:application
+                                         andOptions:launchOptions];
     
-    [GAI sharedInstance].trackUncaughtExceptions = YES;
-    [GAI sharedInstance].dispatchInterval = 20;
-    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelError];
-    [[GAI sharedInstance] trackerWithTrackingId:[MPTargets targetAnalyticsID]];
-    //[tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Application" action:@"Launching"  label:@"Launching" value:nil] build]];    // Event value
+    [MXGoogleAnalytics ga_inicializeWithTrackingId:[MPTargets targetAnalyticsID]];
+    [MXGoogleAnalytics ga_trackApplicationLauchingWithOptions:launchOptions];
+    [MXGoogleAnalytics ga_allowIDFACollection:YES];
     
     /*[MPDropboxNotification shared];
     
@@ -69,26 +66,33 @@
     }*/
     
     
-    NSDictionary *userInfoRemote = [launchOptions objectForKey: UIApplicationLaunchOptionsRemoteNotificationKey];
-    if (userInfoRemote != nil ){
-        [MXGoogleAnalytics ga_trackEventWith:@"Launch" action:@"Remote"];
-    }else{
-        NSDictionary *userInfoLocal = [launchOptions objectForKey: UIApplicationLaunchOptionsLocalNotificationKey];
-        if (userInfoLocal != nil ){
-            [MXGoogleAnalytics ga_trackEventWith:@"Launch" action:@"Local"];
-        }else{
-            [MXGoogleAnalytics ga_trackEventWith:@"Launch" action:@"Organic"];
-        }
-    }
-    
     // MyPets - Pets Manager Free - download
     // Google iOS Download tracking snippet
     // To track downloads of your app, add this snippet to your
     // application delegate's application:didFinishLaunchingWithOptions: method.
-    
     [ACTConversionReporter reportWithConversionID:@"1021940053" label:@"CLc8COSUplYQ1aKm5wM" value:@"0.00" isRepeatable:NO];
     
     return YES;
+}
+
+- (void)configurarPushNotificationWithApplication:(UIApplication *)application
+                                       andOptions:(NSDictionary *)launchOptions
+{
+    
+    //iOS 8 Push Notifications
+    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        // use registerUserNotificationSettings
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:
+                                                UIUserNotificationTypeAlert |
+                                                UIUserNotificationTypeBadge |
+                                                UIUserNotificationTypeSound
+                                                                                 categories:nil];
+        [application registerUserNotificationSettings:settings];
+        [application registerForRemoteNotifications];
+    } else {
+        // use registerForRemoteNotifications
+        [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound];
+    }
 }
 
 #pragma mark - LocalNotification

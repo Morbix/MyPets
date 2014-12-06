@@ -40,9 +40,9 @@
     }
 }
 
-- (void)saveRemoveAdsPurchased
+- (void)saveRemoveAdsPurchasedFromObserver:(BOOL)observer
 {
-    [MXGoogleAnalytics ga_trackEventWith:@"Ads" action:@"Ads Removed"];
+    [MXGoogleAnalytics ga_trackEventWith:@"Ads" action:@"Ads Removed" label:observer ? @"Observer" : @"Buy Product"];
     
     self.removeAdsPurchased = YES;
     [Lockbox setDate:[NSDate date] forKey:kIDENTIFIER_INAPP_REMOVEADS];

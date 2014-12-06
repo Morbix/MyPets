@@ -14,7 +14,7 @@
 
 + (instancetype)shared;
 
-- (void)saveRemoveAdsPurchased;
+- (void)saveRemoveAdsPurchasedFromObserver:(BOOL)observer;
 - (BOOL)checkRemoveAdsPurchased;
 
 @end
