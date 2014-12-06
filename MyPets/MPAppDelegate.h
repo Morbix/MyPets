@@ -43,10 +43,11 @@
 //Ok - Notification iOS 8
 //Ok - Tag de Ads Removed correta
 //Ok - Habilitar compra apenas nos status corretos de transaction
+//Ok - Usuario Anonimo
+//Ok - Device Information
 //- Reativar Dropbox
 //- Sync
 //- Atualizar UI apenas quando voltar da tela
-//- Usuario Anonimo
 //- Salvar SKTransaction no Parse
 
 

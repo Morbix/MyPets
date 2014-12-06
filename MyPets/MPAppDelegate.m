@@ -35,6 +35,15 @@
         if ((transaction.transactionState == SKPaymentTransactionStatePurchased) ||
             (transaction.transactionState == SKPaymentTransactionStateRestored)) {
             [[MXInAppPurchase shared] saveRemoveAdsPurchasedFromObserver:YES];
+            
+            if (transaction.transactionState == SKPaymentTransactionStatePurchased){
+                [[PFUser currentUser] setObject:[NSDate date] forKey:@"purchaseDate"];
+            }else{
+                [[PFUser currentUser] setObject:[NSDate date] forKey:@"lastRestoredDate"];
+            }
+            
+            [[PFUser currentUser] setObject:@TRUE forKey:@"adsRemoved"];
+            [[PFUser currentUser] saveInBackground];
         }
     }];
     
@@ -50,9 +59,10 @@
     [Parse setApplicationId:@"VOfi2AierOCqzfMPjFWkUeAVAM4tjT7ODkzqSCOm" clientKey:@"8byEO3HfZvG5vhaNnPeZ5jY76dW4AkWXl7acnV8D"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
-    
     [self configurarPushNotificationWithApplication:application
                                          andOptions:launchOptions];
+    [self configurarAutomaticUser];
+    
     
     [MXGoogleAnalytics ga_inicializeWithTrackingId:[MPTargets targetAnalyticsID]];
     [MXGoogleAnalytics ga_trackApplicationLauchingWithOptions:launchOptions];
@@ -94,6 +104,34 @@
     } else {
         // use registerForRemoteNotifications
         [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound];
+    }
+}
+
+- (void)configurarAutomaticUser
+{
+    [PFUser enableAutomaticUser];
+    [[PFUser currentUser] incrementKey:@"runCount"];
+    if ([PFInstallation currentInstallation]) {
+        [[PFUser currentUser] setObject:[PFInstallation currentInstallation].deviceToken forKey:@"deviceToken"];
+    }
+    [[PFUser currentUser] setObject:[[UIDevice currentDevice] name]
+                             forKey:@"deviceName"];
+    [[PFUser currentUser] setObject:[[UIDevice currentDevice] systemName]
+                             forKey:@"deviceSystemName"];
+    [[PFUser currentUser] setObject:[[UIDevice currentDevice] model]
+                             forKey:@"deviceModel"];
+    [[PFUser currentUser] setObject:[[UIDevice currentDevice] systemVersion]
+                             forKey:@"deviceSystemVersion"];
+    [[PFUser currentUser] setObject:[[UIDevice currentDevice] localizedModel]
+                             forKey:@"deviceLocalizedModel"];
+    [[PFUser currentUser] saveInBackground];
+    
+    
+    if ([PFInstallation currentInstallation]) {
+        if (![[PFInstallation currentInstallation] objectForKey:@"user"]) {
+            [[PFInstallation currentInstallation] setObject:[PFUser currentUser] forKey:@"User"];
+            [[PFInstallation currentInstallation] saveInBackground];
+        }
     }
 }
 
