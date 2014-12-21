@@ -34,8 +34,9 @@
     if (notification.userInfo) {
         [[MPCoreDataService shared] loadAllPets];
         if ([notification.userInfo valueForKey:@"status"]){
-            int status = [(NSString *)[notification.userInfo valueForKey:@"status"] intValue];
-            if (status == 1) {
+            
+            BOOL status = [(DBDatastoreStatus *)[notification.userInfo valueForKey:@"status"] connected];
+            if (status) {
                 self.queue++;
                 [self performSelector:@selector(showSyncCompletedNotification) withObject:Nil afterDelay:kPostponeTime];
             }else if (status > 1) {

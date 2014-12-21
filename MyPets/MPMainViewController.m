@@ -25,11 +25,6 @@
 #import "MPAppDelegate.h"
 
 
-
-#define DropboxAppKey @"tnmjxymp32xgs8y"
-#define DropboxAppSecret @"czkt8b3dhrcj30b"
-
-
 @interface MPMainViewController ()
 {
     NSArray *arrayPets;
@@ -101,7 +96,7 @@
 
 - (void)delayToLoad
 {
-    /*static dispatch_once_t onceToken;
+    static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [MPDropboxNotification shared];
         
@@ -111,7 +106,7 @@
         if ([accountManager linkedAccount]) {
             [(MPAppDelegate *)[[UIApplication sharedApplication] delegate] setSyncEnabled:YES];
         }
-    });*/
+    });
     
     [self.spinner stopAnimating];
     [[MPCoreDataService shared] loadAllPets];

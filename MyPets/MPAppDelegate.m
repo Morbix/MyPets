@@ -73,9 +73,9 @@
     [MXGoogleAnalytics ga_trackApplicationLauchingWithOptions:launchOptions];
     [MXGoogleAnalytics ga_allowIDFACollection:YES];
     
-    /*[MPDropboxNotification shared];
+    [MPDropboxNotification shared];
     
-    DBAccountManager *accountManager = [[DBAccountManager alloc] initWithAppKey:DropboxAppKey secret:DropboxAppSecret];
+    /*DBAccountManager *accountManager = [[DBAccountManager alloc] initWithAppKey:DropboxAppKey secret:DropboxAppSecret];
     [DBAccountManager setSharedManager:accountManager];
     
     if ([accountManager linkedAccount]) {

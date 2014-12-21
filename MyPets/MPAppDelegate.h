@@ -30,6 +30,10 @@
 
 @end
 
+//- Reativar Dropbox
+//- Sync
+//- Atualizar UI apenas quando voltar da tela
+
 //2.2.1
 //Ok - Atualizar Parse
 //Ok - Atualizar Facebook
@@ -45,10 +49,6 @@
 //Ok - Habilitar compra apenas nos status corretos de transaction
 //Ok - Usuario Anonimo
 //Ok - Device Information
-//- Reativar Dropbox
-//- Sync
-//- Atualizar UI apenas quando voltar da tela
-
 
 
 //2.2.0

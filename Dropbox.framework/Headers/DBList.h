@@ -1,5 +1,7 @@
 /* Copyright (c) 2013 Dropbox, Inc. All rights reserved. */
 
+/** The size in bytes of a list item before accounting for the size of its value. */
+extern const NSUInteger DBListItemBaseSize;
 
 /** An object that allows you to modify a list that is set as a value on a [record](DBRecord).
  Lists can contain the same values as records, except for other lists. Any changes you make to the
@@ -31,7 +33,7 @@
 
 - (void)setObject:(id)obj atIndexedSubscript:(NSUInteger)idx;
 
-/** Moves the object from the given old idnex, so that it appears at the
+/** Moves the object from the given old index, so that it appears at the
  given new index. */
 - (void)moveObjectAtIndex:(NSUInteger)oldIndex toIndex:(NSUInteger)newIndex;
 

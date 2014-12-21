@@ -46,6 +46,9 @@ NSLog(@"[%s] error: %@",__PRETTY_FUNCTION__, (key))
 #define kLembrete1Semana    NSLocalizedString(@"1 semana antes", nil)
 #define kLembrete1Mes       NSLocalizedString(@"1 mês antes", nil)
 
+#define DropboxAppKey @"tnmjxymp32xgs8y"
+#define DropboxAppSecret @"czkt8b3dhrcj30b"
+
 //https://userpub.itunes.apple.com/WebObjects/MZUserPublishing.woa/wa/addUserReview?id=337064413&type=Purple+Software
 //itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=553815375
 #define kLinkRate     @"https://userpub.itunes.apple.com/WebObjects/MZUserPublishing.woa/wa/addUserReview?id=553815375&type=Purple+Software"

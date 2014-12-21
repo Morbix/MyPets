@@ -33,5 +33,5 @@
 // By default binary data will use up to half the maximum record size of 100 KiB.
 // Can be overridden by defining PKMaximumBinaryDataLengthInBytes before including ParcelKit.
 #ifndef PKMaximumBinaryDataLengthInBytes
-#define PKMaximumBinaryDataLengthInBytes 100000
+#define PKMaximumBinaryDataLengthInBytes 50000
 #endif

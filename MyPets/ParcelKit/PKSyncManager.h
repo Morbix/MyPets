@@ -45,6 +45,15 @@ extern NSString * const PKSyncManagerDatastoreStatusKey;
 extern NSString * const PKSyncManagerDatastoreIncomingChangesNotification;
 extern NSString * const PKSyncManagerDatastoreIncomingChangesKey;
 
+/**
+ Notification that is posted when the sync is ok.
+ 
+ The userInfo of the notification will contain the last sync date in `PKSyncManagerDatastoreLastSyncDateKey`
+ */
+extern NSString * const PKSyncManagerDatastoreLastSyncDateNotification;
+extern NSString * const PKSyncManagerDatastoreLastSyncDateKey;
+
+
 /** 
  The sync manager is responsible for listening to changes from a
  Core Data NSManagedObjectContext and a Dropbox DBDatastore and syncing the changes between them.
@@ -53,8 +62,6 @@ extern NSString * const PKSyncManagerDatastoreIncomingChangesKey;
 
 /** 
  The Core Data managed object context to listen for changes from.
- 
- The managed object context must have a persistent store coordinator set.
  */
 @property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
 
@@ -90,13 +97,11 @@ extern NSString * const PKSyncManagerDatastoreIncomingChangesKey;
 /**
  The designated initializer used to specify the Core Data managed object context and the Dropbox data store that should be synchronized.
  
- The managed object context must have a persistent store coordinator set.
-
- @param managedObjectContext The Core Data managed object context the sync manager should listen for changes from. 
+ @param managedObjectContext The Core Data managed object context the sync manager should listen for changes from.
  @param datastore The Dropbox data store the sync manager should listen for changes from and write changes to.
  @return A newly initialized `PKSyncManager` object.
  */
-- (id)initWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext datastore:(DBDatastore *)datastore;
+- (instancetype)initWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext datastore:(DBDatastore *)datastore;
 
 /**
  Map multiple Core Data entity names to their corresponding Dropbox data store table name. Replaces all other existing relationships that may have been previously set.
@@ -173,5 +178,10 @@ extern NSString * const PKSyncManagerDatastoreIncomingChangesKey;
  Stops observing changes from the Core Data managed object context and the Dropbox data store.
  */
 - (void)stopObserving;
+
+/**
+ Force a manual sync of the datastore
+ */
+- (BOOL)syncDatastore;
 
 @end

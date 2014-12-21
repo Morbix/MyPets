@@ -65,7 +65,8 @@
     
     [self configurarBadge:self.badgeLembretes];
     
-    self.syncSwitch.enabled = false;
+    //Dropbox
+    //self.syncSwitch.enabled = false;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dropboxStatusUpdateNotification:) name:MTPSNotificationSyncUpdate object:nil];
 
@@ -100,7 +101,7 @@
     
     
     
-    //self.syncSwitch.on = [[DBAccountManager sharedManager] linkedAccount] != nil;
+    self.syncSwitch.on = [[DBAccountManager sharedManager] linkedAccount] != nil;
     [self.badgeLembretes setText:[NSString stringWithFormat:@"%d", [MPLembretes getCount]]];
 }
 
@@ -120,9 +121,7 @@
 #pragma mark - IBActions
 - (IBAction)toggleSyncAction:(id)sender
 {
-    return;
-    
-    /*DBAccountManager *accountManager = [DBAccountManager sharedManager];
+    DBAccountManager *accountManager = [DBAccountManager sharedManager];
     DBAccount *account = [accountManager linkedAccount];
     
     if ([sender isOn]) {
@@ -157,7 +156,7 @@
                                                               action:@"Desconectou"
                                                                label:@"Desconectou"
                                                                value:nil] build]];
-    }*/
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -211,16 +210,17 @@
 -(NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
     if (section == 0) {
-        /*if ([[DBAccountManager sharedManager] linkedAccount] != nil) {
+        if ([[DBAccountManager sharedManager] linkedAccount] != nil) {
             PKSyncManager *syncManger = [(MPAppDelegate *)[[UIApplication sharedApplication] delegate] syncManager];
             if (syncManger) {
-                if (syncManger.datastore.status > 1) { //!= DBDatastoreConnected
+                
+                if (!syncManger.datastore.status.connected) { //!= DBDatastoreConnected
                     return NSLS(@"Sincronizando...");
                 }else{
                     return NSLS(@"Sincronizado com sucesso!");
                 }
             }
-        }*/
+        }
 
         return NSLS(@"O Dropbox foi desativado. Estamos preparando uma nova forma para guardar seus dados.");
     }else if (section == 1){
