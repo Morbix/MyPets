@@ -41,8 +41,12 @@
         self.imagemSombra = [[UIImageView alloc] init];
         [self.imagemSombra setFrame:CGRectMake(0, self.imagemPet.frame.size.height/2, self.imagemPet.frame.size.width, self.imagemPet.frame.size.height/2)];
         [self.imagemSombra setContentMode:UIViewContentModeScaleToFill];
-        [self.imagemSombra setImage:[UIImage imageNamed:@"fotoSombra.png"]];
+        [self.imagemSombra setBackgroundColor:[UIColor clearColor]];
+        //[self.imagemSombra setImage:[UIImage imageNamed:@"fotoSombra.png"]];
         [self.imagemPet addSubview:self.imagemSombra];
+        
+        [self addGradientToViewA:self.imagemPet];
+        //[self addGradientToViewB:self.imagemSombra];
         
         
         
@@ -64,4 +68,23 @@
     return self;
 }
 
+- (void)addGradientToViewA:(UIView *)view
+{
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.frame = view.bounds;
+    gradient.colors = @[(id)[[UIColor clearColor] CGColor],
+                        (id)[[UIColor clearColor] CGColor],
+                        (id)[[UIColor clearColor] CGColor],
+                        (id)[[UIColor blackColor] CGColor]];
+    [view.layer insertSublayer:gradient atIndex:0];
+}
+
+- (void)addGradientToViewB:(UIView *)view
+{
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.frame = view.bounds;
+    gradient.colors = @[(id)[[UIColor clearColor] CGColor],
+                        (id)[[UIColor blackColor] CGColor]];
+    [view.layer insertSublayer:gradient atIndex:0];
+}
 @end

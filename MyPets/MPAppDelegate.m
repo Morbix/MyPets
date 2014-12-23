@@ -56,7 +56,10 @@
     [Appirater appLaunched:YES];
     
     
-    [Parse setApplicationId:@"VOfi2AierOCqzfMPjFWkUeAVAM4tjT7ODkzqSCOm" clientKey:@"8byEO3HfZvG5vhaNnPeZ5jY76dW4AkWXl7acnV8D"];
+#warning DESENV KEYS
+    [Parse setApplicationId:@"3VrKxzgvNfssFtPSIM9W681waLRJ0odyAamXtbdd" clientKey:@"GEEdFQZmzhDDXUFnbbtrfvMOhwYI2azgZqoyGNMs"];
+    
+    //[Parse setApplicationId:@"VOfi2AierOCqzfMPjFWkUeAVAM4tjT7ODkzqSCOm" clientKey:@"8byEO3HfZvG5vhaNnPeZ5jY76dW4AkWXl7acnV8D"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     [PFUser enableAutomaticUser];
