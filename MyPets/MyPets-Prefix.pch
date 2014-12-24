@@ -12,7 +12,9 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import <CoreData/CoreData.h>
+
     #import "MPTargets.h"
+    #import "MPKeys.h"
     #import "Localizable.h"
     #import "MXBannerView.h"
     #import "MXBannerHeaderView.h"

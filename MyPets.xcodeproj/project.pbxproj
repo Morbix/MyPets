@@ -28,6 +28,8 @@
 		A71ABC561831719A0039DF25 /* fotoDefault.png in Resources */ = {isa = PBXBuildFile; fileRef = A71ABC541831719A0039DF25 /* fotoDefault.png */; };
 		A71ABC571831719A0039DF25 /* fotoDefault@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A71ABC551831719A0039DF25 /* fotoDefault@2x.png */; };
 		A71ABC5B18317DDC0039DF25 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A71ABC5D18317DDC0039DF25 /* Localizable.strings */; };
+		A751CB791A4B34FD007F9A3E /* MPMigrationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A751CB781A4B34FD007F9A3E /* MPMigrationManager.m */; };
+		A751CB7A1A4B34FD007F9A3E /* MPMigrationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A751CB781A4B34FD007F9A3E /* MPMigrationManager.m */; };
 		A76FAC981A33365D00B64B96 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76FAC971A33365D00B64B96 /* Crashlytics.framework */; };
 		A76FAC991A33365D00B64B96 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76FAC971A33365D00B64B96 /* Crashlytics.framework */; };
 		A76FACAC1A33396F00B64B96 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76FACAB1A33396F00B64B96 /* EventKit.framework */; };
@@ -345,6 +347,9 @@
 		A71ABC551831719A0039DF25 /* fotoDefault@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fotoDefault@2x.png"; sourceTree = "<group>"; };
 		A71ABC5C18317DDC0039DF25 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A71ABC5E18317DF30039DF25 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A751CB771A4B34FD007F9A3E /* MPMigrationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMigrationManager.h; sourceTree = "<group>"; };
+		A751CB781A4B34FD007F9A3E /* MPMigrationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMigrationManager.m; sourceTree = "<group>"; };
+		A751CB7B1A4B35A4007F9A3E /* MPKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPKeys.h; sourceTree = "<group>"; };
 		A76FAC971A33365D00B64B96 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		A76FACAB1A33396F00B64B96 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		A76FACAD1A33397600B64B96 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
@@ -788,6 +793,7 @@
 				A78D0730181899F600DC64CD /* InfoPlist.strings */,
 				A78D0733181899F600DC64CD /* main.m */,
 				A78D0735181899F600DC64CD /* MyPets-Prefix.pch */,
+				A751CB7B1A4B35A4007F9A3E /* MPKeys.h */,
 				A78D0739181899F600DC64CD /* Default.png */,
 				A78D073B181899F600DC64CD /* Default@2x.png */,
 				A78D073D181899F600DC64CD /* Default-568h@2x.png */,
@@ -801,6 +807,8 @@
 			children = (
 				A7A13329181B2A3000D7D016 /* MPLibrary.h */,
 				A7A1332A181B2A3000D7D016 /* MPLibrary.m */,
+				A751CB771A4B34FD007F9A3E /* MPMigrationManager.h */,
+				A751CB781A4B34FD007F9A3E /* MPMigrationManager.m */,
 				E605548118594C0000D11CE9 /* MPAnimations.h */,
 				E605548218594C0000D11CE9 /* MPAnimations.m */,
 				E6D47ACE185AA226009C2905 /* MPHumanAge.h */,
@@ -1414,6 +1422,7 @@
 				E60CC235188327F400826B59 /* PNLineChartDataItem.m in Sources */,
 				E60554631857E71C00D11CE9 /* MPPetViewController.m in Sources */,
 				A71ABC4618316F090039DF25 /* Fotos.m in Sources */,
+				A751CB791A4B34FD007F9A3E /* MPMigrationManager.m in Sources */,
 				E6DFE25518CE2AE500F3F5F9 /* MPPhotoViewController.m in Sources */,
 				A71ABC4918316F0A0039DF25 /* Consulta.m in Sources */,
 				E644BB49187E27F500247278 /* DBRecord+ParcelKit.m in Sources */,
@@ -1484,6 +1493,7 @@
 				E60CC236188327F400826B59 /* PNLineChartDataItem.m in Sources */,
 				E60CC1971881A80C00826B59 /* MPPetViewController.m in Sources */,
 				E60CC1991881A80C00826B59 /* Fotos.m in Sources */,
+				A751CB7A1A4B34FD007F9A3E /* MPMigrationManager.m in Sources */,
 				E63443D618E257D50086332D /* MPPhotoViewController.m in Sources */,
 				E60CC19A1881A80C00826B59 /* Consulta.m in Sources */,
 				E60CC19B1881A80C00826B59 /* DBRecord+ParcelKit.m in Sources */,
@@ -1596,9 +1606,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					/Users/HP/Developer/MyPets,
-					2.0,
-					/Users/HP/Documents/FacebookSDK,
 					"$(PROJECT_DIR)",
 					/Users/Morbix/Documents/FacebookSDK,
 				);
@@ -1638,9 +1645,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					/Users/HP/Developer/MyPets,
-					2.0,
-					/Users/HP/Documents/FacebookSDK,
 					"$(PROJECT_DIR)",
 					/Users/Morbix/Documents/FacebookSDK,
 				);
@@ -1679,9 +1683,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					/Users/HP/Developer/MyPets,
-					2.0,
-					/Users/HP/Documents/FacebookSDK,
 					"$(PROJECT_DIR)",
 					/Users/Morbix/Documents/FacebookSDK,
 				);
@@ -1701,6 +1702,7 @@
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
+					"$(inherited)",
 				);
 				PRODUCT_NAME = "MyPets copy";
 				PROVISIONING_PROFILE = "";
@@ -1720,9 +1722,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					/Users/HP/Developer/MyPets,
-					2.0,
-					/Users/HP/Documents/FacebookSDK,
 					"$(PROJECT_DIR)",
 					/Users/Morbix/Documents/FacebookSDK,
 				);
@@ -1742,6 +1741,7 @@
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
+					"$(inherited)",
 				);
 				PRODUCT_NAME = "MyPets copy";
 				PROVISIONING_PROFILE = "";

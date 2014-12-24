@@ -30,6 +30,7 @@
 
 @end
 
+
 //2.2.1
 //Ok - Atualizar Parse
 //Ok - Atualizar Facebook
@@ -45,10 +46,6 @@
 //Ok - Habilitar compra apenas nos status corretos de transaction
 //Ok - Usuario Anonimo
 //Ok - Device Information
-//- Reativar Dropbox
-//- Sync
-//- Atualizar UI apenas quando voltar da tela
-
 
 
 //2.2.0
@@ -68,53 +65,6 @@
 //OK - BUG nas ADS
 //Ok - Replicar correcao do BUG
 //Ok - Icones iPad
-
-
-//////////Backlog
-//- Itens dos emails
-//- Local Push Badge Persistence
-//- Push Notifications Persistence
-//- Has New Version
-//- Feedback visual para cadastrar um pet quando estiver vazio
-//- Helpers First Visit
-// -Repetir Evento
-// -Controle de Peso com fotos
-// -Código do Rastreador
-// -Cio
-// -Antipulgas
-// -Albuns
-// -Sync com facebook
-// -Histórico do pet
-// -Forma de Conversa com o Desenvolvedor
-// -Ordenar tela inicial
-// -Formato de lista para tela inicial
-// -#warning Pendencias
-//- Formato de Review do Felipe Oliveira
-//- Fotos das Vacinas com overlay, ou ver foto inteira, ou reposicionar
-//- Sync iCloud
-//- Adicionar outras linguagens (Espanho, Frances, Italiano, Alemão)
-//- Sistema de Ajuda pelo app inteiro
-//- Otimização no CoreData transferindo arquivos de dados para outras entidades
-//- algoritmo para sincronizar os alarmes: status nulo(não analisado), 1(sem lembrete), 2(com lembrete)(atenção ao implementar)
-//- Cadastro de Veterinárias
-//- Possibilidade de adicionar PDFs
-//- Possibilidade de adicionar eventos gerais para os apps
-//- Tracking de passeios (MyWay)
-//- Lembretes com recorrência
-//- Lembrete Geral de Vacina!
-//- Cadastro do Cio das Fêmeas
-//- Anexar o Pedigree em PDF
-//- Contatos dos veterinários e veterinárias 24hs
-//- Tela dos próximos eventos
-//- Instapets, Petsgram (trazer mais interações)
-//- Possibilidade de Selecionar formato de Grid ou Lista na tela Principal
-//- Possibilidade de Exportar os dados como um Relatório
-//- Criar sistema de compartilhamento do pet com outros usuários através de um arquivo
-//- Controle Financeiro com os gastos com o Cão
-//- Cálculo de Ração de acordo com o peso
-//- Exportar
-//- Informacoes Adicionais vinda de parceiros
-//- Add Frances, Italiano, Espanhol
 
 //2.1.2
 //Ok - Clicar na foto do pet e mostrar fullscrenn + tracking analytics
@@ -168,11 +118,54 @@
 //Ok - GoogleAnalytics
 //Ok - AppIRater
 
-//Events
-//Ok - Telas
-//Ok - Add com total de itnes
-//Ok - Delecoes
-//Ok - Fotos
-//Ok - Lembretes
-//Ok - Dropbox connect e desconnect
-//Ok - Event track e pageview nas configuracoes e lembretes
+
+
+
+//////////Backlog
+//- Reativar Dropbox
+//- Sync
+//- Atualizar UI apenas quando voltar da tela
+//- Itens dos emails
+//- Local Push Badge Persistence
+//- Push Notifications Persistence
+//- Has New Version
+//- Feedback visual para cadastrar um pet quando estiver vazio
+//- Helpers First Visit
+// -Repetir Evento
+// -Controle de Peso com fotos
+// -Código do Rastreador
+// -Cio
+// -Antipulgas
+// -Albuns
+// -Sync com facebook
+// -Histórico do pet
+// -Forma de Conversa com o Desenvolvedor
+// -Ordenar tela inicial
+// -Formato de lista para tela inicial
+// -#warning Pendencias
+//- Formato de Review do Felipe Oliveira
+//- Fotos das Vacinas com overlay, ou ver foto inteira, ou reposicionar
+//- Sync iCloud
+//- Adicionar outras linguagens (Espanho, Frances, Italiano, Alemão)
+//- Sistema de Ajuda pelo app inteiro
+//- Otimização no CoreData transferindo arquivos de dados para outras entidades
+//- algoritmo para sincronizar os alarmes: status nulo(não analisado), 1(sem lembrete), 2(com lembrete)(atenção ao implementar)
+//- Cadastro de Veterinárias
+//- Possibilidade de adicionar PDFs
+//- Possibilidade de adicionar eventos gerais para os apps
+//- Tracking de passeios (MyWay)
+//- Lembretes com recorrência
+//- Lembrete Geral de Vacina!
+//- Cadastro do Cio das Fêmeas
+//- Anexar o Pedigree em PDF
+//- Contatos dos veterinários e veterinárias 24hs
+//- Tela dos próximos eventos
+//- Instapets, Petsgram (trazer mais interações)
+//- Possibilidade de Selecionar formato de Grid ou Lista na tela Principal
+//- Possibilidade de Exportar os dados como um Relatório
+//- Criar sistema de compartilhamento do pet com outros usuários através de um arquivo
+//- Controle Financeiro com os gastos com o Cão
+//- Cálculo de Ração de acordo com o peso
+//- Exportar
+//- Informacoes Adicionais vinda de parceiros
+//- Add Frances, Italiano, Espanhol

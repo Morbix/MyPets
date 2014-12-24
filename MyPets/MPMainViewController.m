@@ -24,12 +24,6 @@
 #import "MPDropboxNotification.h"
 #import "MPAppDelegate.h"
 
-
-
-#define DropboxAppKey @"tnmjxymp32xgs8y"
-#define DropboxAppSecret @"czkt8b3dhrcj30b"
-
-
 @interface MPMainViewController ()
 {
     NSArray *arrayPets;

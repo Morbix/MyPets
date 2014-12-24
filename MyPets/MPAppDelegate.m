@@ -28,9 +28,48 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [Crashlytics startWithAPIKey:@"4e076605a89bca6719313424e40c17037f78bc19"];
     
-    //[MPLibrary appearanceCustom];
+    [self initCrashlytics];
+    
+    [self initGoogleAnalyticsWithOptions:launchOptions];
+    
+    [self initParsePurchase];
+    
+    [self initAppirater];
+    
+    [self initParseWithOptions:launchOptions];
+
+    
+    [self configDefaultACL];
+    
+    [self configPushNotificationWithApplication:application
+                                     andOptions:launchOptions];
+    [self configAutomaticUser];
+    
+    
+    [self initDropbox];
+    
+    [self initGoogleConversionTracking];
+    
+    return YES;
+}
+
+#pragma mark - Init's
+
+- (void)initCrashlytics
+{
+    [Crashlytics startWithAPIKey:KEY_CRASHLYTICS];
+}
+
+- (void)initGoogleAnalyticsWithOptions:(NSDictionary *)launchOptions
+{
+    [MXGoogleAnalytics ga_inicializeWithTrackingId:[MPTargets targetAnalyticsID]];
+    [MXGoogleAnalytics ga_trackApplicationLauchingWithOptions:launchOptions];
+    [MXGoogleAnalytics ga_allowIDFACollection:YES];
+}
+
+- (void)initParsePurchase
+{
     [PFPurchase addObserverForProduct:kIDENTIFIER_INAPP_REMOVEADS block:^(SKPaymentTransaction *transaction) {
         if ((transaction.transactionState == SKPaymentTransactionStatePurchased) ||
             (transaction.transactionState == SKPaymentTransactionStateRestored)) {
@@ -46,7 +85,10 @@
             [[PFUser currentUser] saveInBackground];
         }
     }];
-    
+}
+
+- (void)initAppirater
+{
     [Appirater setAppId:[MPTargets targetAppID]];
     [Appirater setDaysUntilPrompt:7];
     [Appirater setUsesUntilPrompt:5];
@@ -54,48 +96,55 @@
     [Appirater setTimeBeforeReminding:3];
     [Appirater setDebug:NO];
     [Appirater appLaunched:YES];
+}
+
+- (void)initParseWithOptions:(NSDictionary *)launchOptions
+{
+#if !DEBUG
+#error CHANGE TO PRODUCTION KEYS
+#endif
+    //DESENV KEYS
+    [Parse setApplicationId:KEY_PARSE_APPLICATION_DESENV clientKey:KEY_PARSE_CLIENT_DESENV];
     
+    //PRODUCTION KEYS
+    //[Parse setApplicationId:KEY_PARSE_APPLICATION_PRODUCTION clientKey:KEY_PARSE_CLIENT_PRODUCTION];
     
-#warning DESENV KEYS
-    [Parse setApplicationId:@"3VrKxzgvNfssFtPSIM9W681waLRJ0odyAamXtbdd" clientKey:@"GEEdFQZmzhDDXUFnbbtrfvMOhwYI2azgZqoyGNMs"];
-    
-    //[Parse setApplicationId:@"VOfi2AierOCqzfMPjFWkUeAVAM4tjT7ODkzqSCOm" clientKey:@"8byEO3HfZvG5vhaNnPeZ5jY76dW4AkWXl7acnV8D"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     [PFUser enableAutomaticUser];
-    
-    PFACL *defaultACL = [PFACL ACL];
-    [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
-    
-    [self configurarPushNotificationWithApplication:application
-                                         andOptions:launchOptions];
-    [self configurarAutomaticUser];
-    
-    
-    [MXGoogleAnalytics ga_inicializeWithTrackingId:[MPTargets targetAnalyticsID]];
-    [MXGoogleAnalytics ga_trackApplicationLauchingWithOptions:launchOptions];
-    [MXGoogleAnalytics ga_allowIDFACollection:YES];
-    
+}
+
+- (void)initDropbox
+{
     /*[MPDropboxNotification shared];
-    
-    DBAccountManager *accountManager = [[DBAccountManager alloc] initWithAppKey:DropboxAppKey secret:DropboxAppSecret];
-    [DBAccountManager setSharedManager:accountManager];
-    
-    if ([accountManager linkedAccount]) {
-        [self setSyncEnabled:YES];
-    }*/
-    
-    
+     DBAccountManager *accountManager = [[DBAccountManager alloc] initWithAppKey:DropboxAppKey secret:DropboxAppSecret];
+     [DBAccountManager setSharedManager:accountManager];
+     if ([accountManager linkedAccount]) {
+     [self setSyncEnabled:YES];
+     }*/
+}
+
+- (void)initGoogleConversionTracking
+{
     // MyPets - Pets Manager Free - download
     // Google iOS Download tracking snippet
     // To track downloads of your app, add this snippet to your
     // application delegate's application:didFinishLaunchingWithOptions: method.
-    [ACTConversionReporter reportWithConversionID:@"1021940053" label:@"CLc8COSUplYQ1aKm5wM" value:@"0.00" isRepeatable:NO];
-    
-    return YES;
+    [ACTConversionReporter reportWithConversionID:KEY_GOOGLE_CONVERSION_TRACKING_ID
+                                            label:KEY_GOOGLE_CONVERSION_TRACKING_LABEL
+                                            value:@"0.00"
+                                     isRepeatable:NO];
 }
 
-- (void)configurarPushNotificationWithApplication:(UIApplication *)application
+#pragma mark - Config's
+
+- (void)configDefaultACL
+{
+    PFACL *defaultACL = [PFACL ACL];
+    [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
+}
+
+- (void)configPushNotificationWithApplication:(UIApplication *)application
                                        andOptions:(NSDictionary *)launchOptions
 {
     
@@ -115,7 +164,7 @@
     }
 }
 
-- (void)configurarAutomaticUser
+- (void)configAutomaticUser
 {
     [[PFUser currentUser] incrementKey:@"RunCount"];
     if ([PFInstallation currentInstallation]) {
