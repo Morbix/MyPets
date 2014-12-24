@@ -1,0 +1,69 @@
+PODS:
+  - AFNetworking (2.5.0):
+    - AFNetworking/NSURLConnection (= 2.5.0)
+    - AFNetworking/NSURLSession (= 2.5.0)
+    - AFNetworking/Reachability (= 2.5.0)
+    - AFNetworking/Security (= 2.5.0)
+    - AFNetworking/Serialization (= 2.5.0)
+    - AFNetworking/UIKit (= 2.5.0)
+  - AFNetworking/NSURLConnection (2.5.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.5.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.5.0)
+  - AFNetworking/Security (2.5.0)
+  - AFNetworking/Serialization (2.5.0)
+  - AFNetworking/UIKit (2.5.0):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - Appirater (2.0.4)
+  - Bolts (1.1.3)
+  - Facebook-iOS-SDK (3.21.1):
+    - Bolts (~> 1.0)
+  - Google-Mobile-Ads-SDK (6.12.2)
+  - GoogleAnalytics-iOS-SDK (3.10):
+    - GoogleAnalytics-iOS-SDK/Core (= 3.10)
+  - GoogleAnalytics-iOS-SDK/Core (3.10)
+  - HexColors (2.2.1)
+  - Lockbox (2.1.0)
+  - M13BadgeView (1.0.4)
+  - MXGoogleAnalytics (1.0.1):
+    - GoogleAnalytics-iOS-SDK (~> 3.10)
+  - Parse (1.6.1):
+    - Bolts (~> 1.1.3)
+  - SDWebImage (3.7.1):
+    - SDWebImage/Core (= 3.7.1)
+  - SDWebImage/Core (3.7.1)
+
+DEPENDENCIES:
+  - AFNetworking
+  - Appirater
+  - Facebook-iOS-SDK
+  - Google-Mobile-Ads-SDK (~> 6.10)
+  - GoogleAnalytics-iOS-SDK
+  - HexColors
+  - Lockbox
+  - M13BadgeView (~> 1.0.2)
+  - MXGoogleAnalytics
+  - Parse
+  - SDWebImage
+
+SPEC CHECKSUMS:
+  AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
+  Appirater: cbdb7f305562cfde585300bfff86da01ae559deb
+  Bolts: 3db0a875235e0c9042b013af13af0f00f79b102c
+  Facebook-iOS-SDK: 18c26e86ab25c17854a2ee2a8f60562099c6600f
+  Google-Mobile-Ads-SDK: 9761186eb5dc5e1493e71dcce2b525159f763d42
+  GoogleAnalytics-iOS-SDK: f422062075d9ccb1ea8d783fc5ba3829461e9502
+  HexColors: 01384d2bbe8dc4ffa43c3b4135db6e976952d153
+  Lockbox: 3168f08cb26680b05a0702b8c0cc6da32788059d
+  M13BadgeView: 25d03b04630496dfdb6c3f8eb793f6b1664495f8
+  MXGoogleAnalytics: 8f32c31367a6f5698f225c0cb34fed1965cb7bb4
+  Parse: b0ec7666167e212edb6fc94f60ba170248bd1869
+  SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
+
+COCOAPODS: 0.35.0
