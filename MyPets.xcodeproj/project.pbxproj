@@ -798,6 +798,8 @@
 				E62E379419ABC2AE00537B9D /* ResizeAndCrop */,
 				E6B6AFCF18936C6E00AA5DAD /* AJNotificationView */,
 				E6D47AE9185FDAA3009C2905 /* LKBadgeView */,
+				E60CC211188327F400826B59 /* PNChart */,
+				E644BB3F187E27F500247278 /* ParcelKit */,
 			);
 			name = "Internal Libs";
 			sourceTree = "<group>";
@@ -941,8 +943,6 @@
 			children = (
 				E62E379C19ABC4FA00537B9D /* Lockbox */,
 				E6B6AFD81894B1F500AA5DAD /* appirater-master */,
-				E60CC211188327F400826B59 /* PNChart */,
-				E644BB3F187E27F500247278 /* ParcelKit */,
 				E6952F571871033E0050FB64 /* GoogleAnalytics */,
 				A751CB1D1A4AEA82007F9A3E /* MXGoogleAnalytics */,
 				E6952F261870F6D60050FB64 /* AdMob */,
