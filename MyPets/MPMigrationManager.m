@@ -18,6 +18,9 @@
 #import "Banho.h"
 #import "PFBath.h"
 
+#import "Consulta.h"
+#import "PFAppointment.h"
+
 @interface MPMigrationManager ()
 {
     NSManagedObjectContext *context;
@@ -60,6 +63,15 @@
                 for (Banho *banho in animal.cArrayBanhos.allObjects) {
                     PFBath *bathMigrated = [self migrateBath:banho toAnimal:animalMigrated];
                     completed = bathMigrated ? YES : NO;
+                    if (!completed) { break; }
+                }
+            }
+            if (!completed) { break; }
+            
+            if (animal.cArrayConsultas.count > 0) {
+                for (Consulta *consulta in animal.cArrayConsultas.allObjects) {
+                    PFAppointment *appointmentMigrated = [self migrateAppointment:consulta toAnimal:animalMigrated];
+                    completed = appointmentMigrated ? YES : NO;
                     if (!completed) { break; }
                 }
             }
@@ -137,6 +149,9 @@
     }
     
     
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s saving photo locally: %@", __PRETTY_FUNCTION__ ,token);
+    }
     [self savePhoto:animalToMigrate.cFoto withToken:token error:&error];
     if (error) {
         NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
@@ -165,8 +180,29 @@
         [animalToSave setPhoto:filePhoto];
     }
     
-    [animalToSave save:&error];
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s pinning animal: %@", __PRETTY_FUNCTION__ , animalName);
+    }
+    [animalToSave pin:&error];
+    if (error) {
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return nil;
+    }
     
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s saving context", __PRETTY_FUNCTION__);
+    }
+    animalToMigrate.cIdentifier = token;
+    [context save:&error];
+    if (error) {
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return nil;
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s saving animal: %@", __PRETTY_FUNCTION__ , animalName);
+    }
+    [animalToSave save:&error];
     if (error) {
         [animalToSave unpin];
         
@@ -174,26 +210,9 @@
         return nil;
     }
     
-    [animalToSave pin:&error];
-    
-    if (error) {
-        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
-        return nil;
-    }
-    
-    animalToMigrate.cIdentifier = token;
-    [context save:&error];
-    
-    if (error) {
-        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
-        return nil;
-    }
-    
-    
     if (MX_DESENV_MODE) {
         NSLog(@"%s finish migrate animal: %@", __PRETTY_FUNCTION__ ,animalName);
     }
-    
     if (MX_DESENV_MODE) {
         NSLog(@"\n\n");
     }
@@ -258,8 +277,29 @@
         [bathToSave setWeight:bathToMigrate.cPeso.floatValue];
     }
     
-    [bathToSave save:&error];
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s pinning bath: %@", __PRETTY_FUNCTION__ , bathName);
+    }
+    [bathToSave pin:&error];
+    if (error) {
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return nil;
+    }
     
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s saving context", __PRETTY_FUNCTION__);
+    }
+    bathToMigrate.cIdentifier = token;
+    [context save:&error];
+    if (error) {
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return nil;
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s saving bath: %@", __PRETTY_FUNCTION__ , bathName);
+    }
+    [bathToSave save:&error];
     if (error) {
         [bathToSave unpin];
         
@@ -267,39 +307,130 @@
         return nil;
     }
     
-    [bathToSave pin:&error];
-    
-    if (error) {
-        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
-        return nil;
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s saving relation between animal: %@ and bath: %@", __PRETTY_FUNCTION__ , animalName, bathName);
     }
-    
     PFRelation *relation = [animalMigrated relationForKey:@"relationOfBath"];
     [relation addObject:bathToSave];
     [animalMigrated save:&error];
-    
-    if (error) {
-        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
-        return nil;
-    }
-    
-    bathToMigrate.cIdentifier = token;
-    [context save:&error];
-    
     if (error) {
         NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
         return nil;
     }
     
     if (MX_DESENV_MODE) {
-        NSLog(@"%s finish migrate bath: %@", __PRETTY_FUNCTION__ ,animalName);
+        NSLog(@"%s finish migrate bath: %@", __PRETTY_FUNCTION__ ,bathName);
     }
-    
     if (MX_DESENV_MODE) {
         NSLog(@"\n\n");
     }
     
     return bathToSave;
+}
+
+- (PFAppointment *)migrateAppointment:(Consulta *)appointmentToMigrate toAnimal:(PFAnimal *)animalMigrated
+{
+    NSError *error = nil;
+    
+    PFAppointment *appointmentToSave = nil;
+    
+    NSString * animalName = appointmentToMigrate.cAnimal.cNome;
+    NSString * appointmentName = appointmentToMigrate.cData.description;
+    
+    NSString *token = nil;
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"\n===> Animal: %@ ===> Appointment: %@", animalName, appointmentName);
+    }
+    
+    if (appointmentToMigrate.cIdentifier && ![appointmentToMigrate.cIdentifier isEqualToString:@""]) {
+        if (MX_DESENV_MODE) {
+            NSLog(@"%s appointment: %@ has already migrated (token: %@)", __PRETTY_FUNCTION__ , appointmentName, appointmentToMigrate.cIdentifier);
+        }
+        
+        appointmentToSave = [self retrieveObjectWithClass:[PFAppointment class] andToken:appointmentToMigrate.cIdentifier];
+        
+        token = appointmentToMigrate.cIdentifier;
+    }else{
+        appointmentToSave = [PFAppointment object];
+        
+        token = [self randomStringToken];
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s starting migrate appointment: %@", __PRETTY_FUNCTION__, appointmentName);
+    }
+    
+    [appointmentToSave setIdentifier:token];
+    [appointmentToSave setAnimal:animalMigrated];
+    
+    if (appointmentToMigrate.cData) {
+        if (appointmentToMigrate.cHorario) {
+            [appointmentToSave setDateAndTime:[self combineDate:appointmentToMigrate.cData
+                                                       withTime:appointmentToMigrate.cHorario]];
+        }else{
+            [appointmentToSave setDateAndTime:appointmentToMigrate.cData];
+        }
+    }
+    if (appointmentToMigrate.cID) {
+        [appointmentToSave setAppointmentId:appointmentToMigrate.cID];
+    }
+    if (appointmentToMigrate.cLembrete) {
+        [appointmentToSave setReminder:[MPReminderManager translateReminderStringToInt:appointmentToMigrate.cLembrete]];
+    }
+    if (appointmentToMigrate.cObs) {
+        [appointmentToSave setNotes:appointmentToMigrate.cObs];
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s pinning appointment: %@", __PRETTY_FUNCTION__ , appointmentName);
+    }
+    [appointmentToSave pin:&error];
+    if (error) {
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return nil;
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s saving context", __PRETTY_FUNCTION__);
+    }
+    appointmentToMigrate.cIdentifier = token;
+    [context save:&error];
+    if (error) {
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return nil;
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s saving appointment: %@", __PRETTY_FUNCTION__ , appointmentName);
+    }
+    [appointmentToSave save:&error];
+    if (error) {
+        [appointmentToSave unpin];
+        
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return nil;
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s saving relation between animal: %@ and appointment: %@", __PRETTY_FUNCTION__ , animalName, appointmentName);
+    }
+    PFRelation *relation = [animalMigrated relationForKey:@"relationOfAppointment"];
+    [relation addObject:appointmentToSave];
+    [animalMigrated save:&error];
+    if (error) {
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return nil;
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s finish migrate appointment: %@", __PRETTY_FUNCTION__ ,appointmentName);
+    }
+    if (MX_DESENV_MODE) {
+        NSLog(@"\n\n");
+    }
+    
+    return appointmentToSave;
 }
 
 #pragma mark - Core Data
