@@ -10,4 +10,8 @@
 
 @implementation MPMigrationManager
 
+- (void)startMigration
+{
+    
+}
 @end

@@ -100,6 +100,9 @@
 
 - (void)initParseWithOptions:(NSDictionary *)launchOptions
 {
+    [Parse enableLocalDatastore];
+    
+    
 #if !DEBUG
 #error CHANGE TO PRODUCTION KEYS
 #endif

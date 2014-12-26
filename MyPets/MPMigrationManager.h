@@ -10,4 +10,6 @@
 
 @interface MPMigrationManager : NSObject
 
+- (void)startMigration;
+
 @end

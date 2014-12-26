@@ -15,6 +15,7 @@
 #define MTPSNotificationPetsPesos @"br.com.alltouch.mypets.notification.pesos"
 
 #import <Foundation/Foundation.h>
+
 #import "Animal.h"
 #import "Vacina.h"
 #import "Vermifugo.h"
@@ -22,6 +23,8 @@
 #import "Consulta.h"
 #import "Medicamento.h"
 #import "Peso.h"
+
+//@class Animal, Vacina, Vermifugo, Banho, Consulta, Medicamento, Peso;
 
 @interface MPCoreDataService : NSObject
 
