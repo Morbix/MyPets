@@ -27,7 +27,7 @@
 }
 
 + (NSString *)parseClassName {
-    return @"Pet";
+    return @"Animal";
 }
 
 

@@ -14,6 +14,8 @@
 #import "Animal.h"
 #import "PFAnimal.h"
 
+#import "Banho.h"
+
 @interface MPMigrationManager ()
 {
     NSManagedObjectContext *context;
@@ -54,10 +56,14 @@
         
         if (MX_DESENV_MODE) {
             if (completed) {
-                //NSLog(@"%s Finishing Migration...", __PRETTY_FUNCTION__);
+                NSLog(@"%s ###Finishing### Migration...", __PRETTY_FUNCTION__);
             }else{
-                NSLog(@"%s Stoping Migration...", __PRETTY_FUNCTION__);
+                NSLog(@"%s ###Stoping### Migration...", __PRETTY_FUNCTION__);
             }
+        }
+        
+        if (MX_DESENV_MODE) {
+            NSLog(@"\n\n\n\n");
         }
     }
 }
@@ -72,6 +78,10 @@
     
     NSString *token = nil;
     
+    if (MX_DESENV_MODE) {
+        NSLog(@"\n===> Animal: %@",animalName);
+    }
+    
     if (animalToMigrate.cIdentifier && ![animalToMigrate.cIdentifier isEqualToString:@""]) {
         if (MX_DESENV_MODE) {
             NSLog(@"%s animal: %@ has already migrated (token: %@)", __PRETTY_FUNCTION__ ,animalName, animalToMigrate.cIdentifier);
@@ -79,7 +89,7 @@
         
         animalToSave = [self retrieveObjectWithClass:[PFAnimal class] andToken:animalToMigrate.cIdentifier];
         
-        token = animalToSave.identifier;
+        token = animalToMigrate.cIdentifier;
     }else{
         animalToSave = [PFAnimal object];
 
@@ -124,12 +134,20 @@
     
     PFFile *filePhoto = animalToSave.photo;
     if (!filePhoto) {
-        filePhoto = [PFFile fileWithData:animalToMigrate.cFoto
+        if (MX_DESENV_MODE) {
+            NSLog(@"%s sending photo: %@", __PRETTY_FUNCTION__ ,token);
+        }
+        filePhoto = [PFFile fileWithName:token
+                                    data:animalToMigrate.cFoto
                              contentType:@"image/png"];
         [filePhoto save:&error];
         if (error) {
             NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
             return NO;
+        }
+        
+        if (MX_DESENV_MODE) {
+            NSLog(@"%s photo sent: %@", __PRETTY_FUNCTION__ ,token);
         }
         
         [animalToSave setPhoto:filePhoto];
@@ -138,6 +156,8 @@
     [animalToSave save:&error];
     
     if (error) {
+        [animalToSave unpin];
+        
         NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
         return NO;
     }
@@ -160,6 +180,10 @@
     
     if (MX_DESENV_MODE) {
         NSLog(@"%s finish migrate animal: %@", __PRETTY_FUNCTION__ ,animalName);
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"\n\n");
     }
     
     return YES;
