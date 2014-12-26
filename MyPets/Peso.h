@@ -13,6 +13,7 @@
 
 @interface Peso : NSManagedObject
 
+@property (nonatomic, retain) NSString * cIdentifier;
 @property (nonatomic, retain) NSString * cID;
 @property (nonatomic, retain) NSNumber * cPeso;
 @property (nonatomic, retain) NSDate * cData;

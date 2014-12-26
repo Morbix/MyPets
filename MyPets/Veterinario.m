@@ -12,6 +12,7 @@
 
 @implementation Veterinario
 
+@dynamic cIdentifier;
 @dynamic cEmail;
 @dynamic cEndereco;
 @dynamic cEspecializacao;

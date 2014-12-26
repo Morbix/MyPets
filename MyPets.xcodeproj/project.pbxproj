@@ -60,6 +60,10 @@
 		A7A13333181B2C6900D7D016 /* iPhone_Navigation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A7A13331181B2C6900D7D016 /* iPhone_Navigation@2x.png */; };
 		A7ADDC4719C4D1F300AB5E20 /* libGoogleConversionTracking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7ADDC4619C4D1F300AB5E20 /* libGoogleConversionTracking.a */; };
 		A7ADDC4819C4D1F300AB5E20 /* libGoogleConversionTracking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7ADDC4619C4D1F300AB5E20 /* libGoogleConversionTracking.a */; };
+		A7D592991A4D90110040F3CC /* MPInternetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D592981A4D90110040F3CC /* MPInternetManager.m */; };
+		A7D5929A1A4D90110040F3CC /* MPInternetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D592981A4D90110040F3CC /* MPInternetManager.m */; };
+		A7D5929E1A4DA6820040F3CC /* PFAnimal.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D5929D1A4DA6820040F3CC /* PFAnimal.m */; };
+		A7D5929F1A4DA6820040F3CC /* PFAnimal.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D5929D1A4DA6820040F3CC /* PFAnimal.m */; };
 		D40155AB76AB13B614BA655E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F0315D27A157AAB4F24D0A63 /* libPods.a */; };
 		E60554631857E71C00D11CE9 /* MPPetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E60554621857E71C00D11CE9 /* MPPetViewController.m */; };
 		E605548318594C0000D11CE9 /* MPAnimations.m in Sources */ = {isa = PBXBuildFile; fileRef = E605548218594C0000D11CE9 /* MPAnimations.m */; };
@@ -386,6 +390,12 @@
 		A7A13331181B2C6900D7D016 /* iPhone_Navigation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone_Navigation@2x.png"; sourceTree = "<group>"; };
 		A7ADDC4519C4D1F300AB5E20 /* ACTReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ACTReporter.h; path = ../../../GoogleConversionTrackingSDK/ACTReporter.h; sourceTree = "<group>"; };
 		A7ADDC4619C4D1F300AB5E20 /* libGoogleConversionTracking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleConversionTracking.a; path = ../../../GoogleConversionTrackingSDK/libGoogleConversionTracking.a; sourceTree = "<group>"; };
+		A7C4B5391A4DBCB80014A6EA /* Model_7_for_iOS7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model_7_for_iOS7.xcdatamodel; sourceTree = "<group>"; };
+		A7D592971A4D90110040F3CC /* MPInternetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPInternetManager.h; sourceTree = "<group>"; };
+		A7D592981A4D90110040F3CC /* MPInternetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPInternetManager.m; sourceTree = "<group>"; };
+		A7D5929C1A4DA6820040F3CC /* PFAnimal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFAnimal.h; sourceTree = "<group>"; };
+		A7D5929D1A4DA6820040F3CC /* PFAnimal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFAnimal.m; sourceTree = "<group>"; };
+		A7D592A01A4DB5C30040F3CC /* Model_6_for_iOS7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model_6_for_iOS7.xcdatamodel; sourceTree = "<group>"; };
 		D85DA9FB75CAFDEE4E9F225C /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E60554611857E71C00D11CE9 /* MPPetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPetViewController.h; sourceTree = "<group>"; };
 		E60554621857E71C00D11CE9 /* MPPetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPetViewController.m; sourceTree = "<group>"; };
@@ -631,34 +641,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A71ABC5318316F150039DF25 /* CoreData Classes */ = {
+		A71ABC5318316F150039DF25 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A78D075318189ACC00DC64CD /* Model.xcdatamodeld */,
-				A71ABC5018316F0B0039DF25 /* Medicamento.h */,
-				A71ABC5118316F0B0039DF25 /* Medicamento.m */,
-				E644BAF5187CF40000247278 /* Peso.h */,
-				E644BAF6187CF40000247278 /* Peso.m */,
-				A71ABC4D18316F0A0039DF25 /* MyPets.h */,
-				A71ABC4E18316F0B0039DF25 /* MyPets.m */,
-				A71ABC4A18316F0A0039DF25 /* Banho.h */,
-				A71ABC4B18316F0A0039DF25 /* Banho.m */,
-				A71ABC4718316F090039DF25 /* Consulta.h */,
-				A71ABC4818316F0A0039DF25 /* Consulta.m */,
-				A71ABC4418316F090039DF25 /* Fotos.h */,
-				A71ABC4518316F090039DF25 /* Fotos.m */,
-				A71ABC4118316F080039DF25 /* PetShop.h */,
-				A71ABC4218316F080039DF25 /* PetShop.m */,
-				A71ABC3E18316F080039DF25 /* Veterinario.h */,
-				A71ABC3F18316F080039DF25 /* Veterinario.m */,
-				A71ABC3B18316F070039DF25 /* Vermifugo.h */,
-				A71ABC3C18316F080039DF25 /* Vermifugo.m */,
-				A71ABC3818316F060039DF25 /* Vacina.h */,
-				A71ABC3918316F060039DF25 /* Vacina.m */,
-				A71ABC3518316ED70039DF25 /* Animal.h */,
-				A71ABC3618316ED70039DF25 /* Animal.m */,
+				A7D5929B1A4DA6680040F3CC /* Core Data */,
+				A7D5929C1A4DA6820040F3CC /* PFAnimal.h */,
+				A7D5929D1A4DA6820040F3CC /* PFAnimal.m */,
 			);
-			name = "CoreData Classes";
+			name = Models;
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -767,12 +757,13 @@
 			isa = PBXGroup;
 			children = (
 				E60CC1331881A5BF00826B59 /* Targets */,
+				A78D075318189ACC00DC64CD /* Model.xcdatamodeld */,
 				A78D075918189B4D00DC64CD /* Storyboard.storyboard */,
 				A79BABE219BD35FB001C8467 /* Storyboard_iPad.storyboard */,
 				A78D0736181899F600DC64CD /* MPAppDelegate.h */,
 				A78D0737181899F600DC64CD /* MPAppDelegate.m */,
 				E62E379319ABC29C00537B9D /* Controllers */,
-				A71ABC5318316F150039DF25 /* CoreData Classes */,
+				A71ABC5318316F150039DF25 /* Models */,
 				A7A132FB181B21C500D7D016 /* Classes */,
 				A751CB1B1A4AE88B007F9A3E /* Custom Categories */,
 				A751CB1A1A4AE873007F9A3E /* Custom Views */,
@@ -809,6 +800,8 @@
 				A7A1332A181B2A3000D7D016 /* MPLibrary.m */,
 				A751CB771A4B34FD007F9A3E /* MPMigrationManager.h */,
 				A751CB781A4B34FD007F9A3E /* MPMigrationManager.m */,
+				A7D592971A4D90110040F3CC /* MPInternetManager.h */,
+				A7D592981A4D90110040F3CC /* MPInternetManager.m */,
 				E605548118594C0000D11CE9 /* MPAnimations.h */,
 				E605548218594C0000D11CE9 /* MPAnimations.m */,
 				E6D47ACE185AA226009C2905 /* MPHumanAge.h */,
@@ -902,6 +895,35 @@
 				A7ADDC4619C4D1F300AB5E20 /* libGoogleConversionTracking.a */,
 			);
 			name = "AdMob Converter";
+			sourceTree = "<group>";
+		};
+		A7D5929B1A4DA6680040F3CC /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				A71ABC5018316F0B0039DF25 /* Medicamento.h */,
+				A71ABC5118316F0B0039DF25 /* Medicamento.m */,
+				E644BAF5187CF40000247278 /* Peso.h */,
+				E644BAF6187CF40000247278 /* Peso.m */,
+				A71ABC4D18316F0A0039DF25 /* MyPets.h */,
+				A71ABC4E18316F0B0039DF25 /* MyPets.m */,
+				A71ABC4A18316F0A0039DF25 /* Banho.h */,
+				A71ABC4B18316F0A0039DF25 /* Banho.m */,
+				A71ABC4718316F090039DF25 /* Consulta.h */,
+				A71ABC4818316F0A0039DF25 /* Consulta.m */,
+				A71ABC4418316F090039DF25 /* Fotos.h */,
+				A71ABC4518316F090039DF25 /* Fotos.m */,
+				A71ABC4118316F080039DF25 /* PetShop.h */,
+				A71ABC4218316F080039DF25 /* PetShop.m */,
+				A71ABC3E18316F080039DF25 /* Veterinario.h */,
+				A71ABC3F18316F080039DF25 /* Veterinario.m */,
+				A71ABC3B18316F070039DF25 /* Vermifugo.h */,
+				A71ABC3C18316F080039DF25 /* Vermifugo.m */,
+				A71ABC3818316F060039DF25 /* Vacina.h */,
+				A71ABC3918316F060039DF25 /* Vacina.m */,
+				A71ABC3518316ED70039DF25 /* Animal.h */,
+				A71ABC3618316ED70039DF25 /* Animal.m */,
+			);
+			name = "Core Data";
 			sourceTree = "<group>";
 		};
 		E60CC1331881A5BF00826B59 /* Targets */ = {
@@ -1420,6 +1442,7 @@
 				E6D47AD0185AA226009C2905 /* MPHumanAge.m in Sources */,
 				A71ABC4318316F080039DF25 /* PetShop.m in Sources */,
 				E60CC235188327F400826B59 /* PNLineChartDataItem.m in Sources */,
+				A7D5929E1A4DA6820040F3CC /* PFAnimal.m in Sources */,
 				E60554631857E71C00D11CE9 /* MPPetViewController.m in Sources */,
 				A71ABC4618316F090039DF25 /* Fotos.m in Sources */,
 				A751CB791A4B34FD007F9A3E /* MPMigrationManager.m in Sources */,
@@ -1435,6 +1458,7 @@
 				A71ABC5218316F0B0039DF25 /* Medicamento.m in Sources */,
 				E6952F23186E39810050FB64 /* MPLembretesViewController.m in Sources */,
 				E6B6AFD618936CC400AA5DAD /* MPDropboxNotification.m in Sources */,
+				A7D592991A4D90110040F3CC /* MPInternetManager.m in Sources */,
 				E6952F18186BC2770050FB64 /* MPBanhoEditViewController.m in Sources */,
 				E6D47AF21861144B009C2905 /* MPVermifugosViewController.m in Sources */,
 			);
@@ -1491,6 +1515,7 @@
 				E60CC1951881A80C00826B59 /* MPHumanAge.m in Sources */,
 				E60CC1961881A80C00826B59 /* PetShop.m in Sources */,
 				E60CC236188327F400826B59 /* PNLineChartDataItem.m in Sources */,
+				A7D5929F1A4DA6820040F3CC /* PFAnimal.m in Sources */,
 				E60CC1971881A80C00826B59 /* MPPetViewController.m in Sources */,
 				E60CC1991881A80C00826B59 /* Fotos.m in Sources */,
 				A751CB7A1A4B34FD007F9A3E /* MPMigrationManager.m in Sources */,
@@ -1506,6 +1531,7 @@
 				E60CC19F1881A80C00826B59 /* Medicamento.m in Sources */,
 				E60CC1A01881A80C00826B59 /* MPLembretesViewController.m in Sources */,
 				E6B6AFD718936CC400AA5DAD /* MPDropboxNotification.m in Sources */,
+				A7D5929A1A4D90110040F3CC /* MPInternetManager.m in Sources */,
 				E60CC1A11881A80C00826B59 /* MPBanhoEditViewController.m in Sources */,
 				E60CC1A21881A80C00826B59 /* MPVermifugosViewController.m in Sources */,
 			);
@@ -1787,6 +1813,8 @@
 		A78D075318189ACC00DC64CD /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				A7C4B5391A4DBCB80014A6EA /* Model_7_for_iOS7.xcdatamodel */,
+				A7D592A01A4DB5C30040F3CC /* Model_6_for_iOS7.xcdatamodel */,
 				E644BB55187E4B2300247278 /* Model_5_for_iOS7.xcdatamodel */,
 				E644BB3E187E24F500247278 /* Model_4_for_iOS7.xcdatamodel */,
 				E644BAF4187CEAA000247278 /* Model_2_for_iOS7.xcdatamodel */,
@@ -1797,9 +1825,8 @@
 				A78D075618189ACC00DC64CD /* Model.xcdatamodel */,
 				A78D075718189ACC00DC64CD /* Model2.xcdatamodel */,
 			);
-			currentVersion = E644BB55187E4B2300247278 /* Model_5_for_iOS7.xcdatamodel */;
-			name = Model.xcdatamodeld;
-			path = MyPets/Model.xcdatamodeld;
+			currentVersion = A7C4B5391A4DBCB80014A6EA /* Model_7_for_iOS7.xcdatamodel */;
+			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

@@ -60,6 +60,12 @@
 #define COCOAPODS_VERSION_MINOR_Bolts 1
 #define COCOAPODS_VERSION_PATCH_Bolts 3
 
+// FCFileManager
+#define COCOAPODS_POD_AVAILABLE_FCFileManager
+#define COCOAPODS_VERSION_MAJOR_FCFileManager 1
+#define COCOAPODS_VERSION_MINOR_FCFileManager 0
+#define COCOAPODS_VERSION_PATCH_FCFileManager 6
+
 // Facebook-iOS-SDK
 #define COCOAPODS_POD_AVAILABLE_Facebook_iOS_SDK
 #define COCOAPODS_VERSION_MAJOR_Facebook_iOS_SDK 3
@@ -113,6 +119,12 @@
 #define COCOAPODS_VERSION_MAJOR_Parse 1
 #define COCOAPODS_VERSION_MINOR_Parse 6
 #define COCOAPODS_VERSION_PATCH_Parse 1
+
+// Reachability
+#define COCOAPODS_POD_AVAILABLE_Reachability
+#define COCOAPODS_VERSION_MAJOR_Reachability 3
+#define COCOAPODS_VERSION_MINOR_Reachability 2
+#define COCOAPODS_VERSION_PATCH_Reachability 0
 
 // SDWebImage
 #define COCOAPODS_POD_AVAILABLE_SDWebImage

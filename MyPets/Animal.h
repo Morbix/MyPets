@@ -13,6 +13,7 @@
 
 @interface Animal : NSManagedObject
 
+@property (nonatomic, retain) NSString * cIdentifier;
 @property (nonatomic, retain) NSDate * cDataNascimento;
 @property (nonatomic, retain) NSString * cEspecie;
 @property (nonatomic, retain) NSData * cFoto;

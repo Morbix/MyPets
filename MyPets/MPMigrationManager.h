@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum : NSUInteger {
+    MPMigrationStatusProgress,
+    MPMigrationStatusCanceled,
+    MPMigrationStatusDone
+} MPMigrationStatus;
+
 @interface MPMigrationManager : NSObject
 
 - (void)startMigration;

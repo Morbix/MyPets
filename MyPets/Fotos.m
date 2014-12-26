@@ -12,6 +12,7 @@
 
 @implementation Fotos
 
+@dynamic cIdentifier;
 @dynamic cData;
 @dynamic cFoto;
 @dynamic cIDParse;

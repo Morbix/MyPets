@@ -13,6 +13,7 @@
 
 @interface Veterinario : NSManagedObject
 
+@property (nonatomic, retain) NSString * cIdentifier;
 @property (nonatomic, retain) NSString * cEmail;
 @property (nonatomic, retain) NSString * cEndereco;
 @property (nonatomic, retain) NSString * cEspecializacao;

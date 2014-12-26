@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ParcelKit.h"
+
 #import <FacebookSDK/FacebookSDK.h>
 #import <Parse/Parse.h>
 #import <Dropbox/Dropbox.h>
 #import <Crashlytics/Crashlytics.h>
+
+#import "ParcelKit.h"
+
+@class MPMigrationManager;
 
 @interface MPAppDelegate : UIResponder <UIApplicationDelegate>
 

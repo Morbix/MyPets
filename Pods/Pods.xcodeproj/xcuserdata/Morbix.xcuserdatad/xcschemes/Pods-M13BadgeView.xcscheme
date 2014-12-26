@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E1D894DCCCAB0AAF5B7FBF12"
+               BlueprintIdentifier = "1E5BEA3C8757842C4F29489F"
                BuildableName = "libPods-M13BadgeView.a"
                BlueprintName = "Pods-M13BadgeView"
                ReferencedContainer = "container:Pods.xcodeproj">

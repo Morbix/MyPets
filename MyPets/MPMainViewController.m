@@ -23,6 +23,7 @@
 #import "UIImageView+WebCache.h"
 #import "MPDropboxNotification.h"
 #import "MPAppDelegate.h"
+#import "MPMigrationManager.h"
 
 @interface MPMainViewController ()
 {
@@ -89,8 +90,10 @@
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
     
     
-    
     [self.bannerView requestBanner:kBanner_Main target:self];
+    
+    
+    [[[MPMigrationManager alloc] init] startMigration];
 }
 
 - (void)delayToLoad

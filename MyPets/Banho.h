@@ -13,6 +13,7 @@
 
 @interface Banho : NSManagedObject
 
+@property (nonatomic, retain) NSString * cIdentifier;
 @property (nonatomic, retain) NSDate * cData;
 @property (nonatomic, retain) NSDate * cHorario;
 @property (nonatomic, retain) NSString * cID;

@@ -13,6 +13,7 @@
 
 @implementation Banho
 
+@dynamic cIdentifier;
 @dynamic cData;
 @dynamic cHorario;
 @dynamic cID;

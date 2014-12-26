@@ -13,6 +13,7 @@
 
 @implementation Medicamento
 
+@dynamic cIdentifier;
 @dynamic cData;
 @dynamic cDose;
 @dynamic cHorario;

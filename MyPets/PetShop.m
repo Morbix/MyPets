@@ -12,6 +12,7 @@
 
 @implementation PetShop
 
+@dynamic cIdentifier;
 @dynamic cEmail;
 @dynamic cEndereco;
 @dynamic cNome;

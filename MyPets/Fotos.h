@@ -13,6 +13,7 @@
 
 @interface Fotos : NSManagedObject
 
+@property (nonatomic, retain) NSString * cIdentifier;
 @property (nonatomic, retain) NSDate * cData;
 @property (nonatomic, retain) NSData * cFoto;
 @property (nonatomic, retain) NSString * cIDParse;

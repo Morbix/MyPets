@@ -17,6 +17,7 @@
 #import "MXGoogleAnalytics.h"
 #import "ACTReporter.h"
 
+#import "MPInternetManager.h"
 
 #define kSIZE 10
 
@@ -28,6 +29,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [MPInternetManager shared];
     
     [self initCrashlytics];
     
@@ -129,6 +131,9 @@
 
 - (void)initGoogleConversionTracking
 {
+    if (MX_DESENV_MODE) {
+        return;
+    }
     // MyPets - Pets Manager Free - download
     // Google iOS Download tracking snippet
     // To track downloads of your app, add this snippet to your

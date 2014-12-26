@@ -13,6 +13,7 @@
 
 @implementation Vermifugo
 
+@dynamic cIdentifier;
 @dynamic cData;
 @dynamic cDataVacina;
 @dynamic cDose;

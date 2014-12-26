@@ -20,6 +20,7 @@
 
 @implementation Animal
 
+@dynamic cIdentifier;
 @dynamic cDataNascimento;
 @dynamic cEspecie;
 @dynamic cFoto;

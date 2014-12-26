@@ -12,6 +12,7 @@
 
 @implementation Peso
 
+@dynamic cIdentifier;
 @dynamic cID;
 @dynamic cPeso;
 @dynamic cData;

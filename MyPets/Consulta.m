@@ -12,6 +12,7 @@
 
 @implementation Consulta
 
+@dynamic cIdentifier;
 @dynamic cData;
 @dynamic cHorario;
 @dynamic cID;

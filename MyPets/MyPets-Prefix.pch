@@ -22,7 +22,7 @@
     #import "MXGoogleAnalytics.h"
 #endif
 
-
+#define MX_DESENV_MODE DEBUG
 
 #define kIPHONE ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
 

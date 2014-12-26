@@ -13,6 +13,7 @@
 
 @interface Medicamento : NSManagedObject
 
+@property (nonatomic, retain) NSString * cIdentifier;
 @property (nonatomic, retain) NSDate * cData;
 @property (nonatomic, retain) NSString * cDose;
 @property (nonatomic, retain) NSDate * cHorario;

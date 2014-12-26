@@ -29,6 +29,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-FCFileManager.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Facebook-iOS-SDK.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -69,6 +74,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-Reachability.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -82,77 +92,87 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>00F0032DE133D48A9C5A4104</key>
+		<key>00726EE47606925861518BA6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1F73D0598A563B675BA21A8B</key>
+		<key>0099F19F20B2C9B385B2F2E2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>46D9ED78AF0EE6FFCE25B137</key>
+		<key>11FB33F374979E787D7E718F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>59081BA50B9E02B61ADC3CF3</key>
+		<key>1A8D75C30E882ED7FE449182</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6185F44B8FEC37456D63CB55</key>
+		<key>1D2E566E31BA956A6F10B325</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>699D6276E4431B6391C1165B</key>
+		<key>1E5BEA3C8757842C4F29489F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6A16FC0AC69ADE4BBA6CACF7</key>
+		<key>2FE67740FE0C575EA7BA36DE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>72EFC5595BC459C2FA52E07D</key>
+		<key>3348D8C514E91929961F0167</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>ACA4278DBF6773CBA146A3FF</key>
+		<key>3D4F34A388C88AA6EDAB4CC5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B26D276FB43ABD280157CF95</key>
+		<key>7C6E65EA90FF0DC04CD272D8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BDFF28A0948A3A6278928789</key>
+		<key>A38B627C0E0D211A8FE02CA1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C57673FC77B20C01AC18724D</key>
+		<key>A81311936C1D727157F1DD24</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C6131075F3A4BC996311C1B3</key>
+		<key>B8D4E49C16EDE798214ED0B7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E1D894DCCCAB0AAF5B7FBF12</key>
+		<key>C053C260FA29791B3AAD0C78</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FFC26683CF348ADA2F38294B</key>
+		<key>E3368E7CBA040610923ED127</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E73073D316E835B428CEBF34</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F3F23E9F1650E78C28778FF9</key>
 		<dict>
 			<key>primary</key>
 			<true/>

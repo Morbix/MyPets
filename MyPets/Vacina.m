@@ -13,6 +13,7 @@
 
 @implementation Vacina
 
+@dynamic cIdentifier;
 @dynamic cData;
 @dynamic cDataVacina;
 @dynamic cDose;
