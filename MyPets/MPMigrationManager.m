@@ -125,6 +125,7 @@
     }
     
     [animalToSave setIdentifier:token];
+    [animalToSave setOwner:[PFUser currentUser]];
     
     if (animalToMigrate.cDataNascimento) {
         [animalToSave setBirthday:animalToMigrate.cDataNascimento];
@@ -211,6 +212,17 @@
     }
     
     if (MX_DESENV_MODE) {
+        NSLog(@"%s saving relation between user and animal: %@", __PRETTY_FUNCTION__ , animalName);
+    }
+    PFRelation *relation = [[PFUser currentUser] relationForKey:@"relationOfAnimal"];
+    [relation addObject:animalToSave];
+    [[PFUser currentUser] save:&error];
+    if (error) {
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return nil;
+    }
+    
+    if (MX_DESENV_MODE) {
         NSLog(@"%s finish migrate animal: %@", __PRETTY_FUNCTION__ ,animalName);
     }
     if (MX_DESENV_MODE) {
@@ -255,6 +267,7 @@
     
     [bathToSave setIdentifier:token];
     [bathToSave setAnimal:animalMigrated];
+    [bathToSave setOwner:[PFUser currentUser]];
     
     if (bathToMigrate.cData) {
         if (bathToMigrate.cHorario) {
@@ -363,6 +376,7 @@
     
     [appointmentToSave setIdentifier:token];
     [appointmentToSave setAnimal:animalMigrated];
+    [appointmentToSave setOwner:[PFUser currentUser]];
     
     if (appointmentToMigrate.cData) {
         if (appointmentToMigrate.cHorario) {

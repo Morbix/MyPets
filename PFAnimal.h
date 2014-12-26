@@ -10,6 +10,7 @@
 
 @interface PFAnimal : PFObject <PFSubclassing>
 
+@property (retain) PFUser *owner;
 @property (retain) NSString *identifier;
 @property (retain) NSDate *birthday;
 @property (retain) NSString *specie;
@@ -19,6 +20,7 @@
 @property (retain) NSString *notes;
 @property (retain) NSString *breed;
 @property (retain) NSString *sex;
+
 
 + (NSString *)parseClassName;
 

@@ -10,6 +10,7 @@
 
 @implementation PFBath
 
+@dynamic owner;
 @dynamic identifier;
 @dynamic dateAndTime;
 @dynamic bathId;

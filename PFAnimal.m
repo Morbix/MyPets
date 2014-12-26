@@ -12,6 +12,7 @@
 
 @implementation PFAnimal
 
+@dynamic owner;
 @dynamic identifier;
 @dynamic birthday;
 @dynamic specie;
@@ -21,6 +22,7 @@
 @dynamic notes;
 @dynamic breed;
 @dynamic sex;
+
 
 + (void)load {
     [self registerSubclass];

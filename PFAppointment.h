@@ -12,6 +12,7 @@
 
 @interface PFAppointment : PFObject<PFSubclassing>
 
+@property (retain) PFUser *owner;
 @property (retain) NSString *identifier;
 @property (retain) NSDate *dateAndTime;
 @property (retain) NSString *appointmentId;

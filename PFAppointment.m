@@ -10,6 +10,7 @@
 
 @implementation PFAppointment
 
+@dynamic owner;
 @dynamic identifier;
 @dynamic dateAndTime;
 @dynamic appointmentId;
