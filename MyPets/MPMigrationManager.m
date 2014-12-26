@@ -45,16 +45,16 @@
         BOOL completed = YES;
         
         for (Animal *animal in arrayPets) {
-            completed = [self migrateAnimal:animal];
+            completed = [[MPInternetManager shared] hasInternetConnectionViaWifi];
+            if (!completed) { break; }
             
-            if (!completed) {
-                break;
-            }
+            completed = [self migrateAnimal:animal];
+            if (!completed) { break; }
         }
         
         if (MX_DESENV_MODE) {
             if (completed) {
-                NSLog(@"%s Finishing Migration...", __PRETTY_FUNCTION__);
+                //NSLog(@"%s Finishing Migration...", __PRETTY_FUNCTION__);
             }else{
                 NSLog(@"%s Stoping Migration...", __PRETTY_FUNCTION__);
             }
@@ -66,22 +66,32 @@
 {
     NSError *error = nil;
     
+    PFAnimal *animalToSave = nil;
+    
     NSString *animalName = animalToMigrate.cNome;
     
+    NSString *token = nil;
+    
     if (animalToMigrate.cIdentifier && ![animalToMigrate.cIdentifier isEqualToString:@""]) {
-        NSLog(@"%s animal: %@ has already migrated (token: %@)", __PRETTY_FUNCTION__ ,animalName, animalToMigrate.cIdentifier);
-        return YES;
+        if (MX_DESENV_MODE) {
+            NSLog(@"%s animal: %@ has already migrated (token: %@)", __PRETTY_FUNCTION__ ,animalName, animalToMigrate.cIdentifier);
+        }
+        
+        animalToSave = [self retrieveObjectWithClass:[PFAnimal class] andToken:animalToMigrate.cIdentifier];
+        
+        token = animalToSave.identifier;
+    }else{
+        animalToSave = [PFAnimal object];
+
+        token = [self randomStringToken];
     }
     
     if (MX_DESENV_MODE) {
         NSLog(@"%s starting migrate animal: %@", __PRETTY_FUNCTION__ ,animalName);
     }
     
-    NSString *token = [self randomStringToken];
-    
-    PFAnimal *animalToSave = [PFAnimal object];
-    
     [animalToSave setIdentifier:token];
+    
     if (animalToMigrate.cDataNascimento) {
         [animalToSave setBirthday:animalToMigrate.cDataNascimento];
     }
@@ -105,14 +115,35 @@
     }
     
     
-    PFFile *filePhoto = [self savePhoto:animalToMigrate.cFoto withToken:token];
-    if (!filePhoto) {
+    [self savePhoto:animalToMigrate.cFoto withToken:token error:&error];
+    if (error) {
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
         return NO;
     }
     
-    [animalToSave setPhoto:filePhoto];
-    [animalToSave saveEventually];
+    
+    PFFile *filePhoto = animalToSave.photo;
+    if (!filePhoto) {
+        filePhoto = [PFFile fileWithData:animalToMigrate.cFoto
+                             contentType:@"image/png"];
+        [filePhoto save:&error];
+        if (error) {
+            NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+            return NO;
+        }
+        
+        [animalToSave setPhoto:filePhoto];
+    }
+    
+    [animalToSave save:&error];
+    
+    if (error) {
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return NO;
+    }
+    
     [animalToSave pin:&error];
+    
     if (error) {
         NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
         return NO;
@@ -176,39 +207,58 @@
     return [[NSString alloc] initWithString:s];
 }
 
-- (PFFile *)savePhoto:(NSData *)photo withToken:(NSString *)token
+- (void)savePhoto:(NSData *)photo withToken:(NSString *)token  error:(NSError **)error
 {
     NSString *filePath = [NSString stringWithFormat:@"photos/%@.png", token];
     
-    NSError *error = nil;
-    
     if ([FCFileManager existsItemAtPath:filePath]) {
         [FCFileManager removeItemAtPath:filePath
-                                  error:&error];
+                                  error:&*error];
         
-        if (error) {
-            NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
-            return nil;
+        if (*error) {
+            NSLog(@"%s error: %@", __PRETTY_FUNCTION__, [*error localizedDescription]);
+            return;
         }
     }
     
     [FCFileManager writeFileAtPath:filePath
                            content:photo
-                             error:&error];
+                             error:&*error];
     
-    if (error) {
-        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
-        return nil;
+    if (*error) {
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, [*error localizedDescription]);
+        return;
+    }
+}
+
+- (id)retrieveObjectWithClass:(Class<PFSubclassing>)class andToken:(NSString *)token
+{
+    PFObject *object = nil;
+    
+    
+    PFQuery *queryLocally = [class query];
+    [queryLocally fromLocalDatastore];
+    [queryLocally whereKey:@"identifier" equalTo:token];
+    object = [queryLocally getFirstObject];
+    
+    if (object) {
+        if (MX_DESENV_MODE) {
+            NSLog(@"%s object: %@ retrieved from local datastore", __PRETTY_FUNCTION__, object.objectId);
+        }
+        return object;
     }
     
-    PFFile *filePhoto = [PFFile fileWithData:photo
-                                 contentType:@"image/png"];
-    [filePhoto save:&error];
-    if (error) {
-        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
-        return nil;
+    PFQuery *queryRemotely = [class query];
+    [queryRemotely whereKey:@"identifier" equalTo:token];
+    object = [queryRemotely getFirstObject];
+    
+    if (object) {
+        if (MX_DESENV_MODE) {
+            NSLog(@"%s object: %@ retrieved from server", __PRETTY_FUNCTION__, object.objectId);
+        }
+        return object;
     }
     
-    return filePhoto;
+    return [class object];
 }
 @end
