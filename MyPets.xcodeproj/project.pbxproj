@@ -60,8 +60,10 @@
 		A7A13333181B2C6900D7D016 /* iPhone_Navigation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A7A13331181B2C6900D7D016 /* iPhone_Navigation@2x.png */; };
 		A7ADDC4719C4D1F300AB5E20 /* libGoogleConversionTracking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7ADDC4619C4D1F300AB5E20 /* libGoogleConversionTracking.a */; };
 		A7ADDC4819C4D1F300AB5E20 /* libGoogleConversionTracking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7ADDC4619C4D1F300AB5E20 /* libGoogleConversionTracking.a */; };
-		A7C4B53C1A4DE2B40014A6EA /* PFBanho.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C4B53B1A4DE2B40014A6EA /* PFBanho.m */; };
-		A7C4B53D1A4DE2B40014A6EA /* PFBanho.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C4B53B1A4DE2B40014A6EA /* PFBanho.m */; };
+		A7C4B53C1A4DE2B40014A6EA /* PFBath.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C4B53B1A4DE2B40014A6EA /* PFBath.m */; };
+		A7C4B53D1A4DE2B40014A6EA /* PFBath.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C4B53B1A4DE2B40014A6EA /* PFBath.m */; };
+		A7C4B5401A4DECA40014A6EA /* MPReminderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C4B53F1A4DECA40014A6EA /* MPReminderManager.m */; };
+		A7C4B5411A4DECA40014A6EA /* MPReminderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C4B53F1A4DECA40014A6EA /* MPReminderManager.m */; };
 		A7D592991A4D90110040F3CC /* MPInternetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D592981A4D90110040F3CC /* MPInternetManager.m */; };
 		A7D5929A1A4D90110040F3CC /* MPInternetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D592981A4D90110040F3CC /* MPInternetManager.m */; };
 		A7D5929E1A4DA6820040F3CC /* PFAnimal.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D5929D1A4DA6820040F3CC /* PFAnimal.m */; };
@@ -393,8 +395,10 @@
 		A7ADDC4519C4D1F300AB5E20 /* ACTReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ACTReporter.h; path = ../../../GoogleConversionTrackingSDK/ACTReporter.h; sourceTree = "<group>"; };
 		A7ADDC4619C4D1F300AB5E20 /* libGoogleConversionTracking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleConversionTracking.a; path = ../../../GoogleConversionTrackingSDK/libGoogleConversionTracking.a; sourceTree = "<group>"; };
 		A7C4B5391A4DBCB80014A6EA /* Model_7_for_iOS7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model_7_for_iOS7.xcdatamodel; sourceTree = "<group>"; };
-		A7C4B53A1A4DE2B40014A6EA /* PFBanho.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFBanho.h; sourceTree = "<group>"; };
-		A7C4B53B1A4DE2B40014A6EA /* PFBanho.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFBanho.m; sourceTree = "<group>"; };
+		A7C4B53A1A4DE2B40014A6EA /* PFBath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFBath.h; sourceTree = "<group>"; };
+		A7C4B53B1A4DE2B40014A6EA /* PFBath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFBath.m; sourceTree = "<group>"; };
+		A7C4B53E1A4DECA40014A6EA /* MPReminderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPReminderManager.h; sourceTree = "<group>"; };
+		A7C4B53F1A4DECA40014A6EA /* MPReminderManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPReminderManager.m; sourceTree = "<group>"; };
 		A7D592971A4D90110040F3CC /* MPInternetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPInternetManager.h; sourceTree = "<group>"; };
 		A7D592981A4D90110040F3CC /* MPInternetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPInternetManager.m; sourceTree = "<group>"; };
 		A7D5929C1A4DA6820040F3CC /* PFAnimal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFAnimal.h; sourceTree = "<group>"; };
@@ -651,8 +655,8 @@
 				A7D5929B1A4DA6680040F3CC /* Core Data */,
 				A7D5929C1A4DA6820040F3CC /* PFAnimal.h */,
 				A7D5929D1A4DA6820040F3CC /* PFAnimal.m */,
-				A7C4B53A1A4DE2B40014A6EA /* PFBanho.h */,
-				A7C4B53B1A4DE2B40014A6EA /* PFBanho.m */,
+				A7C4B53A1A4DE2B40014A6EA /* PFBath.h */,
+				A7C4B53B1A4DE2B40014A6EA /* PFBath.m */,
 			);
 			name = Models;
 			path = ..;
@@ -808,6 +812,8 @@
 				A751CB781A4B34FD007F9A3E /* MPMigrationManager.m */,
 				A7D592971A4D90110040F3CC /* MPInternetManager.h */,
 				A7D592981A4D90110040F3CC /* MPInternetManager.m */,
+				A7C4B53E1A4DECA40014A6EA /* MPReminderManager.h */,
+				A7C4B53F1A4DECA40014A6EA /* MPReminderManager.m */,
 				E605548118594C0000D11CE9 /* MPAnimations.h */,
 				E605548218594C0000D11CE9 /* MPAnimations.m */,
 				E6D47ACE185AA226009C2905 /* MPHumanAge.h */,
@@ -1405,6 +1411,7 @@
 				E60CC229188327F400826B59 /* PNBarChart.m in Sources */,
 				E6D47AF818611461009C2905 /* MPBanhosViewController.m in Sources */,
 				A78D0738181899F600DC64CD /* MPAppDelegate.m in Sources */,
+				A7C4B5401A4DECA40014A6EA /* MPReminderManager.m in Sources */,
 				A78D075818189ACC00DC64CD /* Model.xcdatamodeld in Sources */,
 				A7A13315181B296000D7D016 /* UIFlatColor.m in Sources */,
 				E6D47AEC185FDAB1009C2905 /* LKBadgeView.m in Sources */,
@@ -1421,7 +1428,7 @@
 				E60CC237188327F400826B59 /* UICountingLabel.m in Sources */,
 				E60CC2431883385F00826B59 /* MPPeso.m in Sources */,
 				E6952F1B186BC2840050FB64 /* MPMedicamentoEditViewController.m in Sources */,
-				A7C4B53C1A4DE2B40014A6EA /* PFBanho.m in Sources */,
+				A7C4B53C1A4DE2B40014A6EA /* PFBath.m in Sources */,
 				E60CC22F188327F400826B59 /* PNColor.m in Sources */,
 				E605548318594C0000D11CE9 /* MPAnimations.m in Sources */,
 				E6952F081867CA2F0050FB64 /* MPLembretes.m in Sources */,
@@ -1479,6 +1486,7 @@
 				E60CC22A188327F400826B59 /* PNBarChart.m in Sources */,
 				E60CC1741881A80C00826B59 /* MPBanhosViewController.m in Sources */,
 				E60CC1751881A80C00826B59 /* MPAppDelegate.m in Sources */,
+				A7C4B5411A4DECA40014A6EA /* MPReminderManager.m in Sources */,
 				E60CC1761881A80C00826B59 /* Model.xcdatamodeld in Sources */,
 				E60CC1771881A80C00826B59 /* UIFlatColor.m in Sources */,
 				E60CC17C1881A80C00826B59 /* LKBadgeView.m in Sources */,
@@ -1495,7 +1503,7 @@
 				E60CC238188327F400826B59 /* UICountingLabel.m in Sources */,
 				E60CC2441883385F00826B59 /* MPPeso.m in Sources */,
 				E60CC1821881A80C00826B59 /* MPMedicamentoEditViewController.m in Sources */,
-				A7C4B53D1A4DE2B40014A6EA /* PFBanho.m in Sources */,
+				A7C4B53D1A4DE2B40014A6EA /* PFBath.m in Sources */,
 				E60CC230188327F400826B59 /* PNColor.m in Sources */,
 				E60CC1831881A80C00826B59 /* MPAnimations.m in Sources */,
 				E60CC1851881A80C00826B59 /* MPLembretes.m in Sources */,

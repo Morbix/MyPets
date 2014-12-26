@@ -10,11 +10,13 @@
 #import "MPInternetManager.h"
 #import "MPAppDelegate.h"
 #import "FCFileManager.h"
+#import "MPReminderManager.h"
 
 #import "Animal.h"
 #import "PFAnimal.h"
 
 #import "Banho.h"
+#import "PFBath.h"
 
 @interface MPMigrationManager ()
 {
@@ -50,7 +52,17 @@
             completed = [[MPInternetManager shared] hasInternetConnectionViaWifi];
             if (!completed) { break; }
             
-            completed = [self migrateAnimal:animal];
+            PFAnimal *animalMigrated = [self migrateAnimal:animal];
+            completed =  animalMigrated ? YES : NO;
+            if (!completed) { break; }
+            
+            if (animal.cArrayBanhos.count > 0) {
+                for (Banho *banho in animal.cArrayBanhos.allObjects) {
+                    PFBath *bathMigrated = [self migrateBath:banho toAnimal:animalMigrated];
+                    completed = bathMigrated ? YES : NO;
+                    if (!completed) { break; }
+                }
+            }
             if (!completed) { break; }
         }
         
@@ -68,7 +80,7 @@
     }
 }
 
-- (BOOL)migrateAnimal:(Animal *)animalToMigrate
+- (PFAnimal *)migrateAnimal:(Animal *)animalToMigrate
 {
     NSError *error = nil;
     
@@ -128,7 +140,7 @@
     [self savePhoto:animalToMigrate.cFoto withToken:token error:&error];
     if (error) {
         NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
-        return NO;
+        return nil;
     }
     
     
@@ -143,7 +155,7 @@
         [filePhoto save:&error];
         if (error) {
             NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
-            return NO;
+            return nil;
         }
         
         if (MX_DESENV_MODE) {
@@ -159,14 +171,14 @@
         [animalToSave unpin];
         
         NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
-        return NO;
+        return nil;
     }
     
     [animalToSave pin:&error];
     
     if (error) {
         NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
-        return NO;
+        return nil;
     }
     
     animalToMigrate.cIdentifier = token;
@@ -174,7 +186,7 @@
     
     if (error) {
         NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
-        return NO;
+        return nil;
     }
     
     
@@ -186,7 +198,108 @@
         NSLog(@"\n\n");
     }
     
-    return YES;
+    return animalToSave;
+}
+
+- (PFBath *)migrateBath:(Banho *)bathToMigrate toAnimal:(PFAnimal *)animalMigrated
+{
+    NSError *error = nil;
+    
+    PFBath *bathToSave = nil;
+    
+    NSString * animalName = bathToMigrate.cAnimal.cNome;
+    NSString * bathName = bathToMigrate.cData.description;
+    
+    NSString *token = nil;
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"\n===> Animal: %@ ===> Bath: %@", animalName, bathName);
+    }
+    
+    if (bathToMigrate.cIdentifier && ![bathToMigrate.cIdentifier isEqualToString:@""]) {
+        if (MX_DESENV_MODE) {
+            NSLog(@"%s bath: %@ has already migrated (token: %@)", __PRETTY_FUNCTION__ ,bathName, bathToMigrate.cIdentifier);
+        }
+        
+        bathToSave = [self retrieveObjectWithClass:[PFBath class] andToken:bathToMigrate.cIdentifier];
+        
+        token = bathToMigrate.cIdentifier;
+    }else{
+        bathToSave = [PFBath object];
+        
+        token = [self randomStringToken];
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s starting migrate bath: %@", __PRETTY_FUNCTION__ ,bathName);
+    }
+    
+    [bathToSave setIdentifier:token];
+    [bathToSave setAnimal:animalMigrated];
+    
+    if (bathToMigrate.cData) {
+        if (bathToMigrate.cHorario) {
+            [bathToSave setDateAndTime:[self combineDate:bathToMigrate.cData
+                                                withTime:bathToMigrate.cHorario]];
+        }else{
+            [bathToSave setDateAndTime:bathToMigrate.cData];
+        }
+    }
+    if (bathToMigrate.cID) {
+        [bathToSave setBathId:bathToMigrate.cID];
+    }
+    if (bathToMigrate.cLembrete) {
+        [bathToSave setReminder:[MPReminderManager translateReminderStringToInt:bathToMigrate.cLembrete]];
+    }
+    if (bathToMigrate.cObs) {
+        [bathToSave setNotes:bathToMigrate.cObs];
+    }
+    if (bathToMigrate.cPeso) {
+        [bathToSave setWeight:bathToMigrate.cPeso.floatValue];
+    }
+    
+    [bathToSave save:&error];
+    
+    if (error) {
+        [bathToSave unpin];
+        
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return nil;
+    }
+    
+    [bathToSave pin:&error];
+    
+    if (error) {
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return nil;
+    }
+    
+    PFRelation *relation = [animalMigrated relationForKey:@"relationOfBath"];
+    [relation addObject:bathToSave];
+    [animalMigrated save:&error];
+    
+    if (error) {
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return nil;
+    }
+    
+    bathToMigrate.cIdentifier = token;
+    [context save:&error];
+    
+    if (error) {
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return nil;
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s finish migrate bath: %@", __PRETTY_FUNCTION__ ,animalName);
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"\n\n");
+    }
+    
+    return bathToSave;
 }
 
 #pragma mark - Core Data
@@ -284,5 +397,27 @@
     }
     
     return [class object];
+}
+
+- (NSDate *)combineDate:(NSDate *)date withTime:(NSDate *)time
+{
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    
+    unsigned unitFlagsDate = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+    NSDateComponents *dateComponents = [calendar components:unitFlagsDate fromDate:date];
+    unsigned unitFlagsTime = NSHourCalendarUnit | NSMinuteCalendarUnit |  NSSecondCalendarUnit;
+    NSDateComponents *timeComponents = [calendar components:unitFlagsTime fromDate:time];
+    
+    [dateComponents setSecond:[timeComponents second]];
+    [dateComponents setHour:[timeComponents hour]];
+    [dateComponents setMinute:[timeComponents minute]];
+    
+    NSDate *combDate = [calendar dateFromComponents:dateComponents];
+
+    if (MX_DESENV_MODE) {
+        NSLog(@"\n%@\n%@\n%@", date, time, combDate);
+    }
+    
+    return combDate;
 }
 @end
