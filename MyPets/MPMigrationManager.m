@@ -27,6 +27,9 @@
 #import "Peso.h"
 #import "PFWeight.h"
 
+#import "Vacina.h"
+#import "PFVaccine.h"
+
 @interface MPMigrationManager ()
 {
     NSManagedObjectContext *context;
@@ -101,6 +104,15 @@
                 for (Peso *peso in animal.cArrayPesos.allObjects) {
                     PFWeight *weightMigrated = [self migrateWeight:peso toAnimal:animalMigrated];
                     completed = weightMigrated ? YES : NO;
+                    if (!completed) { break; }
+                }
+            }
+            if (!completed) { break; }
+            
+            if (animal.cArrayVacinas.count > 0) {
+                for (Vacina *vacina in animal.cArrayVacinas.allObjects) {
+                    PFVaccine *vaccineMigrated = [self migrateVaccine:vacina toAnimal:animalMigrated];
+                    completed = vaccineMigrated ? YES : NO;
                     if (!completed) { break; }
                 }
             }
@@ -182,35 +194,37 @@
     }
     
     
-    if (MX_DESENV_MODE) {
-        NSLog(@"%s saving photo locally: %@", __PRETTY_FUNCTION__ ,token);
-    }
-    [self savePhoto:animalToMigrate.cFoto withToken:token error:&error];
-    if (error) {
-        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
-        return nil;
-    }
-    
-    
-    PFFile *filePhoto = animalToSave.photo;
-    if (!filePhoto) {
+    if (animalToMigrate.cFoto) {
         if (MX_DESENV_MODE) {
-            NSLog(@"%s sending photo: %@", __PRETTY_FUNCTION__ ,token);
+            NSLog(@"%s saving photo locally: %@", __PRETTY_FUNCTION__ ,token);
         }
-        filePhoto = [PFFile fileWithName:token
-                                    data:animalToMigrate.cFoto
-                             contentType:@"image/png"];
-        [filePhoto save:&error];
+        [self savePhoto:animalToMigrate.cFoto withToken:token error:&error];
         if (error) {
             NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
             return nil;
         }
         
-        if (MX_DESENV_MODE) {
-            NSLog(@"%s photo sent: %@", __PRETTY_FUNCTION__ ,token);
-        }
         
-        [animalToSave setPhoto:filePhoto];
+        PFFile *filePhoto = animalToSave.photo;
+        if (!filePhoto) {
+            if (MX_DESENV_MODE) {
+                NSLog(@"%s sending photo: %@", __PRETTY_FUNCTION__ ,token);
+            }
+            filePhoto = [PFFile fileWithName:token
+                                        data:animalToMigrate.cFoto
+                                 contentType:@"image/png"];
+            [filePhoto save:&error];
+            if (error) {
+                NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+                return nil;
+            }
+            
+            if (MX_DESENV_MODE) {
+                NSLog(@"%s photo sent: %@", __PRETTY_FUNCTION__ ,token);
+            }
+            
+            [animalToSave setPhoto:filePhoto];
+        }
     }
     
     if (MX_DESENV_MODE) {
@@ -706,6 +720,155 @@
     }
     
     return weightToSave;
+}
+
+- (PFVaccine *)migrateVaccine:(Vacina *)vaccineToMigrate toAnimal:(PFAnimal *)animalMigrated
+{
+    __block NSError *error = nil;
+    
+    PFVaccine *vaccineToSave = nil;
+    
+    NSString * animalName = vaccineToMigrate.cAnimal.cNome;
+    NSString * vaccineName = vaccineToMigrate.cData.description;
+    
+    NSString *token = nil;
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"\n===> Animal: %@ ===> Vaccine: %@", animalName, vaccineName);
+    }
+    
+    if (vaccineToMigrate.cIdentifier && ![vaccineToMigrate.cIdentifier isEqualToString:@""]) {
+        if (MX_DESENV_MODE) {
+            NSLog(@"%s vaccine: %@ has already migrated (token: %@)", __PRETTY_FUNCTION__, vaccineName, vaccineToMigrate.cIdentifier);
+        }
+        
+        vaccineToSave = [self retrieveObjectWithClass:[PFVaccine class] andToken:vaccineToMigrate.cIdentifier];
+        
+        token = vaccineToMigrate.cIdentifier;
+    }else{
+        vaccineToSave = [PFVaccine object];
+        
+        token = [self randomStringToken];
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s starting migrate vaccine: %@", __PRETTY_FUNCTION__, vaccineName);
+    }
+    
+    [vaccineToSave setIdentifier:token];
+    [vaccineToSave setAnimal:animalMigrated];
+    [vaccineToSave setOwner:[PFUser currentUser]];
+    
+    if (vaccineToMigrate.cData) {
+        [vaccineToSave setDateAndTime:vaccineToMigrate.cData];
+    }
+    if (vaccineToMigrate.cDataVacina) {
+        [vaccineToSave setDateAndTimeVaccine:vaccineToMigrate.cDataVacina];
+    }
+    if (vaccineToMigrate.cID) {
+        [vaccineToSave setVaccineId:vaccineToMigrate.cID];
+    }
+    if (vaccineToMigrate.cLembrete) {
+        [vaccineToSave setReminder:[MPReminderManager translateReminderStringToInt:vaccineToMigrate.cLembrete]];
+    }
+    if (vaccineToMigrate.cObs) {
+        [vaccineToSave setNotes:vaccineToMigrate.cObs];
+    }
+    if (vaccineToMigrate.cPeso) {
+        [vaccineToSave setWeight:vaccineToMigrate.cPeso.floatValue];
+    }
+    if (vaccineToMigrate.cDose) {
+        [vaccineToSave setDose:vaccineToMigrate.cDose];
+    }
+    if (vaccineToMigrate.cVeterinario) {
+        [vaccineToSave setVeterinarian:vaccineToMigrate.cVeterinario];
+    }
+    
+    if (vaccineToMigrate.cSelo) {
+        if (MX_DESENV_MODE) {
+            NSLog(@"%s saving photo locally: %@", __PRETTY_FUNCTION__ ,token);
+        }
+        [self savePhoto:vaccineToMigrate.cSelo withToken:token error:&error];
+        if (error) {
+            NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+            return nil;
+        }
+        
+        
+        PFFile *filePhoto = vaccineToSave.photo;
+        if (!filePhoto) {
+            if (MX_DESENV_MODE) {
+                NSLog(@"%s sending photo: %@", __PRETTY_FUNCTION__ ,token);
+            }
+            filePhoto = [PFFile fileWithName:token
+                                        data:vaccineToMigrate.cSelo
+                                 contentType:@"image/png"];
+            [filePhoto save:&error];
+            if (error) {
+                NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+                return nil;
+            }
+            
+            if (MX_DESENV_MODE) {
+                NSLog(@"%s photo sent: %@", __PRETTY_FUNCTION__ ,token);
+            }
+            
+            [vaccineToSave setPhoto:filePhoto];
+        }
+    }
+
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s pinning vaccine: %@", __PRETTY_FUNCTION__ , vaccineName);
+    }
+    [vaccineToSave pin:&error];
+    if (error) {
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return nil;
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s saving context", __PRETTY_FUNCTION__);
+    }
+    vaccineToMigrate.cIdentifier = token;
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        [context save:&error];
+    });
+    if (error) {
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return nil;
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s saving vaccine: %@", __PRETTY_FUNCTION__ , vaccineName);
+    }
+    [vaccineToSave save:&error];
+    if (error) {
+        [vaccineToSave unpin];
+        
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return nil;
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s saving relation between animal: %@ and vaccine: %@", __PRETTY_FUNCTION__ , animalName, vaccineName);
+    }
+    PFRelation *relation = [animalMigrated relationForKey:@"relationOfVaccine"];
+    [relation addObject:vaccineToSave];
+    [animalMigrated save:&error];
+    if (error) {
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return nil;
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s finish migrate vaccine: %@", __PRETTY_FUNCTION__, vaccineName);
+    }
+    if (MX_DESENV_MODE) {
+        NSLog(@"\n\n");
+    }
+    
+    return vaccineToSave;
 }
 
 #pragma mark - Core Data

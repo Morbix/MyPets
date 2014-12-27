@@ -70,6 +70,8 @@
 		A7C4B5491A4EEEBB0014A6EA /* PFMedice.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C4B5471A4EEEBB0014A6EA /* PFMedice.m */; };
 		A7C4B54C1A4F1F790014A6EA /* PFWeight.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C4B54B1A4F1F790014A6EA /* PFWeight.m */; };
 		A7C4B54D1A4F1F790014A6EA /* PFWeight.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C4B54B1A4F1F790014A6EA /* PFWeight.m */; };
+		A7C4B5501A4F30350014A6EA /* PFVaccine.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C4B54F1A4F30350014A6EA /* PFVaccine.m */; };
+		A7C4B5511A4F30350014A6EA /* PFVaccine.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C4B54F1A4F30350014A6EA /* PFVaccine.m */; };
 		A7D592991A4D90110040F3CC /* MPInternetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D592981A4D90110040F3CC /* MPInternetManager.m */; };
 		A7D5929A1A4D90110040F3CC /* MPInternetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D592981A4D90110040F3CC /* MPInternetManager.m */; };
 		A7D5929E1A4DA6820040F3CC /* PFAnimal.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D5929D1A4DA6820040F3CC /* PFAnimal.m */; };
@@ -411,6 +413,8 @@
 		A7C4B5471A4EEEBB0014A6EA /* PFMedice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFMedice.m; sourceTree = "<group>"; };
 		A7C4B54A1A4F1F790014A6EA /* PFWeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFWeight.h; sourceTree = "<group>"; };
 		A7C4B54B1A4F1F790014A6EA /* PFWeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFWeight.m; sourceTree = "<group>"; };
+		A7C4B54E1A4F30350014A6EA /* PFVaccine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFVaccine.h; sourceTree = "<group>"; };
+		A7C4B54F1A4F30350014A6EA /* PFVaccine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFVaccine.m; sourceTree = "<group>"; };
 		A7D592971A4D90110040F3CC /* MPInternetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPInternetManager.h; sourceTree = "<group>"; };
 		A7D592981A4D90110040F3CC /* MPInternetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPInternetManager.m; sourceTree = "<group>"; };
 		A7D5929C1A4DA6820040F3CC /* PFAnimal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFAnimal.h; sourceTree = "<group>"; };
@@ -675,6 +679,8 @@
 				A7C4B5471A4EEEBB0014A6EA /* PFMedice.m */,
 				A7C4B54A1A4F1F790014A6EA /* PFWeight.h */,
 				A7C4B54B1A4F1F790014A6EA /* PFWeight.m */,
+				A7C4B54E1A4F30350014A6EA /* PFVaccine.h */,
+				A7C4B54F1A4F30350014A6EA /* PFVaccine.m */,
 			);
 			name = Models;
 			path = ..;
@@ -1486,6 +1492,7 @@
 				A71ABC4C18316F0A0039DF25 /* Banho.m in Sources */,
 				E69FDF7819C3A1EB00D0CEE7 /* MXBannerHeaderView.m in Sources */,
 				E60CC23F188331E800826B59 /* MPPesoEditViewController.m in Sources */,
+				A7C4B5501A4F30350014A6EA /* PFVaccine.m in Sources */,
 				E6D47AEF1861143E009C2905 /* MPVacinasViewController.m in Sources */,
 				E60CC233188327F400826B59 /* PNLineChartData.m in Sources */,
 				A71ABC4F18316F0B0039DF25 /* MyPets.m in Sources */,
@@ -1564,6 +1571,7 @@
 				E60CC19C1881A80C00826B59 /* Banho.m in Sources */,
 				E69FDF7919C3A1EB00D0CEE7 /* MXBannerHeaderView.m in Sources */,
 				E60CC240188331E800826B59 /* MPPesoEditViewController.m in Sources */,
+				A7C4B5511A4F30350014A6EA /* PFVaccine.m in Sources */,
 				E60CC19D1881A80C00826B59 /* MPVacinasViewController.m in Sources */,
 				E60CC234188327F400826B59 /* PNLineChartData.m in Sources */,
 				E60CC19E1881A80C00826B59 /* MyPets.m in Sources */,
