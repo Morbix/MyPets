@@ -21,9 +21,13 @@
 #import "Consulta.h"
 #import "PFAppointment.h"
 
+#import "Medicamento.h"
+#import "PFMedice.h"
+
 @interface MPMigrationManager ()
 {
     NSManagedObjectContext *context;
+    NSError *errorBlocks;
 }
 @end
 
@@ -31,6 +35,8 @@
 
 - (void)startMigration
 {
+    errorBlocks = nil;
+    
     context = [(MPAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     
     if ([[MPInternetManager shared] hasInternetConnectionViaWifi]) {
@@ -48,6 +54,8 @@
         if (MX_DESENV_MODE) {
             NSLog(@"%s Starting Migration...", __PRETTY_FUNCTION__);
         }
+        
+        [[context persistentStoreCoordinator] lock];
         
         BOOL completed = YES;
         
@@ -76,7 +84,19 @@
                 }
             }
             if (!completed) { break; }
+            
+            if (animal.cArrayMedicamentos.count > 0) {
+                for (Medicamento *medicamento in animal.cArrayMedicamentos.allObjects) {
+                    PFMedice *medicineMigrated = [self migrateMedicine:medicamento toAnimal:animalMigrated];
+                    completed = medicineMigrated ? YES : NO;
+                    if (!completed) { break; }
+                }
+            }
+            if (!completed) { break; }
         }
+        
+        
+        [[context persistentStoreCoordinator] unlock];
         
         if (MX_DESENV_MODE) {
             if (completed) {
@@ -94,7 +114,7 @@
 
 - (PFAnimal *)migrateAnimal:(Animal *)animalToMigrate
 {
-    NSError *error = nil;
+    __block NSError *error = nil;
     
     PFAnimal *animalToSave = nil;
     
@@ -194,7 +214,9 @@
         NSLog(@"%s saving context", __PRETTY_FUNCTION__);
     }
     animalToMigrate.cIdentifier = token;
-    [context save:&error];
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        [context save:&error];
+    });
     if (error) {
         NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
         return nil;
@@ -234,7 +256,7 @@
 
 - (PFBath *)migrateBath:(Banho *)bathToMigrate toAnimal:(PFAnimal *)animalMigrated
 {
-    NSError *error = nil;
+    __block NSError *error = nil;
     
     PFBath *bathToSave = nil;
     
@@ -303,7 +325,9 @@
         NSLog(@"%s saving context", __PRETTY_FUNCTION__);
     }
     bathToMigrate.cIdentifier = token;
-    [context save:&error];
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        [context save:&error];
+    });
     if (error) {
         NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
         return nil;
@@ -343,7 +367,7 @@
 
 - (PFAppointment *)migrateAppointment:(Consulta *)appointmentToMigrate toAnimal:(PFAnimal *)animalMigrated
 {
-    NSError *error = nil;
+    __block NSError *error = nil;
     
     PFAppointment *appointmentToSave = nil;
     
@@ -409,7 +433,9 @@
         NSLog(@"%s saving context", __PRETTY_FUNCTION__);
     }
     appointmentToMigrate.cIdentifier = token;
-    [context save:&error];
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        [context save:&error];
+    });
     if (error) {
         NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
         return nil;
@@ -445,6 +471,126 @@
     }
     
     return appointmentToSave;
+}
+
+- (PFMedice *)migrateMedicine:(Medicamento *)medicineToMigrate toAnimal:(PFAnimal *)animalMigrated
+{
+    __block NSError *error = nil;
+    
+    PFMedice *medicineToSave = nil;
+    
+    NSString * animalName = medicineToMigrate.cAnimal.cNome;
+    NSString * medicineName = medicineToMigrate.cData.description;
+    
+    NSString *token = nil;
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"\n===> Animal: %@ ===> Medicine: %@", animalName, medicineName);
+    }
+    
+    if (medicineToMigrate.cIdentifier && ![medicineToMigrate.cIdentifier isEqualToString:@""]) {
+        if (MX_DESENV_MODE) {
+            NSLog(@"%s medicine: %@ has already migrated (token: %@)", __PRETTY_FUNCTION__, medicineName, medicineToMigrate.cIdentifier);
+        }
+        
+        medicineToSave = [self retrieveObjectWithClass:[PFMedice class] andToken:medicineToMigrate.cIdentifier];
+        
+        token = medicineToMigrate.cIdentifier;
+    }else{
+        medicineToSave = [PFMedice object];
+        
+        token = [self randomStringToken];
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s starting migrate medicine: %@", __PRETTY_FUNCTION__, medicineName);
+    }
+    
+    [medicineToSave setIdentifier:token];
+    [medicineToSave setAnimal:animalMigrated];
+    [medicineToSave setOwner:[PFUser currentUser]];
+    
+    if (medicineToMigrate.cData) {
+        if (medicineToMigrate.cHorario) {
+            [medicineToSave setDateAndTime:[self combineDate:medicineToMigrate.cData
+                                                    withTime:medicineToMigrate.cHorario]];
+        }else{
+            [medicineToSave setDateAndTime:medicineToMigrate.cData];
+        }
+    }
+    if (medicineToMigrate.cID) {
+        [medicineToSave setMediceId:medicineToMigrate.cID];
+    }
+    if (medicineToMigrate.cLembrete) {
+        [medicineToSave setReminder:[MPReminderManager translateReminderStringToInt:medicineToMigrate.cLembrete]];
+    }
+    if (medicineToMigrate.cObs) {
+        [medicineToSave setNotes:medicineToMigrate.cObs];
+    }
+    if (medicineToMigrate.cPeso) {
+        [medicineToSave setWeight:medicineToMigrate.cPeso.floatValue];
+    }
+    if (medicineToMigrate.cDose) {
+        [medicineToSave setDose:medicineToMigrate.cDose];
+    }
+    if (medicineToMigrate.cNome) {
+        [medicineToSave setName:medicineToMigrate.cNome];
+    }
+    if (medicineToMigrate.cTipo) {
+        [medicineToSave setType:medicineToMigrate.cTipo];
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s pinning medicine: %@", __PRETTY_FUNCTION__ , medicineName);
+    }
+    [medicineToSave pin:&error];
+    if (error) {
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return nil;
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s saving context", __PRETTY_FUNCTION__);
+    }
+    medicineToMigrate.cIdentifier = token;
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        [context save:&error];
+    });
+    if (error) {
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return nil;
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s saving medicine: %@", __PRETTY_FUNCTION__ ,medicineName);
+    }
+    [medicineToSave save:&error];
+    if (error) {
+        [medicineToSave unpin];
+        
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return nil;
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s saving relation between animal: %@ and medicine: %@", __PRETTY_FUNCTION__ , animalName, medicineName);
+    }
+    PFRelation *relation = [animalMigrated relationForKey:@"relationOfMedicine"];
+    [relation addObject:medicineToSave];
+    [animalMigrated save:&error];
+    if (error) {
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return nil;
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s finish migrate medicine: %@", __PRETTY_FUNCTION__, medicineName);
+    }
+    if (MX_DESENV_MODE) {
+        NSLog(@"\n\n");
+    }
+    
+    return medicineToSave;
 }
 
 #pragma mark - Core Data
