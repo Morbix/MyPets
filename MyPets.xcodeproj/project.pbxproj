@@ -68,6 +68,8 @@
 		A7C4B5451A4E02450014A6EA /* PFAppointment.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C4B5431A4E02450014A6EA /* PFAppointment.m */; };
 		A7C4B5481A4EEEBB0014A6EA /* PFMedice.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C4B5471A4EEEBB0014A6EA /* PFMedice.m */; };
 		A7C4B5491A4EEEBB0014A6EA /* PFMedice.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C4B5471A4EEEBB0014A6EA /* PFMedice.m */; };
+		A7C4B54C1A4F1F790014A6EA /* PFWeight.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C4B54B1A4F1F790014A6EA /* PFWeight.m */; };
+		A7C4B54D1A4F1F790014A6EA /* PFWeight.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C4B54B1A4F1F790014A6EA /* PFWeight.m */; };
 		A7D592991A4D90110040F3CC /* MPInternetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D592981A4D90110040F3CC /* MPInternetManager.m */; };
 		A7D5929A1A4D90110040F3CC /* MPInternetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D592981A4D90110040F3CC /* MPInternetManager.m */; };
 		A7D5929E1A4DA6820040F3CC /* PFAnimal.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D5929D1A4DA6820040F3CC /* PFAnimal.m */; };
@@ -407,6 +409,8 @@
 		A7C4B5431A4E02450014A6EA /* PFAppointment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFAppointment.m; sourceTree = "<group>"; };
 		A7C4B5461A4EEEBB0014A6EA /* PFMedice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFMedice.h; sourceTree = "<group>"; };
 		A7C4B5471A4EEEBB0014A6EA /* PFMedice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFMedice.m; sourceTree = "<group>"; };
+		A7C4B54A1A4F1F790014A6EA /* PFWeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFWeight.h; sourceTree = "<group>"; };
+		A7C4B54B1A4F1F790014A6EA /* PFWeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFWeight.m; sourceTree = "<group>"; };
 		A7D592971A4D90110040F3CC /* MPInternetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPInternetManager.h; sourceTree = "<group>"; };
 		A7D592981A4D90110040F3CC /* MPInternetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPInternetManager.m; sourceTree = "<group>"; };
 		A7D5929C1A4DA6820040F3CC /* PFAnimal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFAnimal.h; sourceTree = "<group>"; };
@@ -669,6 +673,8 @@
 				A7C4B5431A4E02450014A6EA /* PFAppointment.m */,
 				A7C4B5461A4EEEBB0014A6EA /* PFMedice.h */,
 				A7C4B5471A4EEEBB0014A6EA /* PFMedice.m */,
+				A7C4B54A1A4F1F790014A6EA /* PFWeight.h */,
+				A7C4B54B1A4F1F790014A6EA /* PFWeight.m */,
 			);
 			name = Models;
 			path = ..;
@@ -1487,6 +1493,7 @@
 				E6952F23186E39810050FB64 /* MPLembretesViewController.m in Sources */,
 				E6B6AFD618936CC400AA5DAD /* MPDropboxNotification.m in Sources */,
 				A7D592991A4D90110040F3CC /* MPInternetManager.m in Sources */,
+				A7C4B54C1A4F1F790014A6EA /* PFWeight.m in Sources */,
 				E6952F18186BC2770050FB64 /* MPBanhoEditViewController.m in Sources */,
 				E6D47AF21861144B009C2905 /* MPVermifugosViewController.m in Sources */,
 			);
@@ -1564,6 +1571,7 @@
 				E60CC1A01881A80C00826B59 /* MPLembretesViewController.m in Sources */,
 				E6B6AFD718936CC400AA5DAD /* MPDropboxNotification.m in Sources */,
 				A7D5929A1A4D90110040F3CC /* MPInternetManager.m in Sources */,
+				A7C4B54D1A4F1F790014A6EA /* PFWeight.m in Sources */,
 				E60CC1A11881A80C00826B59 /* MPBanhoEditViewController.m in Sources */,
 				E60CC1A21881A80C00826B59 /* MPVermifugosViewController.m in Sources */,
 			);
