@@ -66,6 +66,8 @@
 		A7C4B5411A4DECA40014A6EA /* MPReminderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C4B53F1A4DECA40014A6EA /* MPReminderManager.m */; };
 		A7C4B5441A4E02450014A6EA /* PFAppointment.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C4B5431A4E02450014A6EA /* PFAppointment.m */; };
 		A7C4B5451A4E02450014A6EA /* PFAppointment.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C4B5431A4E02450014A6EA /* PFAppointment.m */; };
+		A7C4B5481A4EEEBB0014A6EA /* PFMedice.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C4B5471A4EEEBB0014A6EA /* PFMedice.m */; };
+		A7C4B5491A4EEEBB0014A6EA /* PFMedice.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C4B5471A4EEEBB0014A6EA /* PFMedice.m */; };
 		A7D592991A4D90110040F3CC /* MPInternetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D592981A4D90110040F3CC /* MPInternetManager.m */; };
 		A7D5929A1A4D90110040F3CC /* MPInternetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D592981A4D90110040F3CC /* MPInternetManager.m */; };
 		A7D5929E1A4DA6820040F3CC /* PFAnimal.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D5929D1A4DA6820040F3CC /* PFAnimal.m */; };
@@ -403,6 +405,8 @@
 		A7C4B53F1A4DECA40014A6EA /* MPReminderManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPReminderManager.m; sourceTree = "<group>"; };
 		A7C4B5421A4E02450014A6EA /* PFAppointment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFAppointment.h; sourceTree = "<group>"; };
 		A7C4B5431A4E02450014A6EA /* PFAppointment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFAppointment.m; sourceTree = "<group>"; };
+		A7C4B5461A4EEEBB0014A6EA /* PFMedice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFMedice.h; sourceTree = "<group>"; };
+		A7C4B5471A4EEEBB0014A6EA /* PFMedice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFMedice.m; sourceTree = "<group>"; };
 		A7D592971A4D90110040F3CC /* MPInternetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPInternetManager.h; sourceTree = "<group>"; };
 		A7D592981A4D90110040F3CC /* MPInternetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPInternetManager.m; sourceTree = "<group>"; };
 		A7D5929C1A4DA6820040F3CC /* PFAnimal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFAnimal.h; sourceTree = "<group>"; };
@@ -663,6 +667,8 @@
 				A7C4B53B1A4DE2B40014A6EA /* PFBath.m */,
 				A7C4B5421A4E02450014A6EA /* PFAppointment.h */,
 				A7C4B5431A4E02450014A6EA /* PFAppointment.m */,
+				A7C4B5461A4EEEBB0014A6EA /* PFMedice.h */,
+				A7C4B5471A4EEEBB0014A6EA /* PFMedice.m */,
 			);
 			name = Models;
 			path = ..;
@@ -1425,6 +1431,7 @@
 				E6952F12186BBD2F0050FB64 /* MPMedicamentosViewController.m in Sources */,
 				A7A1332B181B2A3100D7D016 /* MPLibrary.m in Sources */,
 				E60CC23B1883313300826B59 /* MPPesosViewController.m in Sources */,
+				A7C4B5481A4EEEBB0014A6EA /* PFMedice.m in Sources */,
 				E6B6B00E1894BCBF00AA5DAD /* MPAds.m in Sources */,
 				E6D47AFB186120D6009C2905 /* MPVacinaEditViewController.m in Sources */,
 				E63DB41C1862721A00094368 /* UIImage+ResizeAndCrop.m in Sources */,
@@ -1501,6 +1508,7 @@
 				E60CC17E1881A80C00826B59 /* MPMedicamentosViewController.m in Sources */,
 				E60CC17F1881A80C00826B59 /* MPLibrary.m in Sources */,
 				E60CC23C1883313300826B59 /* MPPesosViewController.m in Sources */,
+				A7C4B5491A4EEEBB0014A6EA /* PFMedice.m in Sources */,
 				E6B6B00F1894BCBF00AA5DAD /* MPAds.m in Sources */,
 				E60CC1801881A80C00826B59 /* MPVacinaEditViewController.m in Sources */,
 				E60CC1811881A80C00826B59 /* UIImage+ResizeAndCrop.m in Sources */,
