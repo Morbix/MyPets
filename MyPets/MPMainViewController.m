@@ -92,8 +92,10 @@
     
     [self.bannerView requestBanner:kBanner_Main target:self];
     
-    
-    [[[MPMigrationManager alloc] init] startMigration];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [[[MPMigrationManager alloc] init] startMigration];
+    });
 }
 
 - (void)delayToLoad

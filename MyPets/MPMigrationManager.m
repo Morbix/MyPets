@@ -24,6 +24,9 @@
 #import "Medicamento.h"
 #import "PFMedice.h"
 
+#import "Peso.h"
+#import "PFWeight.h"
+
 @interface MPMigrationManager ()
 {
     NSManagedObjectContext *context;
@@ -55,7 +58,7 @@
             NSLog(@"%s Starting Migration...", __PRETTY_FUNCTION__);
         }
         
-        [[context persistentStoreCoordinator] lock];
+        //[[context persistentStoreCoordinator] lock];
         
         BOOL completed = YES;
         
@@ -93,10 +96,19 @@
                 }
             }
             if (!completed) { break; }
+            
+            if (animal.cArrayPesos.count > 0) {
+                for (Peso *peso in animal.cArrayPesos.allObjects) {
+                    PFWeight *weightMigrated = [self migrateWeight:peso toAnimal:animalMigrated];
+                    completed = weightMigrated ? YES : NO;
+                    if (!completed) { break; }
+                }
+            }
+            if (!completed) { break; }
         }
         
         
-        [[context persistentStoreCoordinator] unlock];
+        //[[context persistentStoreCoordinator] unlock];
         
         if (MX_DESENV_MODE) {
             if (completed) {
@@ -591,6 +603,109 @@
     }
     
     return medicineToSave;
+}
+
+- (PFWeight *)migrateWeight:(Peso *)weightToMigrate toAnimal:(PFAnimal *)animalMigrated
+{
+    __block NSError *error = nil;
+    
+    PFWeight *weightToSave = nil;
+    
+    NSString * animalName = weightToMigrate.cAnimal.cNome;
+    NSString * weightName = weightToMigrate.cData.description;
+    
+    NSString *token = nil;
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"\n===> Animal: %@ ===> Weight: %@", animalName, weightName);
+    }
+    
+    if (weightToMigrate.cIdentifier && ![weightToMigrate.cIdentifier isEqualToString:@""]) {
+        if (MX_DESENV_MODE) {
+            NSLog(@"%s weight: %@ has already migrated (token: %@)", __PRETTY_FUNCTION__, weightName, weightToMigrate.cIdentifier);
+        }
+        
+        weightToSave = [self retrieveObjectWithClass:[PFWeight class] andToken:weightToMigrate.cIdentifier];
+        
+        token = weightToMigrate.cIdentifier;
+    }else{
+        weightToSave = [PFWeight object];
+        
+        token = [self randomStringToken];
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s starting migrate weight: %@", __PRETTY_FUNCTION__, weightName);
+    }
+    
+    [weightToSave setIdentifier:token];
+    [weightToSave setAnimal:animalMigrated];
+    [weightToSave setOwner:[PFUser currentUser]];
+    
+    if (weightToMigrate.cData) {
+        [weightToSave setDateAndTime:weightToMigrate.cData];
+    }
+    if (weightToMigrate.cID) {
+        [weightToSave setWeightId:weightToMigrate.cID];
+    }
+    if (weightToMigrate.cObs) {
+        [weightToSave setNotes:weightToMigrate.cObs];
+    }
+    if (weightToMigrate.cPeso) {
+        [weightToSave setWeight:weightToMigrate.cPeso.floatValue];
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s pinning weight: %@", __PRETTY_FUNCTION__ , weightName);
+    }
+    [weightToSave pin:&error];
+    if (error) {
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return nil;
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s saving context", __PRETTY_FUNCTION__);
+    }
+    weightToMigrate.cIdentifier = token;
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        [context save:&error];
+    });
+    if (error) {
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return nil;
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s saving bath: %@", __PRETTY_FUNCTION__ , weightName);
+    }
+    [weightToSave save:&error];
+    if (error) {
+        [weightToSave unpin];
+        
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return nil;
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s saving relation between animal: %@ and weight: %@", __PRETTY_FUNCTION__ , animalName, weightName);
+    }
+    PFRelation *relation = [animalMigrated relationForKey:@"relationOfWeight"];
+    [relation addObject:weightToSave];
+    [animalMigrated save:&error];
+    if (error) {
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return nil;
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s finish migrate weight: %@", __PRETTY_FUNCTION__, weightName);
+    }
+    if (MX_DESENV_MODE) {
+        NSLog(@"\n\n");
+    }
+    
+    return weightToSave;
 }
 
 #pragma mark - Core Data
