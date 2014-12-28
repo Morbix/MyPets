@@ -15,7 +15,7 @@
 @dynamic dateAndTime;
 @dynamic dateAndTimeVaccine;
 @dynamic dose;
-@dynamic vaccineId;
+@dynamic vermifugeId;
 @dynamic reminder;
 @dynamic notes;
 @dynamic weight;

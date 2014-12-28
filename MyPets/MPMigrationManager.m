@@ -30,6 +30,9 @@
 #import "Vacina.h"
 #import "PFVaccine.h"
 
+#import "Vermifugo.h"
+#import "PFVermifuge.h"
+
 @interface MPMigrationManager ()
 {
     NSManagedObjectContext *context;
@@ -113,6 +116,15 @@
                 for (Vacina *vacina in animal.cArrayVacinas.allObjects) {
                     PFVaccine *vaccineMigrated = [self migrateVaccine:vacina toAnimal:animalMigrated];
                     completed = vaccineMigrated ? YES : NO;
+                    if (!completed) { break; }
+                }
+            }
+            if (!completed) { break; }
+            
+            if (animal.cArrayVermifugos.count > 0) {
+                for (Vermifugo *vermifugo in animal.cArrayVermifugos.allObjects) {
+                    PFVermifuge *vermifugeMigrated = [self migrateVermifuge:vermifugo toAnimal:animalMigrated];
+                    completed = vermifugeMigrated ? YES : NO;
                     if (!completed) { break; }
                 }
             }
@@ -869,6 +881,152 @@
     }
     
     return vaccineToSave;
+}
+
+- (PFVermifuge *)migrateVermifuge:(Vermifugo *)vermifugeToMigrate toAnimal:(PFAnimal *)animalMigrated
+{
+    __block NSError *error = nil;
+    
+    PFVermifuge *vermifugeToSave = nil;
+    
+    NSString * animalName = vermifugeToMigrate.cAnimal.cNome;
+    NSString * vermifugeName = vermifugeToMigrate.cData.description;
+    
+    NSString *token = nil;
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"\n===> Animal: %@ ===> Vermifuge: %@", animalName, vermifugeName);
+    }
+    
+    if (vermifugeToMigrate.cIdentifier && ![vermifugeToMigrate.cIdentifier isEqualToString:@""]) {
+        if (MX_DESENV_MODE) {
+            NSLog(@"%s vermifuge: %@ has already migrated (token: %@)", __PRETTY_FUNCTION__, vermifugeName, vermifugeToMigrate.cIdentifier);
+        }
+        
+        vermifugeToSave = [self retrieveObjectWithClass:[PFVermifuge class] andToken:vermifugeToMigrate.cIdentifier];
+        
+        token = vermifugeToMigrate.cIdentifier;
+    }else{
+        vermifugeToSave = [PFVermifuge object];
+        
+        token = [self randomStringToken];
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s starting migrate vermifuge: %@", __PRETTY_FUNCTION__, vermifugeName);
+    }
+    
+    [vermifugeToSave setIdentifier:token];
+    [vermifugeToSave setAnimal:animalMigrated];
+    [vermifugeToSave setOwner:[PFUser currentUser]];
+    
+    if (vermifugeToMigrate.cData) {
+        [vermifugeToSave setDateAndTime:vermifugeToMigrate.cData];
+    }
+    if (vermifugeToMigrate.cDataVacina) {
+        [vermifugeToSave setDateAndTimeVaccine:vermifugeToMigrate.cDataVacina];
+    }
+    if (vermifugeToMigrate.cID) {
+        [vermifugeToSave setVermifugeId:vermifugeToMigrate.cID];
+    }
+    if (vermifugeToMigrate.cLembrete) {
+        [vermifugeToSave setReminder:[MPReminderManager translateReminderStringToInt:vermifugeToMigrate.cLembrete]];
+    }
+    if (vermifugeToMigrate.cObs) {
+        [vermifugeToSave setNotes:vermifugeToMigrate.cObs];
+    }
+    if (vermifugeToMigrate.cPeso) {
+        [vermifugeToSave setWeight:vermifugeToMigrate.cPeso.floatValue];
+    }
+    if (vermifugeToMigrate.cDose) {
+        [vermifugeToSave setDose:vermifugeToMigrate.cDose];
+    }
+    
+    if (vermifugeToMigrate.cSelo) {
+        if (MX_DESENV_MODE) {
+            NSLog(@"%s saving photo locally: %@", __PRETTY_FUNCTION__ ,token);
+        }
+        [self savePhoto:vermifugeToMigrate.cSelo withToken:token error:&error];
+        if (error) {
+            NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+            return nil;
+        }
+        
+        
+        PFFile *filePhoto = vermifugeToSave.photo;
+        if (!filePhoto) {
+            if (MX_DESENV_MODE) {
+                NSLog(@"%s sending photo: %@", __PRETTY_FUNCTION__ ,token);
+            }
+            filePhoto = [PFFile fileWithName:token
+                                        data:vermifugeToMigrate.cSelo
+                                 contentType:@"image/png"];
+            [filePhoto save:&error];
+            if (error) {
+                NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+                return nil;
+            }
+            
+            if (MX_DESENV_MODE) {
+                NSLog(@"%s photo sent: %@", __PRETTY_FUNCTION__ ,token);
+            }
+            
+            [vermifugeToSave setPhoto:filePhoto];
+        }
+    }
+    
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s pinning vermifuge: %@", __PRETTY_FUNCTION__, vermifugeName);
+    }
+    [vermifugeToSave pin:&error];
+    if (error) {
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return nil;
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s saving context", __PRETTY_FUNCTION__);
+    }
+    vermifugeToMigrate.cIdentifier = token;
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        [context save:&error];
+    });
+    if (error) {
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return nil;
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s saving vermifuge: %@", __PRETTY_FUNCTION__ , vermifugeName);
+    }
+    [vermifugeToSave save:&error];
+    if (error) {
+        [vermifugeToSave unpin];
+        
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return nil;
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s saving relation between animal: %@ and vermifuge: %@", __PRETTY_FUNCTION__ , animalName, vermifugeName);
+    }
+    PFRelation *relation = [animalMigrated relationForKey:@"relationOfVermifuge"];
+    [relation addObject:vermifugeToSave];
+    [animalMigrated save:&error];
+    if (error) {
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return nil;
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s finish migrate vermifuge: %@", __PRETTY_FUNCTION__, vermifugeName);
+    }
+    if (MX_DESENV_MODE) {
+        NSLog(@"\n\n");
+    }
+    
+    return vermifugeToSave;
 }
 
 #pragma mark - Core Data
