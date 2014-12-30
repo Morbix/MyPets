@@ -76,7 +76,7 @@
         
         context = [(MPAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
         
-        if ([[MPInternetManager shared] hasInternetConnectionViaWifi]) {
+        if ([[MPInternetManager shared] hasInternetConnection]) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 if ([self startMigrationWithThreadSafe]) {
                     self.migrationStatus = MPMigrationStatusDone;
@@ -103,66 +103,130 @@
     //[[context persistentStoreCoordinator] lock];
     
     for (Animal *animal in arrayPets) {
-        completed = [[MPInternetManager shared] hasInternetConnectionViaWifi];
-        if (!completed) { break; }
-        
-        PFAnimal *animalMigrated = [self migrateAnimal:animal];
-        completed =  animalMigrated ? YES : NO;
-        if (!completed) { break; }
-        
-        if (animal.cArrayBanhos.count > 0) {
-            for (Banho *banho in animal.cArrayBanhos.allObjects) {
-                PFBath *bathMigrated = [self migrateBath:banho toAnimal:animalMigrated];
-                completed = bathMigrated ? YES : NO;
-                if (!completed) { break; }
+        if (animal.isAllDataMigrated && animal.isAllDataMigrated.boolValue) {
+            //sync
+        }else{
+            completed = [[MPInternetManager shared] hasInternetConnection];
+            if (!completed) { break; }
+            
+            PFAnimal *animalMigrated = [self migrateAnimal:animal];
+            completed =  animalMigrated ? YES : NO;
+            if (!completed) { break; }
+            
+            completed = [[MPInternetManager shared] hasInternetConnection];
+            if (!completed) { break; }
+            
+            if (animal.cArrayBanhos.count > 0) {
+                for (Banho *banho in animal.cArrayBanhos.allObjects) {
+                    completed = [[MPInternetManager shared] hasInternetConnection];
+                    if (!completed) { break; }
+                    
+                    if (banho.isMigrated && banho.isMigrated.boolValue) {
+                        //sync
+                    }else{
+                        PFBath *bathMigrated = [self migrateBath:banho toAnimal:animalMigrated];
+                        completed = bathMigrated ? YES : NO;
+                        if (!completed) { break; }
+                    }
+                }
+            }
+            if (!completed) { break; }
+            
+            if (animal.cArrayConsultas.count > 0) {
+                for (Consulta *consulta in animal.cArrayConsultas.allObjects) {
+                    completed = [[MPInternetManager shared] hasInternetConnection];
+                    if (!completed) { break; }
+                    
+                    if (consulta.isMigrated && consulta.isMigrated.boolValue) {
+                        //sync
+                    }else{
+                        PFAppointment *appointmentMigrated = [self migrateAppointment:consulta toAnimal:animalMigrated];
+                        completed = appointmentMigrated ? YES : NO;
+                        if (!completed) { break; }
+                    }
+                }
+            }
+            if (!completed) { break; }
+            
+            if (animal.cArrayMedicamentos.count > 0) {
+                for (Medicamento *medicamento in animal.cArrayMedicamentos.allObjects) {
+                    completed = [[MPInternetManager shared] hasInternetConnection];
+                    if (!completed) { break; }
+                    
+                    if (medicamento.isMigrated && medicamento.isMigrated.boolValue) {
+                        //sync
+                    }else{
+                        PFMedice *medicineMigrated = [self migrateMedicine:medicamento toAnimal:animalMigrated];
+                        completed = medicineMigrated ? YES : NO;
+                        if (!completed) { break; }
+                    }
+                }
+            }
+            if (!completed) { break; }
+            
+            if (animal.cArrayPesos.count > 0) {
+                for (Peso *peso in animal.cArrayPesos.allObjects) {
+                    completed = [[MPInternetManager shared] hasInternetConnection];
+                    if (!completed) { break; }
+                    
+                    if (peso.isMigrated && peso.isMigrated.boolValue) {
+                        //sync
+                    }else{
+                        PFWeight *weightMigrated = [self migrateWeight:peso toAnimal:animalMigrated];
+                        completed = weightMigrated ? YES : NO;
+                        if (!completed) { break; }
+                    }
+                }
+            }
+            if (!completed) { break; }
+            
+            if (animal.cArrayVacinas.count > 0) {
+                for (Vacina *vacina in animal.cArrayVacinas.allObjects) {
+                    completed = [[MPInternetManager shared] hasInternetConnection];
+                    if (!completed) { break; }
+                    
+                    if (vacina.isMigrated && vacina.isMigrated.boolValue) {
+                        //sync
+                    }else{
+                        PFVaccine *vaccineMigrated = [self migrateVaccine:vacina toAnimal:animalMigrated];
+                        completed = vaccineMigrated ? YES : NO;
+                        if (!completed) { break; }
+                    }
+                }
+            }
+            if (!completed) { break; }
+            
+            if (animal.cArrayVermifugos.count > 0) {
+                for (Vermifugo *vermifugo in animal.cArrayVermifugos.allObjects) {
+                    completed = [[MPInternetManager shared] hasInternetConnection];
+                    if (!completed) { break; }
+                    
+                    if (vermifugo.isMigrated && vermifugo.isMigrated.boolValue) {
+                        //sync
+                    }else{
+                        PFVermifuge *vermifugeMigrated = [self migrateVermifuge:vermifugo toAnimal:animalMigrated];
+                        completed = vermifugeMigrated ? YES : NO;
+                        if (!completed) { break; }
+                    }
+                }
+            }
+            if (!completed) { break; }
+            
+            
+            __block NSError *error = nil;
+            if (MX_DESENV_MODE) {
+                NSLog(@"%s saving context from animal finished", __PRETTY_FUNCTION__);
+            }
+            animal.isMigrated = @YES;
+            animal.isAllDataMigrated = @YES;
+            animal.updatedAt = animalMigrated.updatedAt;
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                [context save:&error];
+            });
+            if (error) {
+                NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
             }
         }
-        if (!completed) { break; }
-        
-        if (animal.cArrayConsultas.count > 0) {
-            for (Consulta *consulta in animal.cArrayConsultas.allObjects) {
-                PFAppointment *appointmentMigrated = [self migrateAppointment:consulta toAnimal:animalMigrated];
-                completed = appointmentMigrated ? YES : NO;
-                if (!completed) { break; }
-            }
-        }
-        if (!completed) { break; }
-        
-        if (animal.cArrayMedicamentos.count > 0) {
-            for (Medicamento *medicamento in animal.cArrayMedicamentos.allObjects) {
-                PFMedice *medicineMigrated = [self migrateMedicine:medicamento toAnimal:animalMigrated];
-                completed = medicineMigrated ? YES : NO;
-                if (!completed) { break; }
-            }
-        }
-        if (!completed) { break; }
-        
-        if (animal.cArrayPesos.count > 0) {
-            for (Peso *peso in animal.cArrayPesos.allObjects) {
-                PFWeight *weightMigrated = [self migrateWeight:peso toAnimal:animalMigrated];
-                completed = weightMigrated ? YES : NO;
-                if (!completed) { break; }
-            }
-        }
-        if (!completed) { break; }
-        
-        if (animal.cArrayVacinas.count > 0) {
-            for (Vacina *vacina in animal.cArrayVacinas.allObjects) {
-                PFVaccine *vaccineMigrated = [self migrateVaccine:vacina toAnimal:animalMigrated];
-                completed = vaccineMigrated ? YES : NO;
-                if (!completed) { break; }
-            }
-        }
-        if (!completed) { break; }
-        
-        if (animal.cArrayVermifugos.count > 0) {
-            for (Vermifugo *vermifugo in animal.cArrayVermifugos.allObjects) {
-                PFVermifuge *vermifugeMigrated = [self migrateVermifuge:vermifugo toAnimal:animalMigrated];
-                completed = vermifugeMigrated ? YES : NO;
-                if (!completed) { break; }
-            }
-        }
-        if (!completed) { break; }
     }
     
     
@@ -429,6 +493,20 @@
     }
     
     if (MX_DESENV_MODE) {
+        NSLog(@"%s saving context again", __PRETTY_FUNCTION__);
+    }
+    bathToMigrate.isMigrated = @YES;
+    bathToMigrate.isAllDataMigrated = @YES;
+    bathToMigrate.updatedAt = bathToSave.updatedAt;
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        [context save:&error];
+    });
+    if (error) {
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return nil;
+    }
+    
+    if (MX_DESENV_MODE) {
         NSLog(@"%s finish migrate bath: %@", __PRETTY_FUNCTION__ ,bathName);
     }
     if (MX_DESENV_MODE) {
@@ -531,6 +609,20 @@
     PFRelation *relation = [animalMigrated relationForKey:@"relationOfAppointment"];
     [relation addObject:appointmentToSave];
     [animalMigrated save:&error];
+    if (error) {
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return nil;
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s saving context again", __PRETTY_FUNCTION__);
+    }
+    appointmentToMigrate.isMigrated = @YES;
+    appointmentToMigrate.isAllDataMigrated = @YES;
+    appointmentToMigrate.updatedAt = appointmentToSave.updatedAt;
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        [context save:&error];
+    });
     if (error) {
         NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
         return nil;
@@ -657,6 +749,20 @@
     }
     
     if (MX_DESENV_MODE) {
+        NSLog(@"%s saving context again", __PRETTY_FUNCTION__);
+    }
+    medicineToMigrate.isMigrated = @YES;
+    medicineToMigrate.isAllDataMigrated = @YES;
+    medicineToMigrate.updatedAt = medicineToSave.updatedAt;
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        [context save:&error];
+    });
+    if (error) {
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return nil;
+    }
+    
+    if (MX_DESENV_MODE) {
         NSLog(@"%s finish migrate medicine: %@", __PRETTY_FUNCTION__, medicineName);
     }
     if (MX_DESENV_MODE) {
@@ -754,6 +860,20 @@
     PFRelation *relation = [animalMigrated relationForKey:@"relationOfWeight"];
     [relation addObject:weightToSave];
     [animalMigrated save:&error];
+    if (error) {
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return nil;
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s saving context again", __PRETTY_FUNCTION__);
+    }
+    weightToMigrate.isMigrated = @YES;
+    weightToMigrate.isAllDataMigrated = @YES;
+    weightToMigrate.updatedAt = weightToSave.updatedAt;
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        [context save:&error];
+    });
     if (error) {
         NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
         return nil;
@@ -909,6 +1029,20 @@
     }
     
     if (MX_DESENV_MODE) {
+        NSLog(@"%s saving context again", __PRETTY_FUNCTION__);
+    }
+    vaccineToMigrate.isMigrated = @YES;
+    vaccineToMigrate.isAllDataMigrated = @YES;
+    vaccineToMigrate.updatedAt = vaccineToSave.updatedAt;
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        [context save:&error];
+    });
+    if (error) {
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return nil;
+    }
+    
+    if (MX_DESENV_MODE) {
         NSLog(@"%s finish migrate vaccine: %@", __PRETTY_FUNCTION__, vaccineName);
     }
     if (MX_DESENV_MODE) {
@@ -1049,6 +1183,20 @@
     PFRelation *relation = [animalMigrated relationForKey:@"relationOfVermifuge"];
     [relation addObject:vermifugeToSave];
     [animalMigrated save:&error];
+    if (error) {
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return nil;
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s saving context again", __PRETTY_FUNCTION__);
+    }
+    vermifugeToMigrate.isMigrated = @YES;
+    vermifugeToMigrate.isAllDataMigrated = @YES;
+    vermifugeToMigrate.updatedAt = vermifugeToSave.updatedAt;
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        [context save:&error];
+    });
     if (error) {
         NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
         return nil;
