@@ -126,6 +126,7 @@
 
 
 //////////Backlog
+// -Criar time line de acontecimentos, inclusive botao no registros para adicionar na timeline
 //- Reativar Dropbox
 //- Sync
 //- Atualizar UI apenas quando voltar da tela

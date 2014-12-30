@@ -21,4 +21,8 @@
 @property (nonatomic, retain) NSString * syncID;
 @property (nonatomic, retain) Animal *cAnimal;
 
+@property (nonatomic, retain) NSNumber * isMigrated;
+@property (nonatomic, retain) NSNumber * isAllDataMigrated;
+@property (nonatomic, retain) NSDate * updatedAt;
+
 @end

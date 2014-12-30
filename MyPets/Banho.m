@@ -24,4 +24,8 @@
 @dynamic cAnimal;
 @dynamic cPetShop;
 
+@dynamic isMigrated;
+@dynamic isAllDataMigrated;
+@dynamic updatedAt;
+
 @end

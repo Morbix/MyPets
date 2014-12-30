@@ -26,6 +26,10 @@
 @property (nonatomic, retain) NSData * cSelo;
 @property (nonatomic, retain) Animal *cAnimal;
 
+@property (nonatomic, retain) NSNumber * isMigrated;
+@property (nonatomic, retain) NSNumber * isAllDataMigrated;
+@property (nonatomic, retain) NSDate * updatedAt;
+
 - (UIImage *)getFoto;
 - (UIImage *)getFotoCompleta;
 @end

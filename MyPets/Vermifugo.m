@@ -26,6 +26,10 @@
 @dynamic cSelo;
 @dynamic cAnimal;
 
+@dynamic isMigrated;
+@dynamic isAllDataMigrated;
+@dynamic updatedAt;
+
 - (UIImage *)getFoto
 {
     UIImage *seloCompleto = nil;

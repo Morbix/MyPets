@@ -37,6 +37,10 @@
 @property (nonatomic, retain) NSSet *cArrayVermifugos;
 @property (nonatomic, retain) NSSet *cArrayPesos;
 
+@property (nonatomic, retain) NSNumber * isMigrated;
+@property (nonatomic, retain) NSNumber * isAllDataMigrated;
+@property (nonatomic, retain) NSDate * updatedAt;
+
 - (UIImage *)getFoto;
 - (NSString *)getNome;
 - (NSString *)getDescricao;

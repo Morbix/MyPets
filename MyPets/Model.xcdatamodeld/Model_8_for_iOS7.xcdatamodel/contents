@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="14B25" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Animal" representedClassName="Animal" syncable="YES">
+        <attribute name="cDataNascimento" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="cEspecie" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cFoto" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="cFoto_Edited" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="cFoto_Path" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cFoto_Path_Thumb" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cIdentifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cLocation" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cMapa" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="cNeedUpdate" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="cNome" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cObs" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cRaca" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cSexo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isAllDataMigrated" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isMigrated" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="syncID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="cArrayBanhos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Banho" inverseName="cAnimal" inverseEntity="Banho" syncable="YES"/>
+        <relationship name="cArrayConsultas" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Consulta" inverseName="cAnimal" inverseEntity="Consulta" syncable="YES"/>
+        <relationship name="cArrayFotos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Fotos" inverseName="cAnimal" inverseEntity="Fotos" syncable="YES"/>
+        <relationship name="cArrayMedicamentos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Medicamento" inverseName="cAnimal" inverseEntity="Medicamento" syncable="YES"/>
+        <relationship name="cArrayPesos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Peso" inverseName="cAnimal" inverseEntity="Peso" syncable="YES"/>
+        <relationship name="cArrayVacinas" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Vacina" inverseName="cAnimal" inverseEntity="Vacina" syncable="YES"/>
+        <relationship name="cArrayVermifugos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Vermifugo" inverseName="cAnimal" inverseEntity="Vermifugo" syncable="YES"/>
+    </entity>
+    <entity name="Banho" representedClassName="Banho" syncable="YES">
+        <attribute name="cData" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="cHorario" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="cID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cIdentifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cLembrete" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cObs" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cPeso" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="isAllDataMigrated" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isMigrated" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="syncID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="cAnimal" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Animal" inverseName="cArrayBanhos" inverseEntity="Animal" syncable="YES"/>
+        <relationship name="cPetShop" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PetShop" inverseName="cArrayBanhos" inverseEntity="PetShop" syncable="YES"/>
+    </entity>
+    <entity name="Configuracao" representedClassName="MyPets" syncable="YES">
+        <attribute name="cIdentifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cTransition" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="syncID" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Consulta" representedClassName="Consulta" syncable="YES">
+        <attribute name="cData" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="cHorario" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="cID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cIdentifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cLembrete" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cObs" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isAllDataMigrated" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isMigrated" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="syncID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="cAnimal" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Animal" inverseName="cArrayConsultas" inverseEntity="Animal" syncable="YES"/>
+    </entity>
+    <entity name="Fotos" representedClassName="Fotos" syncable="YES">
+        <attribute name="cData" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="cFoto" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="cIdentifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cIDParse" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cTags" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="syncID" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="cAnimal" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Animal" inverseName="cArrayFotos" inverseEntity="Animal" syncable="YES"/>
+    </entity>
+    <entity name="Medicamento" representedClassName="Medicamento" syncable="YES">
+        <attribute name="cData" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="cDose" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cHorario" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="cID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cIdentifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cLembrete" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cNome" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cObs" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cPeso" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="cTipo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isAllDataMigrated" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isMigrated" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="syncID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="cAnimal" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Animal" inverseName="cArrayMedicamentos" inverseEntity="Animal" syncable="YES"/>
+        <relationship name="cVeterinario" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Veterinario" inverseName="cArrayMedicamentos" inverseEntity="Veterinario" syncable="YES"/>
+    </entity>
+    <entity name="Peso" representedClassName="Peso" syncable="YES">
+        <attribute name="cData" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="cID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cIdentifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cObs" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cPeso" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="isAllDataMigrated" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isMigrated" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="syncID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="cAnimal" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Animal" inverseName="cArrayPesos" inverseEntity="Animal" syncable="YES"/>
+    </entity>
+    <entity name="PetShop" representedClassName="PetShop" syncable="YES">
+        <attribute name="cEmail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cEndereco" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cIdentifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cNome" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cObs" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cTelefone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="syncID" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="cArrayBanhos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Banho" inverseName="cPetShop" inverseEntity="Banho" syncable="YES"/>
+    </entity>
+    <entity name="Vacina" representedClassName="Vacina" syncable="YES">
+        <attribute name="cData" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="cDataVacina" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="cDose" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cFoto_Edited" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="cID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cIdentifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cLembrete" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cObs" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cPeso" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cSelo" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="cVeterinario" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isAllDataMigrated" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isMigrated" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="syncID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="cAnimal" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Animal" inverseName="cArrayVacinas" inverseEntity="Animal" syncable="YES"/>
+    </entity>
+    <entity name="Vermifugo" representedClassName="Vermifugo" syncable="YES">
+        <attribute name="cData" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="cDataVacina" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="cDose" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cFoto_Edited" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="cID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cIdentifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cLembrete" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cObs" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cPeso" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cSelo" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="isAllDataMigrated" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isMigrated" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="syncID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="cAnimal" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Animal" inverseName="cArrayVermifugos" inverseEntity="Animal" syncable="YES"/>
+    </entity>
+    <entity name="Veterinario" representedClassName="Veterinario" syncable="YES">
+        <attribute name="cEmail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cEndereco" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cEspecializacao" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cIdentifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cNome" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cObs" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cTelefone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="syncID" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="cArrayMedicamentos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Medicamento" inverseName="cVeterinario" inverseEntity="Medicamento" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Animal" positionX="0" positionY="0" width="128" height="433"/>
+        <element name="Banho" positionX="0" positionY="0" width="128" height="238"/>
+        <element name="Configuracao" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="Consulta" positionX="0" positionY="0" width="128" height="210"/>
+        <element name="Fotos" positionX="0" positionY="0" width="128" height="150"/>
+        <element name="Medicamento" positionX="0" positionY="0" width="128" height="285"/>
+        <element name="Peso" positionX="0" positionY="0" width="128" height="195"/>
+        <element name="PetShop" positionX="0" positionY="0" width="128" height="165"/>
+        <element name="Vacina" positionX="0" positionY="0" width="128" height="285"/>
+        <element name="Vermifugo" positionX="0" positionY="0" width="128" height="270"/>
+        <element name="Veterinario" positionX="0" positionY="0" width="128" height="180"/>
+    </elements>
+</model>

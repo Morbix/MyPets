@@ -27,4 +27,8 @@
 @dynamic cAnimal;
 @dynamic cVeterinario;
 
+@dynamic isMigrated;
+@dynamic isAllDataMigrated;
+@dynamic updatedAt;
+
 @end

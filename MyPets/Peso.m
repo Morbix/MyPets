@@ -20,4 +20,8 @@
 @dynamic syncID;
 @dynamic cAnimal;
 
+@dynamic isMigrated;
+@dynamic isAllDataMigrated;
+@dynamic updatedAt;
+
 @end

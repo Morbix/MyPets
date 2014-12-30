@@ -44,6 +44,10 @@
 @dynamic cArrayVermifugos;
 @dynamic cArrayPesos;
 
+@dynamic isMigrated;
+@dynamic isAllDataMigrated;
+@dynamic updatedAt;
+
 #pragma mark - Gets
 - (UIImage *)getFoto
 {

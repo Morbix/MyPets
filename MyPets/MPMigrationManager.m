@@ -59,10 +59,6 @@
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if (MX_DESENV_MODE) {
-        NSLog(@"%s %@", __PRETTY_FUNCTION__, change);
-    }
-    
     if ([keyPath isEqualToString:NSStringFromSelector(@selector(migrationStatus))]) {
         if ([self.delegate respondsToSelector:@selector(migration:didChangeStatus:)]) {
             dispatch_async(dispatch_get_main_queue(), ^(void) {
