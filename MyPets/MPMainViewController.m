@@ -23,7 +23,7 @@
 #import "UIImageView+WebCache.h"
 #import "MPDropboxNotification.h"
 #import "MPAppDelegate.h"
-#import "MPMigrationManager.h"
+#import "MPSyncManager.h"
 
 @interface MPMainViewController ()
 {
@@ -92,10 +92,12 @@
     
     [self.bannerView requestBanner:kBanner_Main target:self];
     
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [[[MPMigrationManager alloc] init] startMigration];
-    });
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        [[[MPMigrationManager alloc] init] startMigration];
+//    });
+    
+    [[MPSyncManager shared] startSyncronization];
 }
 
 - (void)delayToLoad

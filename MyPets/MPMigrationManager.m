@@ -68,6 +68,7 @@
     }
 }
 
+#pragma mark - Migration
 - (void)startMigration
 {
     if (self.migrationStatus != MPMigrationStatusInProgress) {
@@ -103,7 +104,7 @@
     //[[context persistentStoreCoordinator] lock];
     
     for (Animal *animal in arrayPets) {
-        if (animal.isAllDataMigrated && animal.isAllDataMigrated.boolValue) {
+        if (animal.isMigrated && animal.isMigrated.boolValue) {
             //sync
         }else{
             completed = [[MPInternetManager shared] hasInternetConnection];
@@ -1278,6 +1279,46 @@
     }
 }
 
+- (NSDate *)combineDate:(NSDate *)date withTime:(NSDate *)time
+{
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    
+    unsigned unitFlagsDate = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+    NSDateComponents *dateComponents = [calendar components:unitFlagsDate fromDate:date];
+    unsigned unitFlagsTime = NSHourCalendarUnit | NSMinuteCalendarUnit |  NSSecondCalendarUnit;
+    NSDateComponents *timeComponents = [calendar components:unitFlagsTime fromDate:time];
+    
+    [dateComponents setSecond:[timeComponents second]];
+    [dateComponents setHour:[timeComponents hour]];
+    [dateComponents setMinute:[timeComponents minute]];
+    
+    NSDate *combDate = [calendar dateFromComponents:dateComponents];
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"\n%@\n%@\n%@", date, time, combDate);
+    }
+    
+    return combDate;
+}
+
+#pragma mark - Parse Utils
+- (void)retrieveOrCreateObjectWithClass:(Class<PFSubclassing>)class andIdentifier:(NSString *)identifier andPutInPFObject:(PFObject **)parseObject andToken:(NSString **)token
+{
+    if (identifier && ![identifier isEqualToString:@""]) {
+        if (MX_DESENV_MODE) {
+            NSLog(@"%s object has already migrated (token: %@)", __PRETTY_FUNCTION__, identifier);
+        }
+        
+        *parseObject = [self retrieveObjectWithClass:class andToken:identifier];
+        
+        *token = identifier;
+    }else{
+        *parseObject = [class object];
+        
+        *token = [self randomStringToken];
+    }
+}
+
 - (id)retrieveObjectWithClass:(Class<PFSubclassing>)class andToken:(NSString *)token
 {
     PFObject *object = nil;
@@ -1308,27 +1349,4 @@
     
     return [class object];
 }
-
-- (NSDate *)combineDate:(NSDate *)date withTime:(NSDate *)time
-{
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    
-    unsigned unitFlagsDate = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
-    NSDateComponents *dateComponents = [calendar components:unitFlagsDate fromDate:date];
-    unsigned unitFlagsTime = NSHourCalendarUnit | NSMinuteCalendarUnit |  NSSecondCalendarUnit;
-    NSDateComponents *timeComponents = [calendar components:unitFlagsTime fromDate:time];
-    
-    [dateComponents setSecond:[timeComponents second]];
-    [dateComponents setHour:[timeComponents hour]];
-    [dateComponents setMinute:[timeComponents minute]];
-    
-    NSDate *combDate = [calendar dateFromComponents:dateComponents];
-
-    if (MX_DESENV_MODE) {
-        NSLog(@"\n%@\n%@\n%@", date, time, combDate);
-    }
-    
-    return combDate;
-}
-
 @end

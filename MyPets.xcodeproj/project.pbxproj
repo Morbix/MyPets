@@ -78,6 +78,8 @@
 		A7D5929F1A4DA6820040F3CC /* PFAnimal.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D5929D1A4DA6820040F3CC /* PFAnimal.m */; };
 		A7D7BEDD1A5096A400C8E50C /* PFVermifuge.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D7BEDC1A5096A400C8E50C /* PFVermifuge.m */; };
 		A7D7BEDE1A5096A400C8E50C /* PFVermifuge.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D7BEDC1A5096A400C8E50C /* PFVermifuge.m */; };
+		A7D7BEE31A53648400C8E50C /* MPSyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D7BEE21A53648400C8E50C /* MPSyncManager.m */; };
+		A7D7BEE41A53648400C8E50C /* MPSyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D7BEE21A53648400C8E50C /* MPSyncManager.m */; };
 		D40155AB76AB13B614BA655E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F0315D27A157AAB4F24D0A63 /* libPods.a */; };
 		E60554631857E71C00D11CE9 /* MPPetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E60554621857E71C00D11CE9 /* MPPetViewController.m */; };
 		E605548318594C0000D11CE9 /* MPAnimations.m in Sources */ = {isa = PBXBuildFile; fileRef = E605548218594C0000D11CE9 /* MPAnimations.m */; };
@@ -425,6 +427,9 @@
 		A7D7BEDB1A5096A400C8E50C /* PFVermifuge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFVermifuge.h; sourceTree = "<group>"; };
 		A7D7BEDC1A5096A400C8E50C /* PFVermifuge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFVermifuge.m; sourceTree = "<group>"; };
 		A7D7BEDF1A523C4900C8E50C /* Model_8_for_iOS7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model_8_for_iOS7.xcdatamodel; sourceTree = "<group>"; };
+		A7D7BEE11A53648400C8E50C /* MPSyncManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPSyncManager.h; sourceTree = "<group>"; };
+		A7D7BEE21A53648400C8E50C /* MPSyncManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPSyncManager.m; sourceTree = "<group>"; };
+		A7D7BEE51A53698A00C8E50C /* MPCoreDataModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPCoreDataModelProtocol.h; sourceTree = "<group>"; };
 		D85DA9FB75CAFDEE4E9F225C /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E60554611857E71C00D11CE9 /* MPPetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPetViewController.h; sourceTree = "<group>"; };
 		E60554621857E71C00D11CE9 /* MPPetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPetViewController.m; sourceTree = "<group>"; };
@@ -828,6 +833,8 @@
 				A7A1332A181B2A3000D7D016 /* MPLibrary.m */,
 				A751CB771A4B34FD007F9A3E /* MPMigrationManager.h */,
 				A751CB781A4B34FD007F9A3E /* MPMigrationManager.m */,
+				A7D7BEE11A53648400C8E50C /* MPSyncManager.h */,
+				A7D7BEE21A53648400C8E50C /* MPSyncManager.m */,
 				A7D592971A4D90110040F3CC /* MPInternetManager.h */,
 				A7D592981A4D90110040F3CC /* MPInternetManager.m */,
 				A7C4B53E1A4DECA40014A6EA /* MPReminderManager.h */,
@@ -952,6 +959,7 @@
 				A71ABC3918316F060039DF25 /* Vacina.m */,
 				A71ABC3518316ED70039DF25 /* Animal.h */,
 				A71ABC3618316ED70039DF25 /* Animal.m */,
+				A7D7BEE51A53698A00C8E50C /* MPCoreDataModelProtocol.h */,
 			);
 			name = "Core Data";
 			sourceTree = "<group>";
@@ -1489,6 +1497,7 @@
 				E644BB54187E2FB400247278 /* MPConfigViewController.m in Sources */,
 				A71ABC3A18316F060039DF25 /* Vacina.m in Sources */,
 				A71ABC3D18316F080039DF25 /* Vermifugo.m in Sources */,
+				A7D7BEE31A53648400C8E50C /* MPSyncManager.m in Sources */,
 				E69FDF8019C3AD0800D0CEE7 /* UITableViewController+MXAds.m in Sources */,
 				E6D47AF518611456009C2905 /* MPConsultasViewController.m in Sources */,
 				A71ABC4018316F080039DF25 /* Veterinario.m in Sources */,
@@ -1569,6 +1578,7 @@
 				E60CC1901881A80C00826B59 /* MPConfigViewController.m in Sources */,
 				E60CC1911881A80C00826B59 /* Vacina.m in Sources */,
 				E60CC1921881A80C00826B59 /* Vermifugo.m in Sources */,
+				A7D7BEE41A53648400C8E50C /* MPSyncManager.m in Sources */,
 				E69FDF8119C3AD0800D0CEE7 /* UITableViewController+MXAds.m in Sources */,
 				E60CC1931881A80C00826B59 /* MPConsultasViewController.m in Sources */,
 				E60CC1941881A80C00826B59 /* Veterinario.m in Sources */,
