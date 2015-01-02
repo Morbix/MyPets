@@ -89,7 +89,7 @@
         
         self.syncronizationStatus = MPSyncStatusInProgress;
         
-        if ([[MPInternetManager shared] hasInternetConnection]) {
+        if ([[MPInternetManager shared] hasInternetConnection] && [PFUser currentUser]) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 if ([self startSyncWithThreadSafe]) {
                     self.syncronizationStatus = MPSyncStatusDone;
@@ -148,7 +148,7 @@
     return completed;
 }
 
-- (BOOL)syncEntityName:(NSString *)entityName andClass:(Class)class fieldName:(NSString *)fieldName
+- (BOOL)syncEntityName:(NSString *)entityName andClass:(Class)class fieldName:(NSString *)fieldNameForLastUpdatedDate
 {
     if (MX_DESENV_MODE) {
         NSLog(@"%s starting sync for: %@", __PRETTY_FUNCTION__, entityName);
@@ -156,7 +156,7 @@
     
     BOOL completed = YES;
     
-    NSDate *dateLastUpdate = [self.syncDates valueForKey:fieldName];
+    NSDate *dateLastUpdate = [self.syncDates valueForKey:fieldNameForLastUpdatedDate];
     completed = dateLastUpdate ? YES : NO;
     if (!completed) { return completed;}
     if (MX_DESENV_MODE) {
@@ -196,13 +196,24 @@
         }
     }
     
+    __block NSError *error = nil;
+    
+    [self.syncDates setValue:[NSDate date] forKey:fieldNameForLastUpdatedDate];
+    dispatch_sync(dispatch_get_main_queue(), ^(void) {
+        [self.context save:&error];
+    });
+    if (error) {
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return NO;
+    }
+    
     return completed;
 }
 
 - (BOOL)syncObject:(NSManagedObject *)object forEntityName:(NSString *)entityName
 {
     if ([entityName isEqualToString:@"Animal"]) {
-        
+        return [self syncCoreDataAnimal:(Animal *)object];
     }else if ([entityName isEqualToString:@"Vacina"]) {
         
     }else if ([entityName isEqualToString:@"Vermifugo"]) {
@@ -245,7 +256,7 @@
 {
     NSString *coreDataIdentifier = [object valueForKey:@"cIdentifier"];
     
-    if (!coreDataIdentifier || [coreDataIdentifier isEqualToString:@""] || coreDataIdentifier.length > 9) {
+    if (!coreDataIdentifier || [coreDataIdentifier isEqualToString:@""] || coreDataIdentifier.length > 15) {
         return YES;
     }
     
@@ -270,7 +281,7 @@
 {
     for (NSManagedObject *coreDataObject in arrayCoreData) {
         NSString *coreDataIdentifier = [coreDataObject valueForKey:@"cIdentifier"];
-        if (!coreDataIdentifier || [coreDataIdentifier isEqualToString:@""] || coreDataIdentifier.length > 9) {
+        if (!coreDataIdentifier || [coreDataIdentifier isEqualToString:@""] || coreDataIdentifier.length > 15) {
             continue;
         }else{
             if ([coreDataIdentifier isEqualToString:object.objectId]) {
@@ -285,6 +296,129 @@
                 }
             }
         }
+    }
+    
+    return YES;
+}
+
+#pragma mark - Sync Core Data Objects
+- (BOOL)syncCoreDataAnimal:(Animal *)animalToMigrate
+{
+    __block NSError *error = nil;
+    
+    PFAnimal *animalToSave = nil;
+    
+    NSString *animalName = animalToMigrate.cNome;
+
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"\n===> Core Data Animal: %@",animalName);
+    }
+    
+    if (animalToMigrate.cIdentifier && ![animalToMigrate.cIdentifier isEqualToString:@""] && (animalToMigrate.cIdentifier.length < 15)) {
+        animalToSave = [PFAnimal objectWithoutDataWithObjectId:animalToMigrate.cIdentifier];
+    }else{
+        animalToSave = [PFAnimal object];
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s starting sync animal: %@", __PRETTY_FUNCTION__ ,animalName);
+    }
+    
+    [animalToSave setOwner:[PFUser currentUser]];
+    
+    if (animalToMigrate.cDataNascimento) {
+        [animalToSave setBirthday:animalToMigrate.cDataNascimento];
+    }
+    if (animalToMigrate.cEspecie) {
+        [animalToSave setSpecie:animalToMigrate.cEspecie];
+    }
+    if (animalToMigrate.cID) {
+        [animalToSave setAnimalId:animalToMigrate.cID];
+    }
+    if (animalToMigrate.cNome) {
+        [animalToSave setName:animalToMigrate.cNome];
+    }
+    if (animalToMigrate.cObs) {
+        [animalToSave setNotes:animalToMigrate.cObs];
+    }
+    if (animalToMigrate.cRaca) {
+        [animalToSave setBreed:animalToMigrate.cRaca];
+    }
+    if (animalToMigrate.cSexo) {
+        [animalToSave setSex:animalToMigrate.cSexo];
+    }
+    
+    
+    if (animalToMigrate.cFoto) {
+
+        if (MX_DESENV_MODE) {
+            NSLog(@"%s sending photo", __PRETTY_FUNCTION__);
+        }
+        PFFile *filePhoto = [PFFile fileWithData:animalToMigrate.cFoto
+                             contentType:@"image/png"];
+        [filePhoto save:&error];
+        if (error) {
+            NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+            return NO;
+        }
+        
+        if (MX_DESENV_MODE) {
+            NSLog(@"%s photo sent", __PRETTY_FUNCTION__);
+        }
+        
+        [animalToSave setPhoto:filePhoto];
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s saving animal: %@", __PRETTY_FUNCTION__ , animalName);
+    }
+    [animalToSave save:&error];
+    if (error) {
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        if (error.code == 101) {
+            error = nil;
+            animalToMigrate.cIdentifier = @"";
+            dispatch_sync(dispatch_get_main_queue(), ^(void) {
+                [self.context save:&error];
+            });
+            if (error) {
+                NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+                return NO;
+            }
+        }
+        return NO;
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s saving context", __PRETTY_FUNCTION__);
+    }
+    animalToMigrate.cIdentifier = [animalToSave objectId];
+    animalToMigrate.updatedAt   = [animalToSave updatedAt];
+    dispatch_sync(dispatch_get_main_queue(), ^(void) {
+        [self.context save:&error];
+    });
+    if (error) {
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return NO;
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s saving relation between user and animal: %@", __PRETTY_FUNCTION__ , animalName);
+    }
+    PFRelation *relation = [[PFUser currentUser] relationForKey:@"relationOfAnimal"];
+    [relation addObject:animalToSave];
+    [[PFUser currentUser] save:&error];
+    if (error) {
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return NO;
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s finish migrate animal: %@", __PRETTY_FUNCTION__ ,animalName);
+    }
+    if (MX_DESENV_MODE) {
+        NSLog(@"\n\n");
     }
     
     return YES;
@@ -492,48 +626,48 @@
 
 
 #pragma mark - General Utils
-- (NSString *)randomStringToken
-{
-    return [self randomStringWithLength:20];
-}
+//- (NSString *)randomStringToken
+//{
+//    return [self randomStringWithLength:20];
+//}
+//
+//- (NSString *)randomStringWithLength:(int)len
+//{
+//    NSString *alphabet = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+//    
+//    NSMutableString *s = [NSMutableString stringWithCapacity:len];
+//    for (NSUInteger i = 0U; i < len; i++)
+//    {
+//        u_int32_t r = arc4random() % [alphabet length];
+//        unichar   c = [alphabet characterAtIndex:r];
+//        [s appendFormat:@"%C", c];
+//    }
+//    return [[NSString alloc] initWithString:s];
+//}
 
-- (NSString *)randomStringWithLength:(int)len
-{
-    NSString *alphabet = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    
-    NSMutableString *s = [NSMutableString stringWithCapacity:len];
-    for (NSUInteger i = 0U; i < len; i++)
-    {
-        u_int32_t r = arc4random() % [alphabet length];
-        unichar   c = [alphabet characterAtIndex:r];
-        [s appendFormat:@"%C", c];
-    }
-    return [[NSString alloc] initWithString:s];
-}
-
-- (void)savePhoto:(NSData *)photo withToken:(NSString *)token  error:(NSError **)error
-{
-    NSString *filePath = [NSString stringWithFormat:@"photos/%@.png", token];
-    
-    if ([FCFileManager existsItemAtPath:filePath]) {
-        [FCFileManager removeItemAtPath:filePath
-                                  error:&*error];
-        
-        if (*error) {
-            NSLog(@"%s error: %@", __PRETTY_FUNCTION__, [*error localizedDescription]);
-            return;
-        }
-    }
-    
-    [FCFileManager writeFileAtPath:filePath
-                           content:photo
-                             error:&*error];
-    
-    if (*error) {
-        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, [*error localizedDescription]);
-        return;
-    }
-}
+//- (void)savePhoto:(NSData *)photo withToken:(NSString *)token  error:(NSError **)error
+//{
+//    NSString *filePath = [NSString stringWithFormat:@"photos/%@.png", token];
+//    
+//    if ([FCFileManager existsItemAtPath:filePath]) {
+//        [FCFileManager removeItemAtPath:filePath
+//                                  error:&*error];
+//        
+//        if (*error) {
+//            NSLog(@"%s error: %@", __PRETTY_FUNCTION__, [*error localizedDescription]);
+//            return;
+//        }
+//    }
+//    
+//    [FCFileManager writeFileAtPath:filePath
+//                           content:photo
+//                             error:&*error];
+//    
+//    if (*error) {
+//        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, [*error localizedDescription]);
+//        return;
+//    }
+//}
 
 - (NSDate *)combineDate:(NSDate *)date withTime:(NSDate *)time
 {

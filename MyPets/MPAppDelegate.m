@@ -84,7 +84,7 @@
             }
             
             [[PFUser currentUser] setObject:@TRUE forKey:@"adsRemoved"];
-            [[PFUser currentUser] saveInBackground];
+            [[PFUser currentUser] saveEventually];
         }
     }];
 }
@@ -102,9 +102,6 @@
 
 - (void)initParseWithOptions:(NSDictionary *)launchOptions
 {
-    [Parse enableLocalDatastore];
-    
-    
 #if !DEBUG
 #error CHANGE TO PRODUCTION KEYS
 #endif
@@ -195,7 +192,13 @@
     
     [[PFUser currentUser] setObject:[MPTargets targetChannel] forKey:@"app"];
     
-    [[PFUser currentUser] saveInBackground];
+    [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (MX_DESENV_MODE) {
+            if (error) {
+                NSLog(@"%@", error.localizedDescription);
+            }
+        }
+    }];
     
     
     if ([PFInstallation currentInstallation]) {
