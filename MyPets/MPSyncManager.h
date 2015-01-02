@@ -19,8 +19,12 @@ typedef enum : NSUInteger {
 
 @protocol MPSyncDelegate;
 
+@class Sync;
+
 @interface MPSyncManager : NSObject
 
+@property (nonatomic, strong) NSManagedObjectContext *context;
+@property (nonatomic, strong) Sync *syncDates;
 @property (nonatomic, strong) id<MPSyncDelegate> delegate;
 @property (nonatomic, assign) MPSyncStatus syncronizationStatus;
 

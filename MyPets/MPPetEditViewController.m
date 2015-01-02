@@ -254,6 +254,7 @@
         [animal setCRaca:self.editRaca.text];
     }
     
+    [animal setUpdatedAt:[NSDate date]];
     [MPCoreDataService saveContext];
     if (loadAll) {
         [[MPCoreDataService shared] loadAllPets];
@@ -373,6 +374,7 @@
     
     [self.btnFoto setImage:[animal getFoto] forState:UIControlStateNormal];
     
+    [animal setUpdatedAt:[NSDate date]];
     [MPCoreDataService saveContext];
     [[MPCoreDataService shared] loadAllPets];
     

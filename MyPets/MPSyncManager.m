@@ -12,6 +12,7 @@
 #import "MPAppDelegate.h"
 #import "FCFileManager.h"
 #import "MPReminderManager.h"
+#import "Sync.h"
 
 #import "Animal.h"
 #import "PFAnimal.h"
@@ -35,9 +36,7 @@
 #import "PFVermifuge.h"
 
 @interface MPSyncManager ()
-{
-    NSManagedObjectContext *context;
-}
+
 @end
 
 @implementation MPSyncManager
@@ -50,6 +49,10 @@
         manager = [MPSyncManager new];
         
         manager.syncronizationStatus = MPSyncStatusNone;
+        
+        manager.context = [(MPAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+        
+        manager.syncDates = [manager getSyncDates];
         
         [manager addObserver:manager forKeyPath:NSStringFromSelector(@selector(syncronizationStatus))
                      options:NSKeyValueObservingOptionNew
@@ -86,8 +89,6 @@
         
         self.syncronizationStatus = MPSyncStatusInProgress;
         
-        context = [(MPAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
-        
         if ([[MPInternetManager shared] hasInternetConnection]) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 if ([self startSyncWithThreadSafe]) {
@@ -115,19 +116,20 @@
     BOOL completed = YES;
     
     NSArray *arrayClasses = @[
-                              @{@"entityName": @"Animal",      @"class": [PFAnimal class]},
-                              @{@"entityName": @"Vacina",      @"class": [PFVaccine class]},
-                              @{@"entityName": @"Vermifugo",   @"class": [PFVermifuge class]},
-                              @{@"entityName": @"Medicamento", @"class": [PFMedice class]},
-                              @{@"entityName": @"Consulta",    @"class": [PFAppointment class]},
-                              @{@"entityName": @"Banho",       @"class": [PFBath class]},
-                              @{@"entityName": @"Peso",        @"class": [PFWeight class]},
+                              @{@"entityName": @"Animal",      @"class": [PFAnimal class],      @"fieldName": @"classAnimal"},
+                              @{@"entityName": @"Vacina",      @"class": [PFVaccine class],     @"fieldName": @"classVaccine"},
+                              @{@"entityName": @"Vermifugo",   @"class": [PFVermifuge class],   @"fieldName": @"classVermifuge"},
+                              @{@"entityName": @"Medicamento", @"class": [PFMedice class],      @"fieldName": @"classMedicine"},
+                              @{@"entityName": @"Consulta",    @"class": [PFAppointment class], @"fieldName": @"classAppointment"},
+                              @{@"entityName": @"Banho",       @"class": [PFBath class],        @"fieldName": @"classBath"},
+                              @{@"entityName": @"Peso",        @"class": [PFWeight class],      @"fieldName": @"classWeight"},
                             ];
     
     
     for (NSDictionary *dict in arrayClasses) {
-        completed = [self syncEntityName:dict[@"entityName"] andClass:dict[@"class"]];
+        completed = [self syncEntityName:dict[@"entityName"] andClass:dict[@"class"] fieldName:dict[@"fieldName"]];
         if (!completed) { break;}
+        
         
     }
     
@@ -146,7 +148,7 @@
     return completed;
 }
 
-- (BOOL)syncEntityName:(NSString *)entityName andClass:(Class)class
+- (BOOL)syncEntityName:(NSString *)entityName andClass:(Class)class fieldName:(NSString *)fieldName
 {
     if (MX_DESENV_MODE) {
         NSLog(@"%s starting sync for: %@", __PRETTY_FUNCTION__, entityName);
@@ -154,33 +156,148 @@
     
     BOOL completed = YES;
     
-    NSDate *dateLocalLastUpdate = [self mostRecentUpdatedAtDateForEntityWithName:entityName];
-    completed = dateLocalLastUpdate ? YES : NO;
+    NSDate *dateLastUpdate = [self.syncDates valueForKey:fieldName];
+    completed = dateLastUpdate ? YES : NO;
     if (!completed) { return completed;}
     if (MX_DESENV_MODE) {
-        NSLog(@"%s date local last update %@...", __PRETTY_FUNCTION__, dateLocalLastUpdate);
+        NSLog(@"%s date last update %@", __PRETTY_FUNCTION__, dateLastUpdate);
     }
-    
-    NSDate *dateRemoteLastUpdate = [self mostRecentUpdatedAtDateForClass:class];
-    completed = dateRemoteLastUpdate ? YES : NO;
+
+    NSArray *arrayCoreDataObjects = [self getAllObjectsWithEntityName:entityName andLastUpdateNilOfGreaterThan:dateLastUpdate];
+    completed = arrayCoreDataObjects ? YES : NO;
     if (!completed) { return completed;}
     if (MX_DESENV_MODE) {
-        NSLog(@"%s date remote last update %@...", __PRETTY_FUNCTION__, dateRemoteLastUpdate);
+        NSLog(@"%s number of entity: %@ need sync: %d", __PRETTY_FUNCTION__, entityName, (int)arrayCoreDataObjects.count);
     }
     
+    NSArray *arrayParseObjects = [self getAllObjectsWithClass:class andLastUpdateNilOfGreaterThan:dateLastUpdate];
+    completed = arrayParseObjects ? YES : NO;
+    if (!completed) { return completed;}
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s number of class: %@ need sync: %d", __PRETTY_FUNCTION__, NSStringFromClass(class), (int)arrayParseObjects.count);
+    }
     
+    if ((arrayCoreDataObjects.count+arrayParseObjects.count) > 0) {
+        
+        for (NSManagedObject *coreDataObject in arrayCoreDataObjects) {
+            if ([self canSyncCoreData:coreDataObject arrayParse:arrayParseObjects]) {
+                //sync core data object
+                completed = [self syncObject:coreDataObject forEntityName:entityName];
+                if (!completed) { return completed;}
+            }
+        }
+        
+        for (PFObject *parseObject in arrayParseObjects) {
+            if ([self canSyncParse:parseObject arrayCoreData:arrayCoreDataObjects]) {
+                //sync parse object
+                completed = [self syncObject:parseObject forClassName:NSStringFromClass(class)];
+                if (!completed) { return completed;}
+            }
+        }
+    }
     
     return completed;
 }
 
-#pragma mark - Core Data
-- (NSArray *)getAllPets
+- (BOOL)syncObject:(NSManagedObject *)object forEntityName:(NSString *)entityName
 {
-    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Animal"];
+    if ([entityName isEqualToString:@"Animal"]) {
+        
+    }else if ([entityName isEqualToString:@"Vacina"]) {
+        
+    }else if ([entityName isEqualToString:@"Vermifugo"]) {
+        
+    }else if ([entityName isEqualToString:@"Medicamento"]) {
+        
+    }else if ([entityName isEqualToString:@"Consulta"]) {
+        
+    }else if ([entityName isEqualToString:@"Banho"]) {
+        
+    }else if ([entityName isEqualToString:@"Peso"]) {
+        
+    }
+    
+    return YES;
+}
+
+- (BOOL)syncObject:(PFObject *)object forClassName:(NSString *)className
+{
+    if ([className isEqualToString:@"PFAnimal"]) {
+        
+    }else if ([className isEqualToString:@"PFVaccine"]) {
+        
+    }else if ([className isEqualToString:@"PFVermifuge"]) {
+        
+    }else if ([className isEqualToString:@"PFMedicine"]) {
+        
+    }else if ([className isEqualToString:@"PFAppointment"]) {
+        
+    }else if ([className isEqualToString:@"PFBath"]) {
+        
+    }else if ([className isEqualToString:@"PFWeight"]) {
+        
+    }
+    
+    return YES;
+}
+
+- (BOOL)canSyncCoreData:(NSManagedObject *)object arrayParse:(NSArray *)arrayParse
+{
+    NSString *coreDataIdentifier = [object valueForKey:@"cIdentifier"];
+    
+    if (!coreDataIdentifier || [coreDataIdentifier isEqualToString:@""] || coreDataIdentifier.length > 9) {
+        return YES;
+    }
+    
+    NSDate *coreDataUpdatedAt = [object valueForKey:@"updatedAt"];
+    
+    if (!coreDataUpdatedAt) {
+        coreDataUpdatedAt = [NSDate dateWithTimeIntervalSince1970:0];
+    }
+    
+    for (PFObject *parseObject in arrayParse) {
+        if ([parseObject.objectId isEqualToString:coreDataIdentifier]) {
+            if (parseObject.updatedAt > coreDataUpdatedAt) {
+                return NO;
+            }
+        }
+    }
+    
+    return YES;
+}
+
+- (BOOL)canSyncParse:(PFObject *)object arrayCoreData:(NSArray *)arrayCoreData
+{
+    for (NSManagedObject *coreDataObject in arrayCoreData) {
+        NSString *coreDataIdentifier = [coreDataObject valueForKey:@"cIdentifier"];
+        if (!coreDataIdentifier || [coreDataIdentifier isEqualToString:@""] || coreDataIdentifier.length > 9) {
+            continue;
+        }else{
+            if ([coreDataIdentifier isEqualToString:object.objectId]) {
+                NSDate *coreDataUpdatedAt = [coreDataObject valueForKey:@"updatedAt"];
+                
+                if (!coreDataUpdatedAt) {
+                    coreDataUpdatedAt = [NSDate dateWithTimeIntervalSince1970:0];
+                }
+                
+                if (coreDataUpdatedAt > object.updatedAt) {
+                    return NO;
+                }
+            }
+        }
+    }
+    
+    return YES;
+}
+
+#pragma mark - Core Data Utils
+- (Sync *)getSyncDates
+{
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Sync"];
     
     NSError *error;
     
-    NSArray *arrayResult = [context executeFetchRequest:request
+    NSArray *arrayResult = [self.context executeFetchRequest:request
                                                   error:&error];
     
     if (error) {
@@ -188,50 +305,193 @@
         return nil;
     }
     
-    if (MX_DESENV_MODE) {
-        NSLog(@"%s pet count: %d", __PRETTY_FUNCTION__, (int)arrayResult.count);
+    if (arrayResult.count > 0) {
+        return [arrayResult firstObject];
+    }else{
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Sync" inManagedObjectContext:self.context];
+                                       
+        Sync *sync = [[Sync alloc] initWithEntity:entity
+                   insertIntoManagedObjectContext:self.context];
+        [sync initEmptyDates];
+        [self.context save:nil];
+        return sync;
     }
     
-    return arrayResult;
 }
 
-- (NSDate *)mostRecentUpdatedAtDateForEntityWithName:(NSString *)entityName
+- (NSArray *)getAllObjectsWithEntityName:(NSString *)entityName andLastUpdateNilOfGreaterThan:(NSDate *)lastUpdateRef
 {
-    __block NSDate *date = nil;
-    __block NSError *error = nil;
-    //
-    // Create a new fetch request for the specified entity
-    //
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entityName];
-    //
-    // Set the sort descriptors on the request to sort by updatedAt in descending order
-    //
-    [request setSortDescriptors:[NSArray arrayWithObject:
-                                 [NSSortDescriptor sortDescriptorWithKey:@"updatedAt" ascending:NO]]];
-    //
-    // You are only interested in 1 result so limit the request to 1
-    //
-    [request setFetchLimit:1];
-    dispatch_sync(dispatch_get_main_queue(), ^(void) {
-        NSArray *results = [context executeFetchRequest:request error:&error];
-        if ([results lastObject])   {
-            //
-            // Set date to the fetched result
-            //
-            date = [[results lastObject] valueForKey:@"updatedAt"];
-        }else{
-            date = [NSDate dateWithTimeIntervalSince1970:0];
-        }
-    });
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"((updatedAt == nil) || (updatedAt > %@))", lastUpdateRef];
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:entityName];
+    
+    [request setPredicate:predicate];
+    
+    NSError *error;
+    
+    NSArray *arrayResult = [self.context executeFetchRequest:request
+                                                       error:&error];
+    
     if (error) {
         NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
         return nil;
     }
     
-    return date;
+    return arrayResult;
+    
+}
+//- (NSArray *)getAllPets
+//{
+//    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Animal"];
+//    
+//    NSError *error;
+//    
+//    NSArray *arrayResult = [self.context executeFetchRequest:request
+//                                                  error:&error];
+//    
+//    if (error) {
+//        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+//        return nil;
+//    }
+//    
+//    if (MX_DESENV_MODE) {
+//        NSLog(@"%s pet count: %d", __PRETTY_FUNCTION__, (int)arrayResult.count);
+//    }
+//    
+//    return arrayResult;
+//}
+
+//- (NSDate *)mostRecentUpdatedAtDateForEntityWithName:(NSString *)entityName
+//{
+//    __block NSDate *date = nil;
+//    __block NSError *error = nil;
+//    //
+//    // Create a new fetch request for the specified entity
+//    //
+//    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entityName];
+//    //
+//    // Set the sort descriptors on the request to sort by updatedAt in descending order
+//    //
+//    [request setSortDescriptors:[NSArray arrayWithObject:
+//                                 [NSSortDescriptor sortDescriptorWithKey:@"updatedAt" ascending:NO]]];
+//    //
+//    // You are only interested in 1 result so limit the request to 1
+//    //
+//    [request setFetchLimit:1];
+//    dispatch_sync(dispatch_get_main_queue(), ^(void) {
+//        NSArray *results = [self.context executeFetchRequest:request error:&error];
+//        if ([results lastObject])   {
+//            //
+//            // Set date to the fetched result
+//            //
+//            date = [[results lastObject] valueForKey:@"updatedAt"];
+//        }else{
+//            date = [NSDate dateWithTimeIntervalSince1970:0];
+//        }
+//    });
+//    if (error) {
+//        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+//        return nil;
+//    }
+//    
+//    return date;
+//}
+
+#pragma mark - Parse Utils
+- (NSArray *)getAllObjectsWithClass:(Class<PFSubclassing>)class andLastUpdateNilOfGreaterThan:(NSDate *)lastUpdateRef
+{
+    PFQuery *query = [class query];
+    
+    [query whereKey:@"updatedAt" greaterThan:lastUpdateRef];
+    
+    NSError *error = nil;
+
+    NSArray *arrayResults = [query findObjects:&error];
+    
+    if (error) {
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return nil;
+    }
+    
+    return arrayResults;
 }
 
-#pragma mark - Utils
+//- (void)retrieveOrCreateObjectWithClass:(Class<PFSubclassing>)class andIdentifier:(NSString *)identifier andPutInPFObject:(PFObject **)parseObject andToken:(NSString **)token
+//{
+//    if (identifier && ![identifier isEqualToString:@""]) {
+//        if (MX_DESENV_MODE) {
+//            NSLog(@"%s object has already migrated (token: %@)", __PRETTY_FUNCTION__, identifier);
+//        }
+//
+//        *parseObject = [self retrieveObjectWithClass:class andToken:identifier];
+//
+//        *token = identifier;
+//    }else{
+//        *parseObject = [class object];
+//
+//        *token = [self randomStringToken];
+//    }
+//}
+//
+//- (id)retrieveObjectWithClass:(Class<PFSubclassing>)class andToken:(NSString *)token
+//{
+//    PFObject *object = nil;
+//
+//
+//    PFQuery *queryLocally = [class query];
+//    [queryLocally fromLocalDatastore];
+//    [queryLocally whereKey:@"identifier" equalTo:token];
+//    object = [queryLocally getFirstObject];
+//
+//    if (object) {
+//        if (MX_DESENV_MODE) {
+//            NSLog(@"%s object: %@ retrieved from local datastore", __PRETTY_FUNCTION__, object.objectId);
+//        }
+//        return object;
+//    }
+//
+//    PFQuery *queryRemotely = [class query];
+//    [queryRemotely whereKey:@"identifier" equalTo:token];
+//    object = [queryRemotely getFirstObject];
+//
+//    if (object) {
+//        if (MX_DESENV_MODE) {
+//            NSLog(@"%s object: %@ retrieved from server", __PRETTY_FUNCTION__, object.objectId);
+//        }
+//        return object;
+//    }
+//
+//    return [class object];
+//}
+
+//- (NSDate *)mostRecentUpdatedAtDateForClass:(Class <PFSubclassing>)class
+//{
+//    NSError *error;
+//
+//    NSDate *dateLastUpdated = nil;
+//
+//    PFQuery *query = [class query];
+//
+//    [query setLimit:1];
+//    [query orderByDescending:@"updatedAt"];
+//    NSArray *arrayObjects = [query findObjects:&error];
+//    if (!error) {
+//        if (arrayObjects && (arrayObjects.count > 0)) {
+//            PFObject *object = [arrayObjects lastObject];
+//            dateLastUpdated = [object updatedAt];
+//        }else{
+//            dateLastUpdated = [NSDate dateWithTimeIntervalSince1970:0];
+//        }
+//    }else{
+//        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, [error localizedDescription]);
+//        return nil;
+//    }
+//
+//    return dateLastUpdated;
+//}
+
+
+#pragma mark - General Utils
 - (NSString *)randomStringToken
 {
     return [self randomStringWithLength:20];
@@ -295,80 +555,5 @@
     }
     
     return combDate;
-}
-
-#pragma mark - Parse Utils
-- (void)retrieveOrCreateObjectWithClass:(Class<PFSubclassing>)class andIdentifier:(NSString *)identifier andPutInPFObject:(PFObject **)parseObject andToken:(NSString **)token
-{
-    if (identifier && ![identifier isEqualToString:@""]) {
-        if (MX_DESENV_MODE) {
-            NSLog(@"%s object has already migrated (token: %@)", __PRETTY_FUNCTION__, identifier);
-        }
-        
-        *parseObject = [self retrieveObjectWithClass:class andToken:identifier];
-        
-        *token = identifier;
-    }else{
-        *parseObject = [class object];
-        
-        *token = [self randomStringToken];
-    }
-}
-
-- (id)retrieveObjectWithClass:(Class<PFSubclassing>)class andToken:(NSString *)token
-{
-    PFObject *object = nil;
-    
-    
-    PFQuery *queryLocally = [class query];
-    [queryLocally fromLocalDatastore];
-    [queryLocally whereKey:@"identifier" equalTo:token];
-    object = [queryLocally getFirstObject];
-    
-    if (object) {
-        if (MX_DESENV_MODE) {
-            NSLog(@"%s object: %@ retrieved from local datastore", __PRETTY_FUNCTION__, object.objectId);
-        }
-        return object;
-    }
-    
-    PFQuery *queryRemotely = [class query];
-    [queryRemotely whereKey:@"identifier" equalTo:token];
-    object = [queryRemotely getFirstObject];
-    
-    if (object) {
-        if (MX_DESENV_MODE) {
-            NSLog(@"%s object: %@ retrieved from server", __PRETTY_FUNCTION__, object.objectId);
-        }
-        return object;
-    }
-    
-    return [class object];
-}
-
-- (NSDate *)mostRecentUpdatedAtDateForClass:(Class <PFSubclassing>)class
-{
-    NSError *error;
-    
-    NSDate *dateLastUpdated = nil;
-    
-    PFQuery *query = [class query];
-    
-    [query setLimit:1];
-    [query orderByDescending:@"updatedAt"];
-    NSArray *arrayObjects = [query findObjects:&error];
-    if (!error) {
-        if (arrayObjects && (arrayObjects.count > 0)) {
-            PFObject *object = [arrayObjects lastObject];
-            dateLastUpdated = [object updatedAt];
-        }else{
-            dateLastUpdated = [NSDate dateWithTimeIntervalSince1970:0];
-        }
-    }else{
-        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, [error localizedDescription]);
-        return nil;
-    }
-    
-    return dateLastUpdated;
 }
 @end

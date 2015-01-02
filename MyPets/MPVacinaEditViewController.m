@@ -340,6 +340,7 @@
         [vacina setCObs:self.editNotas.text];
     }
     
+    [vacina setUpdatedAt:[NSDate date]];
     [MPCoreDataService saveContext];
     if (loadAll) {
         [[MPCoreDataService shared] loadAllPets];
@@ -451,6 +452,7 @@
     
     [self.imageFoto setImage:[vacina getFoto]];
     
+    [vacina setUpdatedAt:[NSDate date]];
     [MPCoreDataService saveContext];
     
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];

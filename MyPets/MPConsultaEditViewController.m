@@ -260,6 +260,7 @@
         [consulta setCObs:self.editNotas.text];
     }
     
+    [consulta setUpdatedAt:[NSDate date]];
     [MPCoreDataService saveContext];
     if (loadAll) {
         [[MPCoreDataService shared] loadAllPets];

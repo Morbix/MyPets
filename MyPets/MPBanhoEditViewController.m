@@ -260,6 +260,7 @@
         [banho setCObs:self.editNotas.text];
     }
     
+    [banho setUpdatedAt:[NSDate date]];
     [MPCoreDataService saveContext];
     if (loadAll) {
         [[MPCoreDataService shared] loadAllPets];
