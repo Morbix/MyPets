@@ -241,7 +241,7 @@
                                                [objectToSave setNotes:objectToMigrate.cObs];
                                            }
                                            if (objectToMigrate.cPeso) {
-                                               [objectToSave setWeight:objectToMigrate.cPeso.floatValue];
+                                               [objectToSave setWeight:objectToMigrate.cPeso];
                                            }
                                            if (objectToMigrate.cDose) {
                                                [objectToSave setDose:objectToMigrate.cDose];
@@ -280,7 +280,7 @@
                                                [objectToSave setNotes:objectToMigrate.cObs];
                                            }
                                            if (objectToMigrate.cPeso) {
-                                               [objectToSave setWeight:objectToMigrate.cPeso.floatValue];
+                                               [objectToSave setWeight:objectToMigrate.cPeso];
                                            }
                                            if (objectToMigrate.cDose) {
                                                [objectToSave setDose:objectToMigrate.cDose];
@@ -431,6 +431,11 @@
 
 - (BOOL)syncObject:(PFObject *)object forClassName:(NSString *)className
 {
+#warning UPDATE REMINDERS
+#warning UPDATE UI
+#warning DELETE DATA
+#warning BUG, when data in server is modified and updatedAt is greater than local updatedAtReference
+    
     BOOL complete = YES;
     if ([className isEqualToString:@"PFAnimal"]) {
         complete = [self _syncParseAnimal:(PFAnimal *)object];
@@ -439,17 +444,200 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_UPDATE_ANIMAL object:nil userInfo:@{@"objectId": object.objectId}];
         }
     }else if ([className isEqualToString:@"PFVaccine"]) {
-        
+        complete = [self _syncParseGenericObject:object
+                           andCoreDataEntityName:NSStringFromClass([Vacina class])
+                                   andObjectName:[NSString stringWithFormat:@"%@(%@)", NSStringFromClass([Vacina class]), object.objectId] andLogName:NSStringFromClass([Vacina class])
+                                   andPhotoField:@"cSelo"
+                                        andBlock:^(Vacina *__autoreleasing *_objectToSave, PFVaccine *__autoreleasing *_objectToMigrate, Animal *animalRelated) {
+                                            Vacina *objectToSave = *_objectToSave;
+                                            PFVaccine *objectToMigrate = *_objectToMigrate;
+                                            
+                                            objectToSave.cAnimal = animalRelated;
+                                            if (objectToMigrate.dateAndTime) {
+                                                [objectToSave setCData:objectToMigrate.dateAndTime];
+                                            }
+                                            if (objectToMigrate.dateAndTimeVaccine) {
+                                                [objectToSave setCDataVacina:objectToMigrate.dateAndTimeVaccine];
+                                            }
+                                            if (objectToMigrate.vaccineId) {
+                                                [objectToSave setCID:objectToMigrate.vaccineId];
+                                            }
+                                            if (objectToMigrate.reminder) {
+                                                [objectToSave setCLembrete:[MPReminderManager translateReminderIntToStrig:objectToMigrate.reminder]];
+                                            }
+                                            if (objectToMigrate.notes) {
+                                                [objectToSave setCObs:objectToMigrate.notes];
+                                            }
+                                            if (objectToMigrate.weight) {
+                                                [objectToSave setCPeso:objectToMigrate.weight];
+                                            }
+                                            if (objectToMigrate.dose) {
+                                                [objectToSave setCDose:objectToMigrate.dose];
+                                            }
+                                            if (objectToMigrate.veterinarian) {
+                                                [objectToSave setCVeterinario:objectToMigrate.veterinarian];
+                                            }
+                                        }];
+        if (complete) {
+
+        }
     }else if ([className isEqualToString:@"PFVermifuge"]) {
-        
+        complete = [self _syncParseGenericObject:object
+                           andCoreDataEntityName:NSStringFromClass([Vermifugo class])
+                                   andObjectName:[NSString stringWithFormat:@"%@(%@)", NSStringFromClass([Vermifugo class]), object.objectId] andLogName:NSStringFromClass([Vermifugo class])
+                                   andPhotoField:@"cSelo"
+                                        andBlock:^(Vermifugo *__autoreleasing *_objectToSave, PFVermifuge *__autoreleasing *_objectToMigrate, Animal *animalRelated) {
+                                            Vermifugo   *objectToSave = *_objectToSave;
+                                            PFVermifuge *objectToMigrate = *_objectToMigrate;
+                                            
+                                            objectToSave.cAnimal = animalRelated;
+                                            if (objectToMigrate.dateAndTime) {
+                                                [objectToSave setCData:objectToMigrate.dateAndTime];
+                                            }
+                                            if (objectToMigrate.dateAndTimeVaccine) {
+                                                [objectToSave setCDataVacina:objectToMigrate.dateAndTimeVaccine];
+                                            }
+                                            if (objectToMigrate.vermifugeId) {
+                                                [objectToSave setCID:objectToMigrate.vermifugeId];
+                                            }
+                                            if (objectToMigrate.reminder) {
+                                                [objectToSave setCLembrete:[MPReminderManager translateReminderIntToStrig:objectToMigrate.reminder]];
+                                            }
+                                            if (objectToMigrate.notes) {
+                                                [objectToSave setCObs:objectToMigrate.notes];
+                                            }
+                                            if (objectToMigrate.weight) {
+                                                [objectToSave setCPeso:objectToMigrate.weight];
+                                            }
+                                            if (objectToMigrate.dose) {
+                                                [objectToSave setCDose:objectToMigrate.dose];
+                                            }
+                                        }];
+        if (complete) {
+            
+        }
     }else if ([className isEqualToString:@"PFMedicine"]) {
-        
+        complete = [self _syncParseGenericObject:object
+                           andCoreDataEntityName:NSStringFromClass([Medicamento class])
+                                   andObjectName:[NSString stringWithFormat:@"%@(%@)", NSStringFromClass([Medicamento class]), object.objectId] andLogName:NSStringFromClass([Medicamento class])
+                                   andPhotoField:nil
+                                        andBlock:^(Medicamento *__autoreleasing *_objectToSave, PFMedice *__autoreleasing *_objectToMigrate, Animal *animalRelated) {
+                                            Medicamento   *objectToSave = *_objectToSave;
+                                            PFMedice *objectToMigrate = *_objectToMigrate;
+                                            
+                                            objectToSave.cAnimal = animalRelated;
+                                            if (objectToMigrate.dateAndTime) {
+                                                [objectToSave setCData:objectToMigrate.dateAndTime];
+                                                [objectToSave setCHorario:objectToMigrate.dateAndTime];
+                                            }
+                                            if (objectToMigrate.mediceId) {
+                                                [objectToSave setCID:objectToMigrate.mediceId];
+                                            }
+                                            if (objectToMigrate.reminder) {
+                                                [objectToSave setCLembrete:[MPReminderManager translateReminderIntToStrig:objectToMigrate.reminder]];
+                                            }
+                                            if (objectToMigrate.notes) {
+                                                [objectToSave setCObs:objectToMigrate.notes];
+                                            }
+                                            if (objectToMigrate.weight) {
+                                                [objectToSave setCPeso:[NSNumber numberWithFloat:objectToMigrate.weight]];
+                                            }
+                                            if (objectToMigrate.dose) {
+                                                [objectToSave setCDose:objectToMigrate.dose];
+                                            }
+                                            if (objectToMigrate.name) {
+                                                [objectToSave setCNome:objectToMigrate.name];
+                                            }
+                                            if (objectToMigrate.type) {
+                                                [objectToSave setCTipo:objectToMigrate.type];
+                                            }
+                                        }];
+        if (complete) {
+            
+        }
     }else if ([className isEqualToString:@"PFAppointment"]) {
-        
+        complete = [self _syncParseGenericObject:object
+                           andCoreDataEntityName:NSStringFromClass([Consulta class])
+                                   andObjectName:[NSString stringWithFormat:@"%@(%@)", NSStringFromClass([Consulta class]), object.objectId] andLogName:NSStringFromClass([Consulta class])
+                                   andPhotoField:nil
+                                        andBlock:^(Consulta *__autoreleasing *_objectToSave, PFAppointment *__autoreleasing *_objectToMigrate, Animal *animalRelated) {
+                                            Consulta   *objectToSave = *_objectToSave;
+                                            PFAppointment *objectToMigrate = *_objectToMigrate;
+                                            
+                                            objectToSave.cAnimal = animalRelated;
+                                            if (objectToMigrate.dateAndTime) {
+                                                [objectToSave setCData:objectToMigrate.dateAndTime];
+                                                [objectToSave setCHorario:objectToMigrate.dateAndTime];
+                                            }
+                                            if (objectToMigrate.appointmentId) {
+                                                [objectToSave setCID:objectToMigrate.appointmentId];
+                                            }
+                                            if (objectToMigrate.reminder) {
+                                                [objectToSave setCLembrete:[MPReminderManager translateReminderIntToStrig:objectToMigrate.reminder]];
+                                            }
+                                            if (objectToMigrate.notes) {
+                                                [objectToSave setCObs:objectToMigrate.notes];
+                                            }
+                                        }];
+        if (complete) {
+            
+        }
     }else if ([className isEqualToString:@"PFBath"]) {
-        
+        complete = [self _syncParseGenericObject:object
+                           andCoreDataEntityName:NSStringFromClass([Banho class])
+                                   andObjectName:[NSString stringWithFormat:@"%@(%@)", NSStringFromClass([Banho class]), object.objectId] andLogName:NSStringFromClass([Banho class])
+                                   andPhotoField:nil
+                                        andBlock:^(Banho *__autoreleasing *_objectToSave, PFBath *__autoreleasing *_objectToMigrate, Animal *animalRelated) {
+                                            Banho   *objectToSave = *_objectToSave;
+                                            PFBath *objectToMigrate = *_objectToMigrate;
+                                            
+                                            objectToSave.cAnimal = animalRelated;
+                                            if (objectToMigrate.dateAndTime) {
+                                                [objectToSave setCData:objectToMigrate.dateAndTime];
+                                                [objectToSave setCHorario:objectToMigrate.dateAndTime];
+                                            }
+                                            if (objectToMigrate.bathId) {
+                                                [objectToSave setCID:objectToMigrate.bathId];
+                                            }
+                                            if (objectToMigrate.reminder) {
+                                                [objectToSave setCLembrete:[MPReminderManager translateReminderIntToStrig:objectToMigrate.reminder]];
+                                            }
+                                            if (objectToMigrate.notes) {
+                                                [objectToSave setCObs:objectToMigrate.notes];
+                                            }
+                                            if (objectToMigrate.weight) {
+                                                [objectToSave setCPeso:[NSNumber numberWithFloat:objectToMigrate.weight]];
+                                            }
+                                        }];
+        if (complete) {
+            
+        }
     }else if ([className isEqualToString:@"PFWeight"]) {
-        
+        complete = [self _syncParseGenericObject:object
+                           andCoreDataEntityName:NSStringFromClass([Peso class])
+                                   andObjectName:[NSString stringWithFormat:@"%@(%@)", NSStringFromClass([Peso class]), object.objectId] andLogName:NSStringFromClass([Peso class])
+                                   andPhotoField:nil
+                                        andBlock:^(Peso *__autoreleasing *_objectToSave, PFWeight *__autoreleasing *_objectToMigrate, Animal *animalRelated) {
+                                            Peso   *objectToSave = *_objectToSave;
+                                            PFWeight *objectToMigrate = *_objectToMigrate;
+                                            
+                                            objectToSave.cAnimal = animalRelated;
+                                            if (objectToMigrate.dateAndTime) {
+                                                [objectToSave setCData:objectToMigrate.dateAndTime];
+                                            }
+                                            if (objectToMigrate.weightId) {
+                                                [objectToSave setCID:objectToMigrate.weightId];
+                                            }
+                                            if (objectToMigrate.notes) {
+                                                [objectToSave setCObs:objectToMigrate.notes];
+                                            }
+                                            if (objectToMigrate.weight) {
+                                                [objectToSave setCPeso:[NSNumber numberWithFloat:objectToMigrate.weight]];
+                                            }
+                                        }];
+        if (complete) {
+            
+        }
     }
     
     return complete;
@@ -619,139 +807,6 @@
     
     if (MX_DESENV_MODE) {
         NSLog(@"%s finish sync animal: %@", __PRETTY_FUNCTION__ ,animalName);
-    }
-    if (MX_DESENV_MODE) {
-        NSLog(@"\n\n");
-    }
-    
-    return YES;
-}
-
-- (BOOL)_syncCoreDataVacina:(Vacina *)objectToMigrate
-{
-    __block NSError *error = nil;
-    
-    Class<PFSubclassing> class = [PFVaccine class];
-    
-    PFVaccine *objectToSave = nil;
-
-    NSString *logName = NSStringFromClass([Vacina class]);
-    
-    NSString *relationName = @"relationOfVaccine";
-    
-    NSString *objectName = [NSString stringWithFormat:@"%@(%@)", logName, objectToMigrate.cAnimal.cNome];
-    
-
-    
-    if (MX_DESENV_MODE) {
-        NSLog(@"\n===> Core Data %@: %@", logName, objectName);
-    }
-    
-    if (objectToMigrate.cIdentifier && ![objectToMigrate.cIdentifier isEqualToString:@""] && (objectToMigrate.cIdentifier.length < 15)) {
-        objectToSave = [class objectWithoutDataWithObjectId:objectToMigrate.cIdentifier];
-    }else{
-        objectToSave = [class object];
-    }
-    
-    if (MX_DESENV_MODE) {
-        NSLog(@"%s starting sync %@: %@", __PRETTY_FUNCTION__, logName, objectName);
-    }
-    
-    [objectToSave setAnimal:[PFAnimal objectWithoutDataWithObjectId:objectToMigrate.cAnimal.cIdentifier]];
-    [objectToSave setOwner:[PFUser currentUser]];
-    
-    if (objectToMigrate.cData) {
-        [objectToSave setDateAndTime:objectToMigrate.cData];
-    }
-    if (objectToMigrate.cDataVacina) {
-        [objectToSave setDateAndTimeVaccine:objectToMigrate.cDataVacina];
-    }
-    if (objectToMigrate.cID) {
-        [objectToSave setVaccineId:objectToMigrate.cID];
-    }
-    if (objectToMigrate.cLembrete) {
-        [objectToSave setReminder:[MPReminderManager translateReminderStringToInt:objectToMigrate.cLembrete]];
-    }
-    if (objectToMigrate.cObs) {
-        [objectToSave setNotes:objectToMigrate.cObs];
-    }
-    if (objectToMigrate.cPeso) {
-        [objectToSave setWeight:objectToMigrate.cPeso.floatValue];
-    }
-    if (objectToMigrate.cDose) {
-        [objectToSave setDose:objectToMigrate.cDose];
-    }
-    if (objectToMigrate.cVeterinario) {
-        [objectToSave setVeterinarian:objectToMigrate.cVeterinario];
-    }
-    
-    
-    if (objectToMigrate.cSelo) {
-        
-        if (MX_DESENV_MODE) {
-            NSLog(@"%s sending photo", __PRETTY_FUNCTION__);
-        }
-        PFFile *filePhoto = [PFFile fileWithData:objectToMigrate.cSelo
-                                     contentType:@"image/png"];
-        [filePhoto save:&error];
-        if (error) {
-            NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
-            return NO;
-        }
-        
-        if (MX_DESENV_MODE) {
-            NSLog(@"%s photo sent", __PRETTY_FUNCTION__);
-        }
-        
-        [objectToSave setPhoto:filePhoto];
-    }
-    
-    if (MX_DESENV_MODE) {
-        NSLog(@"%s saving %@: %@", __PRETTY_FUNCTION__, logName, objectName);
-    }
-    [objectToSave save:&error];
-    if (error) {
-        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
-        if (error.code == 101) {
-            error = nil;
-            objectToMigrate.cIdentifier = @"";
-            dispatch_sync(dispatch_get_main_queue(), ^(void) {
-                [self.context save:&error];
-            });
-            if (error) {
-                NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
-                return NO;
-            }
-        }
-        return NO;
-    }
-    
-    if (MX_DESENV_MODE) {
-        NSLog(@"%s saving context", __PRETTY_FUNCTION__);
-    }
-    objectToMigrate.cIdentifier = [objectToSave objectId];
-    objectToMigrate.updatedAt   = [objectToSave updatedAt];
-    dispatch_sync(dispatch_get_main_queue(), ^(void) {
-        [self.context save:&error];
-    });
-    if (error) {
-        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
-        return NO;
-    }
-    
-    if (MX_DESENV_MODE) {
-        NSLog(@"%s saving relation between user and %@: %@", __PRETTY_FUNCTION__, logName, objectName);
-    }
-    PFRelation *relation = [[PFUser currentUser] relationForKey:relationName];
-    [relation addObject:objectToSave];
-    [[PFUser currentUser] save:&error];
-    if (error) {
-        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
-        return NO;
-    }
-    
-    if (MX_DESENV_MODE) {
-        NSLog(@"%s finish sync %@: %@", __PRETTY_FUNCTION__, logName, objectName);
     }
     if (MX_DESENV_MODE) {
         NSLog(@"\n\n");
@@ -934,6 +989,68 @@
     
     if (MX_DESENV_MODE) {
         NSLog(@"%s finish sync animal: %@", __PRETTY_FUNCTION__ ,animalName);
+    }
+    if (MX_DESENV_MODE) {
+        NSLog(@"\n\n");
+    }
+    
+    return YES;
+}
+//- (BOOL)_syncCoreDataGenericObject:(NSManagedObject *)objectToMigrate andParseClass:(Class <PFSubclassing>)class andLogName:(NSString *)logName andRelationName:(NSString *)relationName andObjectName:(NSString *)objectName andPhotoField:(NSString *)fieldPhoto andBlock:(void (^)(PFObject **objectToSave, NSManagedObject **objectToMigrate, PFAnimal *animalRelated))blockAttributes
+- (BOOL)_syncParseGenericObject:(PFObject *)objectToMigrate andCoreDataEntityName:(NSString *)entityName andObjectName:(NSString *)objectName andLogName:(NSString *)logName andPhotoField:(NSString *)fieldPhoto andBlock:(void (^)(NSManagedObject **objectToSave, PFObject **objectToMigrate, Animal *animalRelated))blockAttributes
+{
+    __block NSError *error = nil;
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"\n===> Parse %@: %@", logName, objectName);
+    }
+    
+    NSManagedObject *objectToSave = [self retrieveCoreDataObjectWithEntityName:entityName
+                                                                   andObjectId:objectToMigrate.objectId];
+    Animal *animalRelated = [self retrieveCoreDataObjectWithEntityName:@"Animal"
+                                                           andObjectId:[[objectToMigrate valueForKey:@"animal"] objectId]];
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s starting sync %@: %@", __PRETTY_FUNCTION__, logName, objectName);
+    }
+    
+    blockAttributes(&objectToSave, &objectToMigrate, animalRelated);
+    
+    if (fieldPhoto) {
+        if ([objectToMigrate valueForKey:@"photo"]) {
+            PFFile *filePhoto = [objectToMigrate valueForKey:@"photo"];
+            if (filePhoto.isDataAvailable) {
+                if (MX_DESENV_MODE) {
+                    NSLog(@"%s downloading photo", __PRETTY_FUNCTION__);
+                }
+                NSData *photoData = [filePhoto getData:&error];
+                if (error) {
+                    NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+                    return NO;
+                }
+                [objectToSave setValue:photoData forKey:fieldPhoto];
+                if (MX_DESENV_MODE) {
+                    NSLog(@"%s photo downloaded", __PRETTY_FUNCTION__);
+                }
+            }
+        }
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s saving context", __PRETTY_FUNCTION__);
+    }
+    [objectToSave setValue:objectToMigrate.objectId forKey:@"cIdentifier"];
+    [objectToSave setValue:objectToMigrate.updatedAt forKey:@"updatedAt"];
+    dispatch_sync(dispatch_get_main_queue(), ^(void) {
+        [self.context save:&error];
+    });
+    if (error) {
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return NO;
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s finish sync %@: %@", __PRETTY_FUNCTION__, logName, objectName);
     }
     if (MX_DESENV_MODE) {
         NSLog(@"\n\n");

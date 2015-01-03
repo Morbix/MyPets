@@ -20,7 +20,7 @@
 @property (retain) NSString *vermifugeId;
 @property (assign) int reminder;
 @property (retain) NSString *notes;
-@property (assign) float weight;
+@property (assign) NSString *weight;
 @property (retain) PFFile *photo;
 @property (retain) PFAnimal *animal;
 

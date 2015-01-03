@@ -943,7 +943,7 @@
         [vaccineToSave setNotes:vaccineToMigrate.cObs];
     }
     if (vaccineToMigrate.cPeso) {
-        [vaccineToSave setWeight:vaccineToMigrate.cPeso.floatValue];
+        [vaccineToSave setWeight:vaccineToMigrate.cPeso];
     }
     if (vaccineToMigrate.cDose) {
         [vaccineToSave setDose:vaccineToMigrate.cDose];
@@ -1106,7 +1106,7 @@
         [vermifugeToSave setNotes:vermifugeToMigrate.cObs];
     }
     if (vermifugeToMigrate.cPeso) {
-        [vermifugeToSave setWeight:vermifugeToMigrate.cPeso.floatValue];
+        [vermifugeToSave setWeight:vermifugeToMigrate.cPeso];
     }
     if (vermifugeToMigrate.cDose) {
         [vermifugeToSave setDose:vermifugeToMigrate.cDose];
