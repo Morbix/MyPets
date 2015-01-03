@@ -61,7 +61,7 @@
 #if !DEBUG
 #error CHANGE TIME TO 30
 #endif
-        [NSTimer scheduledTimerWithTimeInterval:10 target:manager selector:@selector(startSyncronization) userInfo:nil repeats:YES];
+        [NSTimer scheduledTimerWithTimeInterval:30 target:manager selector:@selector(startSyncronization) userInfo:nil repeats:YES];
     });
     return manager;
 }
@@ -233,9 +233,13 @@
 
 - (BOOL)syncObject:(PFObject *)object forClassName:(NSString *)className
 {
-#warning NEED UI NOTIFICATION
+    BOOL complete = YES;
     if ([className isEqualToString:@"PFAnimal"]) {
-        return [self _syncParseAnimal:(PFAnimal *)object];
+        complete = [self _syncParseAnimal:(PFAnimal *)object];
+        if (complete) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_UPDATE_ALL_ANIMALS object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_UPDATE_ANIMAL object:nil userInfo:@{@"objectId": object.objectId}];
+        }
     }else if ([className isEqualToString:@"PFVaccine"]) {
         
     }else if ([className isEqualToString:@"PFVermifuge"]) {
@@ -250,7 +254,7 @@
         
     }
     
-    return YES;
+    return complete;
 }
 
 - (BOOL)canSyncCoreData:(NSManagedObject *)object arrayParse:(NSArray *)arrayParse

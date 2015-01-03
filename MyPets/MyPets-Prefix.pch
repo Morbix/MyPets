@@ -15,6 +15,7 @@
 
     #import "MPTargets.h"
     #import "MPKeys.h"
+    #import "MPConstants.h"
     #import "Localizable.h"
     #import "MXBannerView.h"
     #import "MXBannerHeaderView.h"

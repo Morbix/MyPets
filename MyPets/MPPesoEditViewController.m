@@ -228,7 +228,7 @@
         NSLog(@"peso %@",peso.cPeso.description);
     }
     
-    [peso setUpdatedAt:[NSDate date]];
+    [peso setUpdatedAt:[NSDate dateWithTimeIntervalSinceNow:60]];
     [MPCoreDataService saveContext];
     if (loadAll) {
         [[MPCoreDataService shared] loadAllPets];

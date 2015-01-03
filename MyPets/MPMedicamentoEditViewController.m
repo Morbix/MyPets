@@ -275,7 +275,7 @@
         [medicamento setCDose:self.editDose.text];
     }
     
-    [medicamento setUpdatedAt:[NSDate date]];
+    [medicamento setUpdatedAt:[NSDate dateWithTimeIntervalSinceNow:60]];
     [MPCoreDataService saveContext];
     if (loadAll) {
         [[MPCoreDataService shared] loadAllPets];

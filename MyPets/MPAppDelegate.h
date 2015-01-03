@@ -123,7 +123,9 @@
 //Ok - AppIRater
 
 
-
+//////////Sync Improvements
+//-Local Notification to ask to finish sync
+//-Keep all datas in one register
 
 //////////Backlog
 // -Criar time line de acontecimentos, inclusive botao no registros para adicionar na timeline

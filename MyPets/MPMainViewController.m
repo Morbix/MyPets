@@ -66,6 +66,7 @@
     [self.collection setAllowsSelection:YES];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callbackPetsCompleted:) name:MTPSNotificationPets object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callbackSyncAllPets:) name:kNOTIFICATION_UPDATE_ALL_ANIMALS object:nil];
 
     arrayPets = [NSArray new];
     
@@ -92,12 +93,10 @@
     
     [self.bannerView requestBanner:kBanner_Main target:self];
     
-//    static dispatch_once_t onceToken;
-//    dispatch_once(&onceToken, ^{
-//        [[[MPMigrationManager alloc] init] startMigration];
-//    });
-    
-    [[MPSyncManager shared] startSyncronization];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [[MPSyncManager shared] startSyncronization];
+    });
 }
 
 - (void)delayToLoad
@@ -344,6 +343,10 @@
 {
     //[[NSNotificationCenter defaultCenter] removeObserver:self name:MTPSNotificationPets object:nil];
     
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s", __PRETTY_FUNCTION__);
+    }
+    
     CALLBACK_LOCAL = TRUE;
     
     if (notification.userInfo) {
@@ -355,5 +358,13 @@
         }
         [self.collection reloadData];
     }
+}
+
+- (void)callbackSyncAllPets:(NSNotification *)notification
+{
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s", __PRETTY_FUNCTION__);
+    }
+    [[MPCoreDataService shared] loadAllPets];
 }
 @end

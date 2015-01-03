@@ -370,6 +370,7 @@
 		A71ABC551831719A0039DF25 /* fotoDefault@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fotoDefault@2x.png"; sourceTree = "<group>"; };
 		A71ABC5C18317DDC0039DF25 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A71ABC5E18317DF30039DF25 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A727E92A1A5829CC00A9BB0E /* MPConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPConstants.h; sourceTree = "<group>"; };
 		A751CB771A4B34FD007F9A3E /* MPMigrationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMigrationManager.h; sourceTree = "<group>"; };
 		A751CB781A4B34FD007F9A3E /* MPMigrationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMigrationManager.m; sourceTree = "<group>"; };
 		A751CB7B1A4B35A4007F9A3E /* MPKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPKeys.h; sourceTree = "<group>"; };
@@ -829,6 +830,7 @@
 				A78D0733181899F600DC64CD /* main.m */,
 				A78D0735181899F600DC64CD /* MyPets-Prefix.pch */,
 				A751CB7B1A4B35A4007F9A3E /* MPKeys.h */,
+				A727E92A1A5829CC00A9BB0E /* MPConstants.h */,
 				A78D0739181899F600DC64CD /* Default.png */,
 				A78D073B181899F600DC64CD /* Default@2x.png */,
 				A78D073D181899F600DC64CD /* Default-568h@2x.png */,

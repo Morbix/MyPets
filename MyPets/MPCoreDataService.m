@@ -185,7 +185,6 @@
     newAnimal.cObs            = @"";
     newAnimal.cFoto           = UIImageJPEGRepresentation([UIImage imageNamed:@"fotoDefault.png"], 1.0);
     newAnimal.cNeedUpdate     = [NSNumber numberWithBool:NO];
-    newAnimal.updatedAt = [NSDate date];
     
     NSError *error = nil;
     [self.context save:&error];
@@ -245,7 +244,6 @@
     vac.cAnimal     = animal;
     vac.cLembrete   = NSLS(@"Nunca");
     vac.cID         = [vac.objectID description];
-    vac.updatedAt = [NSDate date];
     
     NSError *error = nil;
     [self.context save:&error];
@@ -285,7 +283,6 @@
     vermi.cAnimal     = animal;
     vermi.cLembrete   = NSLS(@"Nunca");
     vermi.cID         = [vermi.objectID description];
-    vermi.updatedAt = [NSDate date];
     
     NSError *error = nil;
     [self.context save:&error];
@@ -324,7 +321,6 @@
     consulta.cLembrete   = NSLS(@"Nunca");
     consulta.cID         = [consulta.objectID description];
     consulta.cHorario    = nil;
-    consulta.updatedAt = [NSDate date];
     
     NSError *error = nil;
     [self.context save:&error];
@@ -364,7 +360,6 @@
     banho.cLembrete   = NSLS(@"Nunca");
     banho.cID         = [banho.objectID description];
     banho.cHorario    = nil;
-    banho.updatedAt = [NSDate date];
     
     NSError *error = nil;
     [self.context save:&error];
@@ -407,7 +402,6 @@
     medicamento.cLembrete   = NSLS(@"Nunca");
     medicamento.cID         = [medicamento.objectID description];
     medicamento.cHorario    = nil;
-    medicamento.updatedAt = [NSDate date];
     
     NSError *error = nil;
     [self.context save:&error];
@@ -445,7 +439,6 @@
     peso.cPeso = @0.0;
     peso.cAnimal     = animal;
     peso.cID         = [peso.objectID description];
-    peso.updatedAt = [NSDate date];
     
     NSError *error = nil;
     [self.context save:&error];

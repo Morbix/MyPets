@@ -342,7 +342,7 @@
         [vermifugo setCObs:self.editNotas.text];
     }
     
-    [vermifugo setUpdatedAt:[NSDate date]];
+    [vermifugo setUpdatedAt:[NSDate dateWithTimeIntervalSinceNow:60]];
     [MPCoreDataService saveContext];
     if (loadAll) {
         [[MPCoreDataService shared] loadAllPets];
@@ -454,7 +454,7 @@
     
     [self.imageFoto setImage:[vermifugo getFoto]];
     
-    [vermifugo setUpdatedAt:[NSDate date]];
+    [vermifugo setUpdatedAt:[NSDate dateWithTimeIntervalSinceNow:60]];
     [MPCoreDataService saveContext];
     
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
