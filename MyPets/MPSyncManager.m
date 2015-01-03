@@ -213,7 +213,7 @@
 - (BOOL)syncObject:(NSManagedObject *)object forEntityName:(NSString *)entityName
 {
     if ([entityName isEqualToString:@"Animal"]) {
-        return [self syncCoreDataAnimal:(Animal *)object];
+        return [self _syncCoreDataAnimal:(Animal *)object];
     }else if ([entityName isEqualToString:@"Vacina"]) {
         
     }else if ([entityName isEqualToString:@"Vermifugo"]) {
@@ -233,8 +233,9 @@
 
 - (BOOL)syncObject:(PFObject *)object forClassName:(NSString *)className
 {
+#warning NEED UI NOTIFICATION
     if ([className isEqualToString:@"PFAnimal"]) {
-        
+        return [self _syncParseAnimal:(PFAnimal *)object];
     }else if ([className isEqualToString:@"PFVaccine"]) {
         
     }else if ([className isEqualToString:@"PFVermifuge"]) {
@@ -302,7 +303,7 @@
 }
 
 #pragma mark - Sync Core Data Objects
-- (BOOL)syncCoreDataAnimal:(Animal *)animalToMigrate
+- (BOOL)_syncCoreDataAnimal:(Animal *)animalToMigrate
 {
     __block NSError *error = nil;
     
@@ -415,7 +416,86 @@
     }
     
     if (MX_DESENV_MODE) {
-        NSLog(@"%s finish migrate animal: %@", __PRETTY_FUNCTION__ ,animalName);
+        NSLog(@"%s finish sync animal: %@", __PRETTY_FUNCTION__ ,animalName);
+    }
+    if (MX_DESENV_MODE) {
+        NSLog(@"\n\n");
+    }
+    
+    return YES;
+}
+
+#pragma mark - Sync Parse Objects
+- (BOOL)_syncParseAnimal:(PFAnimal *)animalToMigrate
+{
+    __block NSError *error = nil;
+    
+    NSString *animalName = animalToMigrate.name;
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"\n===> Parse Animal: %@",animalName);
+    }
+    
+    Animal *animalToSave = [self retrieveCoreDataObjectWithEntityName:@"Animal"
+                                                            andObjectId:animalToMigrate.objectId];
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s starting sync animal: %@", __PRETTY_FUNCTION__, animalName);
+    }
+    
+    if (animalToMigrate.birthday) {
+        animalToSave.cDataNascimento = animalToMigrate.birthday;
+    }
+    if (animalToMigrate.specie) {
+        animalToSave.cEspecie = animalToMigrate.specie;
+    }
+    if (animalToMigrate.animalId) {
+        animalToSave.cID = animalToMigrate.animalId;
+    }
+    if (animalToMigrate.name) {
+        animalToSave.cNome = animalToMigrate.name;
+    }
+    if (animalToMigrate.notes) {
+        animalToSave.cObs = animalToMigrate.notes;
+    }
+    if (animalToMigrate.breed) {
+        animalToSave.cRaca = animalToMigrate.breed;
+    }
+    if (animalToMigrate.sex) {
+        animalToSave.cSexo = animalToMigrate.sex;
+    }
+    if (animalToMigrate.photo) {
+        if (animalToMigrate.photo.isDataAvailable) {
+            if (MX_DESENV_MODE) {
+                NSLog(@"%s downloading photo", __PRETTY_FUNCTION__);
+            }
+            NSData *photoData = [animalToMigrate.photo getData:&error];
+            if (error) {
+                NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+                return NO;
+            }
+            animalToSave.cFoto = photoData;
+            if (MX_DESENV_MODE) {
+                NSLog(@"%s photo downloaded", __PRETTY_FUNCTION__);
+            }
+        }
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s saving context", __PRETTY_FUNCTION__);
+    }
+    animalToSave.cIdentifier = animalToMigrate.objectId;
+    animalToSave.updatedAt = animalToMigrate.updatedAt;
+    dispatch_sync(dispatch_get_main_queue(), ^(void) {
+        [self.context save:&error];
+    });
+    if (error) {
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return NO;
+    }
+    
+    if (MX_DESENV_MODE) {
+        NSLog(@"%s finish sync animal: %@", __PRETTY_FUNCTION__ ,animalName);
     }
     if (MX_DESENV_MODE) {
         NSLog(@"\n\n");
@@ -473,6 +553,36 @@
     
     return arrayResult;
     
+}
+
+- (id)retrieveCoreDataObjectWithEntityName:(NSString *)entityName andObjectId:(NSString *)objectId
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(cIdentifier == %@)", objectId];
+    
+    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:entityName inManagedObjectContext:self.context];
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    
+    [request setEntity:entityDescription];
+    [request setPredicate:predicate];
+    
+    NSError *error;
+    
+    NSArray *arrayResult = [self.context executeFetchRequest:request
+                                                       error:&error];
+    
+    if (error) {
+        NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+        return nil;
+    }
+    
+    if (arrayResult.count > 0) {
+        return [arrayResult lastObject];
+    }else{
+        return [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:self.context];
+    }
+    
+    return arrayResult;
 }
 //- (NSArray *)getAllPets
 //{
