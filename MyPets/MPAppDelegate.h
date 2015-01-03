@@ -127,8 +127,26 @@
 //-Local Notification to ask to finish sync
 //-Keep all datas in one register
 
+
+//////////Reviews
+//-Se o seu pet morrer voce nao tem a opcao de manter o registro, apenas "jogar no lixo". Isso eh muito insensivel! Faltam outros registros que devem ser incluidos e ja comentados por outros.
+//-Very helpful but it would have been better with a daily walk reminder
+//-Vale muito a pena baixar, app completo. Só seria melhor se tivesse um campo para vitaminas, remédios de pulgas ou um campo editável. Fica a dica para próximas atualizações
+//-Acho que falta características básicas. Eu poderia monitorar o cio da minha cadela e não existe esta opção. Outra, remédios mensais (para controle parasitário), não existe esta opção também... Achei bem primário... Poderia melhorar.
+//-Estou aproveitando bem, mas seria bom se pudesse inserir outras anotações ou diário de ocorrências importantes da vida da minha Pet.
+//-Ótimo app para acompanhar o desenvolvimento e vacinas do seus animais de estimação. Só falta um acompanhamento dos medicamentos e banhos (lembrar a cada X dias ou horas) e um histórico médico (doenças, cirurgias, alergias, etc)
+//-Impossible d enregistrer une date répétitive ou une alerte sur plusieurs mois inutilisable pour les rappels de vaccin par exemple
+//-Poderia permitir duplicar eventos para outras datas e outros pets (vacina e vermífugos por exemplo)
+//-Gostei bastante muito útil, uma sugestão acho q poderia ter como fazer álbum de foto e vídeo tb.
+//-Ótimo App !Funcional e muito bom, gostaria apenas de dar uma sugestão aos desenvolvedores, colocar a função de repetir para eventos que se repetem, tais como medicamentos e banhos.Obrigado realmente muito bom !
+//-At first I was in love with this app...mostly because I was not only looking for an app to store my dogs medical records, but also satisfaction of backup security! This seems to be the only one with DropBox capability. However, aside from the attractive OS, it lacks many key features. No place for a microchip number, no place to add in when nail trims/anal gland expressions given etc. I work for a vet, so I wanted it all! The Facebook page is in Spanish and unfortunately I speak English...weird cause it doesn't say that in the beginning and I totally just downloaded the full version for $2.99! Oh well...I doubt they'll make changes. ...I looked into all apps similar and was so excited for this particular one too
+//-Honestly I have searched the entire App Store for an app to compile all the medical info for my 3 dachshunds, and I have finally found it!! Working for a veterinary hospital and being a tad obsessed over my pooches, having their info is vital to me! This app is great, how beer, it has a couple quirks that could be ironed out, but definitely could be overlooked for the other features it has that others don't....for example, backup to Dropbox, and a beautiful interface to start!My only wishes would be to add some more to the "stats screen" on the animal/pet screen. There is no option to select neutered/spayed, color, or most importantly the microchip #! I also feel you should physically be able to type in the vaccination name in addition to adding a photo---rather than relying solely on the photo! If those things were fixed, it would be the best ever and I would buy the pro version and totally recommend it out to all my vet friends/colleagues!! =]
+//-Muito bacana, não leva 5, porque quero ver ainda novas funções, uma agenda automatizada, espaço para tratamento das pulgas e com fotos, e galeria de fotos. Podia conversar com a agenda e contatos... Podia ter também espaço para incluir valores de tratamento, retornando custos mensais, anuais, médias, por setor e totalizacoes... Quer dizer seria definitivo, único e insubstituível.
+
+
 //////////Backlog
-// -Criar time line de acontecimentos, inclusive botao no registros para adicionar na timeline
+//-Melhorar UI/Performance da tela inicial (collection)
+//-Criar time line de acontecimentos, inclusive botao no registros para adicionar na timeline
 //- Reativar Dropbox
 //- Sync
 //- Atualizar UI apenas quando voltar da tela
