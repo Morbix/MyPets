@@ -63,7 +63,9 @@
         NSArray *arrayResult = [self.context executeFetchRequest:request error:&error];
         if (!error){
             if (arrayResult.count > 0) {
-                //NSLog(@"---- Fix_without_cAnimal: N. %@: %d",entidade, (int)arrayResult.count);
+                if (MX_DESENV_MODE) {
+                    NSLog(@"---- Fix_without_cAnimal: N. %@: %d",entidade, (int)arrayResult.count);
+                }
                 for (NSManagedObject *object in arrayResult) {
                     [self.context deleteObject:object]; save = TRUE;
                 }
@@ -107,6 +109,7 @@
                             UIImage *newImage = [MPLibrary imageWithoutCutsWithImage:image widthBased:kMAX_PHOTO_SIZE];
                             [(Animal *)object setCFoto:UIImagePNGRepresentation(newImage)];
                             [(Animal *)object setCFoto_Edited:[NSNumber numberWithBool:YES]];
+                            [(Animal *)object setUpdatedAt:[NSDate dateWithTimeIntervalSinceNow:60]];
                             save = TRUE; edited++;
                         }
                     }else if ([object isKindOfClass:[Vacina class]]) {
@@ -117,6 +120,7 @@
                             UIImage *newImage = [MPLibrary imageWithoutCutsWithImage:image widthBased:kMAX_PHOTO_SIZE];
                             [(Vacina *)object setCSelo:UIImagePNGRepresentation(newImage)];
                             [(Vacina *)object setCFoto_Edited:[NSNumber numberWithBool:YES]];
+                            [(Vacina *)object setUpdatedAt:[NSDate dateWithTimeIntervalSinceNow:60]];
                             save = TRUE; edited++;
                         }
                     }else if ([object isKindOfClass:[Vermifugo class]]) {
@@ -127,12 +131,15 @@
                             UIImage *newImage = [MPLibrary imageWithoutCutsWithImage:image widthBased:kMAX_PHOTO_SIZE];
                             [(Vermifugo *)object setCSelo:UIImagePNGRepresentation(newImage)];
                             [(Vermifugo *)object setCFoto_Edited:[NSNumber numberWithBool:YES]];
+                            [(Vermifugo *)object setUpdatedAt:[NSDate dateWithTimeIntervalSinceNow:60]];
                             save = TRUE; edited++;
                         }
                     }
                 }
                 if (edited > 0) {
-                    //NSLog(@"---- Fix_ResizePhoto:  N. %@: %d",entidade, edited);
+                    if (MX_DESENV_MODE) {
+                        NSLog(@"---- Fix_ResizePhoto:  N. %@: %d",entidade, edited);
+                    }
                 }
             }
         }
@@ -153,8 +160,13 @@
     
     [request setEntity:entityDesc];
     
-    NSError *error;
-    NSMutableArray *arrayResult = [NSMutableArray arrayWithArray:[self.context executeFetchRequest:request error:&error]];
+    __block NSError *error;
+    __block  NSMutableArray *arrayResult = nil;
+    
+    [self.context performBlockAndWait:^{
+        arrayResult = [NSMutableArray arrayWithArray:[self.context executeFetchRequest:request error:&error]];
+    }];
+    
     if (arrayResult) {
         [MPLibrary sortMutableArray:&arrayResult withAttribute:@"Nome" andAscending:YES];
         [self.arrayPets removeAllObjects];

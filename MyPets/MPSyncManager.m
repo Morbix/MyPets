@@ -153,6 +153,7 @@
     
     BOOL completed = YES;
     
+    NSDate *dateToSave = [NSDate date];
     NSDate *dateLastUpdate = [self.syncDates valueForKey:fieldNameForLastUpdatedDate];
     completed = dateLastUpdate ? YES : NO;
     if (!completed) { return completed;}
@@ -195,7 +196,7 @@
     
     __block NSError *error = nil;
     
-    [self.syncDates setValue:[NSDate date] forKey:fieldNameForLastUpdatedDate];
+    [self.syncDates setValue:dateToSave forKey:fieldNameForLastUpdatedDate];
     dispatch_sync(dispatch_get_main_queue(), ^(void) {
         [self.context save:&error];
     });
@@ -432,16 +433,20 @@
 - (BOOL)syncObject:(PFObject *)object forClassName:(NSString *)className
 {
 #warning UPDATE REMINDERS
-#warning UPDATE UI
-#warning DELETE DATA
-#warning BUG, when data in server is modified and updatedAt is greater than local updatedAtReference
+#warning UPDATE UI TO OTHER REGISTERS
+#warning DELETE DATA LOGIC
+//CORRIGIDO - BUG, when data in server is modified and updatedAt is greater than local updatedAtReference (salvar data referencia do momento em que fez o load do server)
+//CORRIGIDO - Checar se os daddos vindo do parse passam pelo fix do core data
+//CORRIGIDO - Checar se as notification do sync estão fora de thread
     
     BOOL complete = YES;
     if ([className isEqualToString:@"PFAnimal"]) {
         complete = [self _syncParseAnimal:(PFAnimal *)object];
         if (complete) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_UPDATE_ALL_ANIMALS object:nil];
-            [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_UPDATE_ANIMAL object:nil userInfo:@{@"objectId": object.objectId}];
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_UPDATE_ALL_ANIMALS object:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_UPDATE_ANIMAL object:nil userInfo:@{@"objectId": object.objectId}];
+            });
         }
     }else if ([className isEqualToString:@"PFVaccine"]) {
         complete = [self _syncParseGenericObject:object
@@ -742,7 +747,6 @@
     
     
     if (animalToMigrate.cFoto) {
-
         if (MX_DESENV_MODE) {
             NSLog(@"%s sending photo", __PRETTY_FUNCTION__);
         }
@@ -759,6 +763,8 @@
         }
         
         [animalToSave setPhoto:filePhoto];
+    }else{
+        [animalToSave setPhoto:nil];
     }
     
     if (MX_DESENV_MODE) {
@@ -859,6 +865,8 @@
             }
             
             [objectToSave setValue:filePhoto forKey:@"photo"];
+        }else{
+            [objectToSave setValue:nil forKey:@"photo"];
         }
     }
     
@@ -958,20 +966,20 @@
         animalToSave.cSexo = animalToMigrate.sex;
     }
     if (animalToMigrate.photo) {
-        if (animalToMigrate.photo.isDataAvailable) {
-            if (MX_DESENV_MODE) {
-                NSLog(@"%s downloading photo", __PRETTY_FUNCTION__);
-            }
-            NSData *photoData = [animalToMigrate.photo getData:&error];
-            if (error) {
-                NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
-                return NO;
-            }
-            animalToSave.cFoto = photoData;
-            if (MX_DESENV_MODE) {
-                NSLog(@"%s photo downloaded", __PRETTY_FUNCTION__);
-            }
+        if (MX_DESENV_MODE) {
+            NSLog(@"%s downloading photo", __PRETTY_FUNCTION__);
         }
+        NSData *photoData = [animalToMigrate.photo getData:&error];
+        if (error) {
+            NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+            return NO;
+        }
+        animalToSave.cFoto = photoData;
+        if (MX_DESENV_MODE) {
+            NSLog(@"%s photo downloaded", __PRETTY_FUNCTION__);
+        }
+    }else{
+        animalToSave.cFoto = nil;
     }
     
     if (MX_DESENV_MODE) {
@@ -1019,20 +1027,20 @@
     if (fieldPhoto) {
         if ([objectToMigrate valueForKey:@"photo"]) {
             PFFile *filePhoto = [objectToMigrate valueForKey:@"photo"];
-            if (filePhoto.isDataAvailable) {
-                if (MX_DESENV_MODE) {
-                    NSLog(@"%s downloading photo", __PRETTY_FUNCTION__);
-                }
-                NSData *photoData = [filePhoto getData:&error];
-                if (error) {
-                    NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
-                    return NO;
-                }
-                [objectToSave setValue:photoData forKey:fieldPhoto];
-                if (MX_DESENV_MODE) {
-                    NSLog(@"%s photo downloaded", __PRETTY_FUNCTION__);
-                }
+            if (MX_DESENV_MODE) {
+                NSLog(@"%s downloading photo", __PRETTY_FUNCTION__);
             }
+            NSData *photoData = [filePhoto getData:&error];
+            if (error) {
+                NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+                return NO;
+            }
+            [objectToSave setValue:photoData forKey:fieldPhoto];
+            if (MX_DESENV_MODE) {
+                NSLog(@"%s photo downloaded", __PRETTY_FUNCTION__);
+            }
+        }else{
+            [objectToSave setValue:nil forKey:fieldPhoto];
         }
     }
     

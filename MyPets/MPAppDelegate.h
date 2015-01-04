@@ -145,6 +145,10 @@
 
 
 //////////Backlog
+//-Enviar as notificacoes por email
+//-Possibilitar alterar a ordem dos pets
+//-Open Pet direto pela push notification
+//-Persistencia das Push Notifications
 //-Melhorar UI/Performance da tela inicial (collection)
 //-Criar time line de acontecimentos, inclusive botao no registros para adicionar na timeline
 //- Reativar Dropbox
