@@ -145,6 +145,12 @@
 
 
 //////////Backlog
+//-Aviso para ativar as local notifications se nao os lembretes nao funcionam
+//-Aviso para se tornar pro para remover as ads
+//-Aviso para se cadastrar para acessar da web os dados
+//-Aviso para se cadastrar para receber os alarmes por email
+//-Aviso para se tornar pro para recuperar dados excluidos (se o mecanismo permitir)
+//-Colocar o iD do usuario nas configurações para identificar
 //-Enviar as notificacoes por email
 //-Possibilitar alterar a ordem dos pets
 //-Open Pet direto pela push notification
@@ -198,3 +204,4 @@
 //- Exportar
 //- Informacoes Adicionais vinda de parceiros
 //- Add Frances, Italiano, Espanhol
+//-@3x
