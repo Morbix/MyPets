@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dra-pH-Ofy">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+    </dependencies>
+    <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="QJd-UM-hif">
+            <objects>
+                <viewController id="dra-pH-Ofy" customClass="MPLoginViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="44F-3n-8cX"/>
+                        <viewControllerLayoutGuide type="bottom" id="uDd-jC-J8l"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wds-Qz-tFf">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="D30-hL-tNX">
+                                <rect key="frame" x="282" y="351" width="37" height="37"/>
+                                <color key="color" red="0.0" green="0.39215686919999998" blue="0.58823531870000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s0U-tJ-OMc" customClass="MXRoundedButton">
+                                <rect key="frame" x="15" y="340" width="570" height="60"/>
+                                <color key="backgroundColor" red="0.0" green="0.39215686919999998" blue="0.58823531870000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="2gR-QJ-AoG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Connect with Facebook">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnFacebookTouched:" destination="dra-pH-Ofy" eventType="touchUpInside" id="noh-o5-JKs"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7IH-rA-eoo">
+                                <rect key="frame" x="15" y="408" width="570" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="gmA-2G-jdf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="Not now, I want to keep using it without sync">
+                                    <color key="titleColor" red="0.71372549019607845" green="0.28627450980392155" blue="0.20784313725490197" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnOfflineTouched:" destination="dra-pH-Ofy" eventType="touchUpInside" id="Qni-Qx-US6"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sync" translatesAutoresizingMaskIntoConstraints="NO" id="Hcs-2C-Kmn">
+                                <rect key="frame" x="236" y="116" width="128" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="IVA-bn-fr2"/>
+                                    <constraint firstAttribute="width" constant="128" id="Pgw-hA-v8E"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="uZ6-0u-do1">
+                                <rect key="frame" x="15" y="252" width="570" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="8d5-Ns-c36"/>
+                                </constraints>
+                                <string key="text">KEEP YOUR DATA SAFE.    
+KEEP YOUR DATA SYNC.</string>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <size key="shadowOffset" width="0.0" height="0.0"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.79607850309999995" blue="0.16078431900000001" alpha="1" colorSpace="deviceRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="uZ6-0u-do1" secondAttribute="trailing" constant="15" id="4ac-80-M5T"/>
+                            <constraint firstItem="uZ6-0u-do1" firstAttribute="leading" secondItem="wds-Qz-tFf" secondAttribute="leading" constant="15" id="6Ol-xL-DIJ"/>
+                            <constraint firstItem="7IH-rA-eoo" firstAttribute="leading" secondItem="wds-Qz-tFf" secondAttribute="leading" constant="15" id="F9X-F8-Gyu"/>
+                            <constraint firstItem="s0U-tJ-OMc" firstAttribute="top" secondItem="uZ6-0u-do1" secondAttribute="bottom" constant="8" id="G4W-s6-PVb"/>
+                            <constraint firstItem="D30-hL-tNX" firstAttribute="centerX" secondItem="s0U-tJ-OMc" secondAttribute="centerX" constant="0.5" id="GuO-uX-hie"/>
+                            <constraint firstItem="7IH-rA-eoo" firstAttribute="top" secondItem="s0U-tJ-OMc" secondAttribute="bottom" constant="8" id="Okl-6J-tbe"/>
+                            <constraint firstItem="uZ6-0u-do1" firstAttribute="top" secondItem="Hcs-2C-Kmn" secondAttribute="bottom" constant="8" id="XL8-S4-oeu"/>
+                            <constraint firstAttribute="centerY" secondItem="s0U-tJ-OMc" secondAttribute="centerY" constant="-70" id="Xmy-Gh-99e"/>
+                            <constraint firstItem="s0U-tJ-OMc" firstAttribute="leading" secondItem="wds-Qz-tFf" secondAttribute="leading" constant="15" id="hNv-AA-ZRR"/>
+                            <constraint firstItem="D30-hL-tNX" firstAttribute="centerY" secondItem="s0U-tJ-OMc" secondAttribute="centerY" constant="-0.5" id="hrM-va-SQA"/>
+                            <constraint firstAttribute="trailing" secondItem="7IH-rA-eoo" secondAttribute="trailing" constant="15" id="i9m-Pc-WVC"/>
+                            <constraint firstAttribute="centerX" secondItem="Hcs-2C-Kmn" secondAttribute="centerX" id="puU-lg-cdM"/>
+                            <constraint firstAttribute="trailing" secondItem="s0U-tJ-OMc" secondAttribute="trailing" constant="15" id="xx9-MG-0oM"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="btnFacebook" destination="s0U-tJ-OMc" id="OeM-yE-tuj"/>
+                        <outlet property="btnOffline" destination="7IH-rA-eoo" id="SFk-2K-0RT"/>
+                        <outlet property="labelDescription" destination="uZ6-0u-do1" id="L0U-eM-sb9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j0N-Or-du5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="129" y="410"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="sync" width="128" height="128"/>
+    </resources>
+</document>

@@ -51,8 +51,12 @@
 	<string>MyPets</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Need location</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Need location</string>
 	<key>UIMainStoryboardFile</key>
-	<string>Storyboard</string>
+	<string>Login</string>
 	<key>UIMainStoryboardFile~ipad</key>
 	<string>Storyboard_iPad</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -77,9 +81,5 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
-    <key>NSLocationAlwaysUsageDescription</key>
-    <string>Need location</string>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>Need location</string>
 </dict>
 </plist>

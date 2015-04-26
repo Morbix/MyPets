@@ -166,6 +166,10 @@
 "Restore"            = "Restaurar";
 "Cancel"             = "Cancelar";
 
+"KEEP YOUR DATA SAFE. \nKEEP YOUR DATA SYNC." = "MANTENHA SEUS DADOS SALVOS. \nMANTENHA SEUS DADOS SINCRONIZADOS.";
+"Connect with Facebook" = "Conecte-se usando Facebook";
+"Not now, I want to keep using it without sync." = "Agora não, manter sem sincronização.";
+
 /*
 "Meus Pets"        = "Meus Pets";
 "Eventos"          = "Eventos";

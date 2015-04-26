@@ -28,6 +28,12 @@
 		A71ABC561831719A0039DF25 /* fotoDefault.png in Resources */ = {isa = PBXBuildFile; fileRef = A71ABC541831719A0039DF25 /* fotoDefault.png */; };
 		A71ABC571831719A0039DF25 /* fotoDefault@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A71ABC551831719A0039DF25 /* fotoDefault@2x.png */; };
 		A71ABC5B18317DDC0039DF25 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A71ABC5D18317DDC0039DF25 /* Localizable.strings */; };
+		A75050E91AED1D6500C22D55 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A75050E81AED1D6500C22D55 /* Login.storyboard */; };
+		A75050EA1AED1D6500C22D55 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A75050E81AED1D6500C22D55 /* Login.storyboard */; };
+		A75050ED1AED1E9D00C22D55 /* MXRoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A75050EC1AED1E9D00C22D55 /* MXRoundedButton.m */; };
+		A75050EE1AED1E9D00C22D55 /* MXRoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A75050EC1AED1E9D00C22D55 /* MXRoundedButton.m */; };
+		A75050F11AED282B00C22D55 /* MPLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A75050F01AED282B00C22D55 /* MPLoginViewController.m */; };
+		A75050F21AED282B00C22D55 /* MPLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A75050F01AED282B00C22D55 /* MPLoginViewController.m */; };
 		A751CB791A4B34FD007F9A3E /* MPMigrationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A751CB781A4B34FD007F9A3E /* MPMigrationManager.m */; };
 		A76FAC981A33365D00B64B96 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76FAC971A33365D00B64B96 /* Crashlytics.framework */; };
 		A76FACAC1A33396F00B64B96 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76FACAB1A33396F00B64B96 /* EventKit.framework */; };
@@ -369,6 +375,11 @@
 		A71ABC5C18317DDC0039DF25 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A71ABC5E18317DF30039DF25 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A727E92A1A5829CC00A9BB0E /* MPConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPConstants.h; sourceTree = "<group>"; };
+		A75050E81AED1D6500C22D55 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		A75050EB1AED1E9D00C22D55 /* MXRoundedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXRoundedButton.h; sourceTree = "<group>"; };
+		A75050EC1AED1E9D00C22D55 /* MXRoundedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXRoundedButton.m; sourceTree = "<group>"; };
+		A75050EF1AED282B00C22D55 /* MPLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPLoginViewController.h; sourceTree = "<group>"; };
+		A75050F01AED282B00C22D55 /* MPLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPLoginViewController.m; sourceTree = "<group>"; };
 		A751CB771A4B34FD007F9A3E /* MPMigrationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMigrationManager.h; sourceTree = "<group>"; };
 		A751CB781A4B34FD007F9A3E /* MPMigrationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMigrationManager.m; sourceTree = "<group>"; };
 		A751CB7B1A4B35A4007F9A3E /* MPKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPKeys.h; sourceTree = "<group>"; };
@@ -705,6 +716,8 @@
 				E69FDF5A19C38CF300D0CEE7 /* MXBannerView.m */,
 				E69FDF7619C3A1EB00D0CEE7 /* MXBannerHeaderView.h */,
 				E69FDF7719C3A1EB00D0CEE7 /* MXBannerHeaderView.m */,
+				A75050EB1AED1E9D00C22D55 /* MXRoundedButton.h */,
+				A75050EC1AED1E9D00C22D55 /* MXRoundedButton.m */,
 			);
 			name = "Custom Views";
 			sourceTree = "<group>";
@@ -800,6 +813,7 @@
 				A79BABE219BD35FB001C8467 /* Storyboard_iPad.storyboard */,
 				A78D0736181899F600DC64CD /* MPAppDelegate.h */,
 				A78D0737181899F600DC64CD /* MPAppDelegate.m */,
+				A75050E81AED1D6500C22D55 /* Login.storyboard */,
 				E62E379319ABC29C00537B9D /* Controllers */,
 				A71ABC5318316F150039DF25 /* Models */,
 				A7A132FB181B21C500D7D016 /* Classes */,
@@ -1088,6 +1102,8 @@
 				E644BB53187E2FB400247278 /* MPConfigViewController.m */,
 				E6DFE25318CE2AE500F3F5F9 /* MPPhotoViewController.h */,
 				E6DFE25418CE2AE500F3F5F9 /* MPPhotoViewController.m */,
+				A75050EF1AED282B00C22D55 /* MPLoginViewController.h */,
+				A75050F01AED282B00C22D55 /* MPLoginViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1276,6 +1292,7 @@
 				A7A13316181B296000D7D016 /* colorClouds.png in Resources */,
 				E60CC13218810F2400826B59 /* 11-clock-white@2x.png in Resources */,
 				E60CC12A18810DB900826B59 /* 207-dropbox@2x.png in Resources */,
+				A75050E91AED1D6500C22D55 /* Login.storyboard in Resources */,
 				E60CC12218810D3700826B59 /* 40-dialpad@2x.png in Resources */,
 				E6D47AE1185FD696009C2905 /* menuBanho.png in Resources */,
 				E6952F0E186BBACD0050FB64 /* menuMedicamento.png in Resources */,
@@ -1343,6 +1360,7 @@
 				A7D7C06D1A5704A700C8E50C /* colorClouds.png in Resources */,
 				A7D7C06E1A5704A700C8E50C /* 11-clock-white@2x.png in Resources */,
 				A7D7C06F1A5704A700C8E50C /* 207-dropbox@2x.png in Resources */,
+				A75050EA1AED1D6500C22D55 /* Login.storyboard in Resources */,
 				A7D7C0701A5704A700C8E50C /* 40-dialpad@2x.png in Resources */,
 				A7D7C0711A5704A700C8E50C /* menuBanho.png in Resources */,
 				A7D7C0721A5704A700C8E50C /* menuMedicamento.png in Resources */,
@@ -1497,6 +1515,7 @@
 				A7C4B5481A4EEEBB0014A6EA /* PFMedice.m in Sources */,
 				E6B6B00E1894BCBF00AA5DAD /* MPAds.m in Sources */,
 				E6D47AFB186120D6009C2905 /* MPVacinaEditViewController.m in Sources */,
+				A75050F11AED282B00C22D55 /* MPLoginViewController.m in Sources */,
 				E63DB41C1862721A00094368 /* UIImage+ResizeAndCrop.m in Sources */,
 				E69FDF5B19C38CF300D0CEE7 /* MXBannerView.m in Sources */,
 				E60CC231188327F400826B59 /* PNLineChart.m in Sources */,
@@ -1537,6 +1556,7 @@
 				E60554631857E71C00D11CE9 /* MPPetViewController.m in Sources */,
 				A71ABC4618316F090039DF25 /* Fotos.m in Sources */,
 				A7C4B5441A4E02450014A6EA /* PFAppointment.m in Sources */,
+				A75050ED1AED1E9D00C22D55 /* MXRoundedButton.m in Sources */,
 				A751CB791A4B34FD007F9A3E /* MPMigrationManager.m in Sources */,
 				E6DFE25518CE2AE500F3F5F9 /* MPPhotoViewController.m in Sources */,
 				A71ABC4918316F0A0039DF25 /* Consulta.m in Sources */,
@@ -1579,6 +1599,7 @@
 				A7D7BFFF1A5704A700C8E50C /* PFMedice.m in Sources */,
 				A7D7C0001A5704A700C8E50C /* MPAds.m in Sources */,
 				A7D7C0011A5704A700C8E50C /* MPVacinaEditViewController.m in Sources */,
+				A75050F21AED282B00C22D55 /* MPLoginViewController.m in Sources */,
 				A7D7C0021A5704A700C8E50C /* UIImage+ResizeAndCrop.m in Sources */,
 				A7D7C0031A5704A700C8E50C /* MXBannerView.m in Sources */,
 				A7D7C0041A5704A700C8E50C /* PNLineChart.m in Sources */,
@@ -1619,6 +1640,7 @@
 				A7D7C0271A5704A700C8E50C /* MPPetViewController.m in Sources */,
 				A7D7C0281A5704A700C8E50C /* Fotos.m in Sources */,
 				A7D7C0291A5704A700C8E50C /* PFAppointment.m in Sources */,
+				A75050EE1AED1E9D00C22D55 /* MXRoundedButton.m in Sources */,
 				A7D7C02A1A5704A700C8E50C /* MPMigrationManager.m in Sources */,
 				A7D7C02B1A5704A700C8E50C /* MPPhotoViewController.m in Sources */,
 				A7D7C02C1A5704A700C8E50C /* Consulta.m in Sources */,
