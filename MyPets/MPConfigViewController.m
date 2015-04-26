@@ -7,13 +7,10 @@
 //
 
 #import "MPConfigViewController.h"
-#import <Dropbox/Dropbox.h>
 #import "MPAppDelegate.h"
 #import "LKBadgeView.h"
 #import "UIFlatColor.h"
 #import "MPLembretes.h"
-#import <StoreKit/StoreKit.h>
-#import <StoreKit/StoreKitDefines.h>
 #import "GAI.h"
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
@@ -21,7 +18,7 @@
 #import "MPDropboxNotification.h"
 #import "Appirater.h"
 #import "MPAds.h"
-#import <iAd/iAd.h>
+#import "MPLoginViewController.h"
 
 
 @interface MPConfigViewController () <SKStoreProductViewControllerDelegate>
@@ -240,6 +237,9 @@
         case 0:
         {
             //Dropbox
+#warning ALTERAR PARA FACEBOOK LOGOUT
+            [PFUser logOut];
+            [MPLoginViewController presentLoginController];
         }
             break;
         case 1:

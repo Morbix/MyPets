@@ -50,7 +50,7 @@
                                     <action selector="btnOfflineTouched:" destination="dra-pH-Ofy" eventType="touchUpInside" id="Qni-Qx-US6"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sync" translatesAutoresizingMaskIntoConstraints="NO" id="Hcs-2C-Kmn">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sync" highlightedImage="check" translatesAutoresizingMaskIntoConstraints="NO" id="Hcs-2C-Kmn">
                                 <rect key="frame" x="236" y="116" width="128" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="IVA-bn-fr2"/>
@@ -91,6 +91,7 @@ KEEP YOUR DATA SYNC.</string>
                     <connections>
                         <outlet property="btnFacebook" destination="s0U-tJ-OMc" id="OeM-yE-tuj"/>
                         <outlet property="btnOffline" destination="7IH-rA-eoo" id="SFk-2K-0RT"/>
+                        <outlet property="imageSync" destination="Hcs-2C-Kmn" id="qw1-US-xzl"/>
                         <outlet property="labelDescription" destination="uZ6-0u-do1" id="L0U-eM-sb9"/>
                     </connections>
                 </viewController>
@@ -100,6 +101,7 @@ KEEP YOUR DATA SYNC.</string>
         </scene>
     </scenes>
     <resources>
+        <image name="check" width="128" height="128"/>
         <image name="sync" width="128" height="128"/>
     </resources>
 </document>

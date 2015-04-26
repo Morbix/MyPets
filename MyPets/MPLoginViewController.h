@@ -8,7 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import <ParseFacebookUtilsV4/PFFacebookUtils.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 @interface MPLoginViewController : UIViewController
+
++ (BOOL)shouldAuthenticate;
++ (void)presentLoginController;
++ (UIViewController *)getViewController;
++ (void)countCurrentUserWithSave:(BOOL)shouldSave;
 
 @end

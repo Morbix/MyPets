@@ -37,6 +37,9 @@
 //-Pendencias dos Warnings.
 //-Login facebook for sync.
 //-Deslogar, oferecer apagar os dados.
+//-Impossibilitar o logout durante sync.
+//- Handle session revocated
+//https://parse.com/docs/ios_guide#sessions-props/iOS
 
 
 //////////Sync Improvements

@@ -7,6 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Dropbox/Dropbox.h>
+#import <StoreKit/StoreKit.h>
+#import <StoreKit/StoreKitDefines.h>
+#import <iAd/iAd.h>
+
 
 @interface MPConfigViewController : MXTableViewController
 

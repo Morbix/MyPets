@@ -15,7 +15,7 @@
 #import "MPDropboxNotification.h"
 #import "MXInAppPurchase.h"
 #import "MXGoogleAnalytics.h"
-
+#import "MPLoginViewController.h"
 #import "MPInternetManager.h"
 
 #define kSIZE 10
@@ -45,7 +45,8 @@
     
     [self configPushNotificationWithApplication:application
                                      andOptions:launchOptions];
-    [self configUserInformation];
+    
+    [MPLoginViewController countCurrentUserWithSave:YES];
     
     
     [self initDropbox];
@@ -124,6 +125,8 @@
     //PRODUCTION KEYS
     //[Parse setApplicationId:KEY_PARSE_APPLICATION_PRODUCTION clientKey:KEY_PARSE_CLIENT_PRODUCTION];
     
+    [PFUser enableRevocableSessionInBackground];
+    
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
@@ -166,50 +169,6 @@
     } else {
         // use registerForRemoteNotifications
         [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound];
-    }
-}
-
-- (void)configUserInformation
-{
-    [PFUser logOut];
-    
-    if ([PFUser currentUser]) {
-        [[PFUser currentUser] incrementKey:@"RunCount"];
-        if ([PFInstallation currentInstallation]) {
-            if ([PFInstallation currentInstallation].deviceToken) {
-                [[PFUser currentUser] setObject:[PFInstallation currentInstallation].deviceToken forKey:@"deviceToken"];
-            }
-            
-        }
-        
-        [[PFUser currentUser] setObject:[[UIDevice currentDevice] name]
-                                 forKey:@"deviceName"];
-        [[PFUser currentUser] setObject:[[UIDevice currentDevice] systemName]
-                                 forKey:@"deviceSystemName"];
-        [[PFUser currentUser] setObject:[[UIDevice currentDevice] model]
-                                 forKey:@"deviceModel"];
-        [[PFUser currentUser] setObject:[[UIDevice currentDevice] systemVersion]
-                                 forKey:@"deviceSystemVersion"];
-        [[PFUser currentUser] setObject:[[UIDevice currentDevice] localizedModel]
-                                 forKey:@"deviceLocalizedModel"];
-        
-        [[PFUser currentUser] setObject:[MPTargets targetChannel] forKey:@"app"];
-        
-        [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (MX_DESENV_MODE) {
-                if (error) {
-                    NSLog(@"%@", error.localizedDescription);
-                }
-            }
-        }];
-        
-        
-        if ([PFInstallation currentInstallation]) {
-            if (![[PFInstallation currentInstallation] objectForKey:@"user"]) {
-                [[PFInstallation currentInstallation] setObject:[PFUser currentUser] forKey:@"User"];
-                [[PFInstallation currentInstallation] saveInBackground];
-            }
-        }
     }
 }
 

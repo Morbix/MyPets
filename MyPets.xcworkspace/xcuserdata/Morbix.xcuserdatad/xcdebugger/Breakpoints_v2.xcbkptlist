@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyPets/MPSyncManager.m"
-            timestampString = "451745932.837962"
+            timestampString = "451768641.152378"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "857"
-            endingLineNumber = "857"
+            startingLineNumber = "858"
+            endingLineNumber = "858"
             landmarkName = "-_syncCoreDataGenericObject:andParseClass:andLogName:andRelationName:andObjectName:andPhotoField:andBlock:"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyPets/MPSyncManager.m"
-            timestampString = "451745932.837962"
+            timestampString = "451768641.152378"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "855"
-            endingLineNumber = "855"
+            startingLineNumber = "856"
+            endingLineNumber = "856"
             landmarkName = "-_syncCoreDataGenericObject:andParseClass:andLogName:andRelationName:andObjectName:andPhotoField:andBlock:"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyPets/MPSyncManager.m"
-            timestampString = "451745932.837962"
+            timestampString = "451768641.152378"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "884"
-            endingLineNumber = "884"
+            startingLineNumber = "885"
+            endingLineNumber = "885"
             landmarkName = "-_syncCoreDataGenericObject:andParseClass:andLogName:andRelationName:andObjectName:andPhotoField:andBlock:"
             landmarkType = "5">
          </BreakpointContent>

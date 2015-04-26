@@ -24,6 +24,7 @@
 #import "MPDropboxNotification.h"
 #import "MPAppDelegate.h"
 #import "MPSyncManager.h"
+#import "MPLoginViewController.h"
 
 @interface MPMainViewController ()
 {
@@ -96,6 +97,10 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [[MPSyncManager shared] startSyncronization];
+        
+        if ([MPLoginViewController shouldAuthenticate]) {
+            [MPLoginViewController presentLoginController];
+        }
     });
 }
 

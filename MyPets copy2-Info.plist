@@ -56,7 +56,7 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Need location</string>
 	<key>UIMainStoryboardFile</key>
-	<string>Login</string>
+	<string>Storyboard</string>
 	<key>UIMainStoryboardFile~ipad</key>
 	<string>Storyboard_iPad</string>
 	<key>UIRequiredDeviceCapabilities</key>
