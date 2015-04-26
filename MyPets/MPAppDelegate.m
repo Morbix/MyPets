@@ -45,7 +45,7 @@
     
     [self configPushNotificationWithApplication:application
                                      andOptions:launchOptions];
-    [self configAutomaticUser];
+    [self configUserInformation];
     
     
     [self initDropbox];
@@ -116,7 +116,7 @@
     
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
-    [PFUser enableAutomaticUser];
+    //[PFUser enableAutomaticUser];
 }
 
 - (void)initDropbox
@@ -157,8 +157,10 @@
     }
 }
 
-- (void)configAutomaticUser
+- (void)configUserInformation
 {
+    [PFUser logOut];
+    
     if ([PFUser currentUser]) {
         [[PFUser currentUser] incrementKey:@"RunCount"];
         if ([PFInstallation currentInstallation]) {

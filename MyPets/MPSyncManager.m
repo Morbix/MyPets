@@ -82,6 +82,12 @@
 #pragma mark - Syncronization
 - (void)startSyncronization
 {
+    if (!([PFUser currentUser] && [[PFUser currentUser] isAuthenticated])) {
+        if (MX_DESENV_MODE) {
+            NSLog(@"Sync Cancelled because user is not authenticated.");
+        }
+        return;
+    }
     if (self.syncronizationStatus != MPSyncStatusInProgress) {
         
         self.syncronizationStatus = MPSyncStatusInProgress;

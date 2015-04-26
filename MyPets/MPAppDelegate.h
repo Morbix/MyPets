@@ -15,8 +15,6 @@
 
 #import "ParcelKit.h"
 
-@class MPMigrationManager;
-
 @interface MPAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
@@ -36,9 +34,8 @@
 
 //-Sync
 //-Pendencias dos Warnings.
-//-Remover o X dos banners.
-//-Adicionar o X como banner antes de carregar o banner.
-//-Forcar uso do Facebook.
+//-Login facebook for sync.
+//-Deslogar, oferecer apagar os dados.
 
 
 //////////Sync Improvements
