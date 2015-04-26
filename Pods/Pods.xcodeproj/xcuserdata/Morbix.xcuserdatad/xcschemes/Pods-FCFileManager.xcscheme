@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1A8D75C30E882ED7FE449182"
+               BlueprintIdentifier = "EC3DEDFC557DEE31B3CC97F8"
                BuildableName = "libPods-FCFileManager.a"
                BlueprintName = "Pods-FCFileManager"
                ReferencedContainer = "container:Pods.xcodeproj">

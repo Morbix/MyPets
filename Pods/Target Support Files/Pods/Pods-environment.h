@@ -48,11 +48,23 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 5
 #define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 0
 
+// APParallaxHeader
+#define COCOAPODS_POD_AVAILABLE_APParallaxHeader
+#define COCOAPODS_VERSION_MAJOR_APParallaxHeader 0
+#define COCOAPODS_VERSION_MINOR_APParallaxHeader 1
+#define COCOAPODS_VERSION_PATCH_APParallaxHeader 6
+
 // Appirater
 #define COCOAPODS_POD_AVAILABLE_Appirater
 #define COCOAPODS_VERSION_MAJOR_Appirater 2
 #define COCOAPODS_VERSION_MINOR_Appirater 0
 #define COCOAPODS_VERSION_PATCH_Appirater 4
+
+// Block-KVO
+#define COCOAPODS_POD_AVAILABLE_Block_KVO
+#define COCOAPODS_VERSION_MAJOR_Block_KVO 2
+#define COCOAPODS_VERSION_MINOR_Block_KVO 2
+#define COCOAPODS_VERSION_PATCH_Block_KVO 1
 
 // Bolts
 #define COCOAPODS_POD_AVAILABLE_Bolts
@@ -60,11 +72,23 @@
 #define COCOAPODS_VERSION_MINOR_Bolts 1
 #define COCOAPODS_VERSION_PATCH_Bolts 3
 
+// FCCurrentLocationGeocoder
+#define COCOAPODS_POD_AVAILABLE_FCCurrentLocationGeocoder
+#define COCOAPODS_VERSION_MAJOR_FCCurrentLocationGeocoder 1
+#define COCOAPODS_VERSION_MINOR_FCCurrentLocationGeocoder 1
+#define COCOAPODS_VERSION_PATCH_FCCurrentLocationGeocoder 10
+
 // FCFileManager
 #define COCOAPODS_POD_AVAILABLE_FCFileManager
 #define COCOAPODS_VERSION_MAJOR_FCFileManager 1
 #define COCOAPODS_VERSION_MINOR_FCFileManager 0
 #define COCOAPODS_VERSION_PATCH_FCFileManager 6
+
+// FCIPAddressGeocoder
+#define COCOAPODS_POD_AVAILABLE_FCIPAddressGeocoder
+#define COCOAPODS_VERSION_MAJOR_FCIPAddressGeocoder 1
+#define COCOAPODS_VERSION_MINOR_FCIPAddressGeocoder 0
+#define COCOAPODS_VERSION_PATCH_FCIPAddressGeocoder 2
 
 // Facebook-iOS-SDK
 #define COCOAPODS_POD_AVAILABLE_Facebook_iOS_SDK
@@ -137,4 +161,10 @@
 #define COCOAPODS_VERSION_MAJOR_SDWebImage_Core 3
 #define COCOAPODS_VERSION_MINOR_SDWebImage_Core 7
 #define COCOAPODS_VERSION_PATCH_SDWebImage_Core 1
+
+// UIImage-ResizeMagick
+#define COCOAPODS_POD_AVAILABLE_UIImage_ResizeMagick
+#define COCOAPODS_VERSION_MAJOR_UIImage_ResizeMagick 0
+#define COCOAPODS_VERSION_MINOR_UIImage_ResizeMagick 0
+#define COCOAPODS_VERSION_PATCH_UIImage_ResizeMagick 1
 

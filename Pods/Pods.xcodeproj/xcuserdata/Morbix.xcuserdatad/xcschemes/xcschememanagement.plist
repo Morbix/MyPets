@@ -8,205 +8,221 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>2</integer>
 		</dict>
 		<key>MXGoogleAnalytics.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>3</integer>
 		</dict>
 		<key>Pods-AFNetworking.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>5</integer>
+		</dict>
+		<key>Pods-APParallaxHeader.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-Appirater.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>6</integer>
+		</dict>
+		<key>Pods-Block-KVO.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-Bolts.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>7</integer>
+		</dict>
+		<key>Pods-FCCurrentLocationGeocoder.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-FCFileManager.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>9</integer>
+		</dict>
+		<key>Pods-FCIPAddressGeocoder.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-Facebook-iOS-SDK.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>8</integer>
 		</dict>
 		<key>Pods-Google-Mobile-Ads-SDK.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>10</integer>
 		</dict>
 		<key>Pods-GoogleAnalytics-iOS-SDK.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>11</integer>
 		</dict>
 		<key>Pods-HexColors.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>12</integer>
 		</dict>
 		<key>Pods-Lockbox.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>13</integer>
 		</dict>
 		<key>Pods-M13BadgeView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>14</integer>
 		</dict>
 		<key>Pods-MXGoogleAnalytics.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>15</integer>
 		</dict>
 		<key>Pods-Parse.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>16</integer>
 		</dict>
 		<key>Pods-Reachability.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>17</integer>
 		</dict>
 		<key>Pods-SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>18</integer>
+		</dict>
+		<key>Pods-UIImage-ResizeMagick.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>4</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>00726EE47606925861518BA6</key>
+		<key>0078B17E32593E5FD6CD7C1E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>0099F19F20B2C9B385B2F2E2</key>
+		<key>2224AA648BF844A1A81E553D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>11FB33F374979E787D7E718F</key>
+		<key>2565D31CDD5D78C5239E98EB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1A8D75C30E882ED7FE449182</key>
+		<key>29627DFB4775B00A659AAF22</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1D2E566E31BA956A6F10B325</key>
+		<key>34249FAAB961E26C00182A2B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1E5BEA3C8757842C4F29489F</key>
+		<key>4473F3E12852BFEDBFDC9FBC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2FE67740FE0C575EA7BA36DE</key>
+		<key>5B0487812BD6FD89EAB5C589</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3348D8C514E91929961F0167</key>
+		<key>6E214A84952B6F9C09BEB387</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3D4F34A388C88AA6EDAB4CC5</key>
+		<key>7A3A7BA28E734CDA70D83F49</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7C6E65EA90FF0DC04CD272D8</key>
+		<key>81B5930F2B594990A835D6AB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A38B627C0E0D211A8FE02CA1</key>
+		<key>8A09B982A47A2F89BF14EA9D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A81311936C1D727157F1DD24</key>
+		<key>94B13C1A94364AEE7E86A3DB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B8D4E49C16EDE798214ED0B7</key>
+		<key>A49E58993EF5CB9416212300</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C053C260FA29791B3AAD0C78</key>
+		<key>B5B17BE548D092FB473B2D67</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E3368E7CBA040610923ED127</key>
+		<key>B63DE9B58775588836257C89</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E73073D316E835B428CEBF34</key>
+		<key>BA4F80BC00014F238358CDB8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F3F23E9F1650E78C28778FF9</key>
+		<key>CEEE58B2CF56F6D60A66135F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DD1891B07336E91DCC1296C3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EB029A0C3F999AA3B0CA81FA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EC3DEDFC557DEE31B3CC97F8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EE4F0F4EB381839D4AEBCBC2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EE8D280C7F9920214D7A7A31</key>
 		<dict>
 			<key>primary</key>
 			<true/>

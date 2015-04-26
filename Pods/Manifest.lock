@@ -20,11 +20,16 @@ PODS:
   - AFNetworking/UIKit (2.5.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - APParallaxHeader (0.1.6)
   - Appirater (2.0.4)
+  - Block-KVO (2.2.1)
   - Bolts (1.1.3)
   - Facebook-iOS-SDK (3.21.1):
     - Bolts (~> 1.0)
+  - FCCurrentLocationGeocoder (1.1.10):
+    - FCIPAddressGeocoder (~> 1.0.0)
   - FCFileManager (1.0.6)
+  - FCIPAddressGeocoder (1.0.2)
   - Google-Mobile-Ads-SDK (6.12.2)
   - GoogleAnalytics-iOS-SDK (3.10):
     - GoogleAnalytics-iOS-SDK/Core (= 3.10)
@@ -40,13 +45,17 @@ PODS:
   - SDWebImage (3.7.1):
     - SDWebImage/Core (= 3.7.1)
   - SDWebImage/Core (3.7.1)
+  - UIImage-ResizeMagick (0.0.1)
 
 DEPENDENCIES:
   - AFNetworking
+  - APParallaxHeader
   - Appirater
+  - Block-KVO
   - Facebook-iOS-SDK
+  - FCCurrentLocationGeocoder
   - FCFileManager
-  - Google-Mobile-Ads-SDK (~> 6.10)
+  - Google-Mobile-Ads-SDK
   - GoogleAnalytics-iOS-SDK
   - HexColors
   - Lockbox
@@ -55,21 +64,27 @@ DEPENDENCIES:
   - Parse
   - Reachability
   - SDWebImage
+  - UIImage-ResizeMagick
 
 SPEC CHECKSUMS:
-  AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
-  Appirater: cbdb7f305562cfde585300bfff86da01ae559deb
-  Bolts: 3db0a875235e0c9042b013af13af0f00f79b102c
-  Facebook-iOS-SDK: 18c26e86ab25c17854a2ee2a8f60562099c6600f
-  FCFileManager: 30f8a44f324e479fae09bb30ba0c639eacd9f229
-  Google-Mobile-Ads-SDK: 9761186eb5dc5e1493e71dcce2b525159f763d42
-  GoogleAnalytics-iOS-SDK: f422062075d9ccb1ea8d783fc5ba3829461e9502
-  HexColors: 01384d2bbe8dc4ffa43c3b4135db6e976952d153
-  Lockbox: 3168f08cb26680b05a0702b8c0cc6da32788059d
-  M13BadgeView: 25d03b04630496dfdb6c3f8eb793f6b1664495f8
-  MXGoogleAnalytics: 8f32c31367a6f5698f225c0cb34fed1965cb7bb4
-  Parse: b0ec7666167e212edb6fc94f60ba170248bd1869
-  Reachability: 1ef8adf5c4e3d362f96515d4278f68dad3c26930
-  SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
+  AFNetworking: 96ac9bf3eda33582701cb1fcc5b896aa1e20311e
+  APParallaxHeader: 854bc48a2487ca12c702f8a236fec0d89cdac5c3
+  Appirater: 8783318c36414e8de3ea023443028df94c1b784b
+  Block-KVO: 64b63a4bde798ab43caa221db916192cee731886
+  Bolts: e431c88fd02115d4a34016c2100bbfa4d2d5b146
+  Facebook-iOS-SDK: 20e413a6e34f9155d7a34484e0c08247fae3e47f
+  FCCurrentLocationGeocoder: e3f2cff7ffbbb09a9bc1603e1743650345927938
+  FCFileManager: de16a6b9bf41b0d18067aea8534fbac7b04334fb
+  FCIPAddressGeocoder: 2622f052eba06c78a707f8b9d9925a406d96ebbd
+  Google-Mobile-Ads-SDK: 40217793219e3466f24cb884d1d44023f37a20ee
+  GoogleAnalytics-iOS-SDK: 4f98a376c1d61e6ac4ca47951655820314856eef
+  HexColors: abfd172e329dab59888614ccba6f216cec59289d
+  Lockbox: 16442da35d9d4286966936763be728a931d589c3
+  M13BadgeView: 700dd0714fdc837c0cf1c8c004454963ec22441f
+  MXGoogleAnalytics: 9029d27e6e1f0a4edc2b9e97d00566e634fa3a80
+  Parse: 18d1d8b61f25421daef4ec8e086ed7577f9f557c
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
+  SDWebImage: ed3095af2ff88b436426037444979b917f6c5575
+  UIImage-ResizeMagick: f08c2d14d1e8a5f0b402185408785540562f2fe7
 
 COCOAPODS: 0.35.0

@@ -1752,11 +1752,7 @@
 					"$(PROJECT_DIR)",
 				);
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-all_load",
-					"$(inherited)",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1791,11 +1787,7 @@
 					"$(PROJECT_DIR)",
 				);
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-all_load",
-					"$(inherited)",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1830,11 +1822,7 @@
 					"$(PROJECT_DIR)",
 				);
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-all_load",
-					"$(inherited)",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "MyPets copy";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1869,11 +1857,7 @@
 					"$(PROJECT_DIR)",
 				);
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-all_load",
-					"$(inherited)",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "MyPets copy";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
