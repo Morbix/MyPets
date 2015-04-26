@@ -15,7 +15,6 @@
 #import "MPDropboxNotification.h"
 #import "MXInAppPurchase.h"
 #import "MXGoogleAnalytics.h"
-#import "ACTReporter.h"
 
 #import "MPInternetManager.h"
 
@@ -51,8 +50,6 @@
     
     [self initDropbox];
     
-    [self initGoogleConversionTracking];
-    
     return YES;
 }
 
@@ -60,14 +57,18 @@
 
 - (void)initCrashlytics
 {
-    [Crashlytics startWithAPIKey:KEY_CRASHLYTICS];
+    if (!MX_DESENV_MODE) {
+        [Crashlytics startWithAPIKey:KEY_CRASHLYTICS];
+    }
 }
 
 - (void)initGoogleAnalyticsWithOptions:(NSDictionary *)launchOptions
 {
-    [MXGoogleAnalytics ga_inicializeWithTrackingId:[MPTargets targetAnalyticsID]];
-    [MXGoogleAnalytics ga_trackApplicationLauchingWithOptions:launchOptions];
-    [MXGoogleAnalytics ga_allowIDFACollection:YES];
+    if (!MX_DESENV_MODE) {
+        [MXGoogleAnalytics ga_inicializeWithTrackingId:[MPTargets targetAnalyticsID]];
+        [MXGoogleAnalytics ga_trackApplicationLauchingWithOptions:launchOptions];
+        [MXGoogleAnalytics ga_allowIDFACollection:YES];
+    }
 }
 
 - (void)initParsePurchase
@@ -91,13 +92,15 @@
 
 - (void)initAppirater
 {
-    [Appirater setAppId:[MPTargets targetAppID]];
-    [Appirater setDaysUntilPrompt:7];
-    [Appirater setUsesUntilPrompt:5];
-    [Appirater setSignificantEventsUntilPrompt:-1];
-    [Appirater setTimeBeforeReminding:3];
-    [Appirater setDebug:NO];
-    [Appirater appLaunched:YES];
+    if (!MX_DESENV_MODE) {
+        [Appirater setAppId:[MPTargets targetAppID]];
+        [Appirater setDaysUntilPrompt:7];
+        [Appirater setUsesUntilPrompt:5];
+        [Appirater setSignificantEventsUntilPrompt:-1];
+        [Appirater setTimeBeforeReminding:3];
+        [Appirater setDebug:NO];
+        [Appirater appLaunched:YES];
+    }
 }
 
 - (void)initParseWithOptions:(NSDictionary *)launchOptions
@@ -124,21 +127,6 @@
      if ([accountManager linkedAccount]) {
      [self setSyncEnabled:YES];
      }*/
-}
-
-- (void)initGoogleConversionTracking
-{
-    if (MX_DESENV_MODE) {
-        return;
-    }
-    // MyPets - Pets Manager Free - download
-    // Google iOS Download tracking snippet
-    // To track downloads of your app, add this snippet to your
-    // application delegate's application:didFinishLaunchingWithOptions: method.
-    [ACTConversionReporter reportWithConversionID:KEY_GOOGLE_CONVERSION_TRACKING_ID
-                                            label:KEY_GOOGLE_CONVERSION_TRACKING_LABEL
-                                            value:@"0.00"
-                                     isRepeatable:NO];
 }
 
 #pragma mark - Config's
@@ -171,40 +159,42 @@
 
 - (void)configAutomaticUser
 {
-    [[PFUser currentUser] incrementKey:@"RunCount"];
-    if ([PFInstallation currentInstallation]) {
-        if ([PFInstallation currentInstallation].deviceToken) {
-            [[PFUser currentUser] setObject:[PFInstallation currentInstallation].deviceToken forKey:@"deviceToken"];
+    if ([PFUser currentUser]) {
+        [[PFUser currentUser] incrementKey:@"RunCount"];
+        if ([PFInstallation currentInstallation]) {
+            if ([PFInstallation currentInstallation].deviceToken) {
+                [[PFUser currentUser] setObject:[PFInstallation currentInstallation].deviceToken forKey:@"deviceToken"];
+            }
+            
         }
         
-    }
-
-    [[PFUser currentUser] setObject:[[UIDevice currentDevice] name]
-                             forKey:@"deviceName"];
-    [[PFUser currentUser] setObject:[[UIDevice currentDevice] systemName]
-                             forKey:@"deviceSystemName"];
-    [[PFUser currentUser] setObject:[[UIDevice currentDevice] model]
-                             forKey:@"deviceModel"];
-    [[PFUser currentUser] setObject:[[UIDevice currentDevice] systemVersion]
-                             forKey:@"deviceSystemVersion"];
-    [[PFUser currentUser] setObject:[[UIDevice currentDevice] localizedModel]
-                             forKey:@"deviceLocalizedModel"];
-    
-    [[PFUser currentUser] setObject:[MPTargets targetChannel] forKey:@"app"];
-    
-    [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (MX_DESENV_MODE) {
-            if (error) {
-                NSLog(@"%@", error.localizedDescription);
+        [[PFUser currentUser] setObject:[[UIDevice currentDevice] name]
+                                 forKey:@"deviceName"];
+        [[PFUser currentUser] setObject:[[UIDevice currentDevice] systemName]
+                                 forKey:@"deviceSystemName"];
+        [[PFUser currentUser] setObject:[[UIDevice currentDevice] model]
+                                 forKey:@"deviceModel"];
+        [[PFUser currentUser] setObject:[[UIDevice currentDevice] systemVersion]
+                                 forKey:@"deviceSystemVersion"];
+        [[PFUser currentUser] setObject:[[UIDevice currentDevice] localizedModel]
+                                 forKey:@"deviceLocalizedModel"];
+        
+        [[PFUser currentUser] setObject:[MPTargets targetChannel] forKey:@"app"];
+        
+        [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (MX_DESENV_MODE) {
+                if (error) {
+                    NSLog(@"%@", error.localizedDescription);
+                }
             }
-        }
-    }];
-    
-    
-    if ([PFInstallation currentInstallation]) {
-        if (![[PFInstallation currentInstallation] objectForKey:@"user"]) {
-            [[PFInstallation currentInstallation] setObject:[PFUser currentUser] forKey:@"User"];
-            [[PFInstallation currentInstallation] saveInBackground];
+        }];
+        
+        
+        if ([PFInstallation currentInstallation]) {
+            if (![[PFInstallation currentInstallation] objectForKey:@"user"]) {
+                [[PFInstallation currentInstallation] setObject:[PFUser currentUser] forKey:@"User"];
+                [[PFInstallation currentInstallation] saveInBackground];
+            }
         }
     }
 }
