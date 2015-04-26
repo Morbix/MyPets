@@ -435,6 +435,7 @@
 #warning UPDATE REMINDERS
 #warning UPDATE UI TO OTHER REGISTERS
 #warning DELETE DATA LOGIC
+#warning TESTE: SERVER HAS DATA, APP NO, 'Key Photo has no data'
 //CORRIGIDO - BUG, when data in server is modified and updatedAt is greater than local updatedAtReference (salvar data referencia do momento em que fez o load do server)
 //CORRIGIDO - Checar se os daddos vindo do parse passam pelo fix do core data
 //CORRIGIDO - Checar se as notification do sync estão fora de thread
@@ -866,7 +867,7 @@
             
             [objectToSave setValue:filePhoto forKey:@"photo"];
         }else{
-            [objectToSave setValue:nil forKey:@"photo"];
+            //[objectToSave setValue:nil forKey:@"photo"];
         }
     }
     
@@ -1027,20 +1028,22 @@
     if (fieldPhoto) {
         if ([objectToMigrate valueForKey:@"photo"]) {
             PFFile *filePhoto = [objectToMigrate valueForKey:@"photo"];
-            if (MX_DESENV_MODE) {
-                NSLog(@"%s downloading photo", __PRETTY_FUNCTION__);
-            }
-            NSData *photoData = [filePhoto getData:&error];
-            if (error) {
-                NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
-                return NO;
-            }
-            [objectToSave setValue:photoData forKey:fieldPhoto];
-            if (MX_DESENV_MODE) {
-                NSLog(@"%s photo downloaded", __PRETTY_FUNCTION__);
+            if ([filePhoto isDataAvailable]) {
+                if (MX_DESENV_MODE) {
+                    NSLog(@"%s downloading photo", __PRETTY_FUNCTION__);
+                }
+                NSData *photoData = [filePhoto getData:&error];
+                if (error) {
+                    NSLog(@"%s error: %@", __PRETTY_FUNCTION__, error.localizedDescription);
+                    return NO;
+                }
+                [objectToSave setValue:photoData forKey:fieldPhoto];
+                if (MX_DESENV_MODE) {
+                    NSLog(@"%s photo downloaded", __PRETTY_FUNCTION__);
+                }
             }
         }else{
-            [objectToSave setValue:nil forKey:fieldPhoto];
+            //[objectToSave setValue:nil forKey:fieldPhoto];
         }
     }
     
