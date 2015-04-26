@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
-
-#import "GADBannerView.h"
+#import <GoogleMobileAds/GoogleMobileAds.h>
 
 #define kBanner_Main kIPHONE ? @"ca-app-pub-8687233994493144/1806932365" : @"ca-app-pub-8687233994493144/2309252362"
 #define kBanner_Pet kIPHONE ? @"ca-app-pub-8687233994493144/9330199164" : @"ca-app-pub-8687233994493144/8355785965"

@@ -1,36 +1,55 @@
 PODS:
-  - AFNetworking (2.5.0):
-    - AFNetworking/NSURLConnection (= 2.5.0)
-    - AFNetworking/NSURLSession (= 2.5.0)
-    - AFNetworking/Reachability (= 2.5.0)
-    - AFNetworking/Security (= 2.5.0)
-    - AFNetworking/Serialization (= 2.5.0)
-    - AFNetworking/UIKit (= 2.5.0)
-  - AFNetworking/NSURLConnection (2.5.0):
+  - AFNetworking (2.5.3):
+    - AFNetworking/NSURLConnection (= 2.5.3)
+    - AFNetworking/NSURLSession (= 2.5.3)
+    - AFNetworking/Reachability (= 2.5.3)
+    - AFNetworking/Security (= 2.5.3)
+    - AFNetworking/Serialization (= 2.5.3)
+    - AFNetworking/UIKit (= 2.5.3)
+  - AFNetworking/NSURLConnection (2.5.3):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.5.0):
+  - AFNetworking/NSURLSession (2.5.3):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.5.0)
-  - AFNetworking/Security (2.5.0)
-  - AFNetworking/Serialization (2.5.0)
-  - AFNetworking/UIKit (2.5.0):
+  - AFNetworking/Reachability (2.5.3)
+  - AFNetworking/Security (2.5.3)
+  - AFNetworking/Serialization (2.5.3)
+  - AFNetworking/UIKit (2.5.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - APParallaxHeader (0.1.6)
   - Appirater (2.0.4)
   - Block-KVO (2.2.1)
-  - Bolts (1.1.3)
-  - Facebook-iOS-SDK (3.21.1):
+  - Bolts (1.1.5):
+    - Bolts/AppLinks (= 1.1.5)
+    - Bolts/Tasks (= 1.1.5)
+  - Bolts/AppLinks (1.1.5):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.1.5)
+  - Facebook-iOS-SDK (4.0.1):
     - Bolts (~> 1.0)
+    - Facebook-iOS-SDK/CoreKit (= 4.0.1)
+    - Facebook-iOS-SDK/LoginKit (= 4.0.1)
+    - Facebook-iOS-SDK/ShareKit (= 4.0.1)
+  - Facebook-iOS-SDK/CoreKit (4.0.1):
+    - Bolts (~> 1.0)
+    - Facebook-iOS-SDK/CoreKit/no-arc (= 4.0.1)
+  - Facebook-iOS-SDK/CoreKit/no-arc (4.0.1):
+    - Bolts (~> 1.0)
+  - Facebook-iOS-SDK/LoginKit (4.0.1):
+    - Bolts (~> 1.0)
+    - Facebook-iOS-SDK/CoreKit
+  - Facebook-iOS-SDK/ShareKit (4.0.1):
+    - Bolts (~> 1.0)
+    - Facebook-iOS-SDK/CoreKit
   - FCCurrentLocationGeocoder (1.1.10):
     - FCIPAddressGeocoder (~> 1.0.0)
-  - FCFileManager (1.0.6)
+  - FCFileManager (1.0.7)
   - FCIPAddressGeocoder (1.0.2)
-  - Google-Mobile-Ads-SDK (6.12.2)
+  - Google-Mobile-Ads-SDK (7.1.0)
   - GoogleAnalytics-iOS-SDK (3.10):
     - GoogleAnalytics-iOS-SDK/Core (= 3.10)
   - GoogleAnalytics-iOS-SDK/Core (3.10)
@@ -39,12 +58,15 @@ PODS:
   - M13BadgeView (1.0.4)
   - MXGoogleAnalytics (1.0.1):
     - GoogleAnalytics-iOS-SDK (~> 3.10)
-  - Parse (1.6.1):
-    - Bolts (~> 1.1.3)
+  - Parse (1.7.1):
+    - Bolts (~> 1.1)
+  - ParseFacebookUtilsV4 (1.7.1):
+    - Facebook-iOS-SDK/LoginKit (~> 4.0)
+    - Parse (~> 1.7.1)
   - Reachability (3.2)
-  - SDWebImage (3.7.1):
-    - SDWebImage/Core (= 3.7.1)
-  - SDWebImage/Core (3.7.1)
+  - SDWebImage (3.7.2):
+    - SDWebImage/Core (= 3.7.2)
+  - SDWebImage/Core (3.7.2)
   - UIImage-ResizeMagick (0.0.1)
 
 DEPENDENCIES:
@@ -62,29 +84,31 @@ DEPENDENCIES:
   - M13BadgeView (~> 1.0.2)
   - MXGoogleAnalytics
   - Parse
+  - ParseFacebookUtilsV4
   - Reachability
   - SDWebImage
   - UIImage-ResizeMagick
 
 SPEC CHECKSUMS:
-  AFNetworking: 96ac9bf3eda33582701cb1fcc5b896aa1e20311e
+  AFNetworking: e1d86c2a96bb5d2e7408da36149806706ee122fe
   APParallaxHeader: 854bc48a2487ca12c702f8a236fec0d89cdac5c3
   Appirater: 8783318c36414e8de3ea023443028df94c1b784b
   Block-KVO: 64b63a4bde798ab43caa221db916192cee731886
-  Bolts: e431c88fd02115d4a34016c2100bbfa4d2d5b146
-  Facebook-iOS-SDK: 20e413a6e34f9155d7a34484e0c08247fae3e47f
+  Bolts: aac24961496d504aa56fc267cde95162a71bac39
+  Facebook-iOS-SDK: 6d05532c97e9c542f8d87f94b7f6ee217493d00b
   FCCurrentLocationGeocoder: e3f2cff7ffbbb09a9bc1603e1743650345927938
-  FCFileManager: de16a6b9bf41b0d18067aea8534fbac7b04334fb
+  FCFileManager: fd77211e8448b0e9713d51d4f75769d9dc4ceb58
   FCIPAddressGeocoder: 2622f052eba06c78a707f8b9d9925a406d96ebbd
-  Google-Mobile-Ads-SDK: 40217793219e3466f24cb884d1d44023f37a20ee
+  Google-Mobile-Ads-SDK: 9b7c22345f13de4164e9e6d90ad49cce42124c3c
   GoogleAnalytics-iOS-SDK: 4f98a376c1d61e6ac4ca47951655820314856eef
   HexColors: abfd172e329dab59888614ccba6f216cec59289d
   Lockbox: 16442da35d9d4286966936763be728a931d589c3
   M13BadgeView: 700dd0714fdc837c0cf1c8c004454963ec22441f
   MXGoogleAnalytics: 9029d27e6e1f0a4edc2b9e97d00566e634fa3a80
-  Parse: 18d1d8b61f25421daef4ec8e086ed7577f9f557c
+  Parse: fa8ec29de6d82035635986c11946299fb1b38316
+  ParseFacebookUtilsV4: fc44a339e38513fb6fc0bafbef34f69df6559e06
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
-  SDWebImage: ed3095af2ff88b436426037444979b917f6c5575
+  SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
   UIImage-ResizeMagick: f08c2d14d1e8a5f0b402185408785540562f2fe7
 
 COCOAPODS: 0.35.0

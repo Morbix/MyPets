@@ -53,6 +53,16 @@
     return YES;
 }
 
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    return [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                          openURL:url
+                                                sourceApplication:sourceApplication
+                                                       annotation:annotation];
+}
+
 #pragma mark - Init's
 
 - (void)initCrashlytics
@@ -115,6 +125,8 @@
     //[Parse setApplicationId:KEY_PARSE_APPLICATION_PRODUCTION clientKey:KEY_PARSE_CLIENT_PRODUCTION];
     
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
     
     //[PFUser enableAutomaticUser];
 }
@@ -224,14 +236,14 @@
 }
 
 #pragma mark - Dropbox
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
-{
-    DBAccount *account = [[DBAccountManager sharedManager] handleOpenURL:url];
-    if (account) {
-        return YES;
-    }
-    return NO;
-}
+//- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+//{
+//    DBAccount *account = [[DBAccountManager sharedManager] handleOpenURL:url];
+//    if (account) {
+//        return YES;
+//    }
+//    return NO;
+//}
 
 - (void)setSyncEnabled:(BOOL)enabled
 {
@@ -408,10 +420,10 @@
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     
-    [FBSettings setDefaultAppID:@"424666137577492"];
+    
     // Call the 'activateApp' method to log an app event for use in analytics and
     // advertising reporting.
-    [FBAppEvents activateApp];
+    [FBSDKAppEvents activateApp];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

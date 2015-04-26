@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EE4F0F4EB381839D4AEBCBC2"
+               BlueprintIdentifier = "57AB08A9FBA3A9ED5FC46B12"
                BuildableName = "libPods-FCIPAddressGeocoder.a"
                BlueprintName = "Pods-FCIPAddressGeocoder"
                ReferencedContainer = "container:Pods.xcodeproj">

@@ -32,16 +32,42 @@
                                NSLS(@"Not now, I want to keep using it without sync.")] forState:UIControlStateNormal];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self checkIfAlreadyAuthenticated];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Methods
+- (void)checkIfAlreadyAuthenticated
+{
+    if ([PFUser currentUser] && [[PFUser currentUser] isAuthenticated]) {
+        [self dismissViewControllerAnimated:NO completion:nil];
+    }
+}
+
+- (void)updateUIConnecting:(BOOL)connecting
+{
+    self.btnFacebook.hidden = connecting;
+    self.btnOffline.enabled = !connecting;
+}
 
 #pragma mark - Actions
-- (IBAction)btnFacebookTouched:(id)sender {
+- (IBAction)btnFacebookTouched:(id)sender
+{
+    [self updateUIConnecting:YES];
+    
+    
 }
-- (IBAction)btnOfflineTouched:(id)sender {
+
+- (IBAction)btnOfflineTouched:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

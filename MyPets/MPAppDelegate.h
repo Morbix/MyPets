@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-#import <FacebookSDK/FacebookSDK.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <Parse/Parse.h>
 #import <Dropbox/Dropbox.h>
 #import <Crashlytics/Crashlytics.h>
+#import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 
 #import "ParcelKit.h"
 

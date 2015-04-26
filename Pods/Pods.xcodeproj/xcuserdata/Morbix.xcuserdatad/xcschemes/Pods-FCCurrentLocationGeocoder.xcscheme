@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EB029A0C3F999AA3B0CA81FA"
+               BlueprintIdentifier = "72F919421A64E886A3AFA64B"
                BuildableName = "libPods-FCCurrentLocationGeocoder.a"
                BlueprintName = "Pods-FCCurrentLocationGeocoder"
                ReferencedContainer = "container:Pods.xcodeproj">
