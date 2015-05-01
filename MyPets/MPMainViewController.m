@@ -23,6 +23,7 @@
 #import "UIImageView+WebCache.h"
 #import "MPDropboxNotification.h"
 #import "MPAppDelegate.h"
+#import "MPAds.h"
 
 
 

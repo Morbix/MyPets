@@ -15,7 +15,6 @@
 #import "MPDropboxNotification.h"
 #import "MXInAppPurchase.h"
 #import "MXGoogleAnalytics.h"
-#import "ACTReporter.h"
 
 
 #define kSIZE 10
@@ -47,17 +46,23 @@
         }
     }];
     
-    [Appirater setAppId:[MPTargets targetAppID]];
-    [Appirater setDaysUntilPrompt:7];
-    [Appirater setUsesUntilPrompt:5];
-    [Appirater setSignificantEventsUntilPrompt:-1];
-    [Appirater setTimeBeforeReminding:3];
-    [Appirater setDebug:NO];
-    [Appirater appLaunched:YES];
+    if (!DEBUG) {
+        [Appirater setAppId:[MPTargets targetAppID]];
+        [Appirater setDaysUntilPrompt:7];
+        [Appirater setUsesUntilPrompt:5];
+        [Appirater setSignificantEventsUntilPrompt:-1];
+        [Appirater setTimeBeforeReminding:3];
+        [Appirater setDebug:NO];
+        [Appirater appLaunched:YES];
+    }
     
     
     [Parse setApplicationId:@"VOfi2AierOCqzfMPjFWkUeAVAM4tjT7ODkzqSCOm" clientKey:@"8byEO3HfZvG5vhaNnPeZ5jY76dW4AkWXl7acnV8D"];
-    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    if (!DEBUG) {
+        [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    }
+    
     
     [PFUser enableAutomaticUser];
     
@@ -69,9 +74,11 @@
     [self configurarAutomaticUser];
     
     
-    [MXGoogleAnalytics ga_inicializeWithTrackingId:[MPTargets targetAnalyticsID]];
-    [MXGoogleAnalytics ga_trackApplicationLauchingWithOptions:launchOptions];
-    [MXGoogleAnalytics ga_allowIDFACollection:YES];
+    if (!DEBUG) {
+        [MXGoogleAnalytics ga_inicializeWithTrackingId:[MPTargets targetAnalyticsID]];
+        [MXGoogleAnalytics ga_trackApplicationLauchingWithOptions:launchOptions];
+        [MXGoogleAnalytics ga_allowIDFACollection:YES];
+    }
     
     /*[MPDropboxNotification shared];
     
@@ -82,12 +89,6 @@
         [self setSyncEnabled:YES];
     }*/
     
-    
-    // MyPets - Pets Manager Free - download
-    // Google iOS Download tracking snippet
-    // To track downloads of your app, add this snippet to your
-    // application delegate's application:didFinishLaunchingWithOptions: method.
-    [ACTConversionReporter reportWithConversionID:@"1021940053" label:@"CLc8COSUplYQ1aKm5wM" value:@"0.00" isRepeatable:NO];
     
     return YES;
 }

@@ -53,4 +53,15 @@
 {
     return self.removeAdsPurchased;
 }
+
+- (void)buyProduct:(NSString *)productID block:(void(^)(NSError *error))block
+{
+    if (!self.purchaseInProgress) {
+        self.purchaseInProgress = YES;
+        [PFPurchase buyProduct:kIDENTIFIER_INAPP_REMOVEADS block:^(NSError *error) {
+            self.purchaseInProgress = NO;
+            block(error);
+        }];
+    }
+}
 @end

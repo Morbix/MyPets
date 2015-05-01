@@ -18,6 +18,7 @@
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
+#import "MPAds.h"
 
 @interface MPVacinasViewController ()
 

@@ -30,12 +30,13 @@
 
 @end
 
-//Corrigir Photo Picker
-//Corrigir Photo Fullscreen
-//Corrigir InApp Purchase
-//Enviar analytics apenas quando nao for debug
-//Remover Google Converter
-//FBEvents
+//Ok - Corrigir Photo Picker
+//Ok - Corrigir Photo Fullscreen
+//Ok - Corrigir InApp Purchase
+//Ok - All Banners in Same ID
+//Ok - Enviar analytics apenas quando nao for debug
+//Ok - Remover Google Converter
+//Ok - Parse Update to 1.7.2
 
 
 //2.2.1

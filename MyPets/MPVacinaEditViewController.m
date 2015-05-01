@@ -14,6 +14,7 @@
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
+#import "MPAds.h"
 
 #define kMAX_PHOTO_SIZE 640
 
@@ -437,7 +438,9 @@
         }else if(buttonIndex == 2){
             Vacina *vacina = [[MPCoreDataService shared] vacinaSelected];
             [[MPCoreDataService shared] setPhotoSelected:[vacina getFotoCompleta]];
-            [self performSegueWithIdentifier:@"photoViewController" sender:nil];
+            
+            UIViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PhotoViewController"];
+            [self.navigationController pushViewController:viewController animated:YES];
         }
     }
 }

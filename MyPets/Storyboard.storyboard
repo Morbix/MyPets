@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="XHU-9T-pP0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="XHU-9T-pP0">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <scenes>
         <!--Configuração-->
@@ -1455,7 +1455,7 @@
                                                 <constraint firstAttribute="height" constant="161" id="NfM-2B-kbV"/>
                                             </constraints>
                                         </imageView>
-                                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fwk-R1-SLq">
+                                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fwk-R1-SLq">
                                             <rect key="frame" x="0.0" y="81" width="320" height="80"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="sombra.png" translatesAutoresizingMaskIntoConstraints="NO" id="5oI-cn-8Ll">
@@ -1530,7 +1530,7 @@
                                                 <constraint firstAttribute="height" constant="161" id="gAl-bG-2zF"/>
                                             </constraints>
                                         </imageView>
-                                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IoD-wC-Z9v">
+                                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IoD-wC-Z9v">
                                             <rect key="frame" x="0.0" y="104" width="320" height="57"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="sombra.png" translatesAutoresizingMaskIntoConstraints="NO" id="Njq-AO-YnN">
@@ -1876,7 +1876,6 @@
                         <outlet property="editNotas" destination="urs-xa-UrA" id="Ejj-EX-3O6"/>
                         <outlet property="editVeterinario" destination="A5h-h6-bNo" id="qg2-Xw-PQa"/>
                         <outlet property="imageFoto" destination="ajU-jP-3Sy" id="OzE-yU-6pq"/>
-                        <segue destination="bF7-DH-Pjk" kind="push" identifier="photoViewController" id="xk1-PS-Lik"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fQp-NI-MvT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2136,7 +2135,6 @@
                         <outlet property="editLembreteTipo" destination="Ujj-DQ-zL9" id="CFa-lP-uS5"/>
                         <outlet property="editNotas" destination="Hh7-2X-pqa" id="qP3-ND-ipg"/>
                         <outlet property="imageFoto" destination="UMG-js-Cxl" id="78N-KJ-l44"/>
-                        <segue destination="bF7-DH-Pjk" kind="push" identifier="photoViewController" id="PPw-ia-edl"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Pa-YM-h6l" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2146,7 +2144,7 @@
         <!--Photo View Controller-->
         <scene sceneID="EN2-Ms-MMc">
             <objects>
-                <viewController id="bF7-DH-Pjk" customClass="MPPhotoViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PhotoViewController" id="bF7-DH-Pjk" customClass="MPPhotoViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1sp-dT-zUF"/>
                         <viewControllerLayoutGuide type="bottom" id="IAs-bx-alD"/>
@@ -2692,7 +2690,7 @@
                                                 <constraint firstAttribute="height" constant="161" id="jI8-2i-Vvo"/>
                                             </constraints>
                                         </imageView>
-                                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bql-VS-9Wn">
+                                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bql-VS-9Wn">
                                             <rect key="frame" x="0.0" y="81" width="320" height="80"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="sombra.png" translatesAutoresizingMaskIntoConstraints="NO" id="sd7-Qs-VIO">
@@ -2767,7 +2765,7 @@
                                                 <constraint firstAttribute="height" constant="161" id="Txs-Hr-NDp"/>
                                             </constraints>
                                         </imageView>
-                                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x2R-lV-1LB">
+                                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x2R-lV-1LB">
                                             <rect key="frame" x="0.0" y="104" width="320" height="57"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="sombra.png" translatesAutoresizingMaskIntoConstraints="NO" id="zdL-N5-NDO">
@@ -2909,6 +2907,5 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="dgR-fW-BAk"/>
-        <segue reference="PPw-ia-edl"/>
     </inferredMetricsTieBreakers>
 </document>

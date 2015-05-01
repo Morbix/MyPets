@@ -13,6 +13,7 @@
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
+#import "MPAds.h"
 
 @interface MPPesoEditViewController () <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UIActionSheetDelegate>
 

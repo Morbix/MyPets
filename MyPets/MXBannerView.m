@@ -212,14 +212,12 @@
 {
     if (buttonIndex == 0) {
         [MXGoogleAnalytics ga_trackEventWith:@"Ads" action:@"Remove Touched" label:bannerView_.adUnitID];
-        [PFPurchase buyProduct:kIDENTIFIER_INAPP_REMOVEADS block:^(NSError *error) {
-            if (!error) {
-                [[MXInAppPurchase shared] saveRemoveAdsPurchasedFromObserver:NO];
-            }else{
+        [[MXInAppPurchase shared] buyProduct:kIDENTIFIER_INAPP_REMOVEADS block:^(NSError *error) {
+            if (error) {
                 [[[UIAlertView alloc] initWithTitle:@""
-                                           message:error.localizedDescription
-                                          delegate:nil
-                                 cancelButtonTitle:@"Ok"
+                                            message:error.localizedDescription
+                                           delegate:nil
+                                  cancelButtonTitle:@"Ok"
                                   otherButtonTitles:nil] show];
             }
         }];

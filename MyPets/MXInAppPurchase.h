@@ -12,9 +12,11 @@
 
 @interface MXInAppPurchase : NSObject
 
+@property (nonatomic, assign) BOOL purchaseInProgress;
+
 + (instancetype)shared;
 
 - (void)saveRemoveAdsPurchasedFromObserver:(BOOL)observer;
 - (BOOL)checkRemoveAdsPurchased;
-
+- (void)buyProduct:(NSString *)productID block:(void(^)(NSError *error))block;
 @end

@@ -14,6 +14,7 @@
 #import "GAITracker.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
+#import "MPAds.h"
 
 #define kMAX_PHOTO_SIZE 640
 

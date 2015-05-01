@@ -21,6 +21,7 @@
 #import "PNLineChartDataItem.h"
 #import "MPLibrary.h"
 #import "MPPeso.h"
+#import "MPAds.h"
 
 @interface MPPetViewController () <PNChartDelegate>
 
