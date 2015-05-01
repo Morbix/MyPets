@@ -425,14 +425,17 @@
             [picker setCameraDevice:UIImagePickerControllerCameraDeviceRear];
             [picker setMediaTypes:[UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera]];
             
-            [self presentViewController:picker animated:YES completion:^{}];
-            
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self presentViewController:picker animated:YES completion:nil];
+            }];
         }else if(buttonIndex == 1){
             UIImagePickerController * picker = [[UIImagePickerController alloc] init];
             [picker setDelegate:self];
             [picker setAllowsEditing:YES];
             
-            [self presentViewController:picker animated:YES completion:^{}];
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self presentViewController:picker animated:YES completion:nil];
+            }];
         }else if(buttonIndex == 2){
             Vermifugo *vermifugo = [[MPCoreDataService shared] vermifugoSelected];
             [[MPCoreDataService shared] setPhotoSelected:[vermifugo getFotoCompleta]];
@@ -441,7 +444,7 @@
     }
 }
 
-#pragma mark UIImagePickerControllerDelegate
+#pragma mark - UIImagePickerControllerDelegate
 
 -(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {

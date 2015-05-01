@@ -30,6 +30,14 @@
 
 @end
 
+//Corrigir Photo Picker
+//Corrigir Photo Fullscreen
+//Corrigir InApp Purchase
+//Enviar analytics apenas quando nao for debug
+//Remover Google Converter
+//FBEvents
+
+
 //2.2.1
 //Ok - Atualizar Parse
 //Ok - Atualizar Facebook
