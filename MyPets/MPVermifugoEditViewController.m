@@ -441,7 +441,7 @@
             Vermifugo *vermifugo = [[MPCoreDataService shared] vermifugoSelected];
             [[MPCoreDataService shared] setPhotoSelected:[vermifugo getFotoCompleta]];
             
-            UIViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PhotoViewController"];
+            UIViewController *viewController = [[UIStoryboard storyboardWithName:@"Storyboard" bundle:nil] instantiateViewControllerWithIdentifier:@"PhotoViewController"];
             [self.navigationController pushViewController:viewController animated:YES];
         }
     }

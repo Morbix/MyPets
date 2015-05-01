@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MPPhotoViewController : MXTableViewController
+@interface MPPhotoViewController : UIViewController
 
 @end

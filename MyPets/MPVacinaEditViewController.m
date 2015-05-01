@@ -439,7 +439,7 @@
             Vacina *vacina = [[MPCoreDataService shared] vacinaSelected];
             [[MPCoreDataService shared] setPhotoSelected:[vacina getFotoCompleta]];
             
-            UIViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PhotoViewController"];
+            UIViewController *viewController = [[UIStoryboard storyboardWithName:@"Storyboard" bundle:nil] instantiateViewControllerWithIdentifier:@"PhotoViewController"];
             [self.navigationController pushViewController:viewController animated:YES];
         }
     }
