@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "784BBC64CD32FCA8C94A749E26FF25E92B282B0D",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "784BBC64CD32FCA8C94A749E26FF25E92B282B0D" : 0,
+    "AB012357-8618-4DBD-9524-DDCCA0E9E0CE" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "D6791F91-74CF-43DE-BC5D-BB22BF967F9E",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "784BBC64CD32FCA8C94A749E26FF25E92B282B0D" : "MyPets",
+    "AB012357-8618-4DBD-9524-DDCCA0E9E0CE" : "MyPets 2"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "MyPets",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "MyPets.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/bitbucket.org\/morbix\/mypets-2.0.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "784BBC64CD32FCA8C94A749E26FF25E92B282B0D"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/bitbucket.org\/morbix\/mypets-2.0.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "AB012357-8618-4DBD-9524-DDCCA0E9E0CE"
+    }
+  ]
+}
